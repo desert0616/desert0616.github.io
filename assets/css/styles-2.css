@@ -180,7 +180,7 @@ p {
   -moz-background-clip: padding;
   -webkit-background-clip: padding-box;
   background-clip: padding-box;
-  background: #35776d;
+  background: #1C32FA;
   text-align: center;
   padding-top: 8px;
   font-size: 16px;
@@ -199,7 +199,7 @@ p {
   margin-bottom: 2px;
 }
 .main-wrapper .job-title {
-  color: #3F4650;
+  color: #1C32FA;
   font-size: 16px;
   margin-top: 0;
   margin-bottom: 0;
