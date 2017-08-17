@@ -43,7 +43,7 @@ p {
   line-height: 1.5;
 }
 .wrapper {
-  background: #1C32FA;
+  background: #1E5190;
   max-width: 960px;
   margin: 0 auto;
   position: relative;
@@ -65,7 +65,7 @@ p {
 }
 .sidebar-wrapper .profile-container {
   padding: 30px;
-  background: rgba(53, 145, 255, 1);
+  background: rgba(30, 81, 144, 1);
   text-align: center;
   color: #fff;
 }
@@ -161,7 +161,7 @@ p {
   text-transform: uppercase;
   font-size: 20px;
   font-weight: 500;
-  color: #FFAC24;
+  color: #1E5190;
   position: relative;
   margin-top: 0;
   margin-bottom: 20px;
@@ -180,7 +180,7 @@ p {
   -moz-background-clip: padding;
   -webkit-background-clip: padding-box;
   background-clip: padding-box;
-  background: #1C32FA;
+  background: #1E5190;
   text-align: center;
   padding-top: 8px;
   font-size: 16px;
@@ -199,7 +199,7 @@ p {
   margin-bottom: 2px;
 }
 .main-wrapper .job-title {
-  color: #1C32FA;
+  color: #1E5190;
   font-size: 16px;
   margin-top: 0;
   margin-bottom: 0;
