@@ -1,5 +1,5 @@
 
-title: Mo Sha's Website - NUS School of Computing
+title: Mo Sha's Website - NUS Computing
 baseurl: 'desert0616.github.io' #change it according to your repository name
 
 
@@ -12,7 +12,7 @@ style: styles-2
 
 
 #Profile information
-name: Mo Sha
+name: Mo Sha - 沙漠
 tagline: Graduate Student
 pic: profile.png  #place a 100x100 picture inside /assets/images/ folder and provide the name of the file below
 
