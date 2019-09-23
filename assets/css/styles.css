@@ -303,8 +303,8 @@ a.dotted-link:hover {
 .address .item .address-line {
   font-family: "Lato", arial, sans-serif;
   font-size: 16px;
-  margin-top: 0;
-  margin-bottom: 3px;
+  margin-top: 5px;
+  margin-bottom: 0px;
   color: #434343;
 }
 /* ======= Footer ======= */
