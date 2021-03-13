@@ -345,6 +345,10 @@ a.dotted-link:hover {
     margin-top: 30px;
     float: none !important;
   }
+  .header .btn-group {
+    margin-top: 30px;
+    float: none !important;
+  }
   .project-image {
     margin-bottom: 15px;
   }
