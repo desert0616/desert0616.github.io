@@ -50,7 +50,7 @@
     const secondHref = hasDoi ? ('https://doi.org/' + item.doi) : (item.url || '#');
     const secondTitle = hasDoi ? 'Open DOI' : 'Open URL';
     const pdfBtn = hasPdfFile
-      ? '<a class="pub-btn-pdf" href="' + escapeHtml(pdfHref) + '" target="_blank" rel="noopener" download title="Download PDF">' + downloadSvg + '<span class="pub-btn-label">PDF</span></a>'
+      ? '<a class="pub-btn-pdf" href="' + escapeHtml(pdfHref) + '" target="_blank" rel="noopener" title="View PDF">' + downloadSvg + '<span class="pub-btn-label">PDF</span></a>'
       : '<span class="pub-btn-pdf pub-btn-pdf--empty" title="PDF not available">' + downloadSvg + '<span class="pub-btn-label">PDF</span></span>';
     const doiBtn = hasSecondLink
       ? '<a class="pub-btn-doi" href="' + escapeHtml(secondHref) + '" target="_blank" rel="noopener" title="' + escapeHtml(secondTitle) + '">' + websiteSvg + '<span class="pub-btn-label">' + escapeHtml(secondLabel) + '</span></a>'
