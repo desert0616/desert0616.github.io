@@ -56,7 +56,7 @@ window.SITE_DATA = {
         "title": "Efficient Projection-Based Algorithms for Tip Decomposition on Dynamic Bipartite Graphs.",
         "authors": "Tongfeng Weng, Yumeng Liu, Mo Sha, Xinyuan Chen, Xu Zhou, Kenli Li, Kian-Lee Tan.",
         "doi": "10.1109/TKDE.2024.3486310",
-        "pdf_filename": ""
+        "pdf_filename": "tkde-weng2025.pdf"
       },
       {
         "year": 2024,
