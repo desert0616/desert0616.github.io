@@ -18,6 +18,24 @@ window.SITE_DATA = {
     "items": [
       {
         "year": 2026,
+        "venue": "SIGMOD",
+        "track": "Industry",
+        "title": "SQLens: Continuous Code-to-SQL Visibility in the Wild.",
+        "authors": "Xiao Yang, Mo Sha, Yiran Li, Suyang Zhong, Sheng Wang, Fangyuan Zhou, Feifei Li.",
+        "doi": "",
+        "pdf_filename": ""
+      },
+      {
+        "year": 2026,
+        "venue": "SIGMOD",
+        "track": "Industry",
+        "title": "CloudJump III: Optimizing Cloud Databases for Tiered Storage.",
+        "authors": "Zongzhi Chen, Mo Sha, Feifei Li, Sheng Wang, Baolin Huang, Guoqing Ma, Huaxiong Song, Ke Yu, Xizhe Zhang, Yuan Wang.",
+        "doi": "",
+        "pdf_filename": ""
+      },
+      {
+        "year": 2026,
         "venue": "VLDB",
         "title": "Efficient Temporal Edge-Core Maintenance in Streaming Graphs.",
         "authors": "Tongfeng Weng, Mo Sha, Xu Zhou, Jingjing Lu, Kenli Li, Kian-Lee Tan.",
