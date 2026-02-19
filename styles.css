@@ -381,6 +381,12 @@ section h2 {
   font-weight: 700;
   color: var(--text);
 }
+.pub-item:hover .title,
+.pub-item:hover .authors {
+  white-space: normal;
+  overflow: visible;
+  text-overflow: clip;
+}
 .pub-item .venue-link {
   font-size: 0.8rem;
   margin-top: .15em;
