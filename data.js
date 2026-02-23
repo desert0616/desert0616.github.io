@@ -18,6 +18,14 @@ window.SITE_DATA = {
       {
         "year": 2026,
         "venue": "SIGMOD",
+        "title": "DBugScribe: Automatic Database Bug Reproduction from Community Reports.",
+        "authors": "Suyang Zhong, Mo Sha, Sheng Wang, Fangyuan Zhou, Feifei Li, Kian-Lee Tan.",
+        "doi": "",
+        "pdf_filename": ""
+      },
+      {
+        "year": 2026,
+        "venue": "SIGMOD",
         "track": "Industry",
         "title": "SQLens: Continuous Code-to-SQL Visibility in the Wild.",
         "authors": "Xiao Yang, Mo Sha, Yiran Li, Suyang Zhong, Sheng Wang, Fangyuan Zhou, Feifei Li.",
