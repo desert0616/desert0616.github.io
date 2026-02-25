@@ -31,7 +31,7 @@
     if (!profile.links || !profile.links.length) return '';
     return profile.links
       .map(function (link) {
-        return '[' + '<a href="' + escapeHtml(link.href) + '" target="_blank" rel="noopener">' + escapeHtml(link.label) + '</a>' + ']';
+        return '<span class="pub-bracket">[<a href="' + escapeHtml(link.href) + '" target="_blank" rel="noopener">' + escapeHtml(link.label) + '</a>]</span>';
       })
       .join('');
   }
