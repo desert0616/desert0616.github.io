@@ -167,7 +167,7 @@ window.SITE_DATA = {
         "pdf_filename": "icdm_hep.pdf"
       },
       {
-        "year": 2017,
+        "year": 2018,
         "venue": "VLDB",
         "title": "Parallel Personalized Pagerank on Dynamic Graphs.",
         "authors": "Wentian Guo, Yuchen Li, Mo Sha, Kian-Lee Tan.",
@@ -175,7 +175,7 @@ window.SITE_DATA = {
         "pdf_filename": "vldb_ppr.pdf"
       },
       {
-        "year": 2017,
+        "year": 2018,
         "venue": "VLDB",
         "title": "Accelerating Dynamic Graph Analytics on GPUs.",
         "authors": "Mo Sha, Yuchen Li, Bingsheng He, Kian-Lee Tan.",
