@@ -46,14 +46,22 @@ window.SITE_DATA = {
         "venue": "VLDB",
         "title": "Efficient Temporal Edge-Core Maintenance in Streaming Graphs.",
         "authors": "Tongfeng Weng, Mo Sha, Xu Zhou, Jingjing Lu, Kenli Li, Kian-Lee Tan.",
-        "doi": "",
-        "pdf_filename": ""
+        "doi": "10.14778/3785297.3785312",
+        "pdf_filename": "p726-tan.pdf"
       },
       {
         "year": 2026,
         "venue": "VLDB",
         "title": "Why Database Manuals Are Not Enough: Efficient and Reliable Configuration Tuning for DBMSs via Code-Driven LLM Agents.",
         "authors": "Xinyi Zhang, Tiantian Chen, Zhentao Han, Zhaoyan Hong, Wei Lu, Sheng Wang, Mo Sha, Anni Wang, Yakun Zhang, Shuang Liu, Feifei Li, Xiaoyong Du.",
+        "doi": "",
+        "pdf_filename": ""
+      },
+      {
+        "year": 2026,
+        "venue": "TKDE",
+        "title": "SMDG: Enhancing In-Memory Dynamic Graph Processing with Storage-Class Memory.",
+        "authors": "Tongfeng Weng, Mo Sha, Xu Zhou, Jingjing Lu, Wentao Huang, Kenli Li, Kian-Lee Tan.",
         "doi": "",
         "pdf_filename": ""
       },
@@ -125,14 +133,14 @@ window.SITE_DATA = {
         "doi": "10.1145/3448016.3457279",
         "pdf_filename": "sigmod_sage.pdf"
       },
-      {
-        "year": 2021,
-        "venue": "SSDBM",
-        "title": "Accelerating Depth-First Traversal by Graph Ordering.",
-        "authors": "Qiuyi Lyu, Mo Sha, Bin Gong, Kuangda Lyu.",
-        "doi": "10.1145/3468791.3468796",
-        "pdf_filename": "ssdbm_seqdfs.pdf"
-      },
+      // {
+      //   "year": 2021,
+      //   "venue": "SSDBM",
+      //   "title": "Accelerating Depth-First Traversal by Graph Ordering.",
+      //   "authors": "Qiuyi Lyu, Mo Sha, Bin Gong, Kuangda Lyu.",
+      //   "doi": "10.1145/3468791.3468796",
+      //   "pdf_filename": "ssdbm_seqdfs.pdf"
+      // },
       {
         "year": 2020,
         "venue": "SIGMOD",
@@ -149,23 +157,23 @@ window.SITE_DATA = {
         "doi": "10.1145/3299869.3319871",
         "pdf_filename": "sigmod_gcgt.pdf"
       },
-      {
-        "year": 2018,
-        "venue": "ICDM",
-        "track": "Demo",
-        "title": "River: A Real-Time Influence Monitoring System on Social Media Streams.",
-        "authors": "Mo Sha, Yuchen Li, Yanhao Wang, Wentian Guo, Kian-Lee Tan.",
-        "doi": "10.1109/ICDMW.2018.00203",
-        "pdf_filename": "icdm_river.pdf"
-      },
-      {
-        "year": 2018,
-        "venue": "ICDM",
-        "title": "Heterogeneous Embedding Propagation for Large-Scale E-Commerce User Alignment.",
-        "authors": "Vincent W. Zheng, Mo Sha, Yuchen Li, Hongxia Yang, Yuan Fang, Zhenjie Zhang, Kian-Lee Tan, Kevin Chen-Chuan Chang.",
-        "doi": "10.1109/ICDM.2018.00198",
-        "pdf_filename": "icdm_hep.pdf"
-      },
+      // {
+      //   "year": 2018,
+      //   "venue": "ICDM",
+      //   "track": "Demo",
+      //   "title": "River: A Real-Time Influence Monitoring System on Social Media Streams.",
+      //   "authors": "Mo Sha, Yuchen Li, Yanhao Wang, Wentian Guo, Kian-Lee Tan.",
+      //   "doi": "10.1109/ICDMW.2018.00203",
+      //   "pdf_filename": "icdm_river.pdf"
+      // },
+      // {
+      //   "year": 2018,
+      //   "venue": "ICDM",
+      //   "title": "Heterogeneous Embedding Propagation for Large-Scale E-Commerce User Alignment.",
+      //   "authors": "Vincent W. Zheng, Mo Sha, Yuchen Li, Hongxia Yang, Yuan Fang, Zhenjie Zhang, Kian-Lee Tan, Kevin Chen-Chuan Chang.",
+      //   "doi": "10.1109/ICDM.2018.00198",
+      //   "pdf_filename": "icdm_hep.pdf"
+      // },
       {
         "year": 2018,
         "venue": "VLDB",
