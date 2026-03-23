@@ -204,6 +204,7 @@ window.SITE_DATA = {
       "Transactions on Knowledge and Data Engineering",
       "Transactions on Knowledge Discovery from Data",
       "Journal of Parallel and Distributed Computing",
+      "Scientific Reports",
       "Information Sciences",
       "IEEE Access",
       "Wireless Networks",
