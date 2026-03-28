@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>__PAGE_TITLE__</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,400;0,600;0,700;1,400&family=Source+Sans+3:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <script charset="UTF-8" id="LA_COLLECT" src="//sdk.51.la/js-sdk-pro.min.js"></script>
+  <script>
+    LA.init({id:"3PC4hAt6QodAO1Zq",ck:"3PC4hAt6QodAO1Zq",autoTrack:true})
+  </script>
+</head>
+<body>
+  <button class="theme-toggle" id="themeToggle" aria-label="Toggle light/dark theme">
+    <svg class="sun" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" /></svg>
+    <svg class="moon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" style="display:none"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" /></svg>
+  </button>
+
+  <div class="container">
+    <div id="app">
+__APP_HTML__
+    </div>
+  </div>
+
+  <script src="main.js"></script>
+  <script>
+  (function () {
+    var endpoint = "https://muddy-paper-a311.desert0616.workers.dev/pv";
+
+    var payload = {
+      url: location.href,
+      path: location.pathname + location.search + location.hash,
+      title: document.title || "",
+      ref: document.referrer || "",
+      ua: navigator.userAgent || "",
+      lang: navigator.language || "",
+      tz: String(new Date().getTimezoneOffset()),
+      screen: (screen ? (screen.width + "x" + screen.height) : "")
+    };
+
+    fetch(endpoint, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload),
+      keepalive: true,
+      credentials: "omit"
+    }).catch(function(){});
+  })();
+  </script>
+</body>
+</html>

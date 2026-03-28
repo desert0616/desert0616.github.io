@@ -1,4 +1,4 @@
-window.SITE_DATA = {
+{
   "site": {
     "title": "Mo Sha",
     "footer": "© 2026 Mo Sha. All rights reserved."
@@ -81,7 +81,6 @@ window.SITE_DATA = {
         "authors": "Zongzhi Chen, Xinjun Yang, Mo Sha, Feifei Li, Kang Wang, Zheyu Miao, Jie Xu, Jianfeng Wang, Sheng Wang.",
         "doi": "10.1145/3722212.3724431",
         "pdf_filename": "CloudJumpII.pdf"
-
       },
       {
         "year": 2025,
@@ -133,14 +132,6 @@ window.SITE_DATA = {
         "doi": "10.1145/3448016.3457279",
         "pdf_filename": "sigmod_sage.pdf"
       },
-      // {
-      //   "year": 2021,
-      //   "venue": "SSDBM",
-      //   "title": "Accelerating Depth-First Traversal by Graph Ordering.",
-      //   "authors": "Qiuyi Lyu, Mo Sha, Bin Gong, Kuangda Lyu.",
-      //   "doi": "10.1145/3468791.3468796",
-      //   "pdf_filename": "ssdbm_seqdfs.pdf"
-      // },
       {
         "year": 2020,
         "venue": "SIGMOD",
@@ -157,23 +148,6 @@ window.SITE_DATA = {
         "doi": "10.1145/3299869.3319871",
         "pdf_filename": "sigmod_gcgt.pdf"
       },
-      // {
-      //   "year": 2018,
-      //   "venue": "ICDM",
-      //   "track": "Demo",
-      //   "title": "River: A Real-Time Influence Monitoring System on Social Media Streams.",
-      //   "authors": "Mo Sha, Yuchen Li, Yanhao Wang, Wentian Guo, Kian-Lee Tan.",
-      //   "doi": "10.1109/ICDMW.2018.00203",
-      //   "pdf_filename": "icdm_river.pdf"
-      // },
-      // {
-      //   "year": 2018,
-      //   "venue": "ICDM",
-      //   "title": "Heterogeneous Embedding Propagation for Large-Scale E-Commerce User Alignment.",
-      //   "authors": "Vincent W. Zheng, Mo Sha, Yuchen Li, Hongxia Yang, Yuan Fang, Zhenjie Zhang, Kian-Lee Tan, Kevin Chen-Chuan Chang.",
-      //   "doi": "10.1109/ICDM.2018.00198",
-      //   "pdf_filename": "icdm_hep.pdf"
-      // },
       {
         "year": 2018,
         "venue": "VLDB",
@@ -212,4 +186,4 @@ window.SITE_DATA = {
       "Transactions on Information Forensics and Security"
     ]
   }
-};
+}
