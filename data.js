@@ -7,7 +7,7 @@ window.SITE_DATA = {
     "name": "Mo Sha",
     "avatar": "profile.jpeg",
     "affiliation": "",
-    "introHtml": "I am a research scientist at AsparaDB Lab, Alibaba Cloud Intelligence. I received my PhD in 2021 from the School of Computing, National University of Singapore, supervised by <a href=\"https://www.comp.nus.edu.sg/~tankl/\" target=\"_blank\" rel=\"noopener\">Prof. Kian-Lee Tan</a>. My research interests span database systems and data management, particularly modern hardware, secure data processing, and graph algorithms. At present, I devote most of my efforts to intelligent operations and automation for database systems in industrial and production environments.",
+    "introHtml": "I am a research scientist at Apsara Lab, Alibaba Cloud Intelligence. I received my PhD in 2021 from the School of Computing, National University of Singapore, supervised by <a href=\"https://www.comp.nus.edu.sg/~tankl/\" target=\"_blank\" rel=\"noopener\">Prof. Kian-Lee Tan</a>. My research interests span database systems and data management, particularly modern hardware, secure data processing, and graph algorithms. At present, I devote most of my efforts to intelligent operations and automation for database systems in industrial and production environments.",
     "links": [
       { "label": "DBLP", "href": "https://dblp.org/pid/70/5884-2.html" },
       { "label": "Google Scholar", "href": "https://scholar.google.com/citations?user=pjKHbYIAAAAJ" }
