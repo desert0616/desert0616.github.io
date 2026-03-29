@@ -178,28 +178,21 @@ def render_service(service: dict, base: int = APP_BASE) -> str:
     conf = service.get("conference")
     jour = service.get("journal")
     if conf or jour:
-        b4 = ind(base + 4)
 
-        def render_list(items: list | None) -> str:
-            if not items:
-                return ""
-            lis = "\n".join(f"{b4}<li>{esc(x)}</li>" for x in items)
-            return f'{b3}<ul class="service-items">\n{lis}\n{b3}</ul>'
+        def list_html(items: list | None) -> str:
+            seq = items or []
+            if not seq:
+                return f'{b2}<ul class="service-items"></ul>'
+            lis = "\n".join(f"{b3}<li>{esc(x)}</li>" for x in seq)
+            return f'{b2}<ul class="service-items">\n{lis}\n{b2}</ul>'
 
-        body_html = "\n".join(
-            [
-                f'{b1}<div class="service-columns">',
-                f'{b2}<div class="service-col">',
-                f'{b3}<h3 class="service-col-title">Conference reviewer</h3>',
-                render_list(conf),
-                f"{b2}</div>",
-                f'{b2}<div class="service-col">',
-                f'{b3}<h3 class="service-col-title">Journal reviewer</h3>',
-                render_list(jour),
-                f"{b2}</div>",
-                f"{b1}</div>",
-            ]
-        )
+        parts = [
+            f'{b2}<h3 class="service-col-title">Conference reviewer</h3>',
+            list_html(conf),
+            f'{b2}<h3 class="service-col-title">Journal reviewer</h3>',
+            list_html(jour),
+        ]
+        body_html = f'{b1}<div class="service-flow-wrap">\n' + "\n".join(parts) + f"\n{b1}</div>"
     elif service.get("description"):
         paragraphs = re.split(r"\n\n+", service["description"])
         paras = "\n".join(
