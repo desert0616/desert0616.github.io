@@ -54,15 +54,15 @@
         "venue": "VLDB",
         "title": "Why Database Manuals Are Not Enough: Efficient and Reliable Configuration Tuning for DBMSs via Code-Driven LLM Agents.",
         "authors": "Xinyi Zhang, Tiantian Chen, Zhentao Han, Zhaoyan Hong, Wei Lu, Sheng Wang, Mo Sha, Anni Wang, Yakun Zhang, Shuang Liu, Feifei Li, Xiaoyong Du.",
-        "doi": "",
-        "pdf_filename": ""
+        "doi": "10.14778/3797919.3797940",
+        "pdf_filename": "p1358-zhang.pdf"
       },
       {
         "year": 2026,
         "venue": "TKDE",
         "title": "SMDG: Enhancing In-Memory Dynamic Graph Processing with Storage-Class Memory.",
         "authors": "Tongfeng Weng, Mo Sha, Xu Zhou, Jingjing Lu, Wentao Huang, Kenli Li, Kian-Lee Tan.",
-        "doi": "",
+        "doi": "10.1109/TKDE.2026.3676514",
         "pdf_filename": ""
       },
       {
