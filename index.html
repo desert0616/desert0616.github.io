@@ -449,19 +449,31 @@
   try { session = sessionStorage.getItem(S_KEY) || ''; } catch (e) {}
   if (!session) { session = rid(); try { sessionStorage.setItem(S_KEY, session); } catch (e) {} }
 
-  var startMs = Date.now();
-  var visibleStart = (document.visibilityState !== 'hidden') ? startMs : 0;
+  // ----- Engagement / dwell timer -----
+  // "Engaged" = (tab is visible) AND (user did something in the last 30s).
+  // Tick once per second; increment engagedMs by 1000 when both hold.
+  // performance.now() is monotonic — survives system clock corrections and
+  // doesn't accrue during sleep (interval callbacks aren't called while
+  // suspended). totalMs is wall-clock from load to leave.
+  var nowMs = function () { return performance.now(); };
+  var startMs = nowMs();
   var engagedMs = 0;
   var maxScrollPct = 0;
-  var leaveSent = false;
+  var lastActivityMs = nowMs();
+  var IDLE_THRESHOLD_MS = 30000;
 
-  function tickEngagement() {
-    if (visibleStart > 0) {
-      var now = Date.now();
-      engagedMs += (now - visibleStart);
-      visibleStart = now;
-    }
-  }
+  function bumpActivity() { lastActivityMs = nowMs(); }
+  ['mousemove', 'keydown', 'scroll', 'click', 'touchstart'].forEach(function (ev) {
+    document.addEventListener(ev, bumpActivity, { passive: true, capture: true });
+  });
+
+  // Tick the engagement counter. Independent of any leave/visibility logic,
+  // so engagedMs is always fresh when we ship the leave beacon.
+  setInterval(function () {
+    if (document.visibilityState !== 'visible') return;
+    if (nowMs() - lastActivityMs > IDLE_THRESHOLD_MS) return;
+    engagedMs += 1000;
+  }, 1000);
 
   function updateScroll() {
     try {
@@ -473,19 +485,17 @@
       if (pct > maxScrollPct) maxScrollPct = pct;
     } catch (e) {}
   }
-
-  document.addEventListener('visibilitychange', function () {
-    if (document.visibilityState === 'hidden') {
-      tickEngagement();
-      visibleStart = 0;
-      sendLeave(); // best-effort: tab hiding may also be close
-    } else if (visibleStart === 0) {
-      visibleStart = Date.now();
-    }
-  });
   window.addEventListener('scroll', updateScroll, { passive: true });
-  window.addEventListener('pagehide', function () { tickEngagement(); sendLeave(); });
-  window.addEventListener('beforeunload', function () { tickEngagement(); sendLeave(); });
+  // Page-end / tab-end signals. visibilitychange-hidden, pagehide, and
+  // beforeunload all fire within milliseconds on a real tab close — we want
+  // exactly one leave per hide-cycle, but allow a NEW leave after the
+  // visitor comes back. `leavePending` re-arms when visibility returns.
+  document.addEventListener('visibilitychange', function () {
+    if (document.visibilityState === 'hidden') sendLeave();
+    else leavePending = false; // visitor came back; next hide gets its own leave
+  });
+  window.addEventListener('pagehide', sendLeave);
+  window.addEventListener('beforeunload', sendLeave);
 
   function navTimings() {
     try {
@@ -591,8 +601,8 @@
   function buildLeave() {
     var p = basePayload();
     p.event_type = 'leave';
-    p.engaged_ms = engagedMs;
-    p.total_ms = Date.now() - startMs;
+    p.engaged_ms = Math.round(engagedMs);
+    p.total_ms = Math.round(nowMs() - startMs);
     p.scroll_pct = maxScrollPct;
     try {
       var doc = document.documentElement, body = document.body;
@@ -855,11 +865,14 @@
     setTimeout(function () { ship(buildPageview()); }, 0);
   }
 
-  // Leave beacon dedupes — visibilitychange (hidden) and pagehide both fire on
-  // real-world tab close, but we only want one row.
+  // Dedup near-simultaneous fires (visibilitychange + pagehide + beforeunload
+  // all fire within ms on tab close). Reset by the visibilitychange handler
+  // when the page becomes visible again, so a hide→show→hide sequence
+  // produces two distinct leave beacons.
+  var leavePending = false;
   function sendLeave() {
-    if (leaveSent) return;
-    leaveSent = true;
+    if (leavePending) return;
+    leavePending = true;
     updateScroll();
     ship(buildLeave());
   }
