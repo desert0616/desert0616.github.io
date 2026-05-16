@@ -141,11 +141,8 @@ def render_publication_item(item: dict, base: int) -> str:
         info_lines.append(f'{b4}<span class="pub-btn-track">{esc(item["track"])}</span>')
     info_lines.append(f"{b3}</span>")
 
-    # data-track-context lets the analytics beacon attach the paper title to
-    # any click inside this row (the PDF/DOI/URL buttons only have generic
-    # text like "PDF" otherwise).
     lines = [
-        f'{b}<div class="pub-item" data-track-context="{esc(item["title"])}">',
+        f'{b}<div class="pub-item">',
         f'{b1}<div class="pub-venue-col">',
         f'{b2}<div class="{btn_class}">',
         *btn_inner,
