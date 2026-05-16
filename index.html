@@ -705,21 +705,25 @@
     if (payload) ship(payload);
   }, true);
 
-  // ----- Hover: "did this visitor pause on a link/button for ≥1.5 s?" -----
-  // We don't want every mouseover firing a beacon — that's thousands per
-  // page-load. Instead: arm a timer when cursor enters a trackable element,
-  // cancel if they leave before 1.5 s, fire (once per element per pageload)
-  // if the threshold is hit.
+  // ----- Hover: "mouse stops on something → record it" -----
+  // mousemove with a 200 ms debounce: every cursor movement resets the
+  // timer; if 200 ms pass without movement, the cursor is "settled" and we
+  // walk up from its current position to the nearest meaningful element.
+  // Dedup per element per pageload prevents flooding when the visitor sits
+  // still over the same spot.
+  //
+  // Trackable selector covers clickable things (a, button) AND content
+  // containers (article, section, li, anything with item/card/paper/post in
+  // class) — so pausing on a paper title in the middle of the page counts,
+  // not just pausing on its PDF button.
   var hoveredOnce = new WeakSet();
-  var pendingHover = null; // { el, timer, leaveListener }
-  function clearPendingHover() {
-    if (!pendingHover) return;
-    clearTimeout(pendingHover.timer);
-    if (pendingHover.el && pendingHover.leaveListener) {
-      pendingHover.el.removeEventListener('mouseleave', pendingHover.leaveListener);
-    }
-    pendingHover = null;
-  }
+  var moveTimer = null;
+  var lastX = 0, lastY = 0;
+  var hoverSelector =
+    'a, button, [data-track-hover], article, section, li, figure, ' +
+    '[class*="item"], [class*="card"], [class*="paper"], ' +
+    '[class*="post"], [class*="entry"], [class*="publication"]';
+
   function trackableAncestor(node, selector) {
     while (node && node !== document.body) {
       if (node.nodeType !== 1) { node = node.parentElement; continue; }
@@ -729,15 +733,22 @@
     }
     return null;
   }
-  document.addEventListener('mouseover', function (ev) {
-    var t = trackableAncestor(ev.target, 'a, button, [data-track-hover]');
-    if (!t) { clearPendingHover(); return; }
-    if (pendingHover && pendingHover.el === t) return; // already armed for this element
-    if (hoveredOnce.has(t)) return;                    // already sent for this pageload
-    clearPendingHover();
-    var leave = function () { clearPendingHover(); };
-    var timer = setTimeout(function () {
+
+  document.addEventListener('mousemove', function (e) {
+    lastX = e.clientX;
+    lastY = e.clientY;
+    if (moveTimer) clearTimeout(moveTimer);
+    moveTimer = setTimeout(function () {
+      // Use elementFromPoint at debounce-fire time — it's the element under
+      // the cursor right NOW, more reliable than a stale e.target capture.
+      var el;
+      try { el = document.elementFromPoint(lastX, lastY); } catch (e) {}
+      if (!el) return;
+      var t = trackableAncestor(el, hoverSelector);
+      if (!t) return;
+      if (hoveredOnce.has(t)) return;
       hoveredOnce.add(t);
+
       var text = '';
       try {
         text = (t.getAttribute('aria-label') || t.getAttribute('data-track-hover') ||
@@ -750,13 +761,9 @@
       p.click_href = (t.tagName === 'A' && t.href) ? t.href.slice(0, 1024) : '';
       p.click_id = (t.id || '').slice(0, 128);
       p.click_context = inferContext(t);
-      p.engaged_ms = 1500;
       ship(p);
-      pendingHover = null;
-    }, 1500);
-    pendingHover = { el: t, timer: timer, leaveListener: leave };
-    t.addEventListener('mouseleave', leave);
-  }, true);
+    }, 200);
+  }, { passive: true });
 
   // ----- Select: "what text did this visitor highlight?" -----
   // Fires after the selection settles for 800 ms. Captures length and an
