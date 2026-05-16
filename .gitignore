@@ -2,6 +2,5 @@
 .claude/
 profile.original.png
 
-# Self-hosted analytics service lives outside the public Pages repo.
-# Source stays only on the local machine + ECS; nothing leaks here.
+# Self-hosted analytics service lives in its own private repo; never commit it here.
 tracker/
