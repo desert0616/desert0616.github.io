@@ -426,6 +426,16 @@
   }
   if (!SITE || !ENDPOINT) return;
 
+  // Respect user privacy signals. DNT is the older opt-out header; GPC is
+  // its modern legally-enforceable successor (California, EU). Either set
+  // to a truthy value means: don't track, don't even ship a beacon.
+  try {
+    if (navigator.doNotTrack === '1' || navigator.doNotTrack === 'yes' ||
+        window.doNotTrack === '1' || navigator.globalPrivacyControl === true) {
+      return;
+    }
+  } catch (e) {}
+
   var V_KEY = '_app_v', S_KEY = '_app_s';
   function rid() {
     return Math.random().toString(36).slice(2, 10) +
