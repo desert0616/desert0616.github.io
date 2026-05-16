@@ -432,13 +432,52 @@
            Math.random().toString(36).slice(2, 10) +
            Date.now().toString(36);
   }
-  var visitor = '', session = '';
+  var firstVisit = 1, visitor = '', session = '';
   try { visitor = localStorage.getItem(V_KEY) || ''; } catch (e) {}
+  if (visitor) firstVisit = 0;
   if (!visitor) { visitor = rid(); try { localStorage.setItem(V_KEY, visitor); } catch (e) {} }
   try { session = sessionStorage.getItem(S_KEY) || ''; } catch (e) {}
   if (!session) { session = rid(); try { sessionStorage.setItem(S_KEY, session); } catch (e) {} }
 
-  function nav() {
+  var startMs = Date.now();
+  var visibleStart = (document.visibilityState !== 'hidden') ? startMs : 0;
+  var engagedMs = 0;
+  var maxScrollPct = 0;
+  var leaveSent = false;
+
+  function tickEngagement() {
+    if (visibleStart > 0) {
+      var now = Date.now();
+      engagedMs += (now - visibleStart);
+      visibleStart = now;
+    }
+  }
+
+  function updateScroll() {
+    try {
+      var doc = document.documentElement, body = document.body;
+      var h = Math.max(doc.scrollHeight, body ? body.scrollHeight : 0,
+                       doc.offsetHeight, body ? body.offsetHeight : 0);
+      var seen = (window.scrollY || doc.scrollTop || 0) + window.innerHeight;
+      var pct = h > 0 ? Math.min(100, Math.round(seen * 100 / h)) : 0;
+      if (pct > maxScrollPct) maxScrollPct = pct;
+    } catch (e) {}
+  }
+
+  document.addEventListener('visibilitychange', function () {
+    if (document.visibilityState === 'hidden') {
+      tickEngagement();
+      visibleStart = 0;
+      sendLeave(); // best-effort: tab hiding may also be close
+    } else if (visibleStart === 0) {
+      visibleStart = Date.now();
+    }
+  });
+  window.addEventListener('scroll', updateScroll, { passive: true });
+  window.addEventListener('pagehide', function () { tickEngagement(); sendLeave(); });
+  window.addEventListener('beforeunload', function () { tickEngagement(); sendLeave(); });
+
+  function navTimings() {
     try {
       var n = performance.getEntriesByType && performance.getEntriesByType('navigation')[0];
       var paint = (performance.getEntriesByType && performance.getEntriesByType('paint')) || [];
@@ -451,19 +490,37 @@
         ttfb_ms: n.responseStart ? Math.round(n.responseStart) : null,
         dcl_ms: n.domContentLoadedEventEnd ? Math.round(n.domContentLoadedEventEnd) : null,
         load_ms: n.loadEventEnd ? Math.round(n.loadEventEnd) : null,
-        fcp_ms: fcp ? Math.round(fcp.startTime) : null
+        fcp_ms: fcp ? Math.round(fcp.startTime) : null,
+        nav_type: n.type || ''
       };
     } catch (e) { return {}; }
   }
 
-  function conn() {
+  function connInfo() {
     var c = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
     if (!c) return {};
     return {
       conn_type: c.effectiveType || '',
       conn_downlink: typeof c.downlink === 'number' ? c.downlink : null,
-      conn_rtt: typeof c.rtt === 'number' ? c.rtt : null
+      conn_rtt: typeof c.rtt === 'number' ? c.rtt : null,
+      save_data: c.saveData ? 1 : 0
     };
+  }
+
+  function hardware() {
+    return {
+      device_memory: typeof navigator.deviceMemory === 'number' ? navigator.deviceMemory : null,
+      cpu_cores: typeof navigator.hardwareConcurrency === 'number' ? navigator.hardwareConcurrency : null,
+      max_touch: typeof navigator.maxTouchPoints === 'number' ? navigator.maxTouchPoints : null,
+      cookies_enabled: navigator.cookieEnabled ? 1 : 0
+    };
+  }
+
+  function orientation() {
+    try {
+      if (screen.orientation && screen.orientation.type) return screen.orientation.type;
+    } catch (e) {}
+    return (window.innerWidth > window.innerHeight) ? 'landscape' : 'portrait';
   }
 
   function utm() {
@@ -479,16 +536,15 @@
     } catch (e) { return {}; }
   }
 
-  function tz() {
+  function tzName() {
     try { return Intl.DateTimeFormat().resolvedOptions().timeZone || ''; } catch (e) { return ''; }
   }
 
-  function build() {
+  function basePayload() {
     var p = {
       site_id: SITE,
       visitor_id: visitor,
       session_id: session,
-      event_type: 'pageview',
       url: location.href,
       path: location.pathname,
       query: location.search,
@@ -497,7 +553,7 @@
       referrer: document.referrer || '',
       lang: navigator.language || '',
       langs: (navigator.languages || []).join(','),
-      tz: tz(),
+      tz: tzName(),
       tz_offset: new Date().getTimezoneOffset(),
       screen_w: screen.width,
       screen_h: screen.height,
@@ -505,11 +561,33 @@
       viewport_h: window.innerHeight,
       dpr: window.devicePixelRatio || null,
       color_scheme: (window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light',
-      reduced_motion: (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches) ? 1 : 0
+      reduced_motion: (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches) ? 1 : 0,
+      orientation: orientation(),
+      first_visit: firstVisit
     };
-    var c = conn(); for (var k in c) p[k] = c[k];
-    var u = utm();  for (var k2 in u) p[k2] = u[k2];
-    var t = nav(); for (var k3 in t) p[k3] = t[k3];
+    var c = connInfo();  for (var k1 in c) p[k1] = c[k1];
+    var h = hardware();  for (var k2 in h) p[k2] = h[k2];
+    var u = utm();       for (var k3 in u) p[k3] = u[k3];
+    return p;
+  }
+
+  function buildPageview() {
+    var p = basePayload();
+    p.event_type = 'pageview';
+    var n = navTimings(); for (var k in n) p[k] = n[k];
+    return p;
+  }
+
+  function buildLeave() {
+    var p = basePayload();
+    p.event_type = 'leave';
+    p.engaged_ms = engagedMs;
+    p.total_ms = Date.now() - startMs;
+    p.scroll_pct = maxScrollPct;
+    try {
+      var doc = document.documentElement, body = document.body;
+      p.page_height = Math.max(doc.scrollHeight, body ? body.scrollHeight : 0);
+    } catch (e) { p.page_height = null; }
     return p;
   }
 
@@ -522,22 +600,16 @@
 
   function pixelFallback(body) {
     try {
-      var d = b64url(body);
-      if (!d) return;
-      // /api/i.gif?d=<base64>; works even when JS-fetch is blocked, because
-      // image requests aren't normally intercepted by content blockers when
-      // the host isn't on a known blocklist.
+      var d = b64url(body); if (!d) return;
       var sep = ENDPOINT.indexOf('?') >= 0 ? '&' : '?';
-      var url = ENDPOINT + '.gif' + sep + 'd=' + d;
       var img = new Image();
       img.referrerPolicy = 'no-referrer-when-downgrade';
-      img.src = url;
+      img.src = ENDPOINT + '.gif' + sep + 'd=' + d;
     } catch (e) {}
   }
 
-  function ship() {
-    var body = JSON.stringify(build());
-    // text/plain dodges CORS preflight and content-type sniffers.
+  function ship(payload) {
+    var body = JSON.stringify(payload);
     if (navigator.sendBeacon) {
       try {
         var blob = new Blob([body], { type: 'text/plain;charset=UTF-8' });
@@ -561,13 +633,22 @@
     pixelFallback(body);
   }
 
-  function go() {
+  function sendPageview() {
     if (document.visibilityState === 'prerender') return;
-    setTimeout(ship, 0);
+    setTimeout(function () { ship(buildPageview()); }, 0);
   }
 
-  if (document.readyState === 'complete') go();
-  else window.addEventListener('load', go, { once: true });
+  // Leave beacon dedupes — visibilitychange (hidden) and pagehide both fire on
+  // real-world tab close, but we only want one row.
+  function sendLeave() {
+    if (leaveSent) return;
+    leaveSent = true;
+    updateScroll();
+    ship(buildLeave());
+  }
+
+  if (document.readyState === 'complete') sendPageview();
+  else window.addEventListener('load', sendPageview, { once: true });
 })();
 
   </script>
