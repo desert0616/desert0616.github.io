@@ -11,6 +11,9 @@ ROOT = Path(__file__).resolve().parent
 DATA_PATH = ROOT / "data.json"
 TEMPLATE_PATH = ROOT / "index.template.html"
 OUT_PATH = ROOT / "index.html"
+TRACKER_JS_PATH = ROOT / "tracker" / "tracker.js"
+TRACKER_SITE_ID = "mosha"
+TRACKER_ENDPOINT = "https://mosha.asia/api/i"
 
 APP_BASE = 3
 
@@ -248,13 +251,33 @@ def render_app(data: dict) -> str:
     return "\n".join(parts)
 
 
+def render_inline_tracker() -> str:
+    """Inline the analytics JS into the page so the visitor's browser never
+    requests a script named like a tracker from a third-party origin — the
+    single defense that beats most content blockers. Site id and endpoint are
+    baked in here at build time."""
+    if not TRACKER_JS_PATH.exists():
+        return ""
+    js = TRACKER_JS_PATH.read_text(encoding="utf-8")
+    js = js.replace("__SITE_ID__", TRACKER_SITE_ID).replace("__ENDPOINT__", TRACKER_ENDPOINT)
+    # Strip the leading /* ... */ comment to shave a few bytes and to make the
+    # inlined script look less self-describing.
+    js = re.sub(r"^\s*/\*[\s\S]*?\*/\s*", "", js, count=1)
+    return f"  <script>\n{js}\n  </script>"
+
+
 def main() -> None:
     data = json.loads(DATA_PATH.read_text(encoding="utf-8"))
     site = data.get("site") or {}
     page_title = site.get("title") or "Research"
     app_html = render_app(data)
     template = TEMPLATE_PATH.read_text(encoding="utf-8")
-    out = template.replace("__PAGE_TITLE__", esc(page_title)).replace("__APP_HTML__", app_html)
+    out = (
+        template
+        .replace("__PAGE_TITLE__", esc(page_title))
+        .replace("__APP_HTML__", app_html)
+        .replace("__INLINE_TRACKER__", render_inline_tracker())
+    )
     OUT_PATH.write_text(out, encoding="utf-8")
     print(f"Wrote {OUT_PATH}")
 

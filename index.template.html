@@ -54,8 +54,6 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,400;0,600;0,700;1,400&family=Source+Sans+3:wght@400;500;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
-  <script charset="UTF-8" id="LA_COLLECT" src="https://sdk.51.la/js-sdk-pro.min.js"></script>
-  <script>LA.init({id:"3PC4hAt6QodAO1Zq",ck:"3PC4hAt6QodAO1Zq"})</script>
 </head>
 <body>
   <button class="theme-toggle" id="themeToggle" aria-label="Toggle light/dark theme">
@@ -70,29 +68,6 @@ __APP_HTML__
   </div>
 
   <script src="main.js"></script>
-  <script>
-  (function () {
-    var endpoint = "https://muddy-paper-a311.desert0616.workers.dev/pv";
-
-    var payload = {
-      url: location.href,
-      path: location.pathname + location.search + location.hash,
-      title: document.title || "",
-      ref: document.referrer || "",
-      ua: navigator.userAgent || "",
-      lang: navigator.language || "",
-      tz: String(new Date().getTimezoneOffset()),
-      screen: (screen ? (screen.width + "x" + screen.height) : "")
-    };
-
-    fetch(endpoint, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(payload),
-      keepalive: true,
-      credentials: "omit"
-    }).catch(function(){});
-  })();
-  </script>
+__INLINE_TRACKER__
 </body>
 </html>

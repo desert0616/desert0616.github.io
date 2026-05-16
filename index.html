@@ -54,8 +54,6 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,400;0,600;0,700;1,400&family=Source+Sans+3:wght@400;500;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
-  <script charset="UTF-8" id="LA_COLLECT" src="https://sdk.51.la/js-sdk-pro.min.js"></script>
-  <script>LA.init({id:"3PC4hAt6QodAO1Zq",ck:"3PC4hAt6QodAO1Zq"})</script>
 </head>
 <body>
   <button class="theme-toggle" id="themeToggle" aria-label="Toggle light/dark theme">
@@ -409,28 +407,169 @@
 
   <script src="main.js"></script>
   <script>
-  (function () {
-    var endpoint = "https://muddy-paper-a311.desert0616.workers.dev/pv";
+(function () {
+  var SITE = 'mosha';
+  var ENDPOINT = 'https://mosha.asia/api/i';
 
-    var payload = {
-      url: location.href,
-      path: location.pathname + location.search + location.hash,
-      title: document.title || "",
-      ref: document.referrer || "",
-      ua: navigator.userAgent || "",
-      lang: navigator.language || "",
-      tz: String(new Date().getTimezoneOffset()),
-      screen: (screen ? (screen.width + "x" + screen.height) : "")
+  if (SITE.indexOf('__SITE') === 0 || ENDPOINT.indexOf('__END') === 0) {
+    var here = document.currentScript || (function () {
+      var all = document.getElementsByTagName('script');
+      return all[all.length - 1];
+    })();
+    if (!here) return;
+    SITE = here.getAttribute('data-site') || '';
+    var ep = here.getAttribute('data-endpoint');
+    if (!ep) {
+      try { ep = new URL(here.src, location.href).origin + '/api/i'; } catch (e) { ep = ''; }
+    }
+    ENDPOINT = ep;
+  }
+  if (!SITE || !ENDPOINT) return;
+
+  var V_KEY = '_app_v', S_KEY = '_app_s';
+  function rid() {
+    return Math.random().toString(36).slice(2, 10) +
+           Math.random().toString(36).slice(2, 10) +
+           Date.now().toString(36);
+  }
+  var visitor = '', session = '';
+  try { visitor = localStorage.getItem(V_KEY) || ''; } catch (e) {}
+  if (!visitor) { visitor = rid(); try { localStorage.setItem(V_KEY, visitor); } catch (e) {} }
+  try { session = sessionStorage.getItem(S_KEY) || ''; } catch (e) {}
+  if (!session) { session = rid(); try { sessionStorage.setItem(S_KEY, session); } catch (e) {} }
+
+  function nav() {
+    try {
+      var n = performance.getEntriesByType && performance.getEntriesByType('navigation')[0];
+      var paint = (performance.getEntriesByType && performance.getEntriesByType('paint')) || [];
+      var fcp = null;
+      for (var i = 0; i < paint.length; i++) {
+        if (paint[i].name === 'first-contentful-paint') { fcp = paint[i]; break; }
+      }
+      if (!n) return {};
+      return {
+        ttfb_ms: n.responseStart ? Math.round(n.responseStart) : null,
+        dcl_ms: n.domContentLoadedEventEnd ? Math.round(n.domContentLoadedEventEnd) : null,
+        load_ms: n.loadEventEnd ? Math.round(n.loadEventEnd) : null,
+        fcp_ms: fcp ? Math.round(fcp.startTime) : null
+      };
+    } catch (e) { return {}; }
+  }
+
+  function conn() {
+    var c = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+    if (!c) return {};
+    return {
+      conn_type: c.effectiveType || '',
+      conn_downlink: typeof c.downlink === 'number' ? c.downlink : null,
+      conn_rtt: typeof c.rtt === 'number' ? c.rtt : null
     };
+  }
 
-    fetch(endpoint, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(payload),
-      keepalive: true,
-      credentials: "omit"
-    }).catch(function(){});
-  })();
+  function utm() {
+    try {
+      var q = new URLSearchParams(location.search);
+      return {
+        utm_source: q.get('utm_source') || '',
+        utm_medium: q.get('utm_medium') || '',
+        utm_campaign: q.get('utm_campaign') || '',
+        utm_term: q.get('utm_term') || '',
+        utm_content: q.get('utm_content') || ''
+      };
+    } catch (e) { return {}; }
+  }
+
+  function tz() {
+    try { return Intl.DateTimeFormat().resolvedOptions().timeZone || ''; } catch (e) { return ''; }
+  }
+
+  function build() {
+    var p = {
+      site_id: SITE,
+      visitor_id: visitor,
+      session_id: session,
+      event_type: 'pageview',
+      url: location.href,
+      path: location.pathname,
+      query: location.search,
+      hash: location.hash,
+      title: document.title || '',
+      referrer: document.referrer || '',
+      lang: navigator.language || '',
+      langs: (navigator.languages || []).join(','),
+      tz: tz(),
+      tz_offset: new Date().getTimezoneOffset(),
+      screen_w: screen.width,
+      screen_h: screen.height,
+      viewport_w: window.innerWidth,
+      viewport_h: window.innerHeight,
+      dpr: window.devicePixelRatio || null,
+      color_scheme: (window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light',
+      reduced_motion: (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches) ? 1 : 0
+    };
+    var c = conn(); for (var k in c) p[k] = c[k];
+    var u = utm();  for (var k2 in u) p[k2] = u[k2];
+    var t = nav(); for (var k3 in t) p[k3] = t[k3];
+    return p;
+  }
+
+  function b64url(s) {
+    try {
+      return btoa(unescape(encodeURIComponent(s)))
+        .replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
+    } catch (e) { return ''; }
+  }
+
+  function pixelFallback(body) {
+    try {
+      var d = b64url(body);
+      if (!d) return;
+      // /api/i.gif?d=<base64>; works even when JS-fetch is blocked, because
+      // image requests aren't normally intercepted by content blockers when
+      // the host isn't on a known blocklist.
+      var sep = ENDPOINT.indexOf('?') >= 0 ? '&' : '?';
+      var url = ENDPOINT + '.gif' + sep + 'd=' + d;
+      var img = new Image();
+      img.referrerPolicy = 'no-referrer-when-downgrade';
+      img.src = url;
+    } catch (e) {}
+  }
+
+  function ship() {
+    var body = JSON.stringify(build());
+    // text/plain dodges CORS preflight and content-type sniffers.
+    if (navigator.sendBeacon) {
+      try {
+        var blob = new Blob([body], { type: 'text/plain;charset=UTF-8' });
+        if (navigator.sendBeacon(ENDPOINT, blob)) return;
+      } catch (e) {}
+    }
+    try {
+      var fp = fetch(ENDPOINT, {
+        method: 'POST',
+        body: body,
+        headers: { 'Content-Type': 'text/plain;charset=UTF-8' },
+        keepalive: true,
+        credentials: 'omit',
+        mode: 'cors'
+      });
+      if (fp && fp.then) {
+        fp.then(function (r) { if (!r || !r.ok) pixelFallback(body); }, function () { pixelFallback(body); });
+        return;
+      }
+    } catch (e) {}
+    pixelFallback(body);
+  }
+
+  function go() {
+    if (document.visibilityState === 'prerender') return;
+    setTimeout(ship, 0);
+  }
+
+  if (document.readyState === 'complete') go();
+  else window.addEventListener('load', go, { once: true });
+})();
+
   </script>
 </body>
 </html>
