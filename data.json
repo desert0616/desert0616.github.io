@@ -20,8 +20,8 @@
         "venue": "SIGMOD",
         "title": "DBugScribe: Automatic Database Bug Reproduction from Community Reports.",
         "authors": "Suyang Zhong, Mo Sha, Sheng Wang, Fangyuan Zhou, Feifei Li, Kian-Lee Tan.",
-        "doi": "",
-        "pdf_filename": ""
+        "doi": "10.1145/3802034",
+        "pdf_filename": "DBugScribe.pdf"
       },
       {
         "year": 2026,
@@ -29,8 +29,8 @@
         "track": "Industry",
         "title": "SQLens: Continuous Code-to-SQL Visibility in the Wild.",
         "authors": "Xiao Yang, Mo Sha, Yiran Li, Suyang Zhong, Sheng Wang, Fangyuan Zhou, Feifei Li.",
-        "doi": "",
-        "pdf_filename": ""
+        "doi": "10.1145/3788853.3803091",
+        "pdf_filename": "SQLens.pdf"
       },
       {
         "year": 2026,
@@ -38,8 +38,8 @@
         "track": "Industry",
         "title": "CloudJump III: Optimizing Cloud Databases for Tiered Storage.",
         "authors": "Zongzhi Chen, Mo Sha, Feifei Li, Sheng Wang, Baolin Huang, Guoqing Ma, Huaxiong Song, Ke Yu, Xizhe Zhang, Yuan Wang.",
-        "doi": "",
-        "pdf_filename": ""
+        "doi": "10.1145/3788853.3803084",
+        "pdf_filename": "CloudjumpIII.pdf"
       },
       {
         "year": 2026,
