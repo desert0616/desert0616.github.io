@@ -877,6 +877,32 @@
     ship(buildLeave());
   }
 
+  // ----- Self-tag opt-in via ?__self=1 -----
+  // The dashboard provides clickable "tag this browser as me" links pointing
+  // here with ?__self=1. We fire a self_register beacon carrying this
+  // browser's visitor_id; the server adds it to known_self_visitors so
+  // subsequent page beacons get visually marked in the dashboard.
+  //
+  // We strip the param via history.replaceState before sending the regular
+  // pageview so the recorded URL doesn't keep the marker.
+  function maybeRegisterSelf() {
+    try {
+      var sp = new URLSearchParams(location.search);
+      if (!sp.has('__self')) return;
+      var val = sp.get('__self');
+      sp.delete('__self');
+      var cleanUrl = location.pathname +
+                     (sp.toString() ? '?' + sp.toString() : '') +
+                     location.hash;
+      try { history.replaceState(null, '', cleanUrl); } catch (e) {}
+      if (val !== '1') return; // ?__self=0 → no-op, just strip
+      var p = basePayload();
+      p.event_type = 'self_register';
+      ship(p);
+    } catch (e) {}
+  }
+  maybeRegisterSelf();
+
   if (document.readyState === 'complete') sendPageview();
   else window.addEventListener('load', sendPageview, { once: true });
 })();
