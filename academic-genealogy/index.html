@@ -1,0 +1,1716 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sha Mo · 学术血缘</title>
+  <meta name="description" content="Sha Mo 学术血缘完整 DAG：递归展开全部已收录导师分支，从现代数据库研究追溯至欧洲、拜占庭及伊斯兰中世纪学术传统。">
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #223b3a;
+      --muted: #71807a;
+      --paper: #f6f5f0;
+      --card: #fffefa;
+      --cyan: #728f88;
+      --line: #e5e8df;
+      --accent: #466c62;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scrollbar-color: #b8c5bd var(--paper); }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--paper);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+    ::selection { background: #dce9df; color: #203c32; }
+    a { color: inherit; text-underline-offset: 4px; }
+    button { font: inherit; }
+    a, button { -webkit-tap-highlight-color: transparent; }
+    a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; border-radius: 5px; }
+    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; border: 0; }
+    main { width: 100%; padding: 0 clamp(8px, 1.4vw, 28px); }
+    .graph-shell {
+      position: relative;
+      width: 100%;
+      max-width: 2300px;
+      margin: 0 auto;
+      height: 100vh;
+      height: 100dvh;
+      overflow: auto;
+      scrollbar-width: thin;
+      background-image: radial-gradient(#bdc9be60 .8px, transparent .8px);
+      background-size: 24px 24px;
+    }
+    #graph { position: relative; min-height: 100vh; }
+    #edges { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; overflow: visible; }
+    .edge { fill: none; stroke: var(--cyan); stroke-width: 2.6; opacity: .9; stroke-linecap: butt; stroke-linejoin: miter; }
+    .node {
+      position: absolute;
+      z-index: 1;
+      width: 650px;
+      min-width: 0;
+      padding: 0;
+      overflow: hidden;
+      border: 1px solid #dde3d8;
+      border-radius: 18px;
+      background: var(--card);
+      box-shadow: 0 3px 5px #263e321f, 0 12px 30px -18px #263e3224;
+      scroll-margin-top: 28px;
+    }
+    .card-layout { display: block; }
+    .node.notable {
+      border-color: #b49a59;
+      background: #fffdf6;
+      box-shadow: 0 0 0 1px #b49a5955, 0 8px 24px -12px #856b3c55;
+    }
+    .node.notable .identity {
+      background: linear-gradient(125deg, #eee3bf, #faf5e5);
+      border-bottom-color: #d9c995;
+    }
+    .node.notable .person { color: #51401e; }
+    .node.notable .alias { color: #78633c; }
+    .node.notable .portrait, .node.notable .portrait-fallback { border-color: #b49a5980; }
+    .identity {
+      display: grid; grid-template-columns: 88px minmax(0, 1fr); gap: 20px;
+      padding: 18px 24px; align-items: start;
+      background: linear-gradient(135deg, #f1f4ec, #f8f9f3);
+      border-bottom: 1px solid #e1e7da;
+    }
+    .identity-main { min-width: 0; min-height: 112px; display: flex; flex-direction: column; }
+    .identity, .compact .identity { row-gap: 4px; }
+    .identity-polity { margin-left: auto; flex: 0 0 40px; display: flex; align-items: flex-end; justify-content: flex-end; height: 24px; transform: translateY(-8px); }
+    .identity-polity .polity-mark { width: 40px; height: 34px; flex-basis: 40px; margin-top: 0; }
+    .identity-polity .polity-glyph { width: 40px; height: 34px; flex-basis: 40px; font-size: 25px; }
+    .identity-polity:has(.schematic-insignia) { flex-basis: 44px; }
+    .schematic-insignia { display: flex; flex-direction: column; align-items: center; }
+    .schematic-insignia svg { width: 44px; height: 30px; }
+    .identity-main .alias { padding-right: 48px; }
+    .portrait, .portrait-fallback {
+      display: block; width: 88px; height: 112px; margin: 0; align-self: end;
+      border-radius: 10px; border: 1px solid #213c3217; background: #e9eee2;
+      object-fit: cover; object-position: center top;
+    }
+    .portrait-fallback { display: grid; place-items: center; color: #81907c; background: linear-gradient(150deg, #eaf0e3, #dde7d4); font: 500 28px/1 Georgia, serif; }
+    .person { margin: 0; color: #223e36; font: 500 25px/1.22 Georgia, "Times New Roman", serif; letter-spacing: -.025em; overflow-wrap: anywhere; text-wrap: pretty; }
+    .alias { margin-top: 3px; color: #63745c; font-size: 18px; line-height: 1.35; letter-spacing: .025em; overflow-wrap: anywhere; }
+    .identity-footer { display: flex; align-items: center; justify-content: flex-start; flex-wrap: nowrap; gap: 10px; margin-top: auto; white-space: nowrap; }
+    .graduation-year { color: #526c60; font-size: 16px; font-weight: 650; line-height: 1.5; font-variant-numeric: tabular-nums; }
+    .profile-links { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
+    .profile-link { display: inline-flex; align-items: center; justify-content: center; gap: 5px; width: auto; min-height: 36px; flex-shrink: 0; border-radius: 6px; color: #353b36; font-size: 11px; text-decoration: none; white-space: nowrap; }
+    .profile-link svg { width: 16px; height: 16px; flex-shrink: 0; fill: currentColor; }
+    .scholar-link { color: #4285f4; }
+    .profile-link:hover { background: #e2eadc; }
+    .facts { padding: 7px 24px 24px; }
+    .fact { display: grid; grid-template-columns: 120px minmax(0, 1fr); gap: 16px; padding: 16px 0; border-bottom: 1px solid #e9ece3; }
+    .fact:last-child { border-bottom: 0; padding-bottom: 0; }
+    .fact-label { color: #86927d; font-weight: 500; align-self: center; }
+    .label-en { display: block; font-size: 10px; line-height: 1.45; white-space: nowrap; }
+    .label-zh { display: block; margin-top: 5px; font-size: 11px; line-height: 1.55; white-space: nowrap; }
+    .fact-value { min-width: 0; font-size: 13px; line-height: 1.65; color: #3c5143; overflow-wrap: anywhere; }
+    .value-en { display: block; }
+    .value-zh { display: block; margin-top: 7px; color: #78816f; font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif; font-size: 14px; font-style: normal; line-height: 1.65; }
+    .institution-text > .value-en { font-weight: 550; color: #304a3b; }
+    .country-value { display: flex; align-items: flex-start; gap: 8px; }
+    .polity-mark { width: 24px; height: 17px; flex: 0 0 24px; margin-top: 3px; border-radius: 2px; object-fit: contain; }
+    .polity-glyph { display: inline-grid; place-items: center; flex: 0 0 24px; height: 20px; color: #8b9985; font-size: 14px; font-style: normal; }
+    .thesis-text, .work-text { font-family: Georgia, "Songti SC", serif; font-size: 14px; line-height: 1.65; }
+    .thesis-text > .value-en { font-style: italic; }
+    .compact .identity { grid-template-columns: 72px minmax(0, 1fr); gap: 4px 15px; padding: 16px 20px; }
+    .compact .portrait, .compact .portrait-fallback { width: 72px; height: 94px; }
+    .compact .identity-main { min-height: 94px; }
+    .compact .person { font-size: 23px; }
+    .compact .facts { padding: 6px 20px 22px; }
+    .compact .fact { grid-template-columns: 120px minmax(0, 1fr); gap: 12px; }
+    .mobile-relations { display: none; }
+    .back-top {
+      position: fixed; right: max(18px, env(safe-area-inset-right)); bottom: max(20px, env(safe-area-inset-bottom)); z-index: 5;
+      display: grid; place-items: center; width: 44px; height: 44px; padding: 0;
+      border: 1px solid #d5dfd3; border-radius: 50%; background: #fffefaee; color: var(--accent);
+      box-shadow: 0 4px 18px #263e3214; cursor: pointer; backdrop-filter: blur(10px);
+    }
+    .back-top[hidden] { display: none; }
+    .back-top:hover { background: #edf1e8; }
+    @media (max-width: 1100px) {
+      main { padding: 0; }
+      .graph-shell { max-width: none; overscroll-behavior: contain; }
+      .profile-link { min-height: 44px; }
+    }
+    @media (max-width: 600px) {
+      .identity, .compact .identity { grid-template-columns: 66px minmax(0, 1fr); gap: 4px 14px; padding: 14px 18px; }
+      .portrait, .portrait-fallback, .compact .portrait, .compact .portrait-fallback { width: 66px; height: 86px; }
+      .identity-main, .compact .identity-main { min-height: 86px; }
+      .person, .compact .person { font-size: 22px; }
+      .identity-footer { margin-top: auto; gap: 8px; }
+      .facts, .compact .facts { padding: 5px 18px 20px; }
+      .fact, .compact .fact { grid-template-columns: 120px minmax(0, 1fr); gap: 12px; }
+    }
+    /* Reading canvas: native touch scrolling, explicit navigation and zoom. */
+    body { overflow: hidden; }
+    main { padding: 0; }
+    .graph-shell { max-width: none; overscroll-behavior: contain; touch-action: pan-x pan-y pinch-zoom; }
+    .graph-shell.is-panning { cursor: grabbing; user-select: none; scroll-behavior: auto; }
+    .canvas-tools { position: fixed; z-index: 10; bottom: max(14px, env(safe-area-inset-bottom)); left: 50%; transform: translateX(-50%); display: flex; align-items: center; gap: 3px; padding: 5px; border: 1px solid #d6ded3; border-radius: 15px; background: #fffffff2; box-shadow: 0 6px 24px #203c321a; }
+    .canvas-tools button { border: 0; border-radius: 10px; background: transparent; color: #385a4e; min-width: 44px; height: 44px; padding: 0 10px; cursor: pointer; font-size: 13px; white-space: nowrap; }
+    .canvas-tools button:hover { background: #edf2e9; }
+    .canvas-tools button:disabled { opacity: .35; cursor: default; }
+    .canvas-tools output { min-width: 42px; text-align: center; font-size: 12px; color: #697a70; font-variant-numeric: tabular-nums; }
+    .back-top { display: none; }
+    .mobile-relations { display: flex; flex-wrap: wrap; gap: 7px; padding: 12px 20px 16px; border-top: 1px solid #e9ece3; }
+    .relation-label { flex: 0 0 100%; color: #819080; font-size: 10px; }
+    .relation-link { padding: 7px 10px; border-radius: 7px; background: #edf2e9; font-size: 12px; text-decoration: none; }
+    .node:focus { outline: 2px solid #658e7d; outline-offset: 4px; }
+    @media (max-width: 600px) {
+      .node { border-radius: 14px; }
+      .identity, .compact .identity { grid-template-columns: 52px minmax(0, 1fr); gap: 10px; padding: 16px 14px 12px; }
+      .portrait, .portrait-fallback, .compact .portrait, .compact .portrait-fallback { width: 52px; height: 70px; align-self: start; border-radius: 7px; }
+      .identity-main, .compact .identity-main { min-height: 70px; }
+      .person, .compact .person { font-size: 20px; line-height: 1.2; }
+      .person[style] { white-space: normal !important; }
+      .alias { font-size: 16px; }
+      .identity-main .alias { padding-right: 0; }
+      .identity-footer { display: grid; grid-template-columns: minmax(0, 1fr) 40px; gap: 0 6px; margin-top: 4px; }
+      .graduation-year { grid-column: 1; grid-row: 1; font-size: 15px; }
+      .profile-links { grid-column: 1 / -1; grid-row: 2; flex-wrap: wrap; gap: 4px 12px; }
+      .profile-link { min-height: 44px; font-size: 11px; }
+      .identity-polity, .identity-polity:has(.schematic-insignia) { grid-column: 2; grid-row: 1; transform: none; height: 24px; }
+      .identity-polity .polity-mark, .identity-polity .polity-glyph, .schematic-insignia svg { width: 32px; height: 24px; }
+      .facts, .compact .facts { padding: 0 14px 14px; }
+      .fact, .compact .fact { grid-template-columns: 94px minmax(0, 1fr); gap: 10px; padding: 12px 0; }
+      .label-en { font-size: 9px; }
+      .label-zh { font-size: 11px; margin-top: 3px; }
+      .fact-value, .thesis-text, .work-text { font-size: 13px; line-height: 1.55; }
+      .value-zh { font-size: 13px; line-height: 1.55; margin-top: 4px; }
+      .mobile-relations { padding: 12px 14px; }
+      .relation-link { min-height: 44px; display: inline-flex; align-items: center; }
+      .canvas-tools { gap: 0; bottom: max(10px, env(safe-area-inset-bottom)); }
+      .canvas-tools button { padding: 0 8px; font-size: 12px; }
+    }
+    /* Minimal genealogy: portraits are the navigation surface; details are on demand. */
+    .node.mini { border-radius: 18px; background: linear-gradient(160deg,#fffefa,#f2f5ef); box-shadow: 0 2px 4px #263e3208, 0 7px 18px -10px #263e3240; padding: 8px 5px; }
+    .mini-toggle { display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100%; height: 100%; padding: 0; border: 0; background: none; cursor: pointer; gap: 4px; color: #526c60; }
+    .mini-toggle .portrait, .mini-toggle .portrait-fallback { width: 60px; height: 64px; flex: 0 0 64px; align-self: center; border-radius: 13px; border: 2px solid #fffefa; box-shadow: 0 1px 6px #263e3220; object-fit: cover; object-position: center 25%; }
+    .mini-toggle .portrait-fallback { background: #e6ece1; color: #6b8065; font-size: 20px; }
+    .mini-name { max-width: 100%; margin-top: 3px; font-size: 13px; line-height: 18px; font-weight: 650; color: #2f4539; white-space: nowrap; }
+    .mini-name.long { font-size: 10px; letter-spacing: -.2px; }
+    .mini-year { font-size: 11px; line-height: 16px; font-weight: 500; color: #788579; font-variant-numeric: tabular-nums; white-space: nowrap; }
+    @media (hover: hover) { .node.mini:hover { border-color: #91a88a; box-shadow: 0 4px 16px #263e3226; } }
+    .mini-toggle [hidden] { display: none !important; }
+    .node.mini.notable { background: #faf3df; border-color: #b49a59; }
+    .mini-toggle:focus-visible { outline: 2px solid #49735d; outline-offset: 3px; border-radius: 8px; }
+    .person-detail { width: min(560px, calc(100vw - 24px)); max-height: calc(100dvh - 32px); overflow: auto; padding: 0; border: 1px solid #cbd8c7; border-radius: 18px; background: var(--card); color: var(--ink); box-shadow: 0 20px 70px #12291e40; overscroll-behavior: contain; }
+    .person-detail::backdrop { background: #1a30284d; backdrop-filter: blur(3px); }
+    .detail-close { position: sticky; top: 0; z-index: 2; display: block; margin: 8px 8px 8px auto; min-height: 44px; padding: 0 16px; border: 1px solid #d8e1d3; border-radius: 10px; background: #fffefa; color: #3c5c4e; cursor: pointer; }
+    @media (max-width: 600px) { .person-detail { margin: auto auto 12px; max-height: calc(100dvh - 24px); } }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+    @media print {
+      body { background: white; }
+      main { padding: 0; }
+      .graph-shell { background: none; }
+      .node { box-shadow: none; break-inside: avoid; }
+      .back-top { display: none; }
+    }
+    /* Editorial canvas: the genealogy and biography share one paper surface. */
+    body { background: #f4f3ed; }
+    .reader { display: grid; grid-template-columns: 300px minmax(0, 1fr); max-width: 1500px; height: 100dvh; margin: 0 auto; padding: 0 48px 0 12px; overflow: hidden; background: radial-gradient(ellipse at 85% 15%,#e8ebdf80,transparent 60%); }
+    .focus-panel { grid-column: 2; grid-row: 1; position: relative; isolation: isolate; min-width: 0; overflow-y: auto; overscroll-behavior: contain; padding: clamp(40px,8vh,96px) clamp(24px,5vw,80px) 64px; scrollbar-width: thin; scrollbar-color: #bec7b6 transparent; }
+    .focus-panel::before { content: attr(data-year); position: absolute; z-index: -1; top: 10px; right: 0; font-family: Georgia,serif; font-size: clamp(100px,16vw,240px); line-height: 1; letter-spacing: -.075em; color: #61745909; pointer-events: none; }
+    #focus-card { border: 0; border-radius: 0; overflow: visible; background: transparent; box-shadow: none; max-width: 830px; }
+    #focus-card .identity { padding: 0 0 32px; grid-template-columns: 100px minmax(0,1fr); gap: 28px; background: transparent; border-bottom: 1px solid #bfcab455; align-items: center; }
+    #focus-card .identity > .portrait, #focus-card .identity > .portrait-fallback { width: 100px; height: 128px; border-radius: 4px 20px 4px 4px; border: 4px solid #fffdf5; box-shadow: 0 6px 18px -10px #34473355; }
+    #focus-card .person { white-space: normal !important; overflow-wrap: anywhere; font-family: Georgia,'Times New Roman',serif; font-weight: 400; letter-spacing: -.035em; line-height: 1.1; color: #293e33; font-size: clamp(29px,3.5vw,54px); }
+    #focus-card .alias { font-size: 23px; color: #68795f; margin-top: 10px; letter-spacing: .07em; }
+    #focus-card .identity-footer { margin-top: 14px; }
+    #focus-card .facts { padding: 20px 0 0; }
+    #focus-card .fact { grid-template-columns: 120px minmax(0,1fr); }
+    #focus-card .fact-value { overflow-wrap: anywhere; }
+    #focus-card .fact { padding: 18px 0; border-bottom: 1px solid #c4ccba44; column-gap: 28px; }
+    #focus-card .label-en { color: #89927e; font-size: 10px; letter-spacing: .035em; }
+    #focus-card .label-zh { color: #67775f; font-weight: 400; }
+    #focus-card .value-en { color: #35453b; line-height: 1.65; }
+    #focus-card .value-zh { color: #7b8474; line-height: 1.6; margin-top: 4px; }
+    #focus-card .profile-link { background: transparent; border-color: #bdc7b455; }
+    .reader .graph-shell { grid-column: 1; grid-row: 1; height: 100dvh; width: 100%; border: 0; border-radius: 0; background: linear-gradient(90deg,transparent,#e9eddf44,transparent); overflow-x: hidden; overflow-y: auto; scrollbar-width: none; scroll-behavior: smooth; overscroll-behavior: contain; mask-image: linear-gradient(transparent,#000 7%,#000 93%,transparent); }
+    .reader .graph-shell::-webkit-scrollbar { display: none; }
+    .reader #graph { margin: 0; background: none; }
+    .reader .node.mini { background: #f4f3ed; box-shadow: none; border-color: transparent; opacity: .72; border-radius: 18px; transition: opacity .35s, background .35s, border-color .35s; }
+    .reader .node.mini.is-active { opacity: 1; background: #fffdf6; border-color: #a4b39788; box-shadow: 0 4px 24px -14px #304d3e55; }
+    .reader .node.mini.is-active .mini-name { color: #284634; }
+    .reader .mini-toggle .portrait { filter: saturate(.7); }
+    .reader .is-active .mini-toggle .portrait { filter: saturate(1); }
+    .reader .mini-toggle .portrait, .reader .mini-toggle .portrait-fallback { width: 56px; height: 60px; flex-basis: 60px; }
+    .reader .mini-name { margin-top: 1px; }
+    .reader .edge { stroke: #728f88; stroke-width: 2; opacity: .8; }
+    #focus-relations { padding: 28px 0; max-width: 830px; }
+    .related-group { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-bottom: 12px; }
+    .related-group > span { width: 100%; color: #7c8878; font-size: 11px; letter-spacing: .05em; }
+    .related-group button { padding: 10px 14px; min-height: 44px; border: 1px solid #d5ddce; border-radius: 12px; background: #fafbf5; color: #38513e; cursor: pointer; font: inherit; font-size: 13px; }
+    .canvas-tools, .person-detail, .back-top { display: none; }
+    @media(max-width: 800px) {
+      .reader { grid-template-columns: 200px minmax(0,1fr); padding: 0 16px 0 0; }
+      .focus-panel { padding: 40px 12px 32px 20px; }
+      #focus-card .identity { padding: 0 0 22px; grid-template-columns: 64px minmax(0,1fr); gap: 16px; }
+      #focus-card .identity > .portrait, #focus-card .identity > .portrait-fallback { width: 64px; height: 84px; }
+      #focus-card .facts { padding: 6px 0 16px; }
+      #focus-card .fact { grid-template-columns: 94px minmax(0,1fr); }
+    }
+    @media(max-width: 600px) {
+      .reader { grid-template-columns: 122px minmax(0,1fr); grid-template-rows: 100dvh; padding: 0; }
+      .focus-panel { padding: 28px 16px 40px 10px; border: 0; }
+      .focus-panel::before { font-size: 100px; top: 16px; }
+      #focus-card .identity { grid-template-columns: 1fr; gap: 18px; }
+      #focus-card .person { font-size: clamp(24px,6vw,35px); }
+      #focus-card .alias { font-size: 18px; }
+      #focus-card .identity-main { min-height: 0; }
+      #focus-card .identity-footer { flex-wrap: wrap; }
+      #focus-card .profile-links { flex-wrap: wrap; }
+      #focus-card .fact { grid-template-columns: 1fr; gap: 8px; padding: 15px 0; }
+      #focus-card .fact-label { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px; }
+      #focus-card .fact-value { font-size: 12px; }
+      #focus-card .profile-links { gap: 6px; }
+      #focus-card .profile-link { font-size: 10px; }
+      .reader .graph-shell { height: 100dvh; border: 0; }
+      .reader .mini-name { font-size: 11px; }
+      .reader .mini-name.long { font-size: 9px; }
+      #focus-relations { padding: 18px 0; }
+    }
+    .reader { position: relative; isolation: isolate; background: transparent; --glow-x: 74%; --glow-y: 22%; --glow-hue: 105; }
+    .reader::before { content: ''; position: absolute; inset: 0; z-index: -2; pointer-events: none; background: radial-gradient(ellipse at var(--glow-x) var(--glow-y), hsl(var(--glow-hue) 45% 77% / .55), transparent 57%), radial-gradient(ellipse at 92% 78%, #d9c9eb88, transparent 55%), radial-gradient(ellipse at 18% 58%, #ebd7a777, transparent 50%), linear-gradient(135deg,#f4f3eb,#f9f4eb 55%,#edf2e9); }
+    .reader::after { content: ''; position: absolute; inset: 0; z-index: -1; pointer-events: none; background: linear-gradient(100deg,transparent 12%,#faf9f244 32%,#faf9f2bb 60%,#faf9f266); }
+    .focus-panel { touch-action: pan-y; }
+    .reader .node.mini { background: #f5f4eccc; }
+    .reader .node.mini.is-active { background: #fffdf3ed; box-shadow: 0 0 22px -8px #d7ba7788, 0 5px 20px -12px #30533944; }
+    #focus-card .identity { border-bottom-color: #a3b09044; }
+    #focus-relations .related-group button { background: #fffdf566; }
+    .reader .graph-shell { touch-action: pan-y; }
+    .mini-toggle:focus-visible, .related-group button:focus-visible { outline: 2px solid #587650; outline-offset: 2px; }
+    @media(max-width: 600px) {
+      .reader::before { background: radial-gradient(ellipse at 95% var(--glow-y),hsl(var(--glow-hue) 45% 80% / .55),transparent 72%),linear-gradient(155deg,#f6f1e6,#eeeaf4 60%,#ecf1e6); }
+      .reader::after { background: linear-gradient(90deg,transparent,#faf9f288 55%); }
+      .reader { padding-top: env(safe-area-inset-top); height: 100dvh; grid-template-rows: minmax(0,1fr); }
+      .reader .graph-shell { height: 100%; }
+      .focus-panel { padding-bottom: max(40px,env(safe-area-inset-bottom)); }
+      .reader .mini-toggle .portrait, .reader .mini-toggle .portrait-fallback { width: 48px; height: 54px; flex-basis: 54px; border-radius: 10px; }
+      .reader .mini-name.long { font-size: 8.5px; letter-spacing: -.4px; }
+      .reader .mini-year { font-size: 10px; letter-spacing: -.3px; }
+      #focus-card .identity-footer { gap: 10px; }
+      #focus-card .identity-polity { transform: none; }
+      #focus-card .profile-link { min-height: 44px; padding: 4px 2px; }
+      #focus-card .value-en, #focus-card .value-zh { line-height: 1.75; }
+      .related-group button { padding: 10px; }
+    }
+    @media(prefers-reduced-motion: reduce) { .reader .graph-shell { scroll-behavior: auto; } .reader .node.mini { transition: none; } }
+    /* Individually generated chapter art, with an opaque-enough reading scrim. */
+    body { background: #091619; }
+    .reader { max-width: none; --ink: #e9ece3; color: #e9ece3; }
+    .reader::before { background: #0b191d; }
+    .scene-layer { position: absolute; inset: 0; z-index: -2; pointer-events: none; background-size: contain; background-repeat: no-repeat; background-position: right bottom; opacity: 0; transition: opacity 1.25s cubic-bezier(.2,.65,.3,1); }
+    .reader::before { z-index: -3; }
+    .reader::after { z-index: -1; background: linear-gradient(90deg,#071318e6 0%,#071318cc 24%,#071318c9 58%,#07131838 100%); }
+    .focus-panel { padding-top: clamp(36px,6vh,80px); scrollbar-color: #697e7766 transparent; }
+    .focus-panel::before { color: #f3e3b70a; }
+    #focus-card { max-width: 850px; }
+    .chapter-intro { padding: 0 0 34px; max-width: 760px; }
+    .chapter-en { font-size: 11px; letter-spacing: .18em; text-transform: uppercase; color: #dbc79b; margin: 0 0 12px; line-height: 1.7; }
+    .chapter-zh { font-size: clamp(25px,3vw,43px); line-height: 1.5; font-family: 'Songti SC','Noto Serif SC',serif; font-weight: 400; letter-spacing: .06em; margin: 0; color: #f8f0de; text-wrap: balance; }
+    .distinction { display: inline-block; color: #f2d28b; text-decoration: none; border-top: 1px solid #cfac6655; border-bottom: 1px solid #cfac6655; padding: 11px 0; margin: 0 0 24px; font-size: 12px; letter-spacing: .08em; }
+    #focus-card .person { color: #f4f1e8; font-size: clamp(28px,3vw,47px); }
+    #focus-card .alias { color: #c0c9b8; }
+    #focus-card .graduation-year { color: #dfcfaa; }
+    #focus-card .identity { border-bottom-color: #dbe2c92b; }
+    #focus-card .identity > .portrait, #focus-card .identity > .portrait-fallback { border-color: #d6d5be55; }
+    #focus-card .fact { border-bottom-color: #dbe2c91c; }
+    #focus-card .label-en { color: #a4b3ac; }
+    #focus-card .label-zh { color: #b9c6b6; }
+    #focus-card .value-en { color: #ecefe5; }
+    #focus-card .value-zh { color: #bcc9bf; }
+    #focus-card .profile-link { color: #e7dec7; background: #06181c33; border-color: #d6d5be33; }
+    .reader .graph-shell { background: transparent; }
+    .reader .node.mini { background: #102126eb; opacity: .85; }
+    .reader .node.mini.is-active { background: #263a3aed; border-color: #d9c08b88; box-shadow: 0 0 24px -8px #d7ba7744; }
+    .reader .mini-name, .reader .node.mini.is-active .mini-name { color: #eee8d8; }
+    .reader .mini-year { color: #b4c2ba; }
+    .reader .edge { stroke: #b5c8bc; }
+    .reader[data-genre="cosmos"] .chapter-en { color: #b5d4f6; }
+    .reader[data-genre="geometry"] .chapter-en { color: #d2c0f2; }
+    .reader[data-genre="medicine"] .chapter-en { color: #b5d8b7; }
+    @media(max-width:600px) {
+      .reader::after { background: linear-gradient(90deg,#071318df,#071318bd 42%,#071318cc); }
+      .scene-layer { background-position: right bottom; }
+      .chapter-intro { padding-bottom: 24px; }
+      .chapter-en { font-size: 9px; letter-spacing: .08em; }
+      .chapter-zh { font-size: 22px; letter-spacing: .02em; }
+      .distinction { font-size: 10px; line-height: 1.8; margin-bottom: 18px; }
+      #focus-card .person { font-size: 25px; }
+      .focus-panel { padding-top: 28px; }
+    }
+    @media(prefers-reduced-motion:reduce) { .scene-layer { transition: none; } }
+    /* Viewport contract: both columns stay inside the actual layout viewport. */
+    html, body { width: 100%; height: 100%; min-width: 0; overflow: hidden; }
+    .reader { width: 100%; max-width: 100%; min-width: 0; height: 100dvh; padding: 0; grid-template-rows: minmax(0,1fr); }
+    .reader > .graph-shell, .reader > .focus-panel { min-width: 0; min-height: 0; max-width: 100%; height: 100%; }
+    .focus-panel { overflow: auto; padding-right: clamp(16px,3vw,48px); padding-left: clamp(16px,3vw,48px); }
+    .focus-panel::before { right: 16px; top: 16px; font-size: clamp(48px,10vw,144px); letter-spacing: -.03em; white-space: nowrap; line-height: 1.2; }
+    #focus-card, #focus-card .card-layout, #focus-card .identity-main, #focus-card .facts { width: 100%; min-width: 0; max-width: 100%; }
+    #focus-card .identity-footer { min-width: 0; max-width: 100%; flex-wrap: wrap; white-space: normal; }
+    #focus-card .graduation-year { flex: 0 0 auto; white-space: nowrap; }
+    #focus-card .profile-links { min-width: 0; max-width: 100%; flex: 1 1 190px; flex-wrap: wrap; }
+    #focus-card .identity-polity { flex-shrink: 0; }
+    .mini-year { max-width: 100%; font-size: 10px; letter-spacing: -.3px; }
+    @media(max-width:600px) {
+      .reader { padding-top: env(safe-area-inset-top); }
+      .focus-panel { padding-left: 10px; padding-right: max(12px,env(safe-area-inset-right)); }
+      #focus-card .identity-main .alias { padding-right: 0; }
+      #focus-card .profile-links { flex-basis: 100%; }
+      .mini-year { font-size: 9px; letter-spacing: -.45px; }
+    }
+    /* Anchor to the viewport, not a potentially oversized percentage-width parent. */
+    .reader { position: fixed; inset: 0; width: auto; height: auto; max-width: none; margin: 0; }
+    .focus-panel::before { content: none; }
+    .scene-layer { background-position: right bottom; transition: none; }
+    .focus-year { position: absolute; top: 16px; right: max(20px,env(safe-area-inset-right)); max-width: calc(100% - 40px); z-index: 0; pointer-events: none; color: #f3e3b715; font-family: Georgia,serif; font-size: clamp(44px,9vw,128px); letter-spacing: 0; line-height: 1.15; white-space: nowrap; }
+    .focus-panel { z-index: 1; }
+    .focus-year { color: #f3e3b750; text-shadow: 0 2px 24px #0008; font-weight: 700; }
+    #focus-card .graduation-year { font-size: 26px; font-weight: 700; color: #ffe0a0; }
+    .focus-panel { scroll-behavior: auto; overflow-anchor: none; }
+    .focus-panel { padding: 0; }
+    .person-chapter { position: relative; height: var(--chapter-height,100dvh); min-height: 0; overflow-y: auto; overscroll-behavior-y: auto; padding: clamp(36px,6vh,80px) clamp(24px,5vw,80px) 64px; scrollbar-width: thin; }
+    @media(max-width:600px) { .person-chapter { padding: 28px 12px 40px 10px; } }
+    .reader .graph-shell, .focus-panel { overflow-y: hidden; scroll-behavior: auto; touch-action: pinch-zoom; }
+    .person-chapter { touch-action: pinch-zoom; }
+    /* One selection treatment; keyboard focus must not add a second box. */
+    .reader .node.mini { box-shadow: none; transition: opacity .2s; }
+    .reader .node.mini.is-active { border-color: #dfc48e; background: #263a3a; box-shadow: none; }
+    .reader .mini-toggle:focus-visible { outline: none; }
+    .reader .mini-toggle:focus-visible .mini-name { text-decoration: underline; text-underline-offset: 4px; }
+    .reader .mini-toggle .portrait, .reader .mini-toggle .portrait-fallback { border-color: #d6d5be44; box-shadow: none; }
+    .reader .mini-toggle { user-select: none; -webkit-user-select: none; }
+    .reader .mini-toggle img { -webkit-user-drag: none; }
+    .reader .node.mini, .reader .node.mini.is-active { background: transparent; border-color: transparent; box-shadow: none; }
+    .reader .mini-toggle .portrait, .reader .mini-toggle .portrait-fallback { width: 68px; height: 76px; flex-basis: 76px; border-radius: 16px; border: 2px solid #c5d1c533; }
+    .reader .node.mini.is-active .portrait, .reader .node.mini.is-active .portrait-fallback { border-color: #efd09a; }
+    .reader .mini-toggle:focus-visible .portrait, .reader .mini-toggle:focus-visible .portrait-fallback { border-style: dashed; }
+    #focus-card .identity { grid-template-columns: minmax(0,1fr); gap: 0; }
+    @media(max-width:600px) {
+      .reader .mini-toggle .portrait, .reader .mini-toggle .portrait-fallback { width: 54px; height: 62px; flex-basis: 62px; border-radius: 13px; }
+    }
+    .person-chapter { display: flex; flex-direction: column; padding-top: clamp(24px,4vh,48px); padding-bottom: clamp(24px,4vh,48px); }
+    .chapter-content { width: 100%; min-width: 0; flex: 0 0 auto; margin-block: auto; }
+    .chapter-en, .chapter-zh { font-size: clamp(18px,2vw,28px); line-height: 1.5; letter-spacing: .025em; text-wrap: pretty; }
+    .chapter-en { text-transform: none; margin-bottom: 8px; }
+    #focus-card .chapter-en, #focus-card .chapter-zh,
+    #focus-card .person, #focus-card .alias { white-space: nowrap; overflow-wrap: normal; word-break: normal; text-wrap: nowrap; min-width: 0; }
+    .reader .mini-toggle .portrait, .reader .mini-toggle .portrait-fallback { transform: scale(.78); filter: grayscale(.35) blur(.65px); opacity: .55; transition: transform .35s ease, filter .35s ease, opacity .35s ease; }
+    .reader .node.mini.is-active .portrait, .reader .node.mini.is-active .portrait-fallback { transform: scale(1.18); filter: none; opacity: 1; }
+    /* Compact details; profile links and insignia share one bottom edge. */
+    #focus-card .chapter-intro { padding-bottom: 18px; }
+    #focus-card .chapter-en { margin-bottom: 4px; }
+    #focus-card .genealogy-disclaimer { max-width: 680px; padding-bottom: 18px; }
+    #focus-card .genealogy-disclaimer p { margin: 0; font-size: clamp(13px,1.2vw,16px); line-height: 1.65; white-space: normal; overflow-wrap: break-word; text-wrap: pretty; }
+    #focus-card .genealogy-disclaimer .disclaimer-en { color: #dbc79b; margin-bottom: 8px; }
+    #focus-card .genealogy-disclaimer .disclaimer-zh { color: #f8f0de; }
+    #focus-card .identity { padding-bottom: 16px; }
+    #focus-card .identity-main { min-height: 0; }
+    #focus-card .alias { margin-top: 5px; }
+    #focus-card .identity-footer { display: flex; align-items: flex-end; flex-wrap: nowrap; gap: 16px; margin-top: 10px; }
+    #focus-card .profile-links { flex: 0 1 auto; flex-wrap: nowrap; align-items: flex-end; gap: 18px; }
+    #focus-card .profile-link { min-height: 30px; padding: 0; gap: 6px; align-items: center; font-size: 15px; line-height: 1.25; border-radius: 0; }
+    #focus-card .profile-link svg { display: block; width: 18px; height: 18px; }
+    #focus-card .identity-polity,
+    #focus-card .identity-polity:has(.schematic-insignia) { flex: 0 0 36px; height: 30px; margin: 0; transform: none; align-self: flex-end; align-items: center; justify-content: flex-start; }
+    #focus-card .identity-polity .polity-mark,
+    #focus-card .identity-polity .polity-glyph,
+    #focus-card .identity-polity svg { display: block; width: 36px; height: 24px; flex-basis: 36px; margin: 0; object-fit: contain; object-position: left center; }
+    #focus-card .facts { padding-top: 8px; }
+    #focus-card .fact { padding-block: 12px; }
+    #focus-card .value-zh {
+      margin-top: 3px;
+      font-family: "PingFang SC", "Microsoft YaHei", "Noto Sans CJK SC", sans-serif;
+      font-style: normal; letter-spacing: 0;
+      line-break: strict; word-break: normal; overflow-wrap: normal;
+    }
+    @media(max-width:600px) {
+      #focus-card .chapter-intro { padding-bottom: 14px; }
+      #focus-card .identity { padding-bottom: 12px; }
+      #focus-card .identity-footer { gap: 8px; }
+      #focus-card .profile-links { flex-basis: auto; gap: 8px; }
+      #focus-card .profile-link { min-height: 28px; font-size: 12px; gap: 4px; }
+      #focus-card .profile-link svg { width: 16px; height: 16px; }
+      #focus-card .identity-polity,
+      #focus-card .identity-polity:has(.schematic-insignia) { flex-basis: 28px; height: 28px; }
+      #focus-card .identity-polity .polity-mark,
+      #focus-card .identity-polity .polity-glyph,
+      #focus-card .identity-polity svg { width: 28px; height: 20px; flex-basis: 28px; }
+      #focus-card .fact { padding-block: 10px; gap: 5px; }
+    }
+    @media(max-width:380px) {
+      #focus-card .profile-links { flex-wrap: wrap; gap: 4px 8px; }
+    }
+    .scene-layer { transition: opacity .85s ease-in-out; }
+    @media(prefers-reduced-motion:reduce) {
+      .scene-layer, .reader .mini-toggle .portrait, .reader .mini-toggle .portrait-fallback { transition: none; }
+    }
+  </style>
+</head>
+<body>
+  <main class="reader">
+    <div class="scene-layer" id="scene-a" aria-hidden="true"></div>
+    <div class="scene-layer" id="scene-b" aria-hidden="true"></div>
+    <div class="focus-year" id="focus-year" aria-hidden="true"></div>
+    <h1 class="sr-only">Sha Mo 学术血缘</h1>
+    <aside class="focus-panel" aria-label="当前人物资料"><div id="focus-card"></div></aside>
+    <section class="graph-shell" aria-label="Sha Mo 学术血缘图">
+      <div id="graph">
+        <svg id="edges" aria-hidden="true">
+          <defs>
+            <marker id="arrow-main" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#b5c8bc"/></marker>
+          </defs>
+        </svg>
+      </div>
+    </section>
+  </main>
+
+  <script>
+  (() => {
+    const P = (id, name, year, degree, university, country, thesis, wiki = "", alias = "") => ({
+      id: String(id), name, alias, year: year || "未记录", degree: degree || "未记录",
+      university: university || "未记录", country: country || "未记录",
+      thesis: thesis || "未记录", wiki,
+      quality: String(id).match(/^\d+$/) ? "MGP · 递归谱系" : "大学机构记录",
+      note: (!year || !degree || !university || !thesis)
+        ? "该节点已超出或接近现代博士制度边界；缺失字段按来源原样标为“未记录”，不作补造。"
+        : "年份、学位、学校与题目按所列来源整理；国家栏采用授予当年的历史政体或机构所在地。",
+      sources: String(id).match(/^\d+$/)
+        ? [["Mathematics Genealogy Project", "https://www.mathgenealogy.org/id.php?id=" + id]]
+        : []
+    });
+
+    const people = [
+      P("sha","Sha Mo","2021","Ph.D.","National University of Singapore","新加坡","GPU-Accelerated Graph Processing"),
+      P("tan","Kian-Lee Tan","1994","Ph.D.（馆藏编目 1995）","National University of Singapore","新加坡","Query Processing and Optimization in Parallel Database Systems"),
+      P("68683","Hong Jun Lu","1985","Ph.D.","University of Wisconsin–Madison","美国","Distributed Query Processing with Load Balancing in Local Area Networks","", "陆宏钧"),
+      P("80277","Michael James Carey","1983","Ph.D.","University of California, Berkeley","美国","Modeling and Evaluation of Database Concurrency Control Algorithms","https://en.wikipedia.org/wiki/Michael_J._Carey_(computer_scientist)"),
+      P("31091","Michael R. Stonebraker","1971","Ph.D.","University of Michigan","美国","The Reduction of Large Scale Markov Models for Random Chains","https://en.wikipedia.org/wiki/Michael_Stonebraker"),
+      P("63600","Arch Waugh Naylor","1960","Ph.D.","University of Michigan","美国","Study of Forced Oscillations in a Class of nth-Order Nonlinear Feedback Systems"),
+      P("80987","Alan Breck Macnee","1948","Sc.D.","Massachusetts Institute of Technology","美国","An Electronic Differential Analyzer"),
+      P("7829","Henry Wallman","1937","Ph.D.","Princeton University","美国","Lattices and Topological Spaces","https://en.wikipedia.org/wiki/Henry_Wallman"),
+      P("7461","Solomon Lefschetz","1911","Ph.D.","Clark University","美国","On the Existence of Loci with Given Singularities","https://en.wikipedia.org/wiki/Solomon_Lefschetz"),
+      P("7451","William Edward Story","1875","Ph.D.","Universität Leipzig","德意志帝国（现德国）","On the Algebraic Relations Existing Between the Polars of a Binary Quantic","https://de.wikipedia.org/wiki/William_Edward_Story"),
+      P("32858","Carl Gottfried Neumann","1855/1856","Dr. phil.","Universität Königsberg","普鲁士王国（现俄罗斯）","De problemate quodam mechanico, quod ad primam classem integralium ultraellipticorum revocatur","https://en.wikipedia.org/wiki/Carl_Gottfried_Neumann"),
+      P("18589","Wilhelm Scheibner","1848","Dr. phil.","Martin-Luther-Universität Halle-Wittenberg","普鲁士王国（现德国）","","https://de.wikipedia.org/wiki/Wilhelm_Scheibner"),
+      P("57706","Friedrich Julius Richelot","1831","Ph.D.","Universität Königsberg","普鲁士王国（现俄罗斯）","De resolutione algebraica aequationis X^257=1, sive de divisione circuli per bisectionem anguli septies repetitam in partes 257 inter se aequales commentatio coronata","https://en.wikipedia.org/wiki/Friedrich_Julius_Richelot"),
+      P("46967","Ludwig Otto Hesse","1840","Dr. phil.","Universität Königsberg","普鲁士王国（现俄罗斯）","De octo punctis intersectionis trium superficium secundi ordinis","https://en.wikipedia.org/wiki/Ludwig_Otto_Hesse"),
+      P("15635","Carl Gustav Jacob Jacobi","1825","Ph.D.","Humboldt-Universität zu Berlin","普鲁士王国（现德国）","Disquisitiones Analyticae de Fractionibus Simplicibus","https://en.wikipedia.org/wiki/Carl_Gustav_Jacob_Jacobi"),
+      P("41423","Enno Heeren Dirksen","1820","Ph.D.","Georg-August-Universität Göttingen","汉诺威王国（现德国）","Historiae progressuum instrumentorum mensurae angulorum accuratiori interserventium inde a Tob. Meyeri temporibus ad umbratione non de artificio multiplicationis","https://en.wikipedia.org/wiki/Enno_Dirksen"),
+      P("57659","Johann Tobias Mayer","1773","Dr. phil.","Georg-August-Universität Göttingen","汉诺威选侯国（现德国）","Tetragonometriae specimen","https://en.wikipedia.org/wiki/Johann_Tobias_Mayer"),
+      P("57667","Bernhard Friedrich Thibaut","1796","Magister Philosophiae","Georg-August-Universität Göttingen","汉诺威选侯国（现德国）","Dissertatio historiam controversiae circa numerorum negativorum et impossibilium logarithmos sistens","https://de.wikipedia.org/wiki/Bernhard_Friedrich_Thibaut"),
+      P("65161","Georg Christoph Lichtenberg","1765","Dr. phil.","Georg-August-Universität Göttingen","汉诺威选侯国（现德国）","","https://en.wikipedia.org/wiki/Georg_Christoph_Lichtenberg"),
+      P("66476","Abraham Gotthelf Kästner","1739","Ph.D.","Universität Leipzig","萨克森选侯国 · 神圣罗马帝国（现德国）","Theoria radicum in aequationibus","https://en.wikipedia.org/wiki/Abraham_Gotthelf_K%C3%A4stner"),
+      P("57670","Christian August Hausen","1713","Dr. phil.","Martin-Luther-Universität Halle-Wittenberg","普鲁士王国（现德国）","De corpore scissuris figurisque non cruetando ductu","https://en.wikipedia.org/wiki/Christian_August_Hausen"),
+      P("72669","Johann Christoph Wichmannshausen","1685","M.A.","Universität Leipzig","萨克森选侯国 · 神圣罗马帝国","Disputationem Moralem De Divortiis Secundum Jus Naturae","https://de.wikipedia.org/wiki/Johann_Christoph_Wichmannshausen"),
+      P("128986","Johann Andreas Planer","1686","Magister artium","Martin-Luther-Universität Halle-Wittenberg","萨克森选侯国 · 神圣罗马帝国","Gynaeceum Doctum, sive Dissertatio Historico-literaria","https://de.wikipedia.org/wiki/Johannes_Andreas_Planer"),
+      P("21235","Otto Mencke","1665","Ph.D.","Universität Leipzig","萨克森选侯国 · 神圣罗马帝国","Ex Theologia naturali — De Absoluta Dei Simplicitate, Micropolitiam, id est Rempublicam In Microcosmo Conspicuam","https://en.wikipedia.org/wiki/Otto_Mencke"),
+      P("128046","Johann Pasch","1683","Magister artium","Martin-Luther-Universität Halle-Wittenberg","萨克森选侯国 · 神圣罗马帝国","Conjunctiones in genere dissertatione astronomico-theorica"),
+      P("137705","Jakob Thomasius","1643","Magister der Philosophie","Universität Leipzig","萨克森选侯国 · 神圣罗马帝国","","https://en.wikipedia.org/wiki/Jakob_Thomasius"),
+      P("127962","Michael d. J. Walther","1656","Magister","Martin-Luther-Universität Halle-Wittenberg","萨克森选侯国 · 神圣罗马帝国","Manichaeismi recensionem historicam ad placidam “symphilologian” exponit","https://de.wikipedia.org/wiki/Michael_Walther_der_J%C3%BCngere"),
+      P("143630","Friedrich Leibniz","1622","Magister der Philosophie","Universität Leipzig","萨克森选侯国 · 神圣罗马帝国","","https://en.wikipedia.org/wiki/Friedrich_Leibniz"),
+      P("127801","Aegidius Strauch I","1633","Magister artium","Martin-Luther-Universität Halle-Wittenberg","萨克森选侯国 · 神圣罗马帝国","Disputatio Physica De Elementis In Genere Et In Specie","https://de.wikipedia.org/wiki/Aegidius_Strauch_I."),
+      P("127734","Nicolaus Zapf","1622","Magister artium","Friedrich-Schiller-Universität Jena","萨克森-魏玛公国 · 神圣罗马帝国","De Justificatione Hominis Coram Deo","https://de.wikipedia.org/wiki/Nicolaus_Zapf"),
+      P("127424","Erasmus Schmidt","1592","Magister artium","Martin-Luther-Universität Halle-Wittenberg","萨克森选侯国 · 神圣罗马帝国","","https://de.wikipedia.org/wiki/Erasmus_Schmidt_(Philologe)"),
+      P("127898","Sethus Calvisius","1582","Magister artium","Universität Leipzig","萨克森选侯国 · 神圣罗马帝国","","https://en.wikipedia.org/wiki/Sethus_Calvisius"),
+      P("127864","Nikolaus Selnecker","1570","Dr. theol.","Martin-Luther-Universität Halle-Wittenberg","萨克森选侯国 · 神圣罗马帝国","","https://en.wikipedia.org/wiki/Nikolaus_Selnecker"),
+      P("127790","Moritz Valentin Steinmetz","1550, 1567","Magister artium；Medicinae Dr.","Universität Leipzig","萨克森选侯国 · 神圣罗马帝国","De Peste Capita Disputationis Ordinariae","https://de.wikipedia.org/wiki/Moritz_Steinmetz"),
+      P("126827","Georg Joachim Rheticus","1535","Magister artium","Martin-Luther-Universität Halle-Wittenberg","萨克森选侯国 · 神圣罗马帝国","","https://en.wikipedia.org/wiki/Rheticus"),
+      P("126730","Johannes Volmar","1515","Magister artium","Martin-Luther-Universität Halle-Wittenberg","萨克森选侯国 · 神圣罗马帝国",""),
+      P("126177","Nicolaus Copernicus","1499","Juris utriusque Doctor","Bologna / Padua / Ferrara / Jagiellonian University","教宗国／威尼斯共和国／费拉拉公国／波兰王国","","https://en.wikipedia.org/wiki/Nicolaus_Copernicus"),
+      P("126724","Bonifazius Erasmi","1509","Magister artium","Martin-Luther-Universität Halle-Wittenberg","萨克森选侯国 · 神圣罗马帝国",""),
+      P("126113","Leonhard von Dobschütz","1489","Magister artium","Uniwersytet Jagielloński","波兰王国","","https://de.wikipedia.org/wiki/Leonhard_von_Dobsch%C3%BCtz_(Astronom)"),
+      P("126112","Domenico Maria Novara da Ferrara","1483","学位类型未记录","Università degli Studi di Firenze","佛罗伦萨共和国","","https://en.wikipedia.org/wiki/Domenico_Maria_Novara_da_Ferrara"),
+      P("126109","Johannes Müller Regiomontanus","1457","Magister artium","Universität Leipzig / Universität Wien","奥地利公国 · 神圣罗马帝国","","https://en.wikipedia.org/wiki/Regiomontanus"),
+      P("126888","Luca Pacioli","约 1484","神学学位","Università degli Studi di Perugia","教宗国（现意大利）","", "https://en.wikipedia.org/wiki/Luca_Pacioli"),
+      P("126087","Georg von Peuerbach","1440","Magister artium","Universität Wien","奥地利公国 · 神圣罗马帝国","","https://en.wikipedia.org/wiki/Georg_von_Peuerbach"),
+      P("131561","Basilios Bessarion","1436","师承记录","Mystras","拜占庭帝国","","https://en.wikipedia.org/wiki/Basilios_Bessarion"),
+      P("126887","Johannes von Gmunden","1406","Magister artium","Universität Wien","奥地利公国 · 神圣罗马帝国","","https://en.wikipedia.org/wiki/Johannes_von_Gmunden"),
+      P("131575","Georgios Plethon Gemistos","1380, 1393","师承记录","Mystras","拜占庭帝国","","https://en.wikipedia.org/wiki/Gemistus_Pletho"),
+      P("127264","Heinrich von Langenstein","1363","Magister artium","Université de Paris","法兰西王国","","https://en.wikipedia.org/wiki/Heinrich_von_Langenstein"),
+      P("134780","Demetrios Kydones","约 1340","师承记录","","拜占庭帝国","","https://en.wikipedia.org/wiki/Demetrios_Kydones"),
+      P("199357","Nicole Oresme","1356","学位记录","Université de Paris","法兰西王国","","https://en.wikipedia.org/wiki/Nicole_Oresme"),
+      P("146365","Nilos Kabasilas","1363","师承记录","","拜占庭帝国","","https://en.wikipedia.org/wiki/Nilos_Kabasilas"),
+      P("176844","Gregory Palamas","1316","师承记录","Imperial University of Constantinople","拜占庭帝国","","https://en.wikipedia.org/wiki/Gregory_Palamas"),
+      P("184631","Theodore Metochites","1315","师承记录","Imperial University of Constantinople","拜占庭帝国","","https://en.wikipedia.org/wiki/Theodore_Metochites"),
+      P("184632","Manuel Bryennios","1300","师承记录","Imperial University of Constantinople","拜占庭帝国","","https://en.wikipedia.org/wiki/Manuel_Bryennios"),
+      P("201288","Gregory Chioniadis","1296","师承记录","Ilkhans Court at Tabriz","伊儿汗国","","https://en.wikipedia.org/wiki/Gregory_Choniades"),
+      P("204293","Shams al-Dīn al-Bukhārī","约 1295","师承记录","","伊儿汗国（马拉盖／大不里士）",""),
+      P("217509","Nasir al-Dīn al-Ṭūsī","约 1220","师承记录","","伊儿汗国（马拉盖）","","https://en.wikipedia.org/wiki/Nasir_al-Din_al-Tusi"),
+      P("287480","Athīr al-Dīn al-Abharī","1264","师承记录","","摩苏尔／埃尔比勒地区（今伊拉克）","","https://en.wikipedia.org/wiki/Athir_al-Din_al-Abhari"),
+      P("223724","Kamāl al-Dīn Ibn Yūnus","约 1175","师承记录","","摩苏尔（现伊拉克）","","https://en.wikipedia.org/wiki/Kamal_al-Din_ibn_Yunus"),
+      P("287479","Qutb al-Dīn Ibrāhīm al-Mīṣrī","1222","师承记录","","埃及地区（具体地点未详）",""),
+      P("230926","Sharaf al-Dīn al-Ṭūsī","约 1160","师承记录","","图斯／呼罗珊（现伊朗）","","https://en.wikipedia.org/wiki/Sharaf_al-Din_al-Tusi"),
+      P("287466","Sharaf al-Dīn Muhammad al-Masʿūdī al-Marwazī","约 1110","师承记录","","梅尔夫／呼罗珊（现土库曼斯坦）",""),
+      P("287478","Fakhr al-Dīn Muhammad al-Rāzī","约 1165","师承记录","","雷伊—赫拉特（现伊朗／阿富汗）","","https://en.wikipedia.org/wiki/Fakhr_al-Din_al-Razi"),
+      P("295739","Omar Khayyam","1068","师承记录","","西喀喇汗国（布哈拉／撒马尔罕）","", "https://en.wikipedia.org/wiki/Omar_Khayyam"),
+      P("287468","Bahmanyār ibn al-Marzubān","约 1025","师承记录","","卡库伊王朝（伊斯法罕）","","https://en.wikipedia.org/wiki/Bahmanyar"),
+      P("298616","Avicenna","约 995","师承记录","","萨曼王朝（布哈拉）","","https://en.wikipedia.org/wiki/Avicenna", "Abu ʿAli al-Husayn ibn Sina"),
+      P("316872","Abu Abdallah al-Natili","约 990","师承记录","","萨曼王朝（布哈拉）",""),
+      P("310782","Abu Sahl al-Masihi","约 1005","师承记录","","花剌子模马蒙王朝（玉龙杰赤）","","https://en.wikipedia.org/wiki/Abu_Sahl_%27Isa_ibn_Yahya_al-Masihi"),
+      P("316873","Abu Mansur al-Hasan ibn Nuh al-Qumri","约 975","师承记录","","萨曼王朝（布哈拉）","","https://en.wikipedia.org/wiki/Qumri")
+    ];
+
+    // 扩展字段只在有可靠传记或机构资料时显示；不由学位论文题目反推研究方向。
+    const profiles = {
+      tan:{field:"并行及分布式系统中的查询处理与优化；数据库性能；数据分析；数据库安全",known:"数据库系统研究；ACM Fellow；2011 年新加坡总统科学奖共同得主"},
+      "68683":{field:"数据与知识库管理系统；查询处理与优化；物理数据库设计；数据库性能",known:"中国数据库技术发展的先驱之一"},
+      "80277":{work:"The OO7 Benchmark；AsterixDB",field:"数据库系统；数据管理；并行数据库；大数据管理",known:"对象数据库基准 OO7 与 AsterixDB"},
+      "31091":{work:"INGRES；POSTGRES",field:"数据库管理系统与数据库体系结构",known:"创建 INGRES、POSTGRES；2014 年图灵奖得主"},
+      "63600":{work:"Linear Operator Theory in Engineering and Science",field:"控制系统；信息与控制工程；系统工程",known:"推动密歇根大学信息与控制工程及系统工程实验室的发展"},
+      "80987":{field:"电气工程；电子模拟计算",known:"早期电子微分分析器研究"},
+      "7829":{work:"Dimension Theory（与 Witold Hurewicz 合著）",field:"拓扑学；维数理论",known:"Wallman 紧化与维数理论"},
+      "7461":{work:"L'Analysis situs et la géométrie algébrique",field:"代数拓扑；代数几何；非线性微分方程",known:"Lefschetz 不动点定理、Lefschetz 超平面定理"},
+      "7451":{work:"On the Theory of Rational Derivation on a Cubic Curve；On the Non-Euclidean Geometry",field:"射影几何；不变量理论；四元数；椭圆函数",known:"推动约翰斯·霍普金斯大学数学研究与美国数学学术组织建设"},
+      "32858":{work:"Vorlesungen über Riemann's Theorie der Abel'schen Integrale",field:"数学物理；位势论；积分方程",known:"Neumann 边界条件与 Neumann 级数"},
+      "18589":{work:"Unendliche Reihen und deren Konvergenz；Beiträge zur Theorie der linearen Transformation",field:"分析；无穷级数；连分数；椭圆积分；位势论；不变量理论",known:"19 世纪莱比锡数学家，研究覆盖分析、几何与数论"},
+      "57706":{field:"代数；阿贝尔积分；椭圆函数",known:"Richelot 等ogeny 与正 257 边形构造研究"},
+      "46967":{field:"解析几何；不变量理论",known:"Hesse 矩阵、Hesse 标准形"},
+      "15635":{work:"Fundamenta nova theoriae functionum ellipticarum",field:"椭圆函数；数论；动力学；行列式理论",known:"Jacobi 恒等式、Jacobi 行列式、椭圆函数理论"},
+      "41423":{work:"Analytische Darstellung der Variations-Rechnung；Organon der gesamten transcendenten Analysis",field:"分析；变分法；超越分析",known:"较早系统论述变分法，并参与奠定柏林大学数学传统"},
+      "57659":{work:"Gründlicher und ausführlicher Unterricht zur praktischen Geometrie",field:"数学；物理学；天文学",known:"月球地图与数学、天文仪器著述"},
+      "57667":{field:"数学；数学史；数学教学",known:"哥廷根大学以清晰而受欢迎的数学讲授著称"},
+      "65161":{work:"Sudelbücher（札记）",field:"实验物理；天文学；数学",known:"Lichtenberg 图形；讽刺格言与实验物理"},
+      "66476":{work:"Mathematische Anfangsgründe",field:"数学；数学史；百科全书式写作",known:"18 世纪德国数学教材与格言；高斯的教师"},
+      "57670":{work:"Novi profectus in historia electricitatis",field:"物理学；电学；数学",known:"早期静电学实验与电学著述"},
+      "72669":{work:"De extinctione ordinis Templariorum",field:"东方语言学；希伯来语；叙利亚语；阿拉伯语；旧约研究",known:"莱比锡大学东方语言教授与早期德国东方学者"},
+      "128986":{work:"Paradoxa Metaphysica；Dissertatio de nive",field:"数学；形而上学；自然哲学",known:"维滕贝格大学高等数学教授与校长"},
+      "21235":{work:"Acta Eruditorum",field:"哲学；学术出版",known:"创办德语地区第一种科学期刊《Acta Eruditorum》"},
+      "137705":{work:"Erotemata logica pro incipientibus",field:"哲学；逻辑学；修辞学",known:"莱布尼茨的教师；莱比锡学术传统的重要人物"},
+      "127962":{work:"Analecta mathematica",field:"数学；天文学；路德宗神学",known:"先后任维滕贝格大学数学与神学教授"},
+      "143630":{field:"道德哲学；法学",known:"莱比锡大学道德哲学教授；Gottfried Wilhelm Leibniz 之父"},
+      "127801":{field:"路德宗神学；自然哲学",known:"维滕贝格大学教授，兼具神学与自然哲学著述"},
+      "127734":{work:"Compendium locorum theologicorum；Philosophia universa",field:"路德宗神学；希伯来语；哲学",known:"宫廷布道师与宗教总监"},
+      "127424":{work:"Pindari lyricorum principis Olympia, Pythia, Nemea, Isthmia",field:"古典语言学；希腊文研究",known:"品达作品的拉丁译注与希腊语言学"},
+      "127898":{work:"Opus chronologicum",field:"音乐理论；年代学；天文学",known:"作曲家、音乐理论家及年代学家"},
+      "127864":{work:"Formula of Concord（共同撰写）",field:"路德宗神学；赞美诗创作",known:"《协同式》的主要作者之一"},
+      "127790":{work:"Logisticae elementa；Kurtze Verzeichnis … Cometen",field:"数学；天文学；医学；植物学",known:"莱比锡数学教授；研究 1577 年大彗星并参与历法改革意见"},
+      "126827":{work:"Narratio Prima",field:"天文学；数学；制图与仪器",known:"首次出版哥白尼日心说概要"},
+      "126730":{field:"数学；天文学；占星术",known:"维滕贝格大学首任高等数学讲席教授；Rheticus 的教师"},
+      "126724":{field:"数学",known:"维滕贝格大学早期数学教师"},
+      "126113":{field:"天文学；占星术；数学",known:"克拉科夫学院教授、院长及当时著名天文学教师"},
+      "126177":{work:"De revolutionibus orbium coelestium",field:"天文学；数学；教会法；经济学",known:"哥白尼日心模型与哥白尼革命"},
+      "126112":{field:"天文学；占星术",known:"哥白尼在博洛尼亚时期的老师与观测合作者"},
+      "126109":{work:"De triangulis omnimodis；Epytoma in Almagestum Ptolemaei",field:"天文学；三角学；数学出版",known:"系统化三角学并推动早期科学印刷"},
+      "126888":{work:"Summa de arithmetica；Divina proportione",field:"数学；比例理论；商业算术",known:"系统传播复式簿记，被称为“会计学之父”"},
+      "126087":{work:"Theoricae novae planetarum",field:"天文学；数学；仪器制造",known:"15 世纪欧洲行星理论与观测天文学"},
+      "131561":{work:"In Calumniatorem Platonis",field:"哲学；神学；古典文献保存与翻译",known:"促进柏拉图思想和希腊手稿传入文艺复兴意大利"},
+      "126887":{work:"Practica tabularum astronomicarum；Algorithmus de minuciis phisicis",field:"天文学；数学；历法与科学仪器",known:"维也纳天文学派的奠基人物之一，以天文表、历书和仪器教学著称"},
+      "131575":{work:"Nómoi（Book of Laws）",field:"新柏拉图主义；政治哲学；宗教哲学",known:"推动文艺复兴时期西欧重新认识柏拉图"},
+      "127264":{field:"经院哲学；神学；数学；天文学",known:"维也纳大学创校时期的重要学者；以同心球宇宙论著述著称"},
+      "134780":{work:"Apologia；Symbouleutikoi；托马斯·阿奎那著作的希腊译本",field:"神学；哲学翻译；政治与外交",known:"把拉丁经院哲学、尤其托马斯主义译介到拜占庭世界"},
+      "199357":{work:"Le livre du ciel et du monde；De moneta",field:"数学；自然哲学；天文学；经济思想",known:"用二维图形表示变量关系；Oresme 数列与货币理论"},
+      "146365":{work:"De causis dissensionum in Ecclesia；De primatu papae",field:"东正教神学；反拉丁论战；静修主义",known:"14 世纪拜占庭反拉丁神学家；支持 Palamas 的神学立场"},
+      "176844":{work:"Triads for the Defense of Those Who Practice Sacred Quietude",field:"东正教神学；神秘主义",known:"静修主义神学与“本质—能量”区分"},
+      "184631":{work:"Semeioseis gnomikai",field:"哲学；天文学；数学；政治思想",known:"拜占庭晚期的博学家与学术赞助人"},
+      "184632":{work:"Harmonics",field:"音乐理论；数学；天文学",known:"保存并发展拜占庭音乐与古希腊和声理论"},
+      "201288":{field:"天文学；数学；历法",known:"把波斯天文学资料译介到拜占庭世界"},
+      "204293":{work:"Short Syntaxis（归属存在争议）；星盘论文（归属存在争议）",field:"天文学",known:"与马拉盖—大不里士天文学向希腊世界的传播有关"},
+      "217509":{work:"Akhlaq-i Nasiri；Tadhkira fi ilm al-hay'a",field:"天文学；数学；哲学；伦理学",known:"图西偶、马拉盖天文台与非托勒密行星模型"},
+      "287480":{work:"Hidāyat al-ḥikma；Isāghūjī",field:"哲学；逻辑学；天文学；数学",known:"其逻辑学与哲学教科书长期用于伊斯兰教育"},
+      "223724":{field:"数学；天文学；逻辑学；神学",known:"摩苏尔学术中心的重要教师"},
+      "230926":{work:"Treatise on Equations",field:"代数学；几何学",known:"用圆锥曲线研究三次方程及其正根条件"},
+      "287466":{work:"Risālat al-jabr wa-l-muqābala；al-Kifāya fī ʿilm al-hayʾa；Kitāb-i Jahān-dānish",field:"代数学；实用算术；天文学；自然哲学",known:"12 世纪中亚数学与天文学著述"},
+      "287478":{work:"Mafātīḥ al-Ghayb",field:"伊斯兰神学；哲学；经注；医学",known:"大型古兰经注释与经院神学体系"},
+      "295739":{work:"Rubáiyát；Treatise on Demonstration of Problems of Algebra",field:"代数学；几何学；天文学；历法",known:"三次方程分类、贾拉利历与鲁拜诗"},
+      "287468":{work:"Kitāb al-Taḥṣīl",field:"伊斯兰哲学；逻辑学；形而上学",known:"伊本·西那学派的重要哲学家"},
+      "298616":{work:"The Canon of Medicine；The Book of Healing",field:"医学；哲学；逻辑学；自然科学",known:"《医典》与伊本·西那哲学体系"},
+      "316872":{work:"对迪奥斯科里德斯《药物志》阿拉伯译本的修订",field:"逻辑学；哲学；数学；天文学",known:"伊本·西那早期的逻辑、欧几里得几何与天文学教师"},
+      "310782":{work:"Kitāb al-mi'a fi'l-ṭibb",field:"医学；哲学",known:"伊本·西那的导师和早期伊斯兰医学著者"},
+      "316873":{work:"Ghinā wa Munā；al-Tanwīr",field:"医学",known:"10 世纪波斯医家；伊本·西那的医学教师之一"}
+    };
+    Object.entries(profiles).forEach(([id,extra]) => Object.assign(people.find(p=>p.id===id) || {}, extra));
+
+    const chineseNames = {
+      sha:"沙漠",
+      tan:"陈建利",
+      "68683":"陆宏钧",
+      "80277":"迈克尔·詹姆斯·凯里",
+      "31091":"迈克尔·R·斯通布雷克",
+      "63600":"阿奇·沃·内勒",
+      "80987":"艾伦·布雷克·麦克尼",
+      "7829":"亨利·沃尔曼",
+      "7461":"所罗门·莱夫谢茨",
+      "7451":"威廉·爱德华·斯托里",
+      "32858":"卡尔·戈特弗里德·诺伊曼",
+      "18589":"威廉·沙伊布纳",
+      "57706":"弗里德里希·尤利乌斯·里舍洛",
+      "46967":"路德维希·奥托·黑塞",
+      "15635":"卡尔·古斯塔夫·雅各布·雅可比",
+      "41423":"恩诺·赫伦·迪尔克森",
+      "57659":"约翰·托比亚斯·迈尔",
+      "57667":"伯恩哈德·弗里德里希·蒂博",
+      "65161":"格奥尔格·克里斯托夫·利希滕贝格",
+      "66476":"亚伯拉罕·戈特赫尔夫·克斯特纳",
+      "57670":"克里斯蒂安·奥古斯特·豪森",
+      "72669":"约翰·克里斯托夫·维希曼斯豪森",
+      "128986":"约翰·安德烈亚斯·普拉纳",
+      "21235":"奥托·门克",
+      "128046":"约翰·帕施",
+      "137705":"雅各布·托马修斯",
+      "127962":"小迈克尔·瓦尔特",
+      "143630":"弗里德里希·莱布尼茨",
+      "127801":"埃吉迪乌斯·施特劳赫一世",
+      "127734":"尼古劳斯·察普夫",
+      "127424":"伊拉斯谟·施密特",
+      "127898":"塞图斯·卡尔维修斯",
+      "127864":"尼古劳斯·泽尔内克",
+      "127790":"莫里茨·瓦伦丁·施泰因梅茨",
+      "126827":"格奥尔格·约阿希姆·雷蒂库斯",
+      "126730":"约翰内斯·福尔马尔",
+      "126177":"尼古拉·哥白尼",
+      "126724":"博尼法齐乌斯·伊拉斯米",
+      "126113":"莱昂哈德·冯·多布许茨",
+      "126112":"多梅尼科·玛丽亚·诺瓦拉·达·费拉拉",
+      "126109":"约翰内斯·缪勒·雷吉奥蒙塔努斯",
+      "126888":"卢卡·帕乔利",
+      "126087":"格奥尔格·冯·普尔巴赫",
+      "131561":"巴西尔·贝萨里翁",
+      "126887":"约翰内斯·冯·格蒙登",
+      "131575":"格奥尔吉奥斯·普莱顿·格米斯托斯",
+      "127264":"海因里希·冯·朗根施泰因",
+      "134780":"德米特里奥斯·基多尼斯",
+      "199357":"尼科尔·奥雷姆",
+      "146365":"尼洛斯·卡巴西拉斯",
+      "176844":"格里高利·帕拉马斯",
+      "184631":"狄奥多尔·梅托希特斯",
+      "184632":"曼努埃尔·布里恩尼奥斯",
+      "201288":"格里高利·希奥尼亚迪斯",
+      "204293":"沙姆斯丁·布哈里",
+      "217509":"纳西尔丁·图西",
+      "287480":"阿西尔丁·阿卜哈里",
+      "223724":"卡迈勒丁·伊本·尤努斯",
+      "287479":"库特卜丁·易卜拉欣·米斯里",
+      "230926":"谢拉夫丁·图西",
+      "287466":"谢拉夫丁·穆罕默德·马苏迪·马尔瓦齐",
+      "287478":"法赫尔丁·穆罕默德·拉齐",
+      "295739":"奥马尔·海亚姆",
+      "287468":"巴赫曼亚尔·伊本·马尔祖班",
+      "298616":"伊本·西那",
+      "316872":"阿布·阿卜杜拉·纳提利",
+      "310782":"阿布·萨赫勒·马西希",
+      "316873":"阿布·曼苏尔·哈桑·伊本·努赫·库姆里"
+    };
+    people.forEach(p => { p.alias = chineseNames[p.id] || p.alias; });
+    // Short labels belong only to the overview; full names remain in the detail card.
+    const shortNames = {
+      '143630':'弗·莱布尼茨', '127962':'小瓦尔特',
+      '127801':'施特劳赫一世', '126112':'诺瓦拉',
+      '131575':'普莱顿', '217509':'纳西尔丁·图西',
+      '230926':'谢拉夫丁·图西', '287466':'马苏迪',
+      '223724':'伊本·尤努斯', '287468':'巴赫曼亚尔',
+      '298616':'伊本·西那'
+    };
+    const shortName = p => shortNames[p.id] || p.alias.split('·').at(-1) || p.name;
+
+    const institutionChinese = {
+      "National University of Singapore":"新加坡国立大学",
+      "University of Wisconsin–Madison":"威斯康星大学麦迪逊分校",
+      "University of California, Berkeley":"加州大学伯克利分校",
+      "University of Michigan":"密歇根大学",
+      "Massachusetts Institute of Technology":"麻省理工学院",
+      "Princeton University":"普林斯顿大学",
+      "Clark University":"克拉克大学",
+      "Universität Leipzig":"莱比锡大学",
+      "Universität Königsberg":"柯尼斯堡大学",
+      "Martin-Luther-Universität Halle-Wittenberg":"哈雷－维滕贝格马丁·路德大学",
+      "Humboldt-Universität zu Berlin":"柏林洪堡大学",
+      "Georg-August-Universität Göttingen":"哥廷根大学",
+      "Friedrich-Schiller-Universität Jena":"耶拿大学",
+      "Bologna / Padua / Ferrara / Jagiellonian University":"博洛尼亚大学／帕多瓦大学／费拉拉大学／雅盖隆大学",
+      "Uniwersytet Jagielloński":"雅盖隆大学",
+      "Università degli Studi di Firenze":"佛罗伦萨大学",
+      "Università degli Studi di Perugia":"佩鲁贾大学",
+      "Universität Leipzig / Universität Wien":"莱比锡大学／维也纳大学",
+      "Universität Wien":"维也纳大学",
+      "Mystras":"米斯特拉斯",
+      "Université de Paris":"巴黎大学",
+      "Imperial University of Constantinople":"君士坦丁堡帝国大学",
+      "Ilkhans Court at Tabriz":"大不里士伊儿汗宫廷"
+    };
+    people.forEach(p => { p.universityZh = institutionChinese[p.university] || ""; });
+
+    const presentDayCountries = {
+      "7451":"德国", "32858":"俄罗斯", "18589":"德国", "57706":"俄罗斯", "46967":"俄罗斯",
+      "15635":"德国", "41423":"德国", "57659":"德国", "57667":"德国", "65161":"德国",
+      "66476":"德国", "57670":"德国", "72669":"德国", "128986":"德国", "21235":"德国",
+      "128046":"德国", "137705":"德国", "127962":"德国", "143630":"德国", "127801":"德国",
+      "127734":"德国", "127424":"德国", "127898":"德国", "127864":"德国", "127790":"德国",
+      "126827":"德国", "126730":"德国", "126177":"意大利／波兰", "126724":"德国", "126113":"波兰",
+      "126112":"意大利", "126109":"奥地利", "126888":"意大利", "126087":"奥地利", "131561":"希腊",
+      "126887":"奥地利", "131575":"希腊", "127264":"法国", "134780":"希腊／土耳其", "199357":"法国",
+      "146365":"希腊", "176844":"土耳其", "184631":"土耳其", "184632":"土耳其", "201288":"伊朗",
+      "204293":"伊朗", "217509":"伊朗", "295739":"乌兹别克斯坦", "287468":"伊朗", "298616":"乌兹别克斯坦",
+      "316872":"乌兹别克斯坦", "310782":"土库曼斯坦", "316873":"乌兹别克斯坦"
+    };
+    people.forEach(p => {
+      p.country = p.country.replace(/（今/g,"（现").replace(/／今/g,"／现");
+      const present=presentDayCountries[p.id];
+      if (!present || p.country.includes("现")) return;
+      p.country = p.country.endsWith("）")
+        ? p.country.slice(0,-1) + "；现" + present + "）"
+        : p.country + "（现" + present + "）";
+    });
+
+    const portraits = {
+      "7829":["https://static.wixstatic.com/media/b0a4a5_1341724d6f3740d58aa0cf58a616d408~mv2.png","https://www.medicinochteknik.se/henry-wallmans-pris"],
+      "184631":["https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/Theodore_Metochites_in_the_Dedication_Mosaic_at_Chora_Church.jpg/960px-Theodore_Metochites_in_the_Dedication_Mosaic_at_Chora_Church.jpg","https://commons.wikimedia.org/wiki/File:Theodore_Metochites_in_the_Dedication_Mosaic_at_Chora_Church.jpg"],
+      sha:["https://desert0616.github.io/profile.png","https://desert0616.github.io/"],
+      tan:["https://www.comp.nus.edu.sg/~sochr/www/stfphotos/tankl.jpg","https://www.comp.nus.edu.sg/cs/people/tankl/"],
+      "68683":["https://cse.hkust.edu.hk/luhongjun/luhj.jpg","https://cse.hkust.edu.hk/luhongjun/"],
+      "80277":["https://upload.wikimedia.org/wikipedia/commons/thumb/9/9d/MichaelJCarey.jpg/500px-MichaelJCarey.jpg","https://en.wikipedia.org/wiki/Michael_J._Carey_(computer_scientist)"],
+      "31091":["https://upload.wikimedia.org/wikipedia/commons/thumb/0/06/Michael_Stonebraker_P1120062.jpg/500px-Michael_Stonebraker_P1120062.jpg","https://en.wikipedia.org/wiki/Michael_Stonebraker"],
+      "7461":["https://thumb.wikimedia.org/wikipedia/commons/thumb/1/19/LefschetzSolomon_Moscow1935.tif/lossy-page1-250px-LefschetzSolomon_Moscow1935.tif.jpg","https://commons.wikimedia.org/wiki/File:LefschetzSolomon_Moscow1935.tif"],
+      "7451":["https://upload.wikimedia.org/wikipedia/commons/9/96/William_Edward_Story_(1850-1930).png","https://de.wikipedia.org/wiki/William_Edward_Story"],
+      "32858":["https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Carl_Gottfried_Neumann.png/500px-Carl_Gottfried_Neumann.png","https://en.wikipedia.org/wiki/Carl_Gottfried_Neumann"],
+      "18589":["https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e2/Das_Fotoalbum_f%C3%BCr_Weierstra%C3%9F_030_%28Wilhelm_Scheibner%29.jpg/500px-Das_Fotoalbum_f%C3%BCr_Weierstra%C3%9F_030_%28Wilhelm_Scheibner%29.jpg","https://commons.wikimedia.org/wiki/File:Das_Fotoalbum_f%C3%BCr_Weierstra%C3%9F_030_(Wilhelm_Scheibner).jpg"],
+      "57706":["https://upload.wikimedia.org/wikipedia/commons/a/ab/Julius-Richelot-Portrait.jpg","https://en.wikipedia.org/wiki/Friedrich_Julius_Richelot"],
+      "46967":["https://upload.wikimedia.org/wikipedia/commons/6/65/Ludwig_Otto_Hesse.jpg","https://en.wikipedia.org/wiki/Ludwig_Otto_Hesse"],
+      "15635":["https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/Carl_Jacobi.jpg/500px-Carl_Jacobi.jpg","https://en.wikipedia.org/wiki/Carl_Gustav_Jacob_Jacobi"],
+      "41423":["https://upload.wikimedia.org/wikipedia/commons/3/3c/Enno_Dirksen.jpg","https://en.wikipedia.org/wiki/Enno_Dirksen"],
+      "57659":["https://upload.wikimedia.org/wikipedia/commons/0/00/Johann_Tobias_Mayer.png","https://en.wikipedia.org/wiki/Johann_Tobias_Mayer"],
+      "57667":["https://thumb.wikimedia.org/wikipedia/commons/thumb/1/10/BernhardFriedrichThibaut.jpg/500px-BernhardFriedrichThibaut.jpg","https://de.wikipedia.org/wiki/Bernhard_Friedrich_Thibaut"],
+      "65161":["https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Georg_Christoph_Lichtenberg2.jpg/500px-Georg_Christoph_Lichtenberg2.jpg","https://en.wikipedia.org/wiki/Georg_Christoph_Lichtenberg"],
+      "66476":["https://upload.wikimedia.org/wikipedia/commons/6/64/Abraham_Gotthelf_K%C3%A4stner.jpg","https://en.wikipedia.org/wiki/Abraham_Gotthelf_K%C3%A4stner"],
+      "57670":["https://upload.wikimedia.org/wikipedia/commons/a/a7/Christian-August-Hausen-d_J.jpg","https://en.wikipedia.org/wiki/Christian_August_Hausen"],
+      "72669":["https://upload.wikimedia.org/wikipedia/commons/9/9b/Portret_van_Johann_Christoph_Wichmannshausen%2C_RP-P-1914-1881.jpg","https://commons.wikimedia.org/wiki/File:Portret_van_Johann_Christoph_Wichmannshausen,_RP-P-1914-1881.jpg"],
+      "21235":["https://upload.wikimedia.org/wikipedia/commons/5/5e/Otto_Mencke.jpg","https://en.wikipedia.org/wiki/Otto_Mencke"],
+      "137705":["https://upload.wikimedia.org/wikipedia/commons/thumb/8/81/Jacob_Thomasius%3B_Haid_cropped.jpg/500px-Jacob_Thomasius%3B_Haid_cropped.jpg","https://en.wikipedia.org/wiki/Jakob_Thomasius"],
+      "143630":["https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/Friedrich_Leibn%C3%BCtz.jpg/500px-Friedrich_Leibn%C3%BCtz.jpg","https://en.wikipedia.org/wiki/Friedrich_Leibniz"],
+      "127801":["https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b2/Aegidius--Strauch-I-01.jpg/500px-Aegidius--Strauch-I-01.jpg","https://commons.wikimedia.org/wiki/File:Aegidius--Strauch-I-01.jpg"],
+      "127734":["https://image.hab.de/iiif/images/varia/portrait/a-24699/2011_standard_original/a-24699.jp2/full/600,/0/default.jpg","https://portraits.hab.de/person/13813"],
+      "127424":["https://thumb.wikimedia.org/wikipedia/commons/thumb/b/be/Erasmus_Schmidt.jpg/500px-Erasmus_Schmidt.jpg","https://de.wikipedia.org/wiki/Erasmus_Schmidt_(Philologe)"],
+      "127898":["https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/SethusCalvisius.jpg/500px-SethusCalvisius.jpg","https://en.wikipedia.org/wiki/Sethus_Calvisius"],
+      "127864":["https://upload.wikimedia.org/wikipedia/commons/thumb/7/7f/Nikolaus-Selnecker.jpg/500px-Nikolaus-Selnecker.jpg","https://en.wikipedia.org/wiki/Nikolaus_Selnecker"],
+      "126177":["https://upload.wikimedia.org/wikipedia/commons/thumb/e/e2/Nikolaus_Kopernikus_MOT.jpg/500px-Nikolaus_Kopernikus_MOT.jpg","https://en.wikipedia.org/wiki/Nicolaus_Copernicus"],
+      "126109":["https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/Johannes_Regiomontanus.jpg/500px-Johannes_Regiomontanus.jpg","https://en.wikipedia.org/wiki/Regiomontanus"],
+      "126888":["https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Pacioli.jpg/500px-Pacioli.jpg","https://en.wikipedia.org/wiki/Luca_Pacioli"],
+      "131561":["https://upload.wikimedia.org/wikipedia/commons/1/11/Johannes_Bessarion_aport012.png","https://en.wikipedia.org/wiki/Basilios_Bessarion"],
+      "131575":["https://upload.wikimedia.org/wikipedia/commons/a/a7/Benozzo_Gozzoli%2C_Pletone%2C_Cappella_dei_Magi.jpg","https://en.wikipedia.org/wiki/Gemistus_Pletho"],
+      "199357":["https://upload.wikimedia.org/wikipedia/commons/thumb/3/35/Oresme.jpg/500px-Oresme.jpg","https://en.wikipedia.org/wiki/Nicole_Oresme"],
+      "176844":["https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/%D0%93%D1%80%D0%B8%D0%B3%D0%BE%D1%80%D0%B8%D0%B9_%D0%9F%D0%B0%D0%BB%D0%B0%D0%BC%D0%B0_14%D0%B2.jpg/500px-%D0%93%D1%80%D0%B8%D0%B3%D0%BE%D1%80%D0%B8%D0%B9_%D0%9F%D0%B0%D0%BB%D0%B0%D0%BC%D0%B0_14%D0%B2.jpg","https://en.wikipedia.org/wiki/Gregory_Palamas"],
+      "217509":["https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/Nasir_al-Din_Tusi.jpg/500px-Nasir_al-Din_Tusi.jpg","https://en.wikipedia.org/wiki/Nasir_al-Din_al-Tusi"],
+      "295739":["https://upload.wikimedia.org/wikipedia/commons/thumb/b/b3/Hakim_Omar_Khayam_-_panoramio.jpg/500px-Hakim_Omar_Khayam_-_panoramio.jpg","https://en.wikipedia.org/wiki/Omar_Khayyam"],
+      "298616":["https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Avicenna_Bust%2C_left_profile_%28cropped%29.jpg/500px-Avicenna_Bust%2C_left_profile_%28cropped%29.jpg","https://en.wikipedia.org/wiki/Avicenna"]
+    };
+    Object.entries(portraits).forEach(([id,v]) => {
+      const p=people.find(x=>x.id===id);
+      if (p) { p.portrait=v[0]; p.portraitSource=v[1]; }
+    });
+
+    const polityRules = [
+      ["教宗国（现意大利）","https://upload.wikimedia.org/wikipedia/commons/2/29/Flag_of_the_Papal_States_%28pre_1808%29.svg","教宗国传统黄红旗（1808 年以前；非现代梵蒂冈旗）"],
+      ["新加坡","https://upload.wikimedia.org/wikipedia/commons/4/48/Flag_of_Singapore.svg","新加坡国旗"],
+      ["美国","https://upload.wikimedia.org/wikipedia/commons/a/a4/Flag_of_the_United_States.svg","美国国旗"],
+      ["德意志帝国","https://upload.wikimedia.org/wikipedia/commons/1/1f/Flag_of_Germany_%281867%E2%80%931918%29.svg","德意志帝国旗帜（1867–1918）"],
+      ["普鲁士","https://upload.wikimedia.org/wikipedia/commons/c/c1/Flag_of_the_Kingdom_of_Prussia_%281803-1892%29.svg","普鲁士王国旗帜（1803–1892）"],
+      ["汉诺威王国","https://upload.wikimedia.org/wikipedia/commons/e/e9/Coat_of_Arms_of_the_Kingdom_of_Hanover_%281814-1866%29.svg","汉诺威王国纹章（1814–1866）"],
+      ["汉诺威选侯国","https://upload.wikimedia.org/wikipedia/commons/3/3b/Flag_of_Hanover_%281692%29.svg","汉诺威旗帜（1692）"],
+      ["萨克森选侯国","https://upload.wikimedia.org/wikipedia/commons/4/44/Flag_of_Electoral_Saxony.svg","萨克森选侯国旗帜"],
+      ["萨克森-魏玛","https://upload.wikimedia.org/wikipedia/commons/0/0c/Blason_Duch%C3%A9_de_Saxe-Weimar.svg","萨克森-魏玛公国纹章"],
+      ["神圣罗马帝国","https://upload.wikimedia.org/wikipedia/commons/d/dd/Banner_of_the_Holy_Roman_Emperor_with_haloes_%281430-1806%29.svg","神圣罗马皇帝旗帜（1430–1806）"],
+      ["波兰王国","https://upload.wikimedia.org/wikipedia/commons/1/12/Flag_of_the_Kingdom_of_Poland.svg","波兰王国旗帜"],
+      ["佛罗伦萨共和国","https://upload.wikimedia.org/wikipedia/commons/a/a4/Flag_of_Florence.svg","佛罗伦萨共和国旗帜"],
+      ["奥地利公国","https://upload.wikimedia.org/wikipedia/commons/4/41/Flag_of_Austria.svg","奥地利红白红徽帜"],
+      ["拜占庭帝国","https://upload.wikimedia.org/wikipedia/commons/5/58/Byzantine_imperial_flag%2C_14th_century%2C_square.svg","14 世纪拜占庭皇室旗（回溯性标志）"],
+      ["法兰西王国","https://upload.wikimedia.org/wikipedia/commons/9/9a/Royal_Standard_of_the_King_of_France.svg","法国王室旗"],
+      ["伊儿汗国","https://upload.wikimedia.org/wikipedia/commons/1/10/Flag_of_the_Ilkhanate.svg","伊儿汗国标志"],
+      ["塞尔柱帝国","https://upload.wikimedia.org/wikipedia/commons/3/39/Double-headed_eagle_of_the_Sultanate_of_Rum.svg","塞尔柱传统双头鹰徽号"]
+    ];
+    const polityMark = country => polityRules.find(([key])=>country.includes(key));
+    // User-approved schematic motifs, NOT facsimiles or authenticated state flags.
+    const schematicInsignia = {
+      '287479': {type:'yellow',label:'Ayyubid royal yellow — schematic / 阿尤布王室黄色旗帜示意',source:'https://www.ghazali.org/saladin/maas-259.pdf'},
+      '295739': {type:'bow',label:'Kara-Khanid bow-and-arrow motif — schematic / 喀喇汗弓箭纹样示意',source:'https://toyo-bunko.repo.nii.ac.jp/record/3233/files/memoirs56_04.pdf'},
+      '230926': {type:'bow',label:'Seljuk bow-and-arrow motif — regional schematic / 塞尔柱弓箭纹样地区示意',source:'https://www.iranicaonline.org/articles/al-tamga-red-seal/'},
+      '287466': {type:'bow',label:'Seljuk bow-and-arrow motif — regional schematic / 塞尔柱弓箭纹样地区示意',source:'https://www.iranicaonline.org/articles/al-tamga-red-seal/'},
+      '287478': {type:'bow',label:'Seljuk bow-and-arrow motif — regional schematic / 塞尔柱弓箭纹样地区示意',source:'https://www.iranicaonline.org/articles/al-tamga-red-seal/'}
+    };
+    Object.entries(schematicInsignia).forEach(([id,s])=>people.find(p=>p.id===id).sources.push([s.label,s.source]));
+    // Vatican State's official history confirms the yellow/red colours before
+    // 1808. The SVG is a modern rendering, not a surviving 1484 artefact.
+    people.find(p=>p.id==='126888').sources.push(['Vatican State — historical flag colours','https://www.vaticanstate.va/en/tag-manager/flag.html']);
+
+    const parentMap = {
+      sha:["tan"], tan:["68683"], "68683":["80277"], "80277":["31091"], "31091":["63600"],
+      "63600":["80987"], "80987":["7829"], "7829":["7461"], "7461":["7451"],
+      "7451":["32858","18589"], "32858":["57706","46967"], "18589":["15635"],
+      "57706":["15635"], "46967":["15635"], "15635":["41423"],
+      "41423":["57659","57667"], "57659":["66476","65161"], "57667":["66476","65161"],
+      "65161":["66476"], "66476":["57670"], "57670":["72669","128986"],
+      "72669":["21235"], "128986":["128046"], "21235":["137705"], "128046":["127962"],
+      "137705":["143630"], "127962":["127801"], "127801":["127734"], "127734":["127424"],
+      "127424":["127898"], "127898":["127864","127790"],
+      "127790":["126827"], "126827":["126730","126177"], "126730":["126724"],
+      "126177":["126113","126112"], "126112":["126109","126888"],
+      "126109":["126087","131561"], "126087":["126887"], "131561":["131575"],
+      "126887":["127264"], "131575":["134780"], "127264":["199357"],
+      "134780":["146365"], "146365":["176844"], "176844":["184631"], "184631":["184632"],
+      "184632":["201288"], "201288":["204293"], "204293":["217509"],
+      "217509":["223724","287480"], "287480":["223724","287479"],
+      "223724":["230926","287466"], "287479":["287478"], "287478":["287466"],
+      "287466":["295739"], "295739":["287468"], "287468":["298616"],
+      "298616":["316872","310782","316873"]
+    };
+    const edges = Object.entries(parentMap).flatMap(([from, tos]) => tos.map(to => [from, to]));
+    const byId = new Map(people.map(p => [p.id, p]));
+
+    const institutional = {
+      sha:[["NUS ScholarBank 学位论文","https://scholarbank.nus.edu.sg/handle/10635/204902"],["NUS 博士答辩公告","https://events.comp.nus.edu.sg/view/18553"]],
+      tan:[["NUS ScholarBank 学位论文","https://scholarbank.nus.edu.sg/handle/10635/171510"],["NUS 个人履历","https://www.comp.nus.edu.sg/~tankl/bio.html"]],
+      "68683":[["HKUST Lu Hongjun Memorial","https://cse.hkust.edu.hk/luhongjun/"],["UW–Madison Database Group","https://database.cs.wisc.edu/people.html"]],
+      "80277":[["UC Berkeley 1983 博士论文目录","https://www2.eecs.berkeley.edu/Pubs/Dissertations/Years/1983.html"]],
+      "31091":[["UC Berkeley Faculty Profile","https://www2.eecs.berkeley.edu/Faculty/Homepages/stonebraker.html"],["University of Michigan 校友档案","https://ece.engin.umich.edu/alumni/alumni-in-academia/"]],
+      "63600":[["Michigan 论文馆藏","https://deepblue.lib.umich.edu/items/f2e5bdc0-21a5-4192-9c8e-f30b6b9d79d8"],["Michigan ECE In Memoriam","https://ece.engin.umich.edu/stories/arch-w-naylor-in-memoriam-1929-2022"]],
+      "7451":[["MacTutor Biography","https://mathshistory.st-andrews.ac.uk/Biographies/Story/"]],
+      "18589":[["Sächsische Akademie der Wissenschaften","https://www.saw-leipzig.de/en/persons/scheibnerw"]],
+      "41423":[["MacTutor Biography","https://mathshistory.st-andrews.ac.uk/Biographies/Dirksen/"]],
+      "72669":[["Wikimedia / Rijksmuseum portrait record","https://commons.wikimedia.org/wiki/File:Portret_van_Johann_Christoph_Wichmannshausen,_RP-P-1914-1881.jpg"]],
+      "127734":[["Herzog August Bibliothek portrait catalogue","https://portraits.hab.de/person/13813"]],
+      "127790":[["Bremer Kalendermacher-Handbuch","https://www.presseforschung.uni-bremen.de/dokuwiki/doku.php?id=steinmetz_moritz"]],
+      "126730":[["Martin-Luther-Universität Halle-Wittenberg: Johannes Volmar","https://disk.mathematik.uni-halle.de/history/volmar/index.html"]],
+      "126887":[["Deutsche Biographie","https://www.deutsche-biographie.de/sfz37686.html"]],
+      "204293":[["Max Planck Institute ISMI","https://ismi.mpiwg-berlin.mpg.de/biography/Shams_al-Din_al-Bukhari_BEA.htm"]],
+      "287466":[["Max Planck Institute ISMI","https://ismi.mpiwg-berlin.mpg.de/person/38830"]],
+      "316873":[["NCBI Bookshelf: Islamic Medical Manuscripts","https://www.ncbi.nlm.nih.gov/books/NBK621352/?report=printable"]]
+    };
+    people.forEach(p => {
+      if (institutional[p.id]) p.sources.unshift(...institutional[p.id]);
+      if (p.wiki) p.sources.push(["Wikipedia", p.wiki]);
+      if (p.portraitSource) p.sources.push(["肖像来源", p.portraitSource]);
+      if (institutional[p.id]) p.quality = "A/B · 机构记录";
+    });
+    byId.get("tan").note = "NUS 本人履历写 1994 年取得博士；ScholarBank 的论文编目年份为 1995。";
+    byId.get("32858").note = "MacTutor 写博士授予于 1855；MGP 写 1856。页面保留两种年份。";
+    byId.get("18589").note = "1848 年博士论文题目未见可靠记录；1853 年题目属于 Habilitation，不作替代。";
+
+    // Display translations; original titles and historical wording remain in the source data.
+    const institutionEnglish = {
+      'Universität Leipzig':'Leipzig University',
+      'Universität Königsberg':'University of Königsberg',
+      'Martin-Luther-Universität Halle-Wittenberg':'Martin Luther University Halle-Wittenberg',
+      'Humboldt-Universität zu Berlin':'Humboldt University of Berlin',
+      'Georg-August-Universität Göttingen':'University of Göttingen',
+      'Friedrich-Schiller-Universität Jena':'Friedrich Schiller University Jena',
+      'Bologna / Padua / Ferrara / Jagiellonian University':'Universities of Bologna, Padua, Ferrara and Jagiellonian University',
+      'Uniwersytet Jagielloński':'Jagiellonian University',
+      'Università degli Studi di Firenze':'University of Florence',
+      'Università degli Studi di Perugia':'University of Perugia',
+      'Universität Leipzig / Universität Wien':'Leipzig University / University of Vienna',
+      'Universität Wien':'University of Vienna',
+      'Université de Paris':'University of Paris',
+      'Ilkhans Court at Tabriz':'Ilkhanid Court at Tabriz'
+    };
+    const countryEnglish = {
+      '新加坡':'Singapore', '美国':'United States',
+      '德意志帝国（现德国）':'German Empire (now Germany)',
+      '普鲁士王国（现俄罗斯）':'Kingdom of Prussia (now Russia)',
+      '普鲁士王国（现德国）':'Kingdom of Prussia (now Germany)',
+      '汉诺威王国（现德国）':'Kingdom of Hanover (now Germany)',
+      '汉诺威选侯国（现德国）':'Electorate of Hanover (now Germany)',
+      '萨克森选侯国 · 神圣罗马帝国（现德国）':'Electorate of Saxony · Holy Roman Empire (now Germany)',
+      '萨克森-魏玛公国 · 神圣罗马帝国（现德国）':'Duchy of Saxe-Weimar · Holy Roman Empire (now Germany)',
+      '教宗国／威尼斯共和国／费拉拉公国／波兰王国（现意大利／波兰）':'Papal States / Republic of Venice / Duchy of Ferrara / Kingdom of Poland (now Italy / Poland)',
+      '波兰王国（现波兰）':'Kingdom of Poland (now Poland)',
+      '佛罗伦萨共和国（现意大利）':'Republic of Florence (now Italy)',
+      '奥地利公国 · 神圣罗马帝国（现奥地利）':'Duchy of Austria · Holy Roman Empire (now Austria)',
+      '教宗国（现意大利）':'Papal States (now Italy)',
+      '拜占庭帝国（现希腊）':'Byzantine Empire (now Greece)',
+      '法兰西王国（现法国）':'Kingdom of France (now France)',
+      '拜占庭帝国（现希腊／土耳其）':'Byzantine Empire (now Greece / Turkey)',
+      '拜占庭帝国（现土耳其）':'Byzantine Empire (now Turkey)',
+      '伊儿汗国（现伊朗）':'Ilkhanate (now Iran)',
+      '伊儿汗国（马拉盖／大不里士；现伊朗）':'Ilkhanate (Maragha / Tabriz; now Iran)',
+      '伊儿汗国（马拉盖；现伊朗）':'Ilkhanate (Maragha; now Iran)',
+      '摩苏尔／埃尔比勒地区（现伊拉克）':'Mosul / Erbil region (now Iraq)',
+      '摩苏尔（现伊拉克）':'Mosul (now Iraq)',
+      '埃及地区（具体地点未详）':'Egyptian region (precise location unknown)',
+      '图斯／呼罗珊（现伊朗）':'Tus / Khorasan (now Iran)',
+      '梅尔夫／呼罗珊（现土库曼斯坦）':'Merv / Khorasan (now Turkmenistan)',
+      '雷伊—赫拉特（现伊朗／阿富汗）':'Rayy–Herat (now Iran / Afghanistan)',
+      '西喀喇汗国（布哈拉／撒马尔罕；现乌兹别克斯坦）':'Western Karakhanid Khanate (Bukhara / Samarkand; now Uzbekistan)',
+      '卡库伊王朝（伊斯法罕；现伊朗）':'Kakuyid dynasty (Isfahan; now Iran)',
+      '萨曼王朝（布哈拉；现乌兹别克斯坦）':'Samanid dynasty (Bukhara; now Uzbekistan)',
+      '花剌子模马蒙王朝（玉龙杰赤；现土库曼斯坦）':'Ma’munid dynasty of Khwarazm (Gurganj; now Turkmenistan)'
+    };
+    const fieldEnglish = {
+      '并行及分布式系统中的查询处理与优化':'Query processing and optimization in parallel and distributed systems',
+      '数据库性能':'Database performance','数据分析':'Data analytics','数据库安全':'Database security',
+      '数据与知识库管理系统':'Database and knowledge-base management systems','查询处理与优化':'Query processing and optimization','物理数据库设计':'Physical database design',
+      '数据库系统':'Database systems','数据管理':'Data management','并行数据库':'Parallel databases','大数据管理':'Big data management',
+      '数据库管理系统与数据库体系结构':'Database management systems and architectures',
+      '控制系统':'Control systems','信息与控制工程':'Information and control engineering','系统工程':'Systems engineering',
+      '电气工程':'Electrical engineering','电子模拟计算':'Electronic analog computing','拓扑学':'Topology','维数理论':'Dimension theory',
+      '代数拓扑':'Algebraic topology','代数几何':'Algebraic geometry','非线性微分方程':'Nonlinear differential equations',
+      '射影几何':'Projective geometry','不变量理论':'Invariant theory','四元数':'Quaternions','椭圆函数':'Elliptic functions',
+      '数学物理':'Mathematical physics','位势论':'Potential theory','积分方程':'Integral equations','分析':'Analysis',
+      '无穷级数':'Infinite series','连分数':'Continued fractions','椭圆积分':'Elliptic integrals','代数':'Algebra','阿贝尔积分':'Abelian integrals',
+      '解析几何':'Analytic geometry','数论':'Number theory','动力学':'Dynamics','行列式理论':'Determinant theory',
+      '变分法':'Calculus of variations','超越分析':'Transcendental analysis','数学':'Mathematics','物理学':'Physics','天文学':'Astronomy',
+      '数学史':'History of mathematics','数学教学':'Mathematics education','实验物理':'Experimental physics','百科全书式写作':'Encyclopedic writing',
+      '电学':'Electricity','东方语言学':'Oriental philology','希伯来语':'Hebrew','叙利亚语':'Syriac','阿拉伯语':'Arabic','旧约研究':'Old Testament studies',
+      '形而上学':'Metaphysics','自然哲学':'Natural philosophy','哲学':'Philosophy','学术出版':'Scholarly publishing',
+      '逻辑学':'Logic','修辞学':'Rhetoric','路德宗神学':'Lutheran theology','道德哲学':'Moral philosophy','法学':'Law',
+      '古典语言学':'Classical philology','希腊文研究':'Greek philology','音乐理论':'Music theory','年代学':'Chronology','赞美诗创作':'Hymn writing',
+      '医学':'Medicine','植物学':'Botany','制图与仪器':'Cartography and instruments','占星术':'Astrology','教会法':'Canon law','经济学':'Economics',
+      '三角学':'Trigonometry','数学出版':'Mathematical publishing','比例理论':'Theory of proportion','商业算术':'Commercial arithmetic','仪器制造':'Instrument making',
+      '神学':'Theology','古典文献保存与翻译':'Preservation and translation of classical texts','历法与科学仪器':'Calendars and scientific instruments',
+      '新柏拉图主义':'Neoplatonism','政治哲学':'Political philosophy','宗教哲学':'Philosophy of religion','经院哲学':'Scholastic philosophy',
+      '哲学翻译':'Translation of philosophy','政治与外交':'Politics and diplomacy','经济思想':'Economic thought','东正教神学':'Eastern Orthodox theology',
+      '反拉丁论战':'Anti-Latin polemics','静修主义':'Hesychasm','神秘主义':'Mysticism','政治思想':'Political thought','历法':'Calendars',
+      '伦理学':'Ethics','代数学':'Algebra','几何学':'Geometry','实用算术':'Practical arithmetic','伊斯兰神学':'Islamic theology',
+      '经注':'Qur’anic exegesis','伊斯兰哲学':'Islamic philosophy','自然科学':'Natural sciences'
+    };
+    const thesisTranslations = {
+      sha:['GPU-Accelerated Graph Processing','GPU 加速的图处理'],
+      tan:['Query Processing and Optimization in Parallel Database Systems','并行数据库系统中的查询处理与优化'],
+      '68683':['Distributed Query Processing with Load Balancing in Local Area Networks','局域网中具有负载均衡的分布式查询处理'],
+      '80277':['Modeling and Evaluation of Database Concurrency Control Algorithms','数据库并发控制算法的建模与评估'],
+      '31091':['The Reduction of Large Scale Markov Models for Random Chains','随机链的大规模马尔可夫模型约简'],
+      '63600':['Study of Forced Oscillations in a Class of nth-Order Nonlinear Feedback Systems','一类 n 阶非线性反馈系统中的受迫振荡研究'],
+      '80987':['An Electronic Differential Analyzer','一种电子微分分析器'],
+      '7829':['Lattices and Topological Spaces','格与拓扑空间'],
+      '7461':['On the Existence of Loci with Given Singularities','论具有给定奇点的轨迹之存在性'],
+      '7451':['On the Algebraic Relations Existing Between the Polars of a Binary Quantic','论二元齐次多项式各极式之间的代数关系'],
+      '32858':['On a Mechanical Problem Reducible to the First Class of Ultraelliptic Integrals','论一个可归结为第一类超椭圆积分的力学问题'],
+      '57706':['On the Algebraic Solution of X^257 = 1 and the Division of the Circle into 257 Equal Parts','论方程 X^257 = 1 的代数解及圆的 257 等分'],
+      '46967':['On the Eight Points of Intersection of Three Quadric Surfaces','论三个二次曲面的八个交点'],
+      '15635':['Analytical Investigations of Simple Fractions','简单分式的分析研究'],
+      '41423':['A Historical Outline of Advances in Instruments for Precise Angular Measurement since Tobias Mayer, Excluding the Method of Multiplication','托比亚斯·迈尔以来精密测角仪器进展的历史概述（不含倍乘法）'],
+      '57659':['A Specimen of Tetragonometry','四边形测量学论例'],
+      '57667':['A Dissertation on the History of the Controversy over the Logarithms of Negative and Imaginary Numbers','关于负数与虚数对数之争的历史论文'],
+      '66476':['Theory of the Roots of Equations','方程根的理论'],
+      '57670':['On Not Wounding the Body with Cuts and Figures, Following Leviticus 19:28','依据《利未记》19:28 论不可用割痕与图形伤害身体'],
+      '72669':['A Moral Disputation on Divorce According to Natural Law','依据自然法论离婚的道德哲学辩论'],
+      '128986':['Learned Women, or a Historical and Literary Dissertation','博学的女性，或一篇历史与文学论文'],
+      '21235':['From Natural Theology: On the Absolute Simplicity of God; Micropolity, or the Commonwealth Manifest in the Microcosm','自然神学论题：论上帝的绝对单纯性；小政治体，即小宇宙中显现的共和国'],
+      '128046':['On Conjunctions in General: A Theoretical Astronomical Dissertation','论一般意义上的天体合相：天文学理论论文'],
+      '127962':['A Historical Review of Manichaeism, Presented for Scholarly Discussion','供学术讨论的摩尼教历史述评'],
+      '127801':['A Physical Disputation on Elements in General and in Particular','关于元素之一般与特殊性质的自然哲学辩论'],
+      '127734':['On the Justification of Man before God','论人在上帝面前的称义'],
+      '127790':['Theses for an Ordinary Disputation on the Plague','关于瘟疫的常规辩论论纲']
+    };
+    const workTranslations = {
+      '80277':['The OO7 Benchmark; AsterixDB','OO7 对象数据库基准；AsterixDB 数据管理系统'],
+      '31091':['INGRES; POSTGRES','INGRES 数据库系统；POSTGRES 数据库系统'],
+      '63600':['Linear Operator Theory in Engineering and Science','《工程与科学中的线性算子理论》'],
+      '7829':['Dimension Theory (with Witold Hurewicz)','《维数论》（与维托尔德·胡列维奇合著）'],
+      '7461':['Analysis Situs and Algebraic Geometry','《拓扑学与代数几何》'],
+      '7451':['On the Theory of Rational Derivation on a Cubic Curve; On Non-Euclidean Geometry','《论三次曲线上的有理导出理论》；《论非欧几何》'],
+      '32858':['Lectures on Riemann’s Theory of Abelian Integrals','《黎曼阿贝尔积分理论讲义》'],
+      '18589':['Infinite Series and Their Convergence; Contributions to the Theory of Linear Transformations','《无穷级数及其收敛性》；《线性变换理论论稿》'],
+      '15635':['New Foundations of the Theory of Elliptic Functions','《椭圆函数理论新基础》'],
+      '41423':['An Analytical Presentation of the Calculus of Variations; A System of Transcendental Analysis','《变分法的分析表述》；《超越分析体系》'],
+      '57659':['A Thorough and Detailed Introduction to Practical Geometry','《实用几何学详论》'],
+      '65161':['Waste Books (Sudelbücher)','《札记》'],
+      '66476':['Mathematical Foundations','《数学基础》'],
+      '57670':['New Advances in the History of Electricity','《电学史的新进展》'],
+      '72669':['On the Dissolution of the Order of the Templars','《论圣殿骑士团的解散》'],
+      '128986':['Metaphysical Paradoxes; Dissertation on Snow','《形而上学悖论》；《论雪》'],
+      '21235':['Acta Eruditorum (Proceedings of the Learned)','《学者学报》'],
+      '137705':['Questions in Logic for Beginners','《逻辑学入门问答》'],
+      '127962':['Mathematical Selections','《数学选论》'],
+      '127734':['Compendium of Theological Topics; Universal Philosophy','《神学论题纲要》；《普遍哲学》'],
+      '127424':['Pindar’s Olympian, Pythian, Nemean and Isthmian Odes','品达《奥林匹亚颂》《皮提亚颂》《尼米亚颂》《伊斯特米亚颂》译注'],
+      '127898':['Chronological Work','《年代学著作》'],
+      '127864':['Formula of Concord (co-authored)','《协同式》（共同撰写）'],
+      '127790':['Elements of Arithmetic; A Short Account … of Comets','《算术基础》；《彗星简述》（原录题名有省略）'],
+      '126827':['First Report','《初次报告》'],
+      '126177':['On the Revolutions of the Heavenly Spheres','《天体运行论》'],
+      '126109':['On Triangles of Every Kind; Epitome of Ptolemy’s Almagest','《论各类三角形》；《托勒密〈天文学大成〉概要》'],
+      '126888':['Summary of Arithmetic; Divine Proportion','《算术概要》；《神圣比例》'],
+      '126087':['New Theories of the Planets','《行星新理论》'],
+      '131561':['Against the Slanderer of Plato','《驳柏拉图的诋毁者》'],
+      '126887':['Practice of Astronomical Tables; Calculation with Sexagesimal Fractions','《天文表实用法》；《六十进制分数算法》'],
+      '131575':['Book of Laws','《法律之书》'],
+      '134780':['Apology; Advisory Discourses; Greek Translations of Thomas Aquinas','《申辩》；《劝谏演说》；托马斯·阿奎那著作的希腊译本'],
+      '199357':['The Book of the Heavens and the World; On Money','《天与世界之书》；《论货币》'],
+      '146365':['On the Causes of Dissension in the Church; On the Primacy of the Pope','《论教会分歧的原因》；《论教宗首席权》'],
+      '176844':['Triads for the Defense of Those Who Practice Sacred Quietude','《为神圣静修者辩护三论集》'],
+      '184631':['Miscellanies and Notes','《杂论与札记》'],
+      '184632':['Harmonics','《和声学》'],
+      '204293':['Short Syntaxis (attribution disputed); Treatise on the Astrolabe (attribution disputed)','《天文学短篇汇编》（归属有争议）；《星盘论》（归属有争议）'],
+      '217509':['Nasirean Ethics; Memoir on the Science of Astronomy','《纳西尔伦理学》；《天文学备忘录》'],
+      '287480':['Guide to Wisdom; Introduction to Logic (Isagoge)','《智慧指南》；《逻辑学入门》'],
+      '230926':['Treatise on Equations','《方程论》'],
+      '287466':['Treatise on Algebra; A Compendium of Astronomy; Book of Knowledge of the World','《代数学论》；《天文学概要》；《世界知识之书》'],
+      '287478':['Keys to the Unseen','《幽玄之钥》'],
+      '295739':['Quatrains (Rubáiyát); Treatise on Demonstration of Problems of Algebra','《鲁拜集》；《代数问题论证》'],
+      '287468':['The Book of Attainment','《求知之书》'],
+      '298616':['The Canon of Medicine; The Book of Healing','《医典》；《治疗论》'],
+      '316872':['Revision of the Arabic Translation of Dioscorides’ De Materia Medica','迪奥斯科里德斯《药物志》阿拉伯译本的修订'],
+      '310782':['The Hundred Books on Medicine','《医学百篇》'],
+      '316873':['Wealth and Wishes (Ghinā wa Munā); Illumination (al-Tanwīr)','《充足与愿望》；《启明》']
+    };
+    const knownEnglish = {
+      tan:'Database systems research; ACM Fellow; co-recipient of Singapore’s 2011 President’s Science Award',
+      '68683':'One of the pioneers of database technology in China',
+      '80277':'The OO7 object database benchmark and AsterixDB',
+      '31091':'Creating INGRES and POSTGRES; recipient of the 2014 Turing Award',
+      '63600':'Helping develop information and control engineering and the Systems Engineering Laboratory at the University of Michigan',
+      '80987':'Early research on electronic differential analyzers',
+      '7829':'Wallman compactification and dimension theory',
+      '7461':'The Lefschetz fixed-point and hyperplane theorems',
+      '7451':'Advancing mathematical research at Johns Hopkins and mathematical organizations in the United States',
+      '32858':'Neumann boundary conditions and the Neumann series',
+      '18589':'A nineteenth-century Leipzig mathematician working across analysis, geometry and number theory',
+      '57706':'Richelot isogenies and the construction of the regular 257-gon',
+      '46967':'The Hessian matrix and Hesse normal form',
+      '15635':'The Jacobi identity, Jacobian determinant and elliptic function theory',
+      '41423':'Early systematic work on the calculus of variations and the mathematical tradition at the University of Berlin',
+      '57659':'Lunar maps and writings on mathematical and astronomical instruments',
+      '57667':'Clear and popular mathematics lectures at the University of Göttingen',
+      '65161':'Lichtenberg figures; satirical aphorisms and experimental physics',
+      '66476':'Eighteenth-century German mathematics textbooks and epigrams; teaching Gauss',
+      '57670':'Early electrostatic experiments and writings on electricity',
+      '72669':'Professor of Oriental languages at Leipzig and an early German Orientalist',
+      '128986':'Professor of higher mathematics and rector at Wittenberg',
+      '21235':'Founding Acta Eruditorum, the first scientific journal in German-speaking lands',
+      '137705':'Teaching Leibniz and contributing to Leipzig’s scholarly tradition',
+      '127962':'Successive professorships in mathematics and theology at Wittenberg',
+      '143630':'Professor of moral philosophy at Leipzig; father of Gottfried Wilhelm Leibniz',
+      '127801':'Wittenberg professor with writings in theology and natural philosophy',
+      '127734':'Court preacher and ecclesiastical superintendent',
+      '127424':'Latin translations and commentaries on Pindar; Greek philology',
+      '127898':'Composition, music theory and chronology',
+      '127864':'One of the principal authors of the Formula of Concord',
+      '127790':'Leipzig mathematics professor; studies of the Great Comet of 1577 and contributions to calendar-reform discussions',
+      '126827':'Publishing the first account of Copernican heliocentrism',
+      '126730':'First professor of higher mathematics at Wittenberg; teacher of Rheticus',
+      '126724':'An early mathematics teacher at Wittenberg',
+      '126113':'Professor and dean at the Kraków Academy; a prominent teacher of astronomy',
+      '126177':'The Copernican heliocentric model and the Copernican Revolution',
+      '126112':'Copernicus’s teacher and observing collaborator in Bologna',
+      '126109':'Systematizing trigonometry and advancing early scientific printing',
+      '126888':'Systematic dissemination of double-entry bookkeeping; known as the “father of accounting”',
+      '126087':'Planetary theory and observational astronomy in fifteenth-century Europe',
+      '131561':'Transmitting Platonic thought and Greek manuscripts to Renaissance Italy',
+      '126887':'A founder of the Viennese school of astronomy; astronomical tables, calendars and instrument teaching',
+      '131575':'Renewing Western European interest in Plato during the Renaissance',
+      '127264':'A major scholar in the early University of Vienna; writings on concentric-sphere cosmology',
+      '134780':'Introducing Latin scholastic philosophy, especially Thomism, to the Byzantine world through translation',
+      '199357':'Two-dimensional representations of variable relationships; the Oresme sequence and monetary theory',
+      '146365':'Fourteenth-century Byzantine anti-Latin theology and support for Palamas',
+      '176844':'Hesychast theology and the essence–energies distinction',
+      '184631':'Late Byzantine polymathy and scholarly patronage',
+      '184632':'Preserving and developing Byzantine music theory and ancient Greek harmonics',
+      '201288':'Translating Persian astronomical materials for the Byzantine world',
+      '204293':'Transmission of astronomy from Maragha and Tabriz to the Greek-speaking world',
+      '217509':'The Tusi couple, Maragha Observatory and non-Ptolemaic planetary models',
+      '287480':'Logic and philosophy textbooks used extensively in Islamic education',
+      '223724':'An important teacher at the scholarly center of Mosul',
+      '230926':'Using conic sections to study cubic equations and the conditions for positive roots',
+      '287466':'Twelfth-century Central Asian writings on mathematics and astronomy',
+      '287478':'An extensive Qur’anic commentary and a system of scholastic theology',
+      '295739':'Classification of cubic equations, the Jalali calendar and quatrain poetry',
+      '287468':'A major philosopher in the Avicennian tradition',
+      '298616':'The Canon of Medicine and Avicennian philosophy',
+      '316872':'Teaching the young Avicenna logic, Euclidean geometry and astronomy',
+      '310782':'Teaching Avicenna and writing on early Islamic medicine',
+      '316873':'A tenth-century Persian physician and one of Avicenna’s medical teachers'
+    };
+    people.forEach(p => {
+      p.institutionEn=institutionEnglish[p.university] || p.university;
+      p.countryEn=countryEnglish[p.country];
+      p.fieldEn=p.field ? p.field.split('；').map(term=>fieldEnglish[term]).join('; ') : '';
+      p.knownEn=knownEnglish[p.id];
+      p.thesisBi=thesisTranslations[p.id];
+      p.workBi=workTranslations[p.id];
+    });
+    // Correct a mixed-script term while keeping its meaning.
+    byId.get('57706').known='里舍洛同源映射与正 257 边形构造研究';
+    byId.get('57670').thesis='De corpore scissuris figurisque non cruentando ductu Lev. XIX. com. XXVIII';
+    byId.get('57670').sources.push(['WorldCat — 1713 dissertation','https://search.worldcat.org/title/36397435']);
+
+    // Display abbreviation only; retain the full identity in data and accessible text.
+    byId.get('287466').displayName='Sharaf al-Dīn al-Masʿūdī';
+    const verifiedWikiAdditions = {
+      '126724':'https://de.wikipedia.org/wiki/Bonifacius_Erasmi_de_Rode',
+      '316872':'https://en.wikipedia.org/wiki/Al-Natili',
+      '204293':'https://ar.wikipedia.org/wiki/شمس_الدين_البخاري'
+    };
+    Object.entries(verifiedWikiAdditions).forEach(([id,url]) => {
+      byId.get(id).wiki=url;
+      byId.get(id).sources.push(['Wikipedia — identity checked 2026-09-07',url]);
+    });
+
+    const esc = s => String(s).replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[c]));
+    const kind = p => /Ph\.D|Dr\.|Sc\.D/i.test(p.degree) ? "博士学位记录" : /Magister|M\.A\./i.test(p.degree) ? "早期学位记录" : "前现代师承记录";
+    // Research areas describe topics; known-for entries name concrete outputs.
+    // Empty entries are deliberate: a post, pupil or broad discipline is not a result.
+    // Evidence: assets/genealogy-significance-review-2026-09-08.md.
+    const resultCopy = {
+      sha:['',''],
+      tan:['Pioneering P2P data management · President’s Science Award · IEEE CS Technical Achievement Award','对等数据管理创新 · 新加坡总统科学奖 · IEEE CS 技术成就奖'],
+      '68683':['Founded PAKDD and WAIM · 2005 SIGMOD Contributions Award','创办 PAKDD、WAIM · 2005年 SIGMOD 贡献奖'],
+      '80277':['OO7 · AsterixDB · 2005 SIGMOD Codd Innovations Award','OO7 · AsterixDB · 2005年 SIGMOD Codd 创新奖'],
+      '31091':['INGRES · POSTGRES · 2014 ACM Turing Award','INGRES · POSTGRES · 2014年图灵奖'],
+      '63600':['Co-authored Linear Operator Theory in Engineering and Science','合著《工程与科学中的线性算子理论》'],
+      '80987':['An electronic differential analyzer','电子微分分析器'],
+      '7829':['Wallman compactification · Dimension Theory','沃尔曼紧化 ·《维数理论》'],
+      '7461':['Lefschetz fixed-point and hyperplane theorems','莱夫谢茨不动点定理 · 超平面定理'],
+      '7451':['Helped found the American Journal of Mathematics','参与创办《美国数学杂志》'],
+      '32858':['Neumann boundary condition · Neumann series','诺伊曼边界条件 · 诺伊曼级数'],
+      '18589':['',''],
+      '57706':['Richelot isogenies · construction of the regular 257-gon','里舍洛同源映射 · 正257边形尺规构造'],
+      '46967':['Hessian matrix · Hesse normal form','海塞矩阵 · 海塞标准形'],
+      '15635':['Jacobian determinant · Jacobi elliptic functions · Hamilton–Jacobi equation','雅可比行列式 · 雅可比椭圆函数 · 哈密顿—雅可比方程'],
+      '41423':['Analytical Presentation of the Calculus of Variations','《变分法的解析论述》'],
+      '57659':['Foundations of Natural Philosophy (1801)','《自然哲学基础》（1801）'],
+      '57667':['Outlines of Pure Mathematics · General Arithmetic','《纯粹数学纲要》 ·《普通算术纲要》'],
+      '65161':['Lichtenberg figures · the Waste Books','利希滕贝格图形 ·《札记》'],
+      '66476':['Foundations of Mathematics · History of Mathematics','《数学基础》 ·《数学史》'],
+      '57670':['Prime conductor experiments · electrical treatise (1743)','主导体实验 · 1743年电学论著'],
+      '72669':['',''],
+      '128986':['',''],
+      '21235':['Founded Acta Eruditorum (1682)','创办《学艺纪事》（1682）'],
+      '128046':['',''],
+      '137705':['Erotemata logica: an introductory logic manual','《逻辑问答》入门教材'],
+      '127962':['',''],
+      '143630':['',''],
+      '127801':['',''],
+      '127734':['Compendium of Theology (1644)','《神学纲要》（1644）'],
+      '127424':['Latin translation and commentary of Pindar (1616)','品达颂歌的拉丁译注（1616）'],
+      '127898':['Opus chronologicum · Melopoeia','《年代学著作》 ·《作曲法》'],
+      '127864':['Co-authored the Formula of Concord','参与撰写《协同式》'],
+      '127790':['Published observations of the Great Comet of 1577','1577年大彗星观测报告'],
+      '126827':['Narratio prima (1540) · trigonometric tables','《初述》（1540） · 三角函数表'],
+      '126730':['',''],
+      '126177':['De revolutionibus · heliocentric model','《天体运行论》 · 日心说'],
+      '126724':['',''],
+      '126113':['',''],
+      '126112':['Joint observation of the Aldebaran occultation (1497)','与哥白尼共同观测月掩毕宿五（1497）'],
+      '126109':['On Triangles · astronomical ephemerides','《论三角形》 · 天文历表'],
+      '126888':['Summa’s account of double-entry bookkeeping · Divine Proportion','《算术大全》中的复式簿记 ·《神圣比例》'],
+      '126087':['Theoricae novae planetarum','《行星新论》'],
+      '131561':['Greek manuscript bequest to Venice (1468)','向威尼斯捐赠希腊手稿（1468）'],
+      '126887':['Multi-year astronomical calendars and tables','多年天文历书与计算表'],
+      '131575':['Book of Laws · On the Differences of Aristotle and Plato','《法典》 ·《论亚里士多德与柏拉图的差异》'],
+      '127264':['Epistola concilii pacis: a council to resolve the Schism','《和平会议书》：主张以宗教会议弥合教会分裂'],
+      '134780':['Greek translation of Aquinas’s Summa contra Gentiles','阿奎那《反异教大全》的希腊译本'],
+      '199357':['Diagrams of varying quantities · De moneta','变量关系图示 ·《论货币》'],
+      '146365':['On the Primacy of the Pope','《论教宗首权》'],
+      '176844':['The Triads · essence–energies distinction','《三部曲》 · 本质—能量之分'],
+      '184631':['Semeioseis gnomikai · restoration of the Chora church','《杂记》 · 科拉教堂修缮与装饰'],
+      '184632':['Harmonics, a treatise on mathematical music theory','《和声论》数理音乐专著'],
+      '201288':['Greek translations of Persian astronomical tables','波斯天文表的希腊译本'],
+      '204293':['',''],
+      '217509':['Tusi couple · Maragha Observatory','图西偶 · 马拉盖天文台'],
+      '287480':['Isaghuji · Hidayat al-hikma','《逻辑入门》 ·《智慧指南》'],
+      '223724':['',''],
+      '287479':['Commentary on the Canon’s Generalities','《医典》总论注释'],
+      '230926':['Positive-root conditions for cubic equations','三次方程正根的存在条件'],
+      '287466':['Objections on Avicenna’s Isharat · Jahan-danish','对《指示与提醒》的质疑评注 ·《宇宙知识》'],
+      '287478':['Mafatih al-ghayb, the Great Commentary on the Quran','《幽玄之钥》（《古兰经大注释》）'],
+      '295739':['Geometric solutions of cubics · Jalali calendar · Rubaiyat','三次方程几何解法 · 贾拉利历 ·《鲁拜集》'],
+      '287468':['Al-Tahsil, a compendium of Avicennian philosophy','《求知书》哲学汇编'],
+      '298616':['The Canon of Medicine · The Book of Healing','《医典》 ·《治疗论》'],
+      '316872':['',''],
+      '310782':['The Hundred Books on Medicine, a medical encyclopedia','《医学百篇》医学百科'],
+      '316873':['Ghina wa Muna · al-Tanwir medical glossary','《充足与愿望》 ·《启明》医学词汇书']
+    };
+    const areaOverrides = {
+      sha:['Modern hardware · Secure data processing · Graph algorithms','现代硬件 · 安全数据处理 · 图算法'],
+      tan:['Parallel databases · query optimization','并行与分布式数据库 · 查询优化'],
+      '68683':['Database systems · query optimization','数据库系统 · 查询优化'],
+      '128046':['Celestial conjunctions (documented thesis topic)','天体合相（据现存论文题目）'],
+      '287479':['Medicine · medical commentary','医学 · 医学文献注释'],
+      '287466':['Philosophy · theoretical astronomy','哲学 · 理论天文学'],
+      '143630':['Moral philosophy · law','道德哲学 · 法学']
+    };
+    people.forEach(p=>{
+      const area=areaOverrides[p.id] || (p.field ? [p.field.split('；').slice(0,2).map(term=>fieldEnglish[term]).join(' · '),p.field.split('；').slice(0,2).join(' · ')] : ['','']);
+      [p.fieldEn,p.field]=area;
+      if(!resultCopy[p.id]) throw Error('Missing result review: '+p.id);
+      [p.knownEn,p.known]=resultCopy[p.id];
+    });
+    const graph = document.getElementById("graph");
+    const svg = document.getElementById("edges");
+    const nodeEls = new Map();
+
+    const recorded = value => value && value !== "未记录";
+    const initials = name => name.split(/\s+/).filter(Boolean).slice(0,2).map(part=>part[0]).join("").toUpperCase();
+    const fieldLabels = {
+      institution:['University / Institution','大学 / 研究机构'],
+      country:['Country / Region','国家 / 地区'],
+      thesis:['Dissertation','学位论文'],
+      work:['Selected works','代表作'],
+      field:['Research areas','研究方向'],
+      known:['Known for','知名于']
+    };
+    const labelHTML = key => '<div class="fact-label"><span class="label-en" lang="en">' + fieldLabels[key][0] + '</span><span class="label-zh" lang="zh-CN">' + fieldLabels[key][1] + '</span></div>';
+    // Normalize list separators, but preserve middle dots inside transliterated names.
+    const formatChineseMeta = text => esc(text).replace(/[ \t]+·[ \t]*/g,'\u00a0· ');
+    const bilingual = (en,zh) => '<span class="value-en" lang="en">' + esc(en) + '</span><span class="value-zh" lang="zh-CN">' + formatChineseMeta(zh) + '</span>';
+    const factRow = (key,en,zh,original='') => recorded(en) && recorded(zh)
+      ? '<div class="fact ' + key + '">' + labelHTML(key) + '<div class="fact-value ' + key + '-text"' + (original ? ' title="' + esc('Original / 原文: ' + original) + '"' : '') + '>' + bilingual(en,zh) + '</div></div>' : '';
+    const institutionRow = p => factRow('institution',p.institutionEn,p.universityZh,p.university);
+
+    // Scholar destinations checked against the linked personal/directory pages.
+    const scholarProfiles = {
+      sha: { user: 'pjKHbYIAAAAJ', source: 'https://desert0616.github.io/' },
+      tan: { user: 'JQ-sxKYAAAAJ', source: 'https://scholar.google.com/citations?user=JQ-sxKYAAAAJ&hl=en' },
+      '80277': { user: 'B8tFrksAAAAJ', source: 'https://research.com/u/michael-j-carey' },
+      // Stonebraker: no verified personal Scholar profile; a1ngrCIAAAAJ is Samuel Madden.
+    };
+    // Brand glyphs: Simple Icons (CC0), embedded to avoid external image requests.
+    const scholarLogo = '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5.242 13.769L0 9.5 12 0l12 9.5-5.242 4.269C17.548 11.249 14.978 9.5 12 9.5c-2.977 0-5.548 1.748-6.758 4.269zM12 10a7 7 0 1 0 0 14 7 7 0 0 0 0-14z"/></svg>';
+    const wikiLogo = '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12.09 13.119c-.936 1.932-2.217 4.548-2.853 5.728-.616 1.074-1.127.931-1.532.029-1.406-3.321-4.293-9.144-5.651-12.409-.251-.601-.441-.987-.619-1.139-.181-.15-.554-.24-1.122-.271C.103 5.033 0 4.982 0 4.898v-.455l.052-.045c.924-.005 5.401 0 5.401 0l.051.045v.434c0 .119-.075.176-.225.176l-.564.031c-.485.029-.727.164-.727.436 0 .135.053.33.166.601 1.082 2.646 4.818 10.521 4.818 10.521l.136.046 2.411-4.81-.482-1.067-1.658-3.264s-.318-.654-.428-.872c-.728-1.443-.712-1.518-1.447-1.617-.207-.023-.313-.05-.313-.149v-.468l.06-.045h4.292l.113.037v.451c0 .105-.076.15-.227.15l-.308.047c-.792.061-.661.381-.136 1.422l1.582 3.252 1.758-3.504c.293-.64.233-.801.111-.947-.07-.084-.305-.22-.812-.24l-.201-.021c-.052 0-.098-.015-.145-.051-.045-.031-.067-.076-.067-.129v-.427l.061-.045c1.247-.008 4.043 0 4.043 0l.059.045v.436c0 .121-.059.178-.193.178-.646.03-.782.095-1.023.439-.12.186-.375.589-.646 1.039l-2.301 4.273-.065.135 2.792 5.712.17.048 4.396-10.438c.154-.422.129-.722-.064-.895-.197-.172-.346-.273-.857-.295l-.42-.016c-.061 0-.105-.014-.152-.045-.043-.029-.072-.075-.072-.119v-.436l.059-.045h4.961l.041.045v.437c0 .119-.074.18-.209.18-.648.03-1.127.18-1.443.421-.314.255-.557.616-.736 1.067 0 0-4.043 9.258-5.426 12.339-.525 1.007-1.053.917-1.503-.031-.571-1.171-1.773-3.786-2.646-5.71l.053-.036z"/></svg>';
+    function cardHTML(p) {
+      const scholar = scholarProfiles[p.id] ? '<a class="profile-link scholar-link" href="https://scholar.google.com/citations?user=' + esc(scholarProfiles[p.id].user) + '" target="_blank" rel="noopener noreferrer" title="Google Scholar" aria-label="' + esc(p.name) + ' 的 Google Scholar">' + scholarLogo + '<span lang="en">Google Scholar</span></a>' : '';
+      const wiki = p.wiki ? '<a class="profile-link wiki-link" href="' + esc(p.wiki) + '" target="_blank" rel="noopener noreferrer" title="Wikipedia" aria-label="' + esc(p.name) + ' 的 Wikipedia">' + wikiLogo + '<span lang="en">Wikipedia</span></a>' : '';
+      const profileLinks = scholar || wiki ? '<div class="profile-links">' + wiki + scholar + '</div>' : '';
+      const mark=polityMark(p.country);
+      const schematic=schematicInsignia[p.id];
+      const emblem=schematic ? '<span class="schematic-insignia" aria-label="'+esc(schematic.label)+'"><svg viewBox="0 0 48 32" aria-hidden="true">'+(schematic.type==='yellow'?'<path d="M5 30V2" stroke="#786a4b" stroke-width="2"/><path d="M6 3h36v22H6z" fill="#e9c34a" stroke="#ad8d2e"/>':'<path d="M13 3Q43 16 13 29L13 3M7 16h34m-7-6 7 6-7 6" fill="none" stroke="#8b6a37" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>')+'</svg></span>' : mark
+        ? '<img class="polity-mark" src="' + esc(mark[1]) + '" alt="" title="' + esc(mark[2]) + '" loading="lazy" referrerpolicy="no-referrer" onerror="this.hidden=true">'
+        : '<i class="polity-glyph" title="跨政体、地区性记录或无可核实的统一旗帜">✦</i>';
+      const country=recorded(p.country) ? '<div class="fact country">' + labelHTML('country') + '<div class="fact-value country-value"><div>' + bilingual(p.countryEn,p.country) + '</div></div></div>' : "";
+      return '<div class="card-layout"><div class="identity"><div class="identity-main"><h2 class="person" id="name-' + esc(p.id) + '"' + (p.displayName ? ' aria-label="' + esc(p.name) + '" style="white-space:nowrap"' : '') + '>' + esc(p.displayName || p.name) + '</h2>' + (p.alias ? '<div class="alias">' + esc(p.alias) + '</div>' : '') + '<div class="identity-footer"><div class="identity-polity">' + emblem + '</div>' + profileLinks + '</div></div></div><div class="facts">' +
+        institutionRow(p) + country + factRow('thesis',p.thesisBi?.[0],p.thesisBi?.[1],p.thesis) + factRow('field',p.fieldEn,p.field) + factRow('known',p.knownEn,p.known) + '</div></div>';
+    }
+
+    people.forEach(p => {
+      const el = document.createElement("article");
+      // Curated emphasis: Copernicus, Avicenna, Khayyam, Jacobi,
+      // Stonebraker, Pacioli, Nasir al-Din al-Tusi, and Lefschetz.
+      el.className = ['126177','298616','295739','15635','31091','126888','217509','7461'].includes(p.id) ? 'node notable' : 'node';
+      el.dataset.id = p.id;
+      el.id = "person-" + p.id;
+      el.tabIndex = -1;
+      el.setAttribute("aria-labelledby", "name-" + p.id);
+      el.className += ' mini';
+      const silhouette='<svg viewBox="0 0 64 76" width="100%" height="100%" aria-hidden="true"><circle cx="32" cy="27" r="12" fill="currentColor" opacity=".65"/><path d="M10 70v-7a22 22 0 0 1 44 0v7" fill="currentColor" opacity=".45"/></svg>';
+      const photo=p.portrait ? '<img class="portrait" src="'+esc(p.portrait)+'" alt="" draggable="false" loading="lazy" decoding="async" referrerpolicy="no-referrer" onerror="this.hidden=true;this.nextElementSibling.hidden=false"><span class="portrait-fallback" hidden>'+silhouette+'</span>' : '<span class="portrait-fallback">'+silhouette+'</span>';
+      el.innerHTML = '<button class="mini-toggle" type="button" data-person="'+esc(p.id)+'" aria-label="查看 '+esc(p.name)+' '+esc(p.alias)+'" aria-controls="focus-card">'+photo+'</button>';
+      el.setAttribute('aria-label',p.name);
+      el.removeAttribute('aria-labelledby');
+      graph.appendChild(el);
+      nodeEls.set(p.id, el);
+    });
+
+    const rank = new Map([["sha",0]]);
+    for (let pass=0; pass<200; pass++) {
+      let changed=false;
+      edges.forEach(([from,to]) => {
+        if (!rank.has(from)) return;
+        const candidate=rank.get(from)+1;
+        if (!rank.has(to) || rank.get(to)<candidate) { rank.set(to,candidate); changed=true; }
+      });
+      if (!changed) break;
+    }
+    rank.set("18589", rank.get("57706"));
+    rank.set("230926", rank.get("287466"));
+    const maxRank = Math.max(...rank.values());
+    const groups = Array.from({length:maxRank+1},()=>[]);
+    people.forEach(p => groups[rank.get(p.id) || 0].push(p));
+    const incoming = new Map();
+    edges.forEach(([a,b]) => { if(!incoming.has(b)) incoming.set(b,[]); incoming.get(b).push(a); });
+    const orderIndex = new Map();
+    groups.forEach((g,r) => {
+      if (r) g.sort((a,b) => {
+        const avg = p => {
+          const xs=(incoming.get(p.id)||[]).map(id=>orderIndex.get(id)).filter(Number.isFinite);
+          return xs.length ? xs.reduce((u,v)=>u+v,0)/xs.length : 999;
+        };
+        return avg(a)-avg(b) || a.name.localeCompare(b.name);
+      });
+      if (["57706","46967","18589"].every(id=>g.some(p=>p.id===id))) {
+        const trioOrder = new Map([["57706",0],["46967",1],["18589",2]]);
+        g.sort((a,b)=>(trioOrder.get(a.id) ?? 3)-(trioOrder.get(b.id) ?? 3));
+      }
+      if (["316872","310782","316873"].every(id=>g.some(p=>p.id===id))) {
+        const trioOrder = new Map([["316872",0],["310782",1],["316873",2]]);
+        g.sort((a,b)=>(trioOrder.get(a.id) ?? 3)-(trioOrder.get(b.id) ?? 3));
+      }
+      if (["126724","126112","126113"].every(id=>g.some(p=>p.id===id))) {
+        const trioOrder = new Map([["126724",0],["126112",1],["126113",2]]);
+        g.sort((a,b)=>(trioOrder.get(a.id) ?? 3)-(trioOrder.get(b.id) ?? 3));
+      }
+      [["134780","127264"],["146365","199357"],["230926","287466"]].forEach(pair => {
+        if (pair.every(id=>g.some(p=>p.id===id))) {
+          const paired=pair.map(id=>g.find(p=>p.id===id));
+          g.splice(0,g.length,...paired,...g.filter(p=>!pair.includes(p.id)));
+        }
+      });
+      g.forEach((p,i)=>orderIndex.set(p.id,i));
+    });
+
+    const shell=document.querySelector('.graph-shell');
+    const panel=document.querySelector('.focus-panel');
+    const focusCard=document.getElementById('focus-card');
+    const reducedMotion=window.matchMedia('(prefers-reduced-motion: reduce)');
+    // Stable topological ordering: every student precedes every listed mentor.
+    const preferred=groups.flat();
+    const priority=new Map(preferred.map((p,i)=>[p.id,i]));
+    const indegree=new Map(people.map(p=>[p.id,0]));
+    edges.forEach(([,b])=>indegree.set(b,indegree.get(b)+1));
+    const pending=people.filter(p=>indegree.get(p.id)===0), sequence=[];
+    while(pending.length){
+      const year=p=>Number(p.year.match(/\d{3,4}/)?.[0]||0);
+      pending.sort((a,b)=>year(b)-year(a)||priority.get(a.id)-priority.get(b.id));
+      const person=pending.shift();sequence.push(person);
+      edges.filter(([a])=>a===person.id).forEach(([,b])=>{
+        indegree.set(b,indegree.get(b)-1);
+        if(indegree.get(b)===0)pending.push(byId.get(b));
+      });
+    }
+    if(sequence.length!==people.length)throw Error('Genealogy contains a cycle');
+    const position=new Map(sequence.map((p,i)=>[p.id,i]));
+    sequence.forEach(p=>graph.appendChild(nodeEls.get(p.id)));
+    let activeId='sha', step=156, padding=0, centerX=0, nodeWidth=100;
+    const reader=document.querySelector('.reader');
+    const scenes=[document.getElementById('scene-a'),document.getElementById('scene-b')];
+    let sceneIndex=0,sceneToken=0,sceneTimer,sceneCommitTimer,sceneFadeUntil=0;
+    // One shared landscape source on desktop and mobile. Keep all older assets.
+    const sceneVersions=Object.fromEntries(people.map(person=>[person.id,person.id==='68683'?'68683-v2':person.id+'-v6']));
+    for(const id of ['126087','126177','137705']) sceneVersions[id]=id+'-v6b';
+    // Right-side composition safety bounds; Lu's approved image stays fully visible.
+    const sceneSubjectWidths={sha:.46,tan:.44,'68683':1};
+    function visibleViewport(){
+      const candidates=[document.documentElement?.clientWidth,window.innerWidth,window.visualViewport?.width].filter(n=>Number.isFinite(n)&&n>0);
+      const heights=[document.documentElement?.clientHeight,window.innerHeight,window.visualViewport?.height].filter(n=>Number.isFinite(n)&&n>0);
+      return {width:candidates.length?Math.min(...candidates):reader.clientWidth,height:heights.length?Math.min(...heights):shell.clientHeight};
+    }
+    function fitScene(layer){
+      const imageWidth=Number(layer.dataset.imageWidth),imageHeight=Number(layer.dataset.imageHeight);
+      if(!imageWidth||!imageHeight)return;
+      const visible=visibleViewport();
+      const viewportHeight=Math.max(1,Math.min(reader.clientHeight||visible.height,visible.height));
+      const scale=viewportHeight/imageHeight;
+      layer.style.backgroundSize=(imageWidth*scale).toFixed(2)+'px '+(imageHeight*scale).toFixed(2)+'px';
+    }
+    // Reviewed 2026-09-08. Each row: headline EN/ZH, consolidated known-for EN/ZH.
+    // Headlines are editorial paraphrases, never attributed quotations.
+    // Research evidence and caveats: assets/genealogy-copy-review-2026-09-08.md.
+    const chapterCopy={
+      sha:['Just for fun','仅为兴趣','',''],
+      tan:['Helping databases divide and conquer','让数据库分工提速','Parallel queries · distributed databases','并行查询优化 · 分布式数据库'],
+      '68683':['A pioneer of database technology in China','中国数据库技术的先驱','Query optimization · database performance','查询优化 · 数据库性能研究'],
+      '80277':['Building AsterixDB for the big-data age','以 AsterixDB 应对海量数据','OO7 benchmark · semistructured data management','OO7 基准 · 半结构化数据管理'],
+      '31091':['Pioneering databases with INGRES and POSTGRES','INGRES 与 POSTGRES 的开创者','Relational database architecture · 2014 ACM Turing Award','关系数据库架构 · 2014年图灵奖'],
+      '63600':['Bringing linear operator theory to engineering','把线性算子理论引入工程视野','Control theory · systems engineering','控制理论 · 系统工程'],
+      '80987':['Making circuits solve differential equations','让电路替人解微分方程','Electronic analog computing','电子模拟计算'],
+      '7829':['Writing a classic on the mathematics of dimension','合著《维数理论》，奠定拓扑经典','Wallman compactification · lattice theory','沃尔曼紧化 · 格论'],
+      '7461':['Detecting fixed points through algebraic topology','用代数拓扑判定不动点的存在','Lefschetz fixed-point and hyperplane theorems','莱夫谢茨不动点定理 · 超平面定理'],
+      '7451':['Helping build America’s research mathematics tradition','参与奠定美国数学研究传统','American Journal of Mathematics editor · geometry','《美国数学杂志》早期主编 · 几何学'],
+      '32858':['Leaving his name on a boundary condition','以诺伊曼边界条件留名数学物理','Potential theory · Neumann series','位势论 · 诺伊曼级数'],
+      '18589':['Following infinity through series and fractions','在级数与连分数中探究无穷','Analysis · number theory','数学分析 · 数论'],
+      '57706':['Drawing 257 sides with compass and straightedge','用尺规画出正257边形','Richelot isogenies · Abelian integrals','里舍洛同源映射 · 阿贝尔积分'],
+      '46967':['The geometer behind the Hessian matrix','海塞矩阵背后的几何学家','Analytic geometry · invariant theory','解析几何 · 不变量理论'],
+      '15635':['Measuring local volume change with the Jacobian determinant','用雅可比行列式度量局部伸缩','Elliptic functions · Hamilton–Jacobi theory','椭圆函数 · 哈密顿—雅可比理论'],
+      '41423':['Writing an early systematic account of variational calculus','写下变分法的早期系统论著','Calculus of variations · analysis','变分法 · 数学分析'],
+      '57659':['Authoring textbooks of experimental physics and geometry','著述实验物理与实用几何教材','Foundations of Natural Philosophy (1801)','《自然哲学基础》（1801）'],
+      '57667':['Taking analysis beyond combinatorial manipulation','让数学分析走出组合运算的局限','Outlines of Pure Mathematics · General Arithmetic','《纯粹数学纲要》 ·《普通算术纲要》'],
+      '65161':['Known for sharp aphorisms and branching electric traces','以格言与放电图形留名','Experimental physics · the Waste Books','实验物理 ·《札记》'],
+      '66476':['Writing mathematics—and the history of mathematics','写下数学体系，也写下数学史','Foundations of Mathematics · History of Mathematics','《数学基础》 ·《数学史》'],
+      '57670':['Bringing the electrostatic generator to conduction experiments','以静电发生器探索电的传导','Prime conductor experiments · electrical studies (1743)','主导体实验 · 电学著述（1743）'],
+      '72669':['Opening old texts through Eastern languages','用东方语言叩开古籍之门','Hebrew · Syriac · Arabic','希伯来语 · 叙利亚语 · 阿拉伯语'],
+      '128986':['A Wittenberg mathematician who became rector','从数学讲席走向维滕贝格校长之位','Higher mathematics chair · rector in 1712','高等数学讲席 · 1712年校长'],
+      '21235':['Founding Acta Eruditorum to circulate new knowledge','创办《学艺纪事》，让新知流通','Scholarly publishing · journal founded in 1682','学术出版 · 1682年创刊'],
+      '128046':['Studying the conjunctions of the heavens','研究星体在天空中的相会','Celestial conjunctions','天体合相'],
+      '137705':['Teaching philosophy to a future Leibniz','为年轻的莱布尼茨讲哲学','Logic · rhetoric · history of philosophy','逻辑学 · 修辞学 · 哲学史'],
+      '127962':['Moving from mathematics to theology','从数学讲席走向神学讲坛','Higher mathematics · Lutheran theology','高等数学 · 路德宗神学'],
+      '143630':['An ethics professor—and Leibniz’s father','教道德哲学，也是莱布尼茨之父','A family library that helped educate Leibniz','藏书影响了少年莱布尼茨'],
+      '127801':['Leading Lutheran church affairs in Dresden','主持德累斯顿的路德宗教务','Lutheran theology · church superintendent','路德宗神学 · 宗教总监'],
+      '127734':['Gathering Lutheran doctrine into a theological compendium','以《神学纲要》汇集路德宗教义','Theological Compendium (1644) · Weimar court preacher','《神学纲要》（1644） · 魏玛宫廷布道师'],
+      '127424':['Giving Pindar’s Greek odes a Latin voice','以拉丁译注重现品达的希腊颂歌','Greek philology · Pindar edition (1616)','希腊语言学 · 品达作品集（1616）'],
+      '127898':['Composing music, calculating history','谱写乐章，也推算历史','Music theory · historical chronology','音乐理论 · 历史年代学'],
+      '127864':['Writing faith into hymns and concord','把信仰写进赞美诗与协同信条','Formula of Concord · Lutheran hymns','《协同式》 · 路德宗赞美诗'],
+      '127790':['Watching comets, weighing calendars','观测彗星，审议新历','1577 comet · Gregorian calendar assessment','1577年彗星 · 格里高利历评议'],
+      '126827':['Giving Copernicus’s new cosmos its first audience','让哥白尼的新宇宙率先问世','Narratio prima (1540) · trigonometric tables','《初述》（1540） · 三角函数表'],
+      '126730':['First to hold Wittenberg’s higher mathematics chair','首任维滕贝格高等数学讲席教授','Higher mathematics chair (1525) · Rheticus’s teacher','高等数学讲席（1525） · 雷蒂库斯之师'],
+      '126177':['Setting Earth in motion around the Sun','让地球绕着太阳转起来','Heliocentric model · De revolutionibus','日心模型 ·《天体运行论》'],
+      '126724':['Opening Wittenberg’s first mathematics classroom','开启维滕贝格的数学课堂','First mathematics professor at Wittenberg','维滕贝格首任数学教授'],
+      '126113':['An astronomer and astrologer in Renaissance Kraków','文艺复兴时期克拉科夫的天文学家','Astronomy · astrology','天文学 · 占星术'],
+      '126112':['Teaching Copernicus to question the sky','教哥白尼以观测追问星空','Observational astronomy · Bologna','观测天文学 · 博洛尼亚'],
+      '126109':['Putting trigonometry into print','让三角学走进印刷时代','On Triangles · astronomical ephemerides','《论三角形》 · 天文历表'],
+      '126888':['Making double-entry bookkeeping an open book','把复式簿记写成传世之书','Summa (1494) · Divine Proportion','《算术总论》 ·《神圣比例》'],
+      '126087':['Charting the planetary spheres in a Renaissance classic','以《行星新论》勾勒天球运转','Planetary theory · astronomical instruments','行星理论 · 天文仪器'],
+      '131561':['Saving Greek learning one manuscript at a time','以一卷卷手稿守护希腊学问','Greek manuscripts · Marciana bequest (1468)','希腊手稿 · 马尔恰纳藏书捐赠'],
+      '126887':['Helping establish Vienna’s school of astronomy','参与开创维也纳天文学派','Astronomical tables · instruments','天文表 · 天文仪器'],
+      '131575':['Bringing Plato back into the conversation','让柏拉图重返思想舞台','Renaissance Platonism · Book of Laws','文艺复兴柏拉图主义 ·《法典》'],
+      '127264':['Bringing Parisian scholarship to Vienna','把巴黎学问带到维也纳','Theology · astronomy · university reform','神学 · 天文学 · 大学改革'],
+      '134780':['Giving Aquinas a Greek voice','让阿奎那用希腊语开口','Greek translations of Aquinas','阿奎那著作的希腊译本'],
+      '199357':['Drawing change before Cartesian coordinates','在笛卡尔之前，把变化画成图','Graphs of motion · monetary theory','运动图示 · 货币理论'],
+      '146365':['Defending Eastern theology in a divided church','在教会分歧中申辩东方神学','Palamite theology · critique of papal primacy','帕拉马神学 · 教宗首权批判'],
+      '176844':['Giving silent prayer a theological defense','为静默祈祷写下神学辩护','Hesychasm · essence–energies distinction','静修主义 · 本质—能量之分'],
+      '184631':['The scholar-statesman who renewed the Chora church','重修科拉教堂的学者政治家','Astronomy · essays and cultural patronage','天文学 · 随笔 · 文化赞助'],
+      '184632':['Preserving Greek music theory in the Harmonics','以《和声论》保存古希腊乐理','Mathematical music theory · astronomy','数理乐论 · 天文学'],
+      '201288':['Translating Persian skies into Greek','把波斯星空译入希腊世界','Greek translations of astronomical tables','波斯天文表的希腊译本'],
+      '204293':['A teacher linking Persian and Byzantine astronomy','连接波斯与拜占庭天文学的授业者','Astronomy in Tabriz · teaching Chioniadis','大不里士天文学 · 基奥尼亚德斯之师'],
+      '217509':['Recasting celestial motion with the Tusi couple','以图西偶重构天体运动模型','Maragha Observatory · trigonometry','马拉盖天文台 · 三角学'],
+      '287480':['Teaching generations to reason through the Isaghuji','以《逻辑入门》传授推理之道','Logic · Hidayat al-hikma','逻辑学 ·《智慧指南》'],
+      '223724':['Teaching many sciences in medieval Mosul','在中世纪摩苏尔贯通诸学','Mathematics · astronomy · philosophy','数学 · 天文学 · 哲学'],
+      '287479':['Reading Avicenna’s medicine with a critical eye','为《医典》作注，也向权威发问','Commentary on the Canon’s Generalities','《医典》总论注释'],
+      '230926':['Finding when cubic equations have positive roots','追问三次方程何时有正根','Geometric algebra · polynomial maxima','几何代数 · 多项式极值'],
+      '287466':['Explaining the heavens in Persian','用波斯文讲述宇宙','Jahan-danish · theoretical astronomy','《宇宙知识》 · 理论天文学'],
+      '287478':['Bringing philosophy into his great Quran commentary','以哲学深思写成《古兰经大注释》','Quranic exegesis · philosophical theology','古兰经注释 · 哲学神学'],
+      '295739':['The mathematician remembered for the Rubaiyat','以《鲁拜集》传世的数学家','Cubic equations · Jalali calendar','三次方程 · 贾拉利历'],
+      '287468':['Carrying Avicenna’s philosophy forward in the Tahsil','以《求知书》承续伊本·西那哲学','Logic · metaphysics · natural philosophy','逻辑学 · 形而上学 · 自然哲学'],
+      '298616':['A physician whose Canon taught centuries','以一部《医典》影响数百年医学','The Canon of Medicine · The Book of Healing','《医典》 ·《治疗论》'],
+      '316872':['Opening logic’s door for the young Avicenna','为少年伊本·西那开启逻辑之门','Logic · Euclidean geometry','逻辑学 · 欧几里得几何'],
+      '310782':['Gathering medicine into a hundred books','以百篇著述汇成医学百科','The Hundred Books on Medicine','《医学百篇》'],
+      '316873':['Compiling medical knowledge, clarifying its vocabulary','汇编医学知识，厘清医家术语','Ghina wa Muna · al-Tanwir medical glossary','《充足与愿望》 ·《启明》医学词汇书']
+    };
+    const chapterTitles=Object.fromEntries(Object.entries(chapterCopy).map(([id,copy])=>[id,copy.slice(0,2)]));
+    people.forEach(person=>{
+      const copy=chapterCopy[person.id];
+      if(!copy)throw Error('Missing reviewed copy for '+person.id);
+      [copy[2],copy[3]]=resultCopy[person.id];
+      person.knownEn=copy[2];person.known=copy[3];
+    });
+    function showScene(person){
+      const token=++sceneToken;clearTimeout(sceneTimer);clearTimeout(sceneCommitTimer);
+      reader.setAttribute('data-chapter',person.id);
+      const genre=/医学/.test(person.field||'')?'medicine':/天文/.test(person.field||'')?'cosmos':/数学|几何|拓扑|函数/.test(person.field||'')?'geometry':/数据库|控制|工程/.test(person.field||'')?'systems':'library';
+      reader.setAttribute('data-genre',genre);
+      // Debounce network work during fast swipes; only commit the latest focus.
+      sceneTimer=setTimeout(()=>{
+        const picture=new Image();picture.decoding='async';
+        picture.onload=()=>{
+          const commit=()=>{
+            if(token!==sceneToken)return;
+            // Never overwrite a layer that is still visibly fading out.
+            const remaining=sceneFadeUntil-Date.now();
+            if(remaining>0){sceneCommitTimer=setTimeout(commit,remaining);return;}
+            const next=1-sceneIndex;
+            scenes[next].dataset.imageWidth=picture.naturalWidth||1672;
+            scenes[next].dataset.imageHeight=picture.naturalHeight||941;
+            scenes[next].dataset.subjectWidth=sceneSubjectWidths[person.id]||1;
+            fitScene(scenes[next]);
+            scenes[next].style.backgroundImage='url("'+picture.src+'")';
+            scenes[next].style.opacity='1';scenes[sceneIndex].style.opacity='0';sceneIndex=next;
+            sceneFadeUntil=Date.now()+(reducedMotion.matches?0:850);
+          };
+          commit();
+        };
+        // Keep the last successful scene if an asset fails to load.
+        picture.onerror=()=>{};
+        picture.src='assets/genealogy-scenes/'+(sceneVersions[person.id]||person.id)+'.png';
+      },140);
+    }
+    function updateAtmosphere(){
+      if(reducedMotion.matches)return;
+      const progress=Math.max(0,Math.min(1,shell.scrollTop/((sequence.length-1)*step)));
+      reader.style.setProperty('--glow-hue',String(105+175*progress));
+      reader.style.setProperty('--glow-x',(72+12*Math.sin(progress*Math.PI*4))+'%');
+      reader.style.setProperty('--glow-y',(18+50*progress)+'%');
+    }
+    const centerY=id=>padding+position.get(id)*step+62;
+    const edgeEls=edges.map(([from,to])=>{
+      const path=document.createElementNS('http://www.w3.org/2000/svg','path');
+      path.setAttribute('class','edge');path.dataset.from=from;path.dataset.to=to;
+      path.setAttribute('marker-end','url(#arrow-main)');svg.appendChild(path);return path;
+    });
+    // Reuse a side lane only after its previous edge has ended.
+    // Adjacency in the list alone never implies a mentoring relationship.
+    const laneEnds=[], laneByEdge=new Map();
+    edgeEls.filter(p=>position.get(p.dataset.to)>position.get(p.dataset.from)+1)
+      .sort((a,b)=>position.get(a.dataset.from)-position.get(b.dataset.from)||position.get(b.dataset.to)-position.get(a.dataset.to))
+      .forEach(path=>{
+        const start=position.get(path.dataset.from),end=position.get(path.dataset.to);
+        let lane=laneEnds.findIndex(last=>last<start);
+        if(lane<0)lane=laneEnds.length;
+        laneEnds[lane]=end;laneByEdge.set(path,lane);
+      });
+    function drawEdges(){
+      edgeEls.forEach(path=>{
+        const from=path.dataset.from,to=path.dataset.to,a=centerY(from),b=centerY(to);
+        const adjacent=position.get(to)===position.get(from)+1;
+        const port=centerX-nodeWidth/2;
+        const spacing=Math.max(2,Math.min(14,(port-14)/Math.max(1,laneEnds.length)));
+        const lane=Math.max(4,port-8-(laneByEdge.get(path)||0)*spacing);
+        path.setAttribute('d',adjacent?'M '+centerX+' '+(a+62)+' L '+centerX+' '+(b-62):'M '+port+' '+a+' L '+lane+' '+a+' L '+lane+' '+b+' L '+port+' '+b);
+        path.style.opacity=from===activeId||to===activeId?'1':'.42';
+        path.style.strokeWidth=from===activeId||to===activeId?'2.5':'1.6';
+      });
+    }
+    function chapterHTML(person){
+      const id=person.id;
+      if(id==='sha')return '<div class="genealogy-disclaimer"><p class="disclaimer-en" lang="en">Just for fun—an exploration of academic ancestry, not a definitive historical account. Some details remain unverified, and even the underlying sources may be unreliable, especially for the earliest connections.</p><p class="disclaimer-zh" lang="zh-CN">仅为兴趣，循着学术师承探寻来路，并非定论。部分信息尚未经核实，所据文献本身也可能存疑，尤其是年代久远的师承记录。</p></div>'+cardHTML(person);
+      const title=chapterTitles[id]||(id!=='sha'&&person.fieldEn?[person.fieldEn.split(';')[0],person.field.split('；')[0]]:null);
+      const chapter=title?'<div class="chapter-intro"><p class="chapter-en" lang="en">'+esc(title[0])+'</p><p class="chapter-zh" lang="zh-CN">'+esc(title[1])+'</p></div>':'';
+      return chapter+cardHTML(person);
+    }
+    const chapters=sequence.map(person=>{
+      const article=document.createElement('article');
+      article.className='person-chapter';article.dataset.person=person.id;
+      article.innerHTML='<div class="chapter-content">'+chapterHTML(person)+'</div>';
+      article.setAttribute('aria-label',person.name);
+      focusCard.appendChild(article);return article;
+    });
+    const transitionDuration=420;
+    let transitioning=false,transitionToken=0,scrollPosition=0,settleTimer,drag=null,suppressClickUntil=0;
+    const clampPosition=value=>Math.max(0,Math.min(sequence.length-1,value));
+    function stopAnimation(){transitionToken++;transitioning=false;clearTimeout(settleTimer);}
+    function placePosition(value){
+      scrollPosition=clampPosition(value);
+      shell.scrollTop=padding+62-shell.clientHeight/2+scrollPosition*step;
+      syncDetail(scrollPosition);updateAtmosphere();
+      const id=sequence[Math.round(scrollPosition)].id;
+      if(activeId!==id)focusPerson(id);
+    }
+    function settleFocus(){
+      clearTimeout(settleTimer);
+      if(!drag)jump(sequence[Math.round(scrollPosition)].id);
+    }
+    function scheduleSettle(){clearTimeout(settleTimer);settleTimer=setTimeout(settleFocus,180);}
+    function chapterTop(index){return chapters[index].offsetTop-chapters[0].offsetTop;}
+    function syncDetail(index){
+      const base=Math.min(sequence.length-1,Math.max(0,Math.floor(index)));
+      const top=chapterTop(base)+(index-base)*(chapters[base].offsetHeight||panel.clientHeight);
+      panel.scrollTop=Math.min(Math.max(0,top),Math.max(0,panel.scrollHeight-panel.clientHeight));
+    }
+    function focusPerson(id){
+      activeId=id;const person=byId.get(id);
+      panel.setAttribute('data-year',person.year.match(/\d{3,4}/)?.[0]||'');
+      document.getElementById('focus-year').textContent=person.year.match(/\d{3,4}/)?.[0]||'';
+      showScene(person);
+      focusCard.setAttribute('aria-label',person.name);
+      nodeEls.forEach((el,key)=>{
+        el.classList.toggle('is-active',key===id);
+        el.querySelector('button').setAttribute('aria-current',key===id?'true':'false');
+      });
+      // Do not toggle inert on the surface under the pointer: browsers can
+      // retain it as the wheel target until the pointer moves. Keep event
+      // routing stable, while excluding offscreen links from keyboard order.
+      chapters.forEach(chapter=>{
+        const selected=chapter.dataset.person===id;
+        chapter.setAttribute('aria-hidden',selected?'false':'true');
+        chapter.querySelectorAll?.('a,button').forEach(link=>{link.tabIndex=selected?0:-1;});
+      });
+      drawEdges();
+    }
+    function jump(id,behavior=reducedMotion.matches?'auto':'smooth'){
+      stopAnimation();
+      const target=position.get(id),token=transitionToken,start=scrollPosition;
+      if(behavior==='auto'||reducedMotion.matches||Math.abs(start-target)<.001){
+        placePosition(target);return;
+      }
+      transitioning=true;
+      let began;
+      const tick=time=>{
+        if(token!==transitionToken)return;
+        began??=time;
+        const progress=Math.min(1,(time-began)/(behavior==='quick'?280:transitionDuration));
+        const eased=progress<.5?4*progress**3:1-(-2*progress+2)**3/2;
+        placePosition(start+(target-start)*eased);
+        if(progress<1)requestAnimationFrame(tick);
+        else {placePosition(target);transitioning=false;}
+      };
+      requestAnimationFrame(tick);
+    }
+    function fitSingleLineText(){
+      const labels=Array.from(focusCard.querySelectorAll('.chapter-en,.chapter-zh,.person,.alias'));
+      // Restore responsive CSS sizes before measuring, so wider windows grow text again.
+      labels.forEach(label=>label.style.removeProperty('font-size'));
+      labels.forEach(label=>{
+        if(!label.clientWidth)return;
+        const css=getComputedStyle(label);
+        const padding=(parseFloat(css.paddingLeft)||0)+(parseFloat(css.paddingRight)||0);
+        const available=label.clientWidth-padding;
+        if(available<=0)return;
+        let size=parseFloat(css.fontSize);
+        for(let attempt=0;attempt<12&&label.scrollWidth>label.clientWidth;attempt++){
+          size=Math.max(.1,size*available/(label.scrollWidth-padding)-.1);
+          label.style.fontSize=size+'px';
+        }
+      });
+    }
+    function layout(){
+      const visible=visibleViewport();
+      reader.style.width=visible.width+'px';reader.style.height=visible.height+'px';
+      reader.style.left=(window.visualViewport?.offsetLeft||0)+'px';
+      reader.style.top=(window.visualViewport?.offsetTop||0)+'px';
+      reader.style.setProperty('--chapter-height',visible.height+'px');
+      padding=Math.max(24,shell.clientHeight/2-62);
+      nodeWidth=window.innerWidth<=600?76:100;
+      centerX=Math.min(Math.round(shell.clientWidth*.65),shell.clientWidth-nodeWidth/2-4);
+      graph.style.width='100%';graph.style.minHeight=(padding*2+(sequence.length-1)*step+124)+'px';
+      sequence.forEach((p,i)=>{
+        const el=nodeEls.get(p.id);el.style.left=(centerX-nodeWidth/2)+'px';el.style.top=(padding+i*step)+'px';el.style.width=nodeWidth+'px';el.style.height='124px';
+      });
+      svg.setAttribute('width',shell.clientWidth);svg.setAttribute('height',parseFloat(graph.style.minHeight));
+      fitSingleLineText();drawEdges();scenes.forEach(fitScene);jump(activeId,'auto');updateAtmosphere();
+    }
+    const interactiveTarget=event=>event.target?.closest?.('a,input,textarea,select,[contenteditable="true"]');
+    function moveDrag(event){
+      if(!drag||drag.id!==event.pointerId)return;
+      const dy=drag.y-event.clientY,dx=drag.x-event.clientX;
+      if(!drag.moved&&Math.abs(dy)<4)return;
+      if(!drag.moved&&Math.abs(dx)>Math.abs(dy))return;
+      drag.moved=true;
+      placePosition(drag.position+dy/drag.scale);
+      event.preventDefault?.();
+    }
+    function endDrag(event){
+      if(!drag||drag.id!==event.pointerId)return;
+      moveDrag(event);
+      const moved=drag.moved;drag=null;
+      if(moved)suppressClickUntil=Date.now()+500;
+      settleFocus();
+    }
+    window.addEventListener('pointermove',moveDrag,{passive:false});
+    window.addEventListener('pointerup',endDrag);
+    window.addEventListener('pointercancel',()=>{drag=null;settleFocus();});
+    window.addEventListener('blur',()=>{drag=null;suppressClickUntil=0;settleFocus();});
+    // Capture on the stable window: the content beneath a stationary pointer
+    // changes during a chapter transition.
+    window.addEventListener('wheel',event=>{
+        if(event.ctrlKey||!event.deltaY||Math.abs(event.deltaX||0)>Math.abs(event.deltaY)||event.target?.closest?.('input,textarea,select,[contenteditable="true"]'))return;
+        event.preventDefault();
+        if(drag)return;
+        stopAnimation();
+        const onRail=!!event.target?.closest?.('.graph-shell');
+        const scale=onRail?step:Math.max(1,panel.clientHeight);
+        const unit=event.deltaMode===1?18:event.deltaMode===2?scale:1;
+        placePosition(scrollPosition+event.deltaY*unit/scale);
+        scheduleSettle();
+    },{passive:false,capture:true});
+    [shell,panel].forEach(scroller=>{
+      scroller.addEventListener('pointerdown',event=>{
+        if(event.isPrimary===false){drag=null;settleFocus();return;}
+        suppressClickUntil=0;
+        if(event.button!==0||interactiveTarget(event))return;
+        stopAnimation();
+        drag={id:event.pointerId,x:event.clientX,y:event.clientY,position:scrollPosition,
+          scale:scroller===shell?step:Math.max(1,panel.clientHeight),moved:false};
+      });
+      scroller.addEventListener('dragstart',event=>{event.preventDefault();});
+      scroller.addEventListener('pointercancel',()=>{drag=null;settleFocus();});
+      scroller.addEventListener('click',event=>{
+        if(event.detail!==0&&Date.now()<suppressClickUntil){event.preventDefault();event.stopImmediatePropagation();}
+        suppressClickUntil=0;
+      },true);
+    });
+    graph.addEventListener('click',event=>{const button=event.target.closest('.mini-toggle');if(button)jump(button.dataset.person,'quick');});
+    window.addEventListener('keydown',event=>{
+      if(!['ArrowDown','ArrowUp','Home','End'].includes(event.key))return;
+      if(event.ctrlKey||event.metaKey||event.altKey)return;
+      if(event.target?.closest?.('input,textarea,select,[contenteditable="true"]'))return;
+      if(event.repeat){event.preventDefault();return;}
+      event.preventDefault();const current=position.get(activeId);
+      const index=event.key==='Home'?0:event.key==='End'?sequence.length-1:Math.max(0,Math.min(sequence.length-1,current+(event.key==='ArrowDown'?1:-1)));
+      jump(sequence[index].id);
+      if(event.target?.closest?.('.mini-toggle'))nodeEls.get(sequence[index].id).querySelector('button').focus({preventScroll:true});
+    });
+    let resizeTimer;
+    window.addEventListener('resize',()=>{clearTimeout(resizeTimer);resizeTimer=setTimeout(layout,120);});
+    window.visualViewport?.addEventListener('resize',()=>{clearTimeout(resizeTimer);resizeTimer=setTimeout(layout,120);});
+    window.visualViewport?.addEventListener('scroll',()=>{
+      reader.style.left=(window.visualViewport.offsetLeft||0)+'px';reader.style.top=(window.visualViewport.offsetTop||0)+'px';
+    });
+    focusPerson('sha');layout();document.fonts.ready.then(layout);
+  })();
+  </script>
+</body>
+</html>
