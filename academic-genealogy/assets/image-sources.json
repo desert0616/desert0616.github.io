@@ -3,6 +3,16 @@
   "images": [
     {
       "kind": "portraits",
+      "name": "Aegidius Strauch II",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/PPN663948754_Bildnis_von_Aegidius_Strauch_%281682%29.jpg/960px-PPN663948754_Bildnis_von_Aegidius_Strauch_%281682%29.jpg",
+      "local": "assets/portraits/aegidius-strauch-ii.jpg",
+      "source": "https://resolver.sub.uni-hamburg.de/goobi/PPN663948754",
+      "artist": "Elias Hainzelmann, after Andreas Stech (1682)",
+      "license": "Public domain (PD-Art)",
+      "note": "Identity corrected from Strauch I; also used as the chapter background. Original Strauch I assets retained but no longer displayed."
+    },
+    {
+      "kind": "portraits",
       "name": "7829.png",
       "url": "https://static.wixstatic.com/media/b0a4a5_1341724d6f3740d58aa0cf58a616d408~mv2.png",
       "local": "assets/portraits/henry-wallman.png",

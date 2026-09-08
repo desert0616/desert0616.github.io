@@ -413,7 +413,7 @@
     .chapter-en, .chapter-zh { font-size: clamp(18px,2vw,28px); line-height: 1.5; letter-spacing: .025em; text-wrap: pretty; }
     .chapter-en { text-transform: none; margin-bottom: 8px; }
     #focus-card .chapter-en, #focus-card .chapter-zh,
-    #focus-card .person, #focus-card .alias { white-space: nowrap; overflow-wrap: normal; word-break: normal; text-wrap: nowrap; min-width: 0; }
+    #focus-card .person, #focus-card .alias { white-space: nowrap !important; overflow-wrap: normal; word-break: normal; text-wrap: nowrap; min-width: 0; }
     .reader .mini-toggle .portrait, .reader .mini-toggle .portrait-fallback { transform: scale(.78); filter: grayscale(.35) blur(.65px); opacity: .55; transition: transform .35s ease, filter .35s ease, opacity .35s ease; }
     .reader .node.mini.is-active .portrait, .reader .node.mini.is-active .portrait-fallback { transform: scale(1.18); filter: none; opacity: 1; }
     /* Compact details; profile links and insignia share one bottom edge. */
@@ -471,6 +471,11 @@
       #focus-card .profile-links { gap: 6px; }
       #focus-card .profile-link { font-size: 10px; gap: 3px; }
       #focus-card .profile-link svg { width: 13px; height: 13px; }
+    }
+    .date-value { display: block; font-size: min(1em,calc(100vw / var(--date-chars))); }
+    .focus-panel::before { content: none; }
+    @media(max-width:600px) {
+      .date-value { font-size: min(1em,calc(72vw / var(--date-chars))); }
     }
     .scene-layer { transition: opacity .85s ease-in-out; }
     @media(prefers-reduced-motion:reduce) {
@@ -540,7 +545,7 @@
       P("137705","Jakob Thomasius","1643","Magister der Philosophie","Universität Leipzig","萨克森选侯国 · 神圣罗马帝国","","https://en.wikipedia.org/wiki/Jakob_Thomasius"),
       P("127962","Michael d. J. Walther","1656","Magister","Martin-Luther-Universität Halle-Wittenberg","萨克森选侯国 · 神圣罗马帝国","Manichaeismi recensionem historicam ad placidam “symphilologian” exponit","https://de.wikipedia.org/wiki/Michael_Walther_der_J%C3%BCngere"),
       P("143630","Friedrich Leibniz","1622","Magister der Philosophie","Universität Leipzig","萨克森选侯国 · 神圣罗马帝国","","https://en.wikipedia.org/wiki/Friedrich_Leibniz"),
-      P("127801","Aegidius Strauch I","1633","Magister artium","Martin-Luther-Universität Halle-Wittenberg","萨克森选侯国 · 神圣罗马帝国","Disputatio Physica De Elementis In Genere Et In Specie","https://de.wikipedia.org/wiki/Aegidius_Strauch_I."),
+      P("127801","Aegidius Strauch II","1651","Magister","University of Wittenberg","萨克森选侯国 · 神圣罗马帝国","","https://de.wikipedia.org/wiki/Aegidius_Strauch_II."),
       P("127734","Nicolaus Zapf","1622","Magister artium","Friedrich-Schiller-Universität Jena","萨克森-魏玛公国 · 神圣罗马帝国","De Justificatione Hominis Coram Deo","https://de.wikipedia.org/wiki/Nicolaus_Zapf"),
       P("127424","Erasmus Schmidt","1592","Magister artium","Martin-Luther-Universität Halle-Wittenberg","萨克森选侯国 · 神圣罗马帝国","","https://de.wikipedia.org/wiki/Erasmus_Schmidt_(Philologe)"),
       P("127898","Sethus Calvisius","1582","Magister artium","Universität Leipzig","萨克森选侯国 · 神圣罗马帝国","","https://en.wikipedia.org/wiki/Sethus_Calvisius"),
@@ -681,7 +686,7 @@
       "137705":"雅各布·托马修斯",
       "127962":"小迈克尔·瓦尔特",
       "143630":"弗里德里希·莱布尼茨",
-      "127801":"埃吉迪乌斯·施特劳赫一世",
+      "127801":"埃吉迪乌斯·施特劳赫二世",
       "127734":"尼古劳斯·察普夫",
       "127424":"伊拉斯谟·施密特",
       "127898":"塞图斯·卡尔维修斯",
@@ -726,7 +731,7 @@
     // Short labels belong only to the overview; full names remain in the detail card.
     const shortNames = {
       '143630':'弗·莱布尼茨', '127962':'小瓦尔特',
-      '127801':'施特劳赫一世', '126112':'诺瓦拉',
+      '127801':'施特劳赫二世', '126112':'诺瓦拉',
       '131575':'普莱顿', '217509':'纳西尔丁·图西',
       '230926':'谢拉夫丁·图西', '287466':'马苏迪',
       '223724':'伊本·尤努斯', '287468':'巴赫曼亚尔',
@@ -808,7 +813,7 @@
       "21235":["assets/portraits/otto-mencke.jpg","https://en.wikipedia.org/wiki/Otto_Mencke"],
       "137705":["assets/portraits/jakob-thomasius.jpg","https://en.wikipedia.org/wiki/Jakob_Thomasius"],
       "143630":["assets/portraits/friedrich-leibniz.jpg","https://en.wikipedia.org/wiki/Friedrich_Leibniz"],
-      "127801":["assets/portraits/aegidius-strauch-i.jpg","https://commons.wikimedia.org/wiki/File:Aegidius--Strauch-I-01.jpg"],
+      "127801":["assets/portraits/aegidius-strauch-ii.jpg","https://commons.wikimedia.org/wiki/File:PPN663948754_Bildnis_von_Aegidius_Strauch_(1682).jpg"],
       "127734":["assets/portraits/nicolaus-zapf.jpg","https://portraits.hab.de/person/13813"],
       "127424":["assets/portraits/erasmus-schmidt.jpg","https://de.wikipedia.org/wiki/Erasmus_Schmidt_(Philologe)"],
       "127898":["assets/portraits/sethus-calvisius.jpg","https://en.wikipedia.org/wiki/Sethus_Calvisius"],
@@ -907,7 +912,9 @@
       "41423":["57659","57667"], "57659":["66476","65161"], "57667":["66476","65161"],
       "65161":["66476"], "66476":["57670"], "57670":["72669","128986"],
       "72669":["21235"], "128986":["128046"], "21235":["137705"], "128046":["127962"],
-      "137705":["143630"], "127962":["127801"], "127801":["127734"], "127734":["127424"],
+      // Walther's 1656 praeses was Strauch II. No independently verified
+      // Strauch II → Zapf edge: retain the older branch without inventing a bridge.
+      "137705":["143630"], "127962":["127801"], "127734":["127424"],
       "127424":["127898"], "127898":["127864","127790"],
       "127790":["126827"], "126827":["126730","126177"], "126730":["126724"],
       "126177":["126113","126112"], "126112":["126109","126888"],
@@ -1054,7 +1061,6 @@
       '21235':['From Natural Theology: On the Absolute Simplicity of God; Micropolity, or the Commonwealth Manifest in the Microcosm','自然神学论题：论上帝的绝对单纯性；小政治体，即小宇宙中显现的共和国'],
       '128046':['On Conjunctions in General: A Theoretical Astronomical Dissertation','论一般意义上的天体合相：天文学理论论文'],
       '127962':['A Historical Review of Manichaeism, Presented for Scholarly Discussion','供学术讨论的摩尼教历史述评'],
-      '127801':['A Physical Disputation on Elements in General and in Particular','关于元素之一般与特殊性质的自然哲学辩论'],
       '127734':['On the Justification of Man before God','论人在上帝面前的称义'],
       '127790':['Theses for an Ordinary Disputation on the Plague','关于瘟疫的常规辩论论纲']
     };
@@ -1211,7 +1217,7 @@
     const resultCopy = {
       sha:['',''],
       tan:['Pioneering P2P data management · President’s Science Award · IEEE CS Technical Achievement Award','对等数据管理创新 · 新加坡总统科学奖 · IEEE CS 技术成就奖'],
-      '68683':['Founded PAKDD and WAIM · 2005 SIGMOD Contributions Award','创办 PAKDD、WAIM · 2005年 SIGMOD 贡献奖'],
+      '68683':['Co-founded PAKDD and WAIM · 2005 SIGMOD Contributions Award','共同创办 PAKDD、WAIM · 2005年 SIGMOD 贡献奖'],
       '80277':['OO7 · AsterixDB · 2005 SIGMOD Codd Innovations Award','OO7 · AsterixDB · 2005年 SIGMOD Codd 创新奖'],
       '31091':['INGRES · POSTGRES · 2014 ACM Turing Award','INGRES · POSTGRES · 2014年图灵奖'],
       '63600':['Co-authored Linear Operator Theory in Engineering and Science','合著《工程与科学中的线性算子理论》'],
@@ -1237,7 +1243,7 @@
       '137705':['Erotemata logica: an introductory logic manual','《逻辑问答》入门教材'],
       '127962':["Presided over Analecta philosophiae mathematicae (1674)","主持《数学哲学拾遗》学术论辩（1674）"],
       '143630':['',''],
-      '127801':["Physica specialis: twelve natural-philosophy disputations (1606)","《自然哲学分论》：十二篇论辩（1606）"],
+      '127801':["Breviarium chronologiae (1657)","《年代学纲要》（1657）"],
       '127734':['Compendium of Theology (1644)','《神学纲要》（1644）'],
       '127424':['Latin translation and commentary of Pindar (1616)','品达颂歌的拉丁译注（1616）'],
       '127898':['Opus chronologicum · Melopoeia','《年代学著作》 ·《作曲法》'],
@@ -1260,7 +1266,7 @@
       '199357':['Diagrams of varying quantities · De moneta','变量关系图示 ·《论货币》'],
       '146365':['On the Primacy of the Pope','《论教宗首权》'],
       '176844':['The Triads · essence–energies distinction','《三部曲》 · 本质—能量之分'],
-      '184631':['Semeioseis gnomikai · restoration of the Chora church','《杂记》 · 科拉教堂修缮与装饰'],
+      '184631':['Semeioseis gnomikai · patronage of Chora’s restoration','《杂记》 · 资助科拉教堂修缮'],
       '184632':['Harmonics, a treatise on mathematical music theory','《和声论》数理音乐专著'],
       '201288':['Greek translations of Persian astronomical tables','波斯天文表的希腊译本'],
       '204293':["Oral exposition of Persian astronomy used in Chioniades’s Greek translations","波斯天文学口授，成为希奥尼亚迪斯希腊译本的依据"],
@@ -1271,7 +1277,7 @@
       '230926':['Positive-root conditions for cubic equations','三次方程正根的存在条件'],
       '287466':['Objections on Avicenna’s Isharat · Jahan-danish','对《指示与提醒》的质疑评注 ·《宇宙知识》'],
       '287478':['Mafatih al-ghayb, the Great Commentary on the Quran','《幽玄之钥》（《古兰经大注释》）'],
-      '295739':['Geometric solutions of cubics · Jalali calendar · Rubaiyat','三次方程几何解法 · 贾拉利历 ·《鲁拜集》'],
+      '295739':['Geometric solutions of cubics · Jalali calendar · attributed Rubaiyat','三次方程几何解法 · 贾拉利历 · 传统归名《鲁拜集》'],
       '287468':['Al-Tahsil, a compendium of Avicennian philosophy','《求知书》哲学汇编'],
       '298616':['The Canon of Medicine · The Book of Healing','《医典》 ·《治疗论》'],
       '316872':["Revision of the Arabic Dioscorides, De materia medica","修订迪奥斯科里德斯《药物志》阿拉伯译本"],
@@ -1280,7 +1286,7 @@
     };
     const areaOverrides = {
       sha:['Modern hardware · Secure data processing · Graph algorithms','现代硬件 · 安全数据处理 · 图算法'],
-      tan:['Parallel databases · query optimization','并行与分布式数据库 · 查询优化'],
+      tan:['Parallel & distributed databases · Query optimization','并行与分布式数据库 · 查询优化'],
       '68683':['Database systems · query optimization','数据库系统 · 查询优化'],
       '128046':['Theology · Philology','神学 · 语文学'],
       '287479':['Medicine · medical commentary','医学 · 医学文献注释'],
@@ -1293,6 +1299,93 @@
       if(!resultCopy[p.id]) throw Error('Missing result review: '+p.id);
       [p.knownEn,p.known]=resultCopy[p.id];
     });
+    // Evidence-led corrections, 2026-09-09. This is the authoritative final
+    // metadata layer; the research log preserves the prior claims and sources.
+    // Dates describe an event, never a guessed graduation from a birth/death year.
+    const reviewedMetadata = {
+      '32858': {year:'1855', thesisBi:['A Mechanical Problem Reducible to the First Class of Ultraelliptic Integrals','可归结为第一类超椭圆积分的一个力学问题']},
+      '41423': {thesis:'', thesisBi:[]},
+      '65161': {year:'1767', degree:'', dateKind:'studies', dateLabel:'Studies ended · 求学结束'},
+      '66476': {year:'1737', degree:'Magister', thesisKind:'habilitation', thesisYear:'1739'},
+      '57670': {year:'1713', degree:'', dateKind:'disputation', dateLabel:'Disputation · 学术论辩', thesisKind:'disputation', country:'萨克森选侯国 · 神圣罗马帝国（现德国）', countryEn:'Electorate of Saxony · Holy Roman Empire (now Germany)'},
+      '72669': {thesisKind:'disputation'},
+      '128986': {thesisKind:'magisterDisputation', thesisYear:'1686', thesisBi:['Learned Women: A Historical and Literary Dissertation','《博学女性：历史与文献论考》']},
+      '21235': {year:'1664', degree:'Magister', thesisKind:'disputation', thesisYear:'1665', thesis:'Ex theologia naturali de absoluta Dei simplicitate', thesisBi:['On the Absolute Simplicity of God, from Natural Theology','《自然神学论上帝的绝对单纯性》']},
+      '128046': {year:'1682', degree:'Magister artium', thesisKind:'disputation', thesisYear:'1683'},
+      '127962': {year:'1659', degree:'Magister', thesisKind:'disputation', thesisYear:'1656'},
+      '143630': {year:'', degree:'', sortYear:1622},
+      // The numeric key is a legacy UI identifier, not a claim about MGP identity.
+      '127801': {name:'Aegidius Strauch II', alias:'埃吉迪乌斯·施特劳赫二世', year:'1651', degree:'Magister', university:'University of Wittenberg', institutionEn:'University of Wittenberg', universityZh:'维滕贝格大学', thesis:'', thesisBi:[], work:'', workBi:[], fieldEn:'Chronology · Lutheran theology', field:'年代学 · 路德宗神学', wiki:'https://de.wikipedia.org/wiki/Aegidius_Strauch_II.', portrait:'assets/portraits/aegidius-strauch-ii.jpg', portraitSource:'https://commons.wikimedia.org/wiki/File:PPN663948754_Bildnis_von_Aegidius_Strauch_(1682).jpg', quality:'ADB biography · historical disputation catalogue', sources:[['ADB: Strauch II, 1632–1682','https://www.deutsche-biographie.de/sfz81668.html'],['Walther’s 1656 disputation, praeses Strauch II','https://ixtheo.de/Record/098991051']]},
+      '127734': {thesis:'', thesisBi:[], university:'University of Jena', institutionEn:'University of Jena', universityZh:'耶拿大学'},
+      '127424': {year:'1593'},
+      '127898': {year:'1582', degree:'', dateKind:'appointment', dateLabel:'Appointment · 任职', university:'Schulpforta', institutionEn:'Schulpforta', universityZh:'舒尔普福塔学校'},
+      '127790': {name:'Moritz Steinmetz', year:'1550–1551', degree:'Magister artium', thesis:'', thesisBi:[]},
+      '126177': {year:'1503', degree:'Doctor of Canon Law', university:'University of Ferrara', institutionEn:'University of Ferrara', universityZh:'费拉拉大学', country:'费拉拉公国（现意大利）', countryEn:'Duchy of Ferrara (now Italy)'},
+      '126112': {year:'1483', degree:'', dateKind:'appointment', dateLabel:'Appointment · 任职', university:'University of Bologna', institutionEn:'University of Bologna', universityZh:'博洛尼亚大学', country:'博洛尼亚（现意大利）', countryEn:'Bologna (now Italy)'},
+      '126109': {university:'University of Vienna', institutionEn:'University of Vienna', universityZh:'维也纳大学', country:'奥地利大公国 · 神圣罗马帝国（现奥地利）', countryEn:'Archduchy of Austria · Holy Roman Empire (now Austria)'},
+      '126087': {year:'1453', country:'奥地利大公国 · 神圣罗马帝国（现奥地利）', countryEn:'Archduchy of Austria · Holy Roman Empire (now Austria)'},
+      '126888': {year:'1480–1484', degree:'Theology degree (reconstructed date range)'},
+      '199357': {year:'c. 1355', degree:'Master of Theology'},
+      '131561': {university:'', institutionEn:'', universityZh:''},
+      '131575': {university:'', institutionEn:'', universityZh:''},
+      '176844': {university:'', institutionEn:'', universityZh:'', country:'拜占庭帝国（君士坦丁堡／阿索斯山／塞萨洛尼基；现土耳其／希腊）', countryEn:'Byzantine Empire (Constantinople / Mount Athos / Thessaloniki; now Turkey / Greece)'},
+      '184631': {university:'', institutionEn:'', universityZh:''},
+      '184632': {university:'', institutionEn:'', universityZh:''},
+      '201288': {year:'1295–1296', degree:'', dateKind:'studies', dateLabel:'Studies · 求学'},
+      '204293': {year:'1295–1296', degree:'', dateKind:'teaching', dateLabel:'Teaching · 授课', country:'伊儿汗国（大不里士；现伊朗）', countryEn:'Ilkhanate (Tabriz; now Iran)'},
+      '217509': {university:'Maragha Observatory', institutionEn:'Maragha Observatory', universityZh:'马拉盖天文台'},
+      '223724': {year:'1175', degree:'', dateKind:'studies', dateLabel:'Studies · 求学', university:'Nizamiyya Madrasa, Baghdad', institutionEn:'Nizamiyya Madrasa, Baghdad', universityZh:'巴格达尼扎米亚学院', country:'巴格达（现伊拉克）', countryEn:'Baghdad (now Iraq)'},
+      '287479': {country:'尼沙普尔／呼罗珊（现伊朗）', countryEn:'Nishapur / Khorasan (now Iran)'},
+      '230926': {country:'大马士革／阿勒颇／摩苏尔（现叙利亚／伊拉克）', countryEn:'Damascus / Aleppo / Mosul (now Syria / Iraq)'},
+      '287466': {country:'梅尔夫／撒马尔罕／布哈拉（现土库曼斯坦／乌兹别克斯坦）', countryEn:'Merv / Samarkand / Bukhara (now Turkmenistan / Uzbekistan)'},
+      '295739': {country:'尼沙普尔／伊斯法罕（现伊朗）', countryEn:'Nishapur / Isfahan (now Iran)'},
+      '287468': {country:'哈马丹／伊斯法罕（现伊朗）', countryEn:'Hamadan / Isfahan (now Iran)'}
+    };
+    const activityDates = {
+      '131561':['15th c.','15 世纪',1430], '131575':['15th c.','15 世纪',1400],
+      '134780':['14th c.','14 世纪',1340], '146365':['14th c.','14 世纪',1330],
+      '176844':['14th c.','14 世纪',1320], '184631':['14th c.','14 世纪',1310],
+      '184632':['c. 1300','约 1300 年',1300], '217509':['13th c.','13 世纪',1230],
+      '287480':['13th c.','13 世纪',1220], '287479':['13th c.','13 世纪',1200],
+      '230926':['12th–13th c.','12–13 世纪',1180], '287466':['12th c.','12 世纪',1150],
+      '287478':['12th–13th c.','12–13 世纪',1180], '295739':['11th–12th c.','11–12 世纪',1080],
+      '287468':['11th c.','11 世纪',1030], '298616':['10th–11th c.','10–11 世纪',1000],
+      '316872':['10th c.','10 世纪',990], '310782':['10th–11th c.','10–11 世纪',1000],
+      '316873':['10th c.','10 世纪',970]
+    };
+    people.forEach(p=>{
+      // Use the institution's name at the time, not its 20th-century successor.
+      if(p.university==='Martin-Luther-Universität Halle-Wittenberg') {
+        const merged=p.id==='18589';
+        p.university=p.institutionEn=merged?'University of Halle-Wittenberg':'University of Wittenberg';
+        p.universityZh=merged?'哈雷－维滕贝格大学':'维滕贝格大学';
+      }
+      if(p.id==='15635') {
+        p.university=p.institutionEn='University of Berlin';p.universityZh='柏林大学';
+        p.thesisBi=['Analytical Investigations of Partial Fractions','《部分分式的分析研究》'];
+      }
+      if(p.id==='63600') {
+        p.thesis='A Study of Forced Oscillations in a Class of nth-Order Nonlinear Feedback Systems';
+        p.thesisBi[0]=p.thesis;
+      }
+      Object.assign(p,reviewedMetadata[p.id]||{});
+      const activity=activityDates[p.id];
+      if(activity) {
+        [p.year,,p.sortYear]=activity;p.degree='';p.dateKind='activity';
+        p.dateLabel='Active · '+activity[1]+'活动';
+      }
+      p.dateKind ||= p.year?'degree':'unknown';
+      p.dateLabel ||= p.year?'Degree · 学位':'';
+      p.sortYear ??= Number(p.year.match(/\d{3,4}/)?.[0]||0);
+      p.thesisKind ||= 'thesis';
+      p.note='See research/metadata-review-2026-09-09.md for field-level evidence and limitations. Dates denote the labelled event; regional information is not nationality. Historical links are not uniformly doctoral supervision.';
+    });
+    shortNames['127801']='施特劳赫二世';
+    byId.get('80277').sources=byId.get('80277').sources.map(([label,url])=>[label,url.includes('/Pubs/Dissertations/Years/1983.html')?'https://digicoll.lib.berkeley.edu/record/135337':url]);
+    // Remove the Egypt inference from al-Misri's nisba and unrelated dynastic motifs.
+    ['287479','295739','230926','287466'].forEach(id=>delete schematicInsignia[id]);
+    // Specific regional emblems must precede the generic imperial match.
+    polityRules.unshift(['奥地利','assets/insignia/flag-of-austria.svg','奥地利红白红徽帜']);
     const graph = document.getElementById("graph");
     const svg = document.getElementById("edges");
     const nodeEls = new Map();
@@ -1303,6 +1396,9 @@
       institution:['University / Institution','大学 / 研究机构'],
       country:['Country / Region','国家 / 地区'],
       thesis:['Dissertation','学位论文'],
+      disputation:['Disputation','学术论辩'],
+      magisterDisputation:['Magister disputation','Magister 学位论辩'],
+      habilitation:['Habilitation','任教资格论文'],
       work:['Selected works','代表作'],
       field:['Research areas','研究方向'],
       known:['Known for','知名于']
@@ -1314,6 +1410,10 @@
     const factRow = (key,en,zh,original='') => recorded(en) && recorded(zh)
       ? '<div class="fact ' + key + '">' + labelHTML(key) + '<div class="fact-value ' + key + '-text"' + (original ? ' title="' + esc('Original / 原文: ' + original) + '"' : '') + '>' + bilingual(en,zh) + '</div></div>' : '';
     const institutionRow = p => factRow('institution',p.institutionEn,p.universityZh,p.university);
+    const dateHTML = p => p.year ? '<span class="date-value" style="--date-chars:'+Math.max(4,p.year.length)+'">'+esc(p.year)+'</span>' : '';
+    const thesisRow = p => factRow(p.thesisKind,
+      p.thesisBi?.[0] && p.thesisBi[0]+(p.thesisYear?' · '+p.thesisYear:''),
+      p.thesisBi?.[1] && p.thesisBi[1]+(p.thesisYear?' · '+p.thesisYear:''),p.thesis);
 
     // Scholar destinations checked against the linked personal/directory pages.
     const scholarProfiles = {
@@ -1335,8 +1435,8 @@
         ? '<img class="polity-mark" src="' + esc(mark[1]) + '" alt="" title="' + esc(mark[2]) + '" loading="lazy" referrerpolicy="no-referrer" onerror="this.hidden=true">'
         : '<i class="polity-glyph" title="跨政体、地区性记录或无可核实的统一旗帜">✦</i>';
       const country=recorded(p.country) ? '<div class="fact country">' + labelHTML('country') + '<div class="fact-value country-value"><div>' + bilingual(p.countryEn,p.country) + '</div></div></div>' : "";
-      return '<div class="card-layout"><div class="identity"><div class="identity-main"><h2 class="person" id="name-' + esc(p.id) + '"' + (p.displayName ? ' aria-label="' + esc(p.name) + '" style="white-space:nowrap"' : '') + '>' + esc(p.displayName || p.name) + '</h2>' + (p.alias ? '<div class="alias">' + esc(p.alias) + '</div>' : '') + '<div class="identity-footer"><div class="identity-polity">' + emblem + '</div><span class="mobile-background-year" aria-hidden="true">' + esc(p.year.match(/\d{3,4}/)?.[0]||'') + '</span>' + profileLinks + '</div></div></div><div class="facts">' +
-        institutionRow(p) + country + factRow('thesis',p.thesisBi?.[0],p.thesisBi?.[1],p.thesis) + factRow('field',p.fieldEn,p.field) + factRow('known',p.knownEn,p.known) + '</div></div>';
+      return '<div class="card-layout"><div class="identity"><div class="identity-main"><h2 class="person" id="name-' + esc(p.id) + '"' + (p.displayName ? ' aria-label="' + esc(p.name) + '" style="white-space:nowrap"' : '') + '>' + esc(p.displayName || p.name) + '</h2>' + (p.alias ? '<div class="alias">' + esc(p.alias) + '</div>' : '') + '<div class="identity-footer"><div class="identity-polity">' + emblem + '</div><span class="mobile-background-year" aria-label="'+esc(p.year+' '+p.dateLabel)+'">' + dateHTML(p) + '</span>' + profileLinks + '</div></div></div><div class="facts">' +
+        institutionRow(p) + country + thesisRow(p) + factRow('field',p.fieldEn,p.field) + factRow('known',p.knownEn,p.known) + '</div></div>';
     }
 
     people.forEach(p => {
@@ -1358,7 +1458,7 @@
       nodeEls.set(p.id, el);
     });
 
-    const rank = new Map([["sha",0]]);
+    const rank = new Map(people.map(p=>[p.id,0]));
     for (let pass=0; pass<200; pass++) {
       let changed=false;
       edges.forEach(([from,to]) => {
@@ -1416,7 +1516,7 @@
     edges.forEach(([,b])=>indegree.set(b,indegree.get(b)+1));
     const pending=people.filter(p=>indegree.get(p.id)===0), sequence=[];
     while(pending.length){
-      const year=p=>Number(p.year.match(/\d{3,4}/)?.[0]||0);
+      const year=p=>p.sortYear;
       pending.sort((a,b)=>year(b)-year(a)||priority.get(a.id)-priority.get(b.id));
       const person=pending.shift();sequence.push(person);
       edges.filter(([a])=>a===person.id).forEach(([,b])=>{
@@ -1459,7 +1559,7 @@
       "126112": "domenico-maria-novara-da-ferrara.jpg",
       "126113": "leonhard-von-dobschutz.jpg",
       "126177": "nicolaus-copernicus.jpg",
-      "126724": "bonifazius-erasmi.jpg",
+      "126724": "bonifazius-erasmi-planetary-calendar.jpg",
       "126730": "johannes-volmar.jpg",
       "126827": "georg-joachim-rheticus.jpg",
       "126887": "johannes-von-gmunden.jpg",
@@ -1468,12 +1568,12 @@
       "127424": "erasmus-schmidt.jpg",
       "127734": "nicolaus-zapf.jpg",
       "127790": "moritz-valentin-steinmetz.jpg",
-      "127801": "aegidius-strauch-i.jpg",
+      "127801": "aegidius-strauch-ii-chronology.jpg",
       "127864": "nikolaus-selnecker.jpg",
       "127898": "sethus-calvisius.jpg",
       "127962": "michael-d-j-walther.jpg",
-      "128046": "johann-pasch.jpg",
-      "128986": "johann-andreas-planer.jpg",
+      "128046": "johann-pasch-philology.jpg",
+      "128986": "johann-andreas-planer-snow.jpg",
       "131561": "basilios-bessarion.jpg",
       "131575": "georgios-plethon-gemistos.jpg",
       "134780": "demetrios-kydones.jpg",
@@ -1487,17 +1587,17 @@
       "201288": "gregory-chioniadis.jpg",
       "204293": "shams-al-din-al-bukhari.jpg",
       "217509": "nasir-al-din-al-tusi.jpg",
-      "223724": "kamal-al-din-ibn-yunus.jpg",
+      "223724": "kamal-al-din-ibn-yunus-geometric-constructions.jpg",
       "230926": "sharaf-al-din-al-tusi.jpg",
-      "287466": "sharaf-al-din-muhammad-al-masudi-al-marwazi.jpg",
+      "287466": "sharaf-al-din-al-masudi-philosophy-astronomy.jpg",
       "287468": "bahmanyar-ibn-al-marzuban.jpg",
       "287478": "fakhr-al-din-muhammad-al-razi.jpg",
       "287479": "qutb-al-din-ibrahim-al-misri.jpg",
       "287480": "athir-al-din-al-abhari.jpg",
-      "295739": "omar-khayyam.jpg",
+      "295739": "omar-khayyam-algebra-calendar.jpg",
       "298616": "avicenna.jpg",
       "310782": "abu-sahl-al-masihi.jpg",
-      "316872": "abu-abdallah-al-natili.jpg",
+      "316872": "abu-abdallah-al-natili-materia-medica.jpg",
       "316873": "abu-mansur-al-hasan-ibn-nuh-al-qumri.jpg",
       "sha": "sha-mo.jpg",
       "tan": "kian-lee-tan.jpg"
@@ -1549,7 +1649,7 @@
       '137705':['Teaching philosophy to a future Leibniz','为年轻的莱布尼茨讲哲学','Logic · rhetoric · history of philosophy','逻辑学 · 修辞学 · 哲学史'],
       '127962':['Moving from mathematics to theology','从数学讲席走向神学讲坛','Higher mathematics · Lutheran theology','高等数学 · 路德宗神学'],
       '143630':['An ethics professor—and Leibniz’s father','教道德哲学，也是莱布尼茨之父','A family library that helped educate Leibniz','藏书影响了少年莱布尼茨'],
-      '127801':['Leading Lutheran church affairs in Dresden','主持德累斯顿的路德宗教务','Lutheran theology · church superintendent','路德宗神学 · 宗教总监'],
+      '127801':['A handbook for reckoning historical time','用一部纲要梳理历史年代','Chronology · Lutheran theology','年代学 · 路德宗神学'],
       '127734':['Gathering Lutheran doctrine into a theological compendium','以《神学纲要》汇集路德宗教义','Theological Compendium (1644) · Weimar court preacher','《神学纲要》（1644） · 魏玛宫廷布道师'],
       '127424':['Giving Pindar’s Greek odes a Latin voice','以拉丁译注重现品达的希腊颂歌','Greek philology · Pindar edition (1616)','希腊语言学 · 品达作品集（1616）'],
       '127898':['Composing music, calculating history','谱写乐章，也推算历史','Music theory · historical chronology','音乐理论 · 历史年代学'],
@@ -1720,8 +1820,8 @@
     let edgeAnimationToken=0;
     function focusPerson(id){
       activeId=id;const person=byId.get(id);
-      panel.setAttribute('data-year',person.year.match(/\d{3,4}/)?.[0]||'');
-      document.getElementById('focus-year').textContent=person.year.match(/\d{3,4}/)?.[0]||'';
+      panel.setAttribute('data-year',person.year);
+      document.getElementById('focus-year').innerHTML=dateHTML(person);
       showScene(person);
       focusCard.setAttribute('aria-label',person.name);
       nodeEls.forEach((el,key)=>{

@@ -1,0 +1,70 @@
+{
+  "date": "2026-09-09",
+  "mode": "built-in imagegen",
+  "promptModule": "scenes-reviewed-prompts.mjs",
+  "rawArchive": "/Users/shamo/Documents/helper/assets/genealogy-scenes/metadata-refresh-2026-09-09",
+  "images": [
+    {
+      "id": "127801",
+      "name": "Aegidius Strauch II",
+      "file": "assets/genealogy-scenes/aegidius-strauch-ii-chronology.jpg",
+      "generatedSource": "/Users/shamo/.codex/generated_images/01a075ff-1cd8-79e0-96b6-1faea61b7e43/exec-1554f773-297c-4e49-9e88-10c72f401c0d.png",
+      "reason": "Replace Strauch I church-leadership concept with Strauch II chronology and astronomy."
+    },
+    {
+      "id": "128046",
+      "name": "Johann Pasch",
+      "file": "assets/genealogy-scenes/johann-pasch-philology.jpg",
+      "generatedSource": "/Users/shamo/.codex/generated_images/01a075ff-1cd8-79e0-96b6-1faea61b7e43/exec-cb63dc35-096f-44b1-b92c-aaf9c254b5ab.png",
+      "reason": "Remove conjunction astronomy as the primary contribution; emphasize attested philological scholarship."
+    },
+    {
+      "id": "128986",
+      "name": "Johann Andreas Planer",
+      "file": "assets/genealogy-scenes/johann-andreas-planer-snow.jpg",
+      "generatedSource": "/Users/shamo/.codex/generated_images/01a075ff-1cd8-79e0-96b6-1faea61b7e43/exec-34cd1d49-247e-49a1-b13d-e13e3d1d210f.png",
+      "reason": "Show the attested De nive disputations rather than generic academic office."
+    },
+    {
+      "id": "316872",
+      "name": "Abu Abdallah al-Natili",
+      "file": "assets/genealogy-scenes/abu-abdallah-al-natili-materia-medica.jpg",
+      "generatedSource": "/Users/shamo/.codex/generated_images/01a075ff-1cd8-79e0-96b6-1faea61b7e43/exec-9f5c4395-8d63-4fe6-9d7e-bab965f59b5f.png",
+      "reason": "Add the documented revision of Arabic Dioscorides instead of depicting only Avicenna’s tutor."
+    },
+    {
+      "id": "223724",
+      "name": "Kamal al-Din Ibn Yunus",
+      "file": "assets/genealogy-scenes/kamal-al-din-ibn-yunus-geometric-constructions.jpg",
+      "generatedSource": "/Users/shamo/.codex/generated_images/01a075ff-1cd8-79e0-96b6-1faea61b7e43/exec-5159b6fd-37b2-434d-b285-e96679204b33.png",
+      "reason": "Make the specific commentary on geometric constructions visible, not generic Mosul scholarship."
+    },
+    {
+      "id": "287466",
+      "name": "Sharaf al-Din al-Masudi al-Marwazi",
+      "file": "assets/genealogy-scenes/sharaf-al-din-al-masudi-philosophy-astronomy.jpg",
+      "generatedSource": "/Users/shamo/.codex/generated_images/01a075ff-1cd8-79e0-96b6-1faea61b7e43/exec-9854ac29-4350-401e-9b37-92ecebf32acc.png",
+      "reason": "Represent both critical Avicennian philosophy and Jahan-danish, not astronomy alone."
+    },
+    {
+      "id": "295739",
+      "name": "Omar Khayyam",
+      "file": "assets/genealogy-scenes/omar-khayyam-algebra-calendar.jpg",
+      "generatedSource": "/Users/shamo/.codex/generated_images/01a075ff-1cd8-79e0-96b6-1faea61b7e43/exec-60304d89-5a4e-4518-b9e5-2f88ab20e80a.png",
+      "reason": "Make securely attested mathematics and calendar work primary; do not imply certainty for attributed poetry."
+    },
+    {
+      "id": "126724",
+      "name": "Bonifazius Erasmi",
+      "file": "assets/genealogy-scenes/bonifazius-erasmi-planetary-calendar.jpg",
+      "generatedSource": "/Users/shamo/.codex/generated_images/01a075ff-1cd8-79e0-96b6-1faea61b7e43/exec-4ba09810-cbb3-44cd-8719-6d6eb2344302.png",
+      "reason": "Show calendar compilation associated with Cranach’s woodcut rather than only a generic first classroom."
+    }
+  ],
+  "refinement": {
+    "id": "127801",
+    "prompt": "Use case: precise-object-edit. Refine this Strauch II chronology-and-astronomy website artwork. Preserve its 16:9 aspect, beautiful painterly realism, historical study, warm/cool lighting and book/armillary/hourglass subject. Remove EVERY letter, numeral, pseudo-letter and inscription from ALL walls, maps, book spines and brass rings: replace writing with clean plain materials or simple non-alphabetic decorative lines. The glaring writing at the upper left must disappear. Recompose ONLY the main still life into a narrower vertical cluster: complete closed chronology book at x=80–93%, complete smaller armillary above at x=81–94%, small hourglass beneath at x=86–94%, all comfortably inside image boundaries. Keep actual room continuing left, no flat empty fill, no portrait, no new objects. Must look gorgeous on a rightmost 24-percent portrait crop, with the full main book recognizable. No text anywhere.",
+    "firstDraft": "/Users/shamo/.codex/generated_images/01a075ff-1cd8-79e0-96b6-1faea61b7e43/exec-6e87ed67-f8d5-48fa-91ac-b3cc171147ee.png"
+  },
+  "limitations": "Editorial illustrations, not historical photographs, facsimiles or evidence of teacher-student relationships."
+}

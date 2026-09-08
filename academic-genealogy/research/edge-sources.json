@@ -1,0 +1,1772 @@
+{
+  "checked": "2026-09-09",
+  "scope": "All 73 edges currently rendered; no claim that every advisor or historical branch is included.",
+  "criterion": "A public source must explicitly name the relationship, not merely both people or a coauthored publication.",
+  "summary": {
+    "edges": 73,
+    "referenceFound": 73,
+    "mgpPagesRead": 55,
+    "mgpMatches": 71,
+    "nusDirectEdges": 2,
+    "waltherIdentityResolvedByBibliography": true
+  },
+  "limitations": [
+    "Reference-found does not mean independently established historical truth.",
+    "Premodern advisor entries may be teaching, disputation or intellectual transmission, not modern doctoral supervision.",
+    "Removed Strauch II–Zapf bridge stays excluded because the source identity cannot safely be transferred.",
+    "Additional advisors visible in source pages are outside this current-edge audit; the graph is not an exhaustive reconstruction."
+  ],
+  "sources": {
+    "nus-sha": {
+      "title": "NUS Ph.D. defence: GPU-accelerated Graph Processing",
+      "url": "https://events.comp.nus.edu.sg/view/18553",
+      "kind": "university-record",
+      "locator": "Speaker: Mr Sha Mo; Advisor: Dr Tan Kian Lee",
+      "access": "Full public event page checked"
+    },
+    "nus-tan": {
+      "title": "NUS ScholarBank: Tan Kian Lee thesis metadata",
+      "url": "https://scholarbank.nus.edu.sg/handle/10635/171510",
+      "api": "https://scholarbank.nus.edu.sg/server/api/core/items/0578eba5-e3be-4475-8fb8-63256b39fd2f",
+      "kind": "university-repository",
+      "locator": "dc.contributor.author = TAN KIAN LEE; dc.contributor.supervisor = HONGJUN LU",
+      "access": "Full public repository item JSON checked; catalog issued 1995 is not used to override the official biography's 1994 degree"
+    },
+    "walther-catalogue": {
+      "title": "Manichaeismi recensionem historicam (1656), Strauch II and Walther",
+      "url": "https://ixtheo.de/Record/098991051",
+      "additionalUrl": "https://opac.bibliotecabraidense.org/opac_braidense/opaclib?db=solr_braidense&do_cmd=search_show_cmd&from=1&item%3A1003%3ANomi%3A%3A%40frase%40=+Strauch%2C+Aegidius+%3C1632-1682%3E&nentries=10&resultForward=opac%2Fbraidense%2Fbrief.jsp&searchForm=opac%2Fbraidense%2Ferror.jsp",
+      "kind": "historical-bibliography",
+      "locator": "Strauch, Aegidius 1632–1682; Walther, Michael 1638–1692; sub praesidio / respondente",
+      "access": "IxTheo browser page returned verification challenge; indexed catalogue text and Braidense catalogue search explicitly identify Strauch II. Same record established in metadata audit."
+    },
+    "mgp-7451": {
+      "title": "William Story - The Mathematics Genealogy Project",
+      "url": "https://www.mathgenealogy.org/id.php?id=7451",
+      "kind": "genealogy-database",
+      "locator": "Advisor field(s), before student table",
+      "sourcePersonName": "William Edward Story",
+      "listedAdvisors": [
+        {
+          "id": "32858",
+          "name": "Carl Gottfried Neumann"
+        },
+        {
+          "id": "18589",
+          "name": "Wilhelm Scheibner"
+        }
+      ],
+      "sha256": "55d8eebf07957bae008e3250b9d8b26d9381c557f3c4547e30cfe6df5934e53b",
+      "access": "Full public HTML retrieved; advisor target IDs and displayed names checked"
+    },
+    "mgp-7461": {
+      "title": "Solomon Lefschetz - The Mathematics Genealogy Project",
+      "url": "https://www.mathgenealogy.org/id.php?id=7461",
+      "kind": "genealogy-database",
+      "locator": "Advisor field(s), before student table",
+      "sourcePersonName": "Solomon Lefschetz",
+      "listedAdvisors": [
+        {
+          "id": "7451",
+          "name": "William Edward Story"
+        }
+      ],
+      "sha256": "04cd4d078e76ead2cd1823e3e92879c46a7c7ff6cc1df0087924f0f30790f57c",
+      "access": "Full public HTML retrieved; advisor target IDs and displayed names checked"
+    },
+    "mgp-7829": {
+      "title": "Henry Wallman - The Mathematics Genealogy Project",
+      "url": "https://www.mathgenealogy.org/id.php?id=7829",
+      "kind": "genealogy-database",
+      "locator": "Advisor field(s), before student table",
+      "sourcePersonName": "Henry Wallman",
+      "listedAdvisors": [
+        {
+          "id": "7461",
+          "name": "Solomon Lefschetz"
+        }
+      ],
+      "sha256": "021ae2f2b0ff603bc62eef7b8600ac11fe7c532deeea38f78a2c7e00a6b6ba76",
+      "access": "Full public HTML retrieved; advisor target IDs and displayed names checked"
+    },
+    "mgp-15635": {
+      "title": "Carl Jacobi - The Mathematics Genealogy Project",
+      "url": "https://www.mathgenealogy.org/id.php?id=15635",
+      "kind": "genealogy-database",
+      "locator": "Advisor field(s), before student table",
+      "sourcePersonName": "Carl Gustav Jacob Jacobi",
+      "listedAdvisors": [
+        {
+          "id": "41423",
+          "name": "Enno Heeren Dirksen"
+        }
+      ],
+      "sha256": "29f7d8c9441b8f2b8baadfc6741888ac78c8576892d8617a6195f94803a69619",
+      "access": "Full public HTML retrieved; advisor target IDs and displayed names checked"
+    },
+    "mgp-18589": {
+      "title": "Wilhelm Scheibner - The Mathematics Genealogy Project",
+      "url": "https://www.mathgenealogy.org/id.php?id=18589",
+      "kind": "genealogy-database",
+      "locator": "Advisor field(s), before student table",
+      "sourcePersonName": "Wilhelm Scheibner",
+      "listedAdvisors": [
+        {
+          "id": "15635",
+          "name": "Carl Gustav Jacob Jacobi"
+        }
+      ],
+      "sha256": "85308a52a015efa2efe91f483cd20246fdacf85908c8f9c24b91086fe875fd89",
+      "access": "Full public HTML retrieved; advisor target IDs and displayed names checked"
+    },
+    "mgp-21235": {
+      "title": "Otto Mencke - The Mathematics Genealogy Project",
+      "url": "https://www.mathgenealogy.org/id.php?id=21235",
+      "kind": "genealogy-database",
+      "locator": "Advisor field(s), before student table",
+      "sourcePersonName": "Otto Mencke",
+      "listedAdvisors": [
+        {
+          "id": "137705",
+          "name": "Jakob Thomasius"
+        }
+      ],
+      "sha256": "d030ebac413bc7fc2acef46b1a945f3a9edf3b5e6b2a02edf0486594f3b69c31",
+      "access": "Full public HTML retrieved; advisor target IDs and displayed names checked"
+    },
+    "mgp-31091": {
+      "title": "Michael Stonebraker - The Mathematics Genealogy Project",
+      "url": "https://www.mathgenealogy.org/id.php?id=31091",
+      "kind": "genealogy-database",
+      "locator": "Advisor field(s), before student table",
+      "sourcePersonName": "Michael R. Stonebraker",
+      "listedAdvisors": [
+        {
+          "id": "63600",
+          "name": "Arch Waugh Naylor"
+        }
+      ],
+      "sha256": "36f9d11f385a2eb4d5026156e1ba911f02333b9820f70e4c549e36b4e901020d",
+      "access": "Full public HTML retrieved; advisor target IDs and displayed names checked"
+    },
+    "mgp-32858": {
+      "title": "Carl Neumann - The Mathematics Genealogy Project",
+      "url": "https://www.mathgenealogy.org/id.php?id=32858",
+      "kind": "genealogy-database",
+      "locator": "Advisor field(s), before student table",
+      "sourcePersonName": "Carl Gottfried Neumann",
+      "listedAdvisors": [
+        {
+          "id": "57706",
+          "name": "Friedrich Julius Richelot"
+        },
+        {
+          "id": "46967",
+          "name": "Otto Hesse"
+        }
+      ],
+      "sha256": "6e9f01a936431095e3ef2b5b2b564c051fba6e4f510d45aaa43fce430e873a09",
+      "access": "Full public HTML retrieved; advisor target IDs and displayed names checked"
+    },
+    "mgp-41423": {
+      "title": "Enno Dirksen - The Mathematics Genealogy Project",
+      "url": "https://www.mathgenealogy.org/id.php?id=41423",
+      "kind": "genealogy-database",
+      "locator": "Advisor field(s), before student table",
+      "sourcePersonName": "Enno Heeren Dirksen",
+      "listedAdvisors": [
+        {
+          "id": "57659",
+          "name": "Johann Tobias Mayer"
+        },
+        {
+          "id": "57667",
+          "name": "Bernhard Friedrich Thibaut"
+        }
+      ],
+      "sha256": "ed440cde0ef48120731f470f2aecf970daa042de3f8016ef83c02205f3ed121a",
+      "access": "Full public HTML retrieved; advisor target IDs and displayed names checked"
+    },
+    "mgp-46967": {
+      "title": "Otto Hesse - The Mathematics Genealogy Project",
+      "url": "https://www.mathgenealogy.org/id.php?id=46967",
+      "kind": "genealogy-database",
+      "locator": "Advisor field(s), before student table",
+      "sourcePersonName": "Ludwig Otto Hesse",
+      "listedAdvisors": [
+        {
+          "id": "15635",
+          "name": "Carl Gustav Jacob Jacobi"
+        }
+      ],
+      "sha256": "e745de5823431f1aab0a1fb89754998018bf895c2c5b0c78bd5bff44a855e743",
+      "access": "Full public HTML retrieved; advisor target IDs and displayed names checked"
+    },
+    "mgp-57659": {
+      "title": "Johann Mayer - The Mathematics Genealogy Project",
+      "url": "https://www.mathgenealogy.org/id.php?id=57659",
+      "kind": "genealogy-database",
+      "locator": "Advisor field(s), before student table",
+      "sourcePersonName": "Johann Tobias Mayer",
+      "listedAdvisors": [
+        {
+          "id": "66476",
+          "name": "Abraham Gotthelf Kästner"
+        },
+        {
+          "id": "65161",
+          "name": "Georg Christoph Lichtenberg"
+        }
+      ],
+      "sha256": "343319fb05c534839c5f4b5a7d53032c81e2aef8a72ec2f7b393af02371d260f",
+      "access": "Full public HTML retrieved; advisor target IDs and displayed names checked"
+    },
+    "mgp-57667": {
+      "title": "Bernhard Thibaut - The Mathematics Genealogy Project",
+      "url": "https://www.mathgenealogy.org/id.php?id=57667",
+      "kind": "genealogy-database",
+      "locator": "Advisor field(s), before student table",
+      "sourcePersonName": "Bernhard Friedrich Thibaut",
+      "listedAdvisors": [
+        {
+          "id": "66476",
+          "name": "Abraham Gotthelf Kästner"
+        },
+        {
+          "id": "65161",
+          "name": "Georg Christoph Lichtenberg"
+        }
+      ],
+      "sha256": "68bdcf50e5b08a6dfc0e0ee10555972d235de3e5f16f2bac196ba6620b939388",
+      "access": "Full public HTML retrieved; advisor target IDs and displayed names checked"
+    },
+    "mgp-57670": {
+      "title": "Christian Hausen - The Mathematics Genealogy Project",
+      "url": "https://www.mathgenealogy.org/id.php?id=57670",
+      "kind": "genealogy-database",
+      "locator": "Advisor field(s), before student table",
+      "sourcePersonName": "Christian August Hausen",
+      "listedAdvisors": [
+        {
+          "id": "72669",
+          "name": "Johann Christoph Wichmannshausen"
+        },
+        {
+          "id": "128986",
+          "name": "Johann Andreas Planer"
+        }
+      ],
+      "sha256": "e24d3c687922ca75b5700b83c8c740df99e2b7e9d33f6e53d1497edfb75e9ed7",
+      "access": "Full public HTML retrieved; advisor target IDs and displayed names checked"
+    },
+    "mgp-57706": {
+      "title": "Friedrich Richelot - The Mathematics Genealogy Project",
+      "url": "https://www.mathgenealogy.org/id.php?id=57706",
+      "kind": "genealogy-database",
+      "locator": "Advisor field(s), before student table",
+      "sourcePersonName": "Friedrich Julius Richelot",
+      "listedAdvisors": [
+        {
+          "id": "15635",
+          "name": "Carl Gustav Jacob Jacobi"
+        }
+      ],
+      "sha256": "fe5061b0359eac932dc134453ac4a057045b1bf50ef9471664367de3e36371bd",
+      "access": "Full public HTML retrieved; advisor target IDs and displayed names checked"
+    },
+    "mgp-63600": {
+      "title": "Arch Naylor - The Mathematics Genealogy Project",
+      "url": "https://www.mathgenealogy.org/id.php?id=63600",
+      "kind": "genealogy-database",
+      "locator": "Advisor field(s), before student table",
+      "sourcePersonName": "Arch Waugh Naylor",
+      "listedAdvisors": [
+        {
+          "id": "80987",
+          "name": "Alan Breck Macnee"
+        }
+      ],
+      "sha256": "47a1d342629428cfb3e6b466da13730fd37a77cf8d6f283e232052a386980098",
+      "access": "Full public HTML retrieved; advisor target IDs and displayed names checked"
+    },
+    "mgp-65161": {
+      "title": "Georg Lichtenberg - The Mathematics Genealogy Project",
+      "url": "https://www.mathgenealogy.org/id.php?id=65161",
+      "kind": "genealogy-database",
+      "locator": "Advisor field(s), before student table",
+      "sourcePersonName": "Georg Christoph Lichtenberg",
+      "listedAdvisors": [
+        {
+          "id": "66476",
+          "name": "Abraham Gotthelf Kästner"
+        }
+      ],
+      "sha256": "23ba0fe9684b1a192d4e11b4e4e8282b5a06c296ecc6c7b86de877096769393c",
+      "access": "Full public HTML retrieved; advisor target IDs and displayed names checked"
+    },
+    "mgp-66476": {
+      "title": "Abraham Kästner - The Mathematics Genealogy Project",
+      "url": "https://www.mathgenealogy.org/id.php?id=66476",
+      "kind": "genealogy-database",
+      "locator": "Advisor field(s), before student table",
+      "sourcePersonName": "Abraham Gotthelf Kästner",
+      "listedAdvisors": [
+        {
+          "id": "57670",
+          "name": "Christian August Hausen"
+        }
+      ],
+      "sha256": "8be0702167f95f97304da0a63a849bdcf603cf900d9ddce4333488afc861cab9",
+      "access": "Full public HTML retrieved; advisor target IDs and displayed names checked"
+    },
+    "mgp-68683": {
+      "title": "Hong Jun Lu - The Mathematics Genealogy Project",
+      "url": "https://www.mathgenealogy.org/id.php?id=68683",
+      "kind": "genealogy-database",
+      "locator": "Advisor field(s), before student table",
+      "sourcePersonName": "Hong Jun Lu",
+      "listedAdvisors": [
+        {
+          "id": "80277",
+          "name": "Michael James Carey"
+        }
+      ],
+      "sha256": "3152845c5f3efe4491ea6c2b65ad7058ccd1c3a7e1b8eb0f26affb80d5aba157",
+      "access": "Full public HTML retrieved; advisor target IDs and displayed names checked"
+    },
+    "mgp-72669": {
+      "title": "Johann Wichmannshausen - The Mathematics Genealogy Project",
+      "url": "https://www.mathgenealogy.org/id.php?id=72669",
+      "kind": "genealogy-database",
+      "locator": "Advisor field(s), before student table",
+      "sourcePersonName": "Johann Christoph Wichmannshausen",
+      "listedAdvisors": [
+        {
+          "id": "21235",
+          "name": "Otto Mencke"
+        }
+      ],
+      "sha256": "0216b5a4dd2339b858b718225625f58419096b7a62abb5aab6690c2121b7c548",
+      "access": "Full public HTML retrieved; advisor target IDs and displayed names checked"
+    },
+    "mgp-80277": {
+      "title": "Michael Carey - The Mathematics Genealogy Project",
+      "url": "https://www.mathgenealogy.org/id.php?id=80277",
+      "kind": "genealogy-database",
+      "locator": "Advisor field(s), before student table",
+      "sourcePersonName": "Michael James Carey",
+      "listedAdvisors": [
+        {
+          "id": "31091",
+          "name": "Michael Ralph Stonebraker"
+        }
+      ],
+      "sha256": "bdac240366d09c0b76072747ca26e29b76e2f65a3e902100c7f841c1ee12401b",
+      "access": "Full public HTML retrieved; advisor target IDs and displayed names checked"
+    },
+    "mgp-80987": {
+      "title": "Alan Macnee - The Mathematics Genealogy Project",
+      "url": "https://www.mathgenealogy.org/id.php?id=80987",
+      "kind": "genealogy-database",
+      "locator": "Advisor field(s), before student table",
+      "sourcePersonName": "Alan Breck Macnee",
+      "listedAdvisors": [
+        {
+          "id": "7829",
+          "name": "Henry Wallman"
+        }
+      ],
+      "sha256": "90ba231fdd3ce5175b3f1dcbca54524020193eb8b7057c6d6194718675e3fba3",
+      "access": "Full public HTML retrieved; advisor target IDs and displayed names checked"
+    },
+    "mgp-126087": {
+      "title": "Georg von Peuerbach - The Mathematics Genealogy Project",
+      "url": "https://www.mathgenealogy.org/id.php?id=126087",
+      "kind": "genealogy-database",
+      "locator": "Advisor field(s), before student table",
+      "sourcePersonName": "Georg von Peuerbach",
+      "listedAdvisors": [
+        {
+          "id": "126887",
+          "name": "Johannes von Gmunden"
+        }
+      ],
+      "sha256": "424562ed119307c4b6746f3e3cc9e081725e32864ca7d5d1dba691216e2dd9a6",
+      "access": "Full public HTML retrieved; advisor target IDs and displayed names checked"
+    },
+    "mgp-126109": {
+      "title": "Johannes Regiomontanus - The Mathematics Genealogy Project",
+      "url": "https://www.mathgenealogy.org/id.php?id=126109",
+      "kind": "genealogy-database",
+      "locator": "Advisor field(s), before student table",
+      "sourcePersonName": "Johannes Müller Regiomontanus",
+      "listedAdvisors": [
+        {
+          "id": "126087",
+          "name": "Georg von Peuerbach"
+        },
+        {
+          "id": "131561",
+          "name": "Basilios Bessarion"
+        }
+      ],
+      "sha256": "d1ffc393c76aa7af117f6381ca0aa8a5ac1cd25ea1d70fce9081d175178ad847",
+      "access": "Full public HTML retrieved; advisor target IDs and displayed names checked"
+    },
+    "mgp-126112": {
+      "title": "Domenico Novara da Ferrara - The Mathematics Genealogy Project",
+      "url": "https://www.mathgenealogy.org/id.php?id=126112",
+      "kind": "genealogy-database",
+      "locator": "Advisor field(s), before student table",
+      "sourcePersonName": "Domenico Maria Novara da Ferrara",
+      "listedAdvisors": [
+        {
+          "id": "126109",
+          "name": "Johannes Müller Regiomontanus"
+        },
+        {
+          "id": "126888",
+          "name": "Luca Pacioli"
+        }
+      ],
+      "sha256": "01592b966ace7527198c977282aee72eef7fc0b65f7231f3a160ef0b18c0099c",
+      "access": "Full public HTML retrieved; advisor target IDs and displayed names checked"
+    },
+    "mgp-126177": {
+      "title": "Nicolaus Copernicus - The Mathematics Genealogy Project",
+      "url": "https://www.mathgenealogy.org/id.php?id=126177",
+      "kind": "genealogy-database",
+      "locator": "Advisor field(s), before student table",
+      "sourcePersonName": "Nicolaus Copernicus",
+      "listedAdvisors": [
+        {
+          "id": "126113",
+          "name": "Leonhard (Leonard Vitreatoris z Dobczyc) von Dobschütz"
+        },
+        {
+          "id": "126112",
+          "name": "Domenico Maria Novara da Ferrara"
+        }
+      ],
+      "sha256": "7eff2cecdac913a0514e551fa62e7a949c163e08af14da540bd3e9555b5c0db8",
+      "access": "Full public HTML retrieved; advisor target IDs and displayed names checked"
+    },
+    "mgp-126730": {
+      "title": "Johannes Volmar - The Mathematics Genealogy Project",
+      "url": "https://www.mathgenealogy.org/id.php?id=126730",
+      "kind": "genealogy-database",
+      "locator": "Advisor field(s), before student table",
+      "sourcePersonName": "Johannes Volmar",
+      "listedAdvisors": [
+        {
+          "id": "126724",
+          "name": "Bonifazius Erasmi"
+        }
+      ],
+      "sha256": "455183796e166dba15c2aeea21d02e397bc2746e6aa3076417dba4f5e9fbc0f6",
+      "access": "Full public HTML retrieved; advisor target IDs and displayed names checked"
+    },
+    "mgp-126827": {
+      "title": "Georg Joachim Rheticus - The Mathematics Genealogy Project",
+      "url": "https://www.mathgenealogy.org/id.php?id=126827",
+      "kind": "genealogy-database",
+      "locator": "Advisor field(s), before student table",
+      "sourcePersonName": "Georg Joachim Rheticus",
+      "listedAdvisors": [
+        {
+          "id": "126730",
+          "name": "Johannes Volmar"
+        },
+        {
+          "id": "126177",
+          "name": "Nicolaus (Mikołaj Kopernik) Copernicus"
+        }
+      ],
+      "sha256": "da0dae9c68266c2c11afd107f968e60178af4129e9df2e980268a2a44d32d2bc",
+      "access": "Full public HTML retrieved; advisor target IDs and displayed names checked"
+    },
+    "mgp-126887": {
+      "title": "Johannes von Gmunden - The Mathematics Genealogy Project",
+      "url": "https://www.mathgenealogy.org/id.php?id=126887",
+      "kind": "genealogy-database",
+      "locator": "Advisor field(s), before student table",
+      "sourcePersonName": "Johannes von Gmunden",
+      "listedAdvisors": [
+        {
+          "id": "127264",
+          "name": "Heinrich von Langenstein"
+        }
+      ],
+      "sha256": "658cabdd811f95b740c7fcb4d7dc758ee41568435ca8a0643390a62ad6c0c14e",
+      "access": "Full public HTML retrieved; advisor target IDs and displayed names checked"
+    },
+    "mgp-127264": {
+      "title": "Heinrich von Langenstein - The Mathematics Genealogy Project",
+      "url": "https://www.mathgenealogy.org/id.php?id=127264",
+      "kind": "genealogy-database",
+      "locator": "Advisor field(s), before student table",
+      "sourcePersonName": "Heinrich von Langenstein",
+      "listedAdvisors": [
+        {
+          "id": "199357",
+          "name": "Nicole Oresme"
+        }
+      ],
+      "sha256": "0db83b6a754457415376950025bedc69342c8a4e88c566be6cd3ed76da9a5b04",
+      "access": "Full public HTML retrieved; advisor target IDs and displayed names checked"
+    },
+    "mgp-127424": {
+      "title": "Erasmus Schmidt - The Mathematics Genealogy Project",
+      "url": "https://www.mathgenealogy.org/id.php?id=127424",
+      "kind": "genealogy-database",
+      "locator": "Advisor field(s), before student table",
+      "sourcePersonName": "Erasmus Schmidt",
+      "listedAdvisors": [
+        {
+          "id": "127898",
+          "name": "Sethus Calvisius"
+        },
+        {
+          "id": "127942",
+          "name": "Petrus Otto"
+        }
+      ],
+      "sha256": "6956c110660cb91e09ed76c4f99d4df92a9e584e9a9c119385a98b6b86ff69d7",
+      "access": "Full public HTML retrieved; advisor target IDs and displayed names checked"
+    },
+    "mgp-127734": {
+      "title": "Nicolaus Zapf - The Mathematics Genealogy Project",
+      "url": "https://www.mathgenealogy.org/id.php?id=127734",
+      "kind": "genealogy-database",
+      "locator": "Advisor field(s), before student table",
+      "sourcePersonName": "Nicolaus Zapf",
+      "listedAdvisors": [
+        {
+          "id": "127424",
+          "name": "Erasmus Schmidt"
+        },
+        {
+          "id": "189659",
+          "name": "Abraham Heinecke"
+        },
+        {
+          "id": "127848",
+          "name": "Jacobus Martini"
+        }
+      ],
+      "sha256": "3ea20dea788c0cd8501a2806c0b9442b37bc22a31ee32db2b402cca5b1262d48",
+      "access": "Full public HTML retrieved; advisor target IDs and displayed names checked"
+    },
+    "mgp-127790": {
+      "title": "Moritz Steinmetz - The Mathematics Genealogy Project",
+      "url": "https://www.mathgenealogy.org/id.php?id=127790",
+      "kind": "genealogy-database",
+      "locator": "Advisor field(s), before student table",
+      "sourcePersonName": "Moritz Steinmetz",
+      "listedAdvisors": [
+        {
+          "id": "126827",
+          "name": "Georg Joachim von Leuchen Rheticus"
+        },
+        {
+          "id": "184935",
+          "name": "Johann Hoffmann"
+        }
+      ],
+      "sha256": "e86f7641e6c9ed8123066bc1f53edc56d4ef386dc58311987747b2dea18b9b71",
+      "access": "Full public HTML retrieved; advisor target IDs and displayed names checked"
+    },
+    "mgp-127898": {
+      "title": "Sethus Calvisius - The Mathematics Genealogy Project",
+      "url": "https://www.mathgenealogy.org/id.php?id=127898",
+      "kind": "genealogy-database",
+      "locator": "Advisor field(s), before student table",
+      "sourcePersonName": "Sethus Calvisius",
+      "listedAdvisors": [
+        {
+          "id": "127864",
+          "name": "Nikolaus Selnecker"
+        },
+        {
+          "id": "127790",
+          "name": "Moritz Valentin Steinmetz"
+        }
+      ],
+      "sha256": "3ae74d37ecc38d85abfe87a9bc79dbb5da14120b43470d96140c013a715bfae0",
+      "access": "Full public HTML retrieved; advisor target IDs and displayed names checked"
+    },
+    "mgp-127962": {
+      "title": "Michael d. J. Walther - The Mathematics Genealogy Project",
+      "url": "https://www.mathgenealogy.org/id.php?id=127962",
+      "kind": "genealogy-database",
+      "locator": "Advisor field(s), before student table",
+      "sourcePersonName": "Michael d. J. Walther",
+      "listedAdvisors": [
+        {
+          "id": "127801",
+          "name": "Aegidius Strauch"
+        },
+        {
+          "id": "230796",
+          "name": "Constantin Ziegra"
+        },
+        {
+          "id": "127956",
+          "name": "Johann Andreas Quenstedt"
+        }
+      ],
+      "sha256": "673cfc5dd504f9406e406cdee2f20da1fbe2862cb6f883af3fc2899e98f6b339",
+      "access": "Full public HTML retrieved; advisor target IDs and displayed names checked"
+    },
+    "mgp-128046": {
+      "title": "Johann Pasch - The Mathematics Genealogy Project",
+      "url": "https://www.mathgenealogy.org/id.php?id=128046",
+      "kind": "genealogy-database",
+      "locator": "Advisor field(s), before student table",
+      "sourcePersonName": "Johann Pasch",
+      "listedAdvisors": [
+        {
+          "id": "127962",
+          "name": "Michael d. J. Walther"
+        }
+      ],
+      "sha256": "008409a2c5aef1a8970b2d00b169fd2f8d47794db20a9053d7a1cb27dbbee76e",
+      "access": "Full public HTML retrieved; advisor target IDs and displayed names checked"
+    },
+    "mgp-128986": {
+      "title": "Johann Planer - The Mathematics Genealogy Project",
+      "url": "https://www.mathgenealogy.org/id.php?id=128986",
+      "kind": "genealogy-database",
+      "locator": "Advisor field(s), before student table",
+      "sourcePersonName": "Johann Andreas Planer",
+      "listedAdvisors": [
+        {
+          "id": "128046",
+          "name": "Johann Pasch"
+        },
+        {
+          "id": "128938",
+          "name": "Rudolf Jakob Camerarius"
+        }
+      ],
+      "sha256": "dbdf5508520cb654414ace26a3d5d4ce88fe20c28395bdaef69e43d286499839",
+      "access": "Full public HTML retrieved; advisor target IDs and displayed names checked"
+    },
+    "mgp-131561": {
+      "title": "Basilios Bessarion - The Mathematics Genealogy Project",
+      "url": "https://www.mathgenealogy.org/id.php?id=131561",
+      "kind": "genealogy-database",
+      "locator": "Advisor field(s), before student table",
+      "sourcePersonName": "Basilios Bessarion",
+      "listedAdvisors": [
+        {
+          "id": "131575",
+          "name": "Georgios Plethon Gemistos"
+        }
+      ],
+      "sha256": "73df821c82dea9db3a78651cc291b568968d0cd69e6d6d12cde1165dbc109d68",
+      "access": "Full public HTML retrieved; advisor target IDs and displayed names checked"
+    },
+    "mgp-131575": {
+      "title": "Georgios Gemistos - The Mathematics Genealogy Project",
+      "url": "https://www.mathgenealogy.org/id.php?id=131575",
+      "kind": "genealogy-database",
+      "locator": "Advisor field(s), before student table",
+      "sourcePersonName": "Georgios Plethon Gemistos",
+      "listedAdvisors": [
+        {
+          "id": "134780",
+          "name": "Demetrios Kydones"
+        },
+        {
+          "id": "134781",
+          "name": "Elissaeus Judaeus"
+        }
+      ],
+      "sha256": "3da3d2a3865014029e7bb6c59e67eed49a71acf1a2a337c08d09d49ea638f384",
+      "access": "Full public HTML retrieved; advisor target IDs and displayed names checked"
+    },
+    "mgp-134780": {
+      "title": "Demetrios Kydones - The Mathematics Genealogy Project",
+      "url": "https://www.mathgenealogy.org/id.php?id=134780",
+      "kind": "genealogy-database",
+      "locator": "Advisor field(s), before student table",
+      "sourcePersonName": "Demetrios Kydones",
+      "listedAdvisors": [
+        {
+          "id": "146365",
+          "name": "Nilos Kabasilas"
+        }
+      ],
+      "sha256": "0023a64f79ab15b6f90a08bd3f01bfdaac87eeb348a85e1792e03cdb202457e9",
+      "access": "Full public HTML retrieved; advisor target IDs and displayed names checked"
+    },
+    "mgp-137705": {
+      "title": "Jakob Thomasius - The Mathematics Genealogy Project",
+      "url": "https://www.mathgenealogy.org/id.php?id=137705",
+      "kind": "genealogy-database",
+      "locator": "Advisor field(s), before student table",
+      "sourcePersonName": "Jakob Thomasius",
+      "listedAdvisors": [
+        {
+          "id": "143630",
+          "name": "Friedrich Leibniz"
+        }
+      ],
+      "sha256": "aca0563a21488df3b55e6ef00172556b4aa999cfccff5a64f4561c5d380d743c",
+      "access": "Full public HTML retrieved; advisor target IDs and displayed names checked"
+    },
+    "mgp-146365": {
+      "title": "Nilos Kabasilas - The Mathematics Genealogy Project",
+      "url": "https://www.mathgenealogy.org/id.php?id=146365",
+      "kind": "genealogy-database",
+      "locator": "Advisor field(s), before student table",
+      "sourcePersonName": "Nilos Kabasilas",
+      "listedAdvisors": [
+        {
+          "id": "176844",
+          "name": "Gregory Palamas"
+        }
+      ],
+      "sha256": "3d2fbf7e5e141e8bff70d31dcf8be82f13aacfa79f7a280b6b832c013f833b33",
+      "access": "Full public HTML retrieved; advisor target IDs and displayed names checked"
+    },
+    "mgp-176844": {
+      "title": "Gregory Palamas - The Mathematics Genealogy Project",
+      "url": "https://www.mathgenealogy.org/id.php?id=176844",
+      "kind": "genealogy-database",
+      "locator": "Advisor field(s), before student table",
+      "sourcePersonName": "Gregory Palamas",
+      "listedAdvisors": [
+        {
+          "id": "184631",
+          "name": "Theodore Metochites"
+        }
+      ],
+      "sha256": "0ff40ffff1f040fd032dc3bb59d6c8739842e8d666b98b4024e5ed67505209c0",
+      "access": "Full public HTML retrieved; advisor target IDs and displayed names checked"
+    },
+    "mgp-184631": {
+      "title": "Theodore Metochites - The Mathematics Genealogy Project",
+      "url": "https://www.mathgenealogy.org/id.php?id=184631",
+      "kind": "genealogy-database",
+      "locator": "Advisor field(s), before student table",
+      "sourcePersonName": "Theodore Metochites",
+      "listedAdvisors": [
+        {
+          "id": "184632",
+          "name": "Manuel Bryennios"
+        }
+      ],
+      "sha256": "04f0c72a40d1320de47cde3fa638074bf69ee039bb30b09ec78a757997b1f272",
+      "access": "Full public HTML retrieved; advisor target IDs and displayed names checked"
+    },
+    "mgp-184632": {
+      "title": "Manuel Bryennios - The Mathematics Genealogy Project",
+      "url": "https://www.mathgenealogy.org/id.php?id=184632",
+      "kind": "genealogy-database",
+      "locator": "Advisor field(s), before student table",
+      "sourcePersonName": "Manuel Bryennios",
+      "listedAdvisors": [
+        {
+          "id": "201288",
+          "name": "Gregory Chioniadis"
+        }
+      ],
+      "sha256": "2fcdb63179322b74a132031a952b75b771ad02b011ef5a407391bce58ac83367",
+      "access": "Full public HTML retrieved; advisor target IDs and displayed names checked"
+    },
+    "mgp-201288": {
+      "title": "Gregory Chioniadis - The Mathematics Genealogy Project",
+      "url": "https://www.mathgenealogy.org/id.php?id=201288",
+      "kind": "genealogy-database",
+      "locator": "Advisor field(s), before student table",
+      "sourcePersonName": "Gregory Chioniadis",
+      "listedAdvisors": [
+        {
+          "id": "204293",
+          "name": "Shams al‐Dīn al‐Bukhārī"
+        }
+      ],
+      "sha256": "98605685232e89ef57b82dd7dfa0eb7abb8d935ef7488316e2bed9b1db05984c",
+      "access": "Full public HTML retrieved; advisor target IDs and displayed names checked"
+    },
+    "mgp-204293": {
+      "title": "Shams al‐Dīn al‐Bukhārī - The Mathematics Genealogy Project",
+      "url": "https://www.mathgenealogy.org/id.php?id=204293",
+      "kind": "genealogy-database",
+      "locator": "Advisor field(s), before student table",
+      "sourcePersonName": "Shams al-Dīn al-Bukhārī",
+      "listedAdvisors": [
+        {
+          "id": "217509",
+          "name": "Nasir al-Dīn al-Ṭūsī"
+        }
+      ],
+      "sha256": "ace327aaef3eb6013444c828f477f7d7fa9275d6310b97681c61b063b371bd54",
+      "access": "Full public HTML retrieved; advisor target IDs and displayed names checked"
+    },
+    "mgp-217509": {
+      "title": "Nasir al-Dīn al-Ṭūsī - The Mathematics Genealogy Project",
+      "url": "https://www.mathgenealogy.org/id.php?id=217509",
+      "kind": "genealogy-database",
+      "locator": "Advisor field(s), before student table",
+      "sourcePersonName": "Nasir al-Dīn al-Ṭūsī",
+      "listedAdvisors": [
+        {
+          "id": "223724",
+          "name": "Kamāl al-Dīn Ibn Yūnus"
+        },
+        {
+          "id": "287480",
+          "name": "Athīr al-Dīn al-Mufaḍḍal al-Abharī"
+        }
+      ],
+      "sha256": "58ffa78d58aab1ebb88745440651203f149345e19e0e8ab99cda782f453ebbab",
+      "access": "Full public HTML retrieved; advisor target IDs and displayed names checked"
+    },
+    "mgp-223724": {
+      "title": "Kamāl al-Dīn Ibn Yūnus - The Mathematics Genealogy Project",
+      "url": "https://www.mathgenealogy.org/id.php?id=223724",
+      "kind": "genealogy-database",
+      "locator": "Advisor field(s), before student table",
+      "sourcePersonName": "Kamāl al-Dīn Ibn Yūnus",
+      "listedAdvisors": [
+        {
+          "id": "230926",
+          "name": "Sharaf al-Dīn al-Ṭūsī"
+        },
+        {
+          "id": "287466",
+          "name": "Saraf al-Dīn Muhammad al-Masʿūdī al-Marwazī"
+        }
+      ],
+      "sha256": "e34f7d630169be5e6f112b113f369bc60cebf58ed9a7ae64d4f9ac2f55a87d38",
+      "access": "Full public HTML retrieved; advisor target IDs and displayed names checked"
+    },
+    "mgp-287466": {
+      "title": "Saraf al-Dīn Muhammad al-Masʿūdī al-Marwazī - The Mathematics Genealogy Project",
+      "url": "https://www.mathgenealogy.org/id.php?id=287466",
+      "kind": "genealogy-database",
+      "locator": "Advisor field(s), before student table",
+      "sourcePersonName": "Sharaf al-Dīn Muhammad al-Masʿūdī al-Marwazī",
+      "listedAdvisors": [
+        {
+          "id": "295739",
+          "name": "Ghiyāth al-Dīn Abū al-Fatḥ ʿUmar ibn Ibrāhīm al-Khayyām al-Nīsābūrī"
+        }
+      ],
+      "sha256": "8a1612907eb13609dd9e2c1d9ae6e19aefab21f14e461ac10d710cc861c756ca",
+      "access": "Full public HTML retrieved; advisor target IDs and displayed names checked"
+    },
+    "mgp-287468": {
+      "title": "Bahmanyār ibn al-Marzubān - The Mathematics Genealogy Project",
+      "url": "https://www.mathgenealogy.org/id.php?id=287468",
+      "kind": "genealogy-database",
+      "locator": "Advisor field(s), before student table",
+      "sourcePersonName": "Bahmanyār ibn al-Marzubān",
+      "listedAdvisors": [
+        {
+          "id": "298616",
+          "name": "Abu ʿAli al-Husayn (Avicenna) ibn Sina"
+        }
+      ],
+      "sha256": "6864ea35da30dff848036a829d6edfc73c6f83a82918417ebe52f62562afedf4",
+      "access": "Full public HTML retrieved; advisor target IDs and displayed names checked"
+    },
+    "mgp-287478": {
+      "title": "Fakhr al-Dīn Muhammad al-Rēzī - The Mathematics Genealogy Project",
+      "url": "https://www.mathgenealogy.org/id.php?id=287478",
+      "kind": "genealogy-database",
+      "locator": "Advisor field(s), before student table",
+      "sourcePersonName": "Fakhr al-Dīn Muhammad al-Rāzī",
+      "listedAdvisors": [
+        {
+          "id": "287466",
+          "name": "Saraf al-Dīn Muhammad al-Masʿūdī al-Marwazī"
+        }
+      ],
+      "sha256": "1da35a85b3db496eae68c06d33e92309dac5333330f5c37268ebeb22a428daac",
+      "access": "Full public HTML retrieved; advisor target IDs and displayed names checked"
+    },
+    "mgp-287479": {
+      "title": "Qutb al-Dīn Ibrāhīm al-Mīṣrī - The Mathematics Genealogy Project",
+      "url": "https://www.mathgenealogy.org/id.php?id=287479",
+      "kind": "genealogy-database",
+      "locator": "Advisor field(s), before student table",
+      "sourcePersonName": "Qutb al-Dīn Ibrāhīm al-Mīṣrī",
+      "listedAdvisors": [
+        {
+          "id": "287478",
+          "name": "Fakhr al-Dīn Muhammad al-Rēzī"
+        }
+      ],
+      "sha256": "c3ac74a862cbd885ea3d2fe21f8f1d46e1181379d1aef335113cb7c4a7d5646d",
+      "access": "Full public HTML retrieved; advisor target IDs and displayed names checked"
+    },
+    "mgp-287480": {
+      "title": "Athīr al-Dīn al-Mufaḍḍal al-Abharī - The Mathematics Genealogy Project",
+      "url": "https://www.mathgenealogy.org/id.php?id=287480",
+      "kind": "genealogy-database",
+      "locator": "Advisor field(s), before student table",
+      "sourcePersonName": "Athīr al-Dīn al-Abharī",
+      "listedAdvisors": [
+        {
+          "id": "223724",
+          "name": "Kamāl al-Dīn Ibn Yūnus"
+        },
+        {
+          "id": "287479",
+          "name": "Qutb al-Dīn Ibrāhīm al-Mīṣrī"
+        }
+      ],
+      "sha256": "07734997374799aa1d4e03d7eb84a2027825f9a9581b9a9653113e46b0b03bfa",
+      "access": "Full public HTML retrieved; advisor target IDs and displayed names checked"
+    },
+    "mgp-295739": {
+      "title": "Ghiyāth al-Dīn Abū al-Fatḥ al-Nīsābūrī - The Mathematics Genealogy Project",
+      "url": "https://www.mathgenealogy.org/id.php?id=295739",
+      "kind": "genealogy-database",
+      "locator": "Advisor field(s), before student table",
+      "sourcePersonName": "Omar Khayyam",
+      "listedAdvisors": [
+        {
+          "id": "287468",
+          "name": "Bahmanyār ibn al-Marzubān"
+        }
+      ],
+      "sha256": "181e71b617c59ab3e934485c93da8d133d2babb50127d12b39b530b57e128a66",
+      "access": "Full public HTML retrieved; advisor target IDs and displayed names checked"
+    },
+    "mgp-298616": {
+      "title": "Abu ʿAli al-Husayn ibn Sina - The Mathematics Genealogy Project",
+      "url": "https://www.mathgenealogy.org/id.php?id=298616",
+      "kind": "genealogy-database",
+      "locator": "Advisor field(s), before student table",
+      "sourcePersonName": "Avicenna",
+      "listedAdvisors": [
+        {
+          "id": "316872",
+          "name": "Abu Abdallah Al-Husayn ibn Ibrahim al-Natili"
+        },
+        {
+          "id": "310782",
+          "name": "Abu Sahl 'Isa ibn Yahya al-Masihi"
+        },
+        {
+          "id": "316873",
+          "name": "Abu Mansur al-Hasan ibn Nuh al-Qumri"
+        }
+      ],
+      "sha256": "5b0ae14b5a5cdb46e217603c809acccf28b22cc46bfd736e40d66364adaa0f05",
+      "access": "Full public HTML retrieved; advisor target IDs and displayed names checked"
+    }
+  },
+  "edges": [
+    {
+      "from": "7451",
+      "to": "32858",
+      "student": "William Edward Story",
+      "mentor": "Carl Gottfried Neumann",
+      "status": "reference-found",
+      "sources": [
+        "mgp-7451"
+      ],
+      "relationship": "advisor-as-listed-by-MGP"
+    },
+    {
+      "from": "7451",
+      "to": "18589",
+      "student": "William Edward Story",
+      "mentor": "Wilhelm Scheibner",
+      "status": "reference-found",
+      "sources": [
+        "mgp-7451"
+      ],
+      "relationship": "advisor-as-listed-by-MGP"
+    },
+    {
+      "from": "7461",
+      "to": "7451",
+      "student": "Solomon Lefschetz",
+      "mentor": "William Edward Story",
+      "status": "reference-found",
+      "sources": [
+        "mgp-7461"
+      ],
+      "relationship": "advisor-as-listed-by-MGP"
+    },
+    {
+      "from": "7829",
+      "to": "7461",
+      "student": "Henry Wallman",
+      "mentor": "Solomon Lefschetz",
+      "status": "reference-found",
+      "sources": [
+        "mgp-7829"
+      ],
+      "relationship": "advisor-as-listed-by-MGP"
+    },
+    {
+      "from": "15635",
+      "to": "41423",
+      "student": "Carl Gustav Jacob Jacobi",
+      "mentor": "Enno Heeren Dirksen",
+      "status": "reference-found",
+      "sources": [
+        "mgp-15635"
+      ],
+      "relationship": "advisor-as-listed-by-MGP"
+    },
+    {
+      "from": "18589",
+      "to": "15635",
+      "student": "Wilhelm Scheibner",
+      "mentor": "Carl Gustav Jacob Jacobi",
+      "status": "reference-found",
+      "sources": [
+        "mgp-18589"
+      ],
+      "relationship": "advisor-as-listed-by-MGP"
+    },
+    {
+      "from": "21235",
+      "to": "137705",
+      "student": "Otto Mencke",
+      "mentor": "Jakob Thomasius",
+      "status": "reference-found",
+      "sources": [
+        "mgp-21235"
+      ],
+      "relationship": "advisor-as-listed-by-MGP"
+    },
+    {
+      "from": "31091",
+      "to": "63600",
+      "student": "Michael R. Stonebraker",
+      "mentor": "Arch Waugh Naylor",
+      "status": "reference-found",
+      "sources": [
+        "mgp-31091"
+      ],
+      "relationship": "advisor-as-listed-by-MGP"
+    },
+    {
+      "from": "32858",
+      "to": "57706",
+      "student": "Carl Gottfried Neumann",
+      "mentor": "Friedrich Julius Richelot",
+      "status": "reference-found",
+      "sources": [
+        "mgp-32858"
+      ],
+      "relationship": "advisor-as-listed-by-MGP"
+    },
+    {
+      "from": "32858",
+      "to": "46967",
+      "student": "Carl Gottfried Neumann",
+      "mentor": "Ludwig Otto Hesse",
+      "status": "reference-found",
+      "sources": [
+        "mgp-32858"
+      ],
+      "relationship": "advisor-as-listed-by-MGP"
+    },
+    {
+      "from": "41423",
+      "to": "57659",
+      "student": "Enno Heeren Dirksen",
+      "mentor": "Johann Tobias Mayer",
+      "status": "reference-found",
+      "sources": [
+        "mgp-41423"
+      ],
+      "relationship": "advisor-as-listed-by-MGP"
+    },
+    {
+      "from": "41423",
+      "to": "57667",
+      "student": "Enno Heeren Dirksen",
+      "mentor": "Bernhard Friedrich Thibaut",
+      "status": "reference-found",
+      "sources": [
+        "mgp-41423"
+      ],
+      "relationship": "advisor-as-listed-by-MGP"
+    },
+    {
+      "from": "46967",
+      "to": "15635",
+      "student": "Ludwig Otto Hesse",
+      "mentor": "Carl Gustav Jacob Jacobi",
+      "status": "reference-found",
+      "sources": [
+        "mgp-46967"
+      ],
+      "relationship": "advisor-as-listed-by-MGP"
+    },
+    {
+      "from": "57659",
+      "to": "66476",
+      "student": "Johann Tobias Mayer",
+      "mentor": "Abraham Gotthelf Kästner",
+      "status": "reference-found",
+      "sources": [
+        "mgp-57659"
+      ],
+      "relationship": "advisor-as-listed-by-MGP"
+    },
+    {
+      "from": "57659",
+      "to": "65161",
+      "student": "Johann Tobias Mayer",
+      "mentor": "Georg Christoph Lichtenberg",
+      "status": "reference-found",
+      "sources": [
+        "mgp-57659"
+      ],
+      "relationship": "advisor-as-listed-by-MGP"
+    },
+    {
+      "from": "57667",
+      "to": "66476",
+      "student": "Bernhard Friedrich Thibaut",
+      "mentor": "Abraham Gotthelf Kästner",
+      "status": "reference-found",
+      "sources": [
+        "mgp-57667"
+      ],
+      "relationship": "advisor-as-listed-by-MGP"
+    },
+    {
+      "from": "57667",
+      "to": "65161",
+      "student": "Bernhard Friedrich Thibaut",
+      "mentor": "Georg Christoph Lichtenberg",
+      "status": "reference-found",
+      "sources": [
+        "mgp-57667"
+      ],
+      "relationship": "advisor-as-listed-by-MGP"
+    },
+    {
+      "from": "57670",
+      "to": "72669",
+      "student": "Christian August Hausen",
+      "mentor": "Johann Christoph Wichmannshausen",
+      "status": "reference-found",
+      "sources": [
+        "mgp-57670"
+      ],
+      "relationship": "advisor-as-listed-by-MGP"
+    },
+    {
+      "from": "57670",
+      "to": "128986",
+      "student": "Christian August Hausen",
+      "mentor": "Johann Andreas Planer",
+      "status": "reference-found",
+      "sources": [
+        "mgp-57670"
+      ],
+      "relationship": "advisor-as-listed-by-MGP"
+    },
+    {
+      "from": "57706",
+      "to": "15635",
+      "student": "Friedrich Julius Richelot",
+      "mentor": "Carl Gustav Jacob Jacobi",
+      "status": "reference-found",
+      "sources": [
+        "mgp-57706"
+      ],
+      "relationship": "advisor-as-listed-by-MGP"
+    },
+    {
+      "from": "63600",
+      "to": "80987",
+      "student": "Arch Waugh Naylor",
+      "mentor": "Alan Breck Macnee",
+      "status": "reference-found",
+      "sources": [
+        "mgp-63600"
+      ],
+      "relationship": "advisor-as-listed-by-MGP"
+    },
+    {
+      "from": "65161",
+      "to": "66476",
+      "student": "Georg Christoph Lichtenberg",
+      "mentor": "Abraham Gotthelf Kästner",
+      "status": "reference-found",
+      "sources": [
+        "mgp-65161"
+      ],
+      "relationship": "advisor-as-listed-by-MGP"
+    },
+    {
+      "from": "66476",
+      "to": "57670",
+      "student": "Abraham Gotthelf Kästner",
+      "mentor": "Christian August Hausen",
+      "status": "reference-found",
+      "sources": [
+        "mgp-66476"
+      ],
+      "relationship": "advisor-as-listed-by-MGP"
+    },
+    {
+      "from": "68683",
+      "to": "80277",
+      "student": "Hong Jun Lu",
+      "mentor": "Michael James Carey",
+      "status": "reference-found",
+      "sources": [
+        "mgp-68683"
+      ],
+      "relationship": "advisor-as-listed-by-MGP"
+    },
+    {
+      "from": "72669",
+      "to": "21235",
+      "student": "Johann Christoph Wichmannshausen",
+      "mentor": "Otto Mencke",
+      "status": "reference-found",
+      "sources": [
+        "mgp-72669"
+      ],
+      "relationship": "advisor-as-listed-by-MGP"
+    },
+    {
+      "from": "80277",
+      "to": "31091",
+      "student": "Michael James Carey",
+      "mentor": "Michael R. Stonebraker",
+      "status": "reference-found",
+      "sources": [
+        "mgp-80277"
+      ],
+      "relationship": "advisor-as-listed-by-MGP"
+    },
+    {
+      "from": "80987",
+      "to": "7829",
+      "student": "Alan Breck Macnee",
+      "mentor": "Henry Wallman",
+      "status": "reference-found",
+      "sources": [
+        "mgp-80987"
+      ],
+      "relationship": "advisor-as-listed-by-MGP"
+    },
+    {
+      "from": "126087",
+      "to": "126887",
+      "student": "Georg von Peuerbach",
+      "mentor": "Johannes von Gmunden",
+      "status": "reference-found",
+      "sources": [
+        "mgp-126087"
+      ],
+      "relationship": "advisor-as-listed-by-MGP"
+    },
+    {
+      "from": "126109",
+      "to": "126087",
+      "student": "Johannes Müller Regiomontanus",
+      "mentor": "Georg von Peuerbach",
+      "status": "reference-found",
+      "sources": [
+        "mgp-126109"
+      ],
+      "relationship": "advisor-as-listed-by-MGP"
+    },
+    {
+      "from": "126109",
+      "to": "131561",
+      "student": "Johannes Müller Regiomontanus",
+      "mentor": "Basilios Bessarion",
+      "status": "reference-found",
+      "sources": [
+        "mgp-126109"
+      ],
+      "relationship": "advisor-as-listed-by-MGP"
+    },
+    {
+      "from": "126112",
+      "to": "126109",
+      "student": "Domenico Maria Novara da Ferrara",
+      "mentor": "Johannes Müller Regiomontanus",
+      "status": "reference-found",
+      "sources": [
+        "mgp-126112"
+      ],
+      "relationship": "advisor-as-listed-by-MGP"
+    },
+    {
+      "from": "126112",
+      "to": "126888",
+      "student": "Domenico Maria Novara da Ferrara",
+      "mentor": "Luca Pacioli",
+      "status": "reference-found",
+      "sources": [
+        "mgp-126112"
+      ],
+      "relationship": "advisor-as-listed-by-MGP"
+    },
+    {
+      "from": "126177",
+      "to": "126113",
+      "student": "Nicolaus Copernicus",
+      "mentor": "Leonhard von Dobschütz",
+      "status": "reference-found",
+      "sources": [
+        "mgp-126177"
+      ],
+      "relationship": "advisor-as-listed-by-MGP"
+    },
+    {
+      "from": "126177",
+      "to": "126112",
+      "student": "Nicolaus Copernicus",
+      "mentor": "Domenico Maria Novara da Ferrara",
+      "status": "reference-found",
+      "sources": [
+        "mgp-126177"
+      ],
+      "relationship": "advisor-as-listed-by-MGP"
+    },
+    {
+      "from": "126730",
+      "to": "126724",
+      "student": "Johannes Volmar",
+      "mentor": "Bonifazius Erasmi",
+      "status": "reference-found",
+      "sources": [
+        "mgp-126730"
+      ],
+      "relationship": "advisor-as-listed-by-MGP"
+    },
+    {
+      "from": "126827",
+      "to": "126730",
+      "student": "Georg Joachim Rheticus",
+      "mentor": "Johannes Volmar",
+      "status": "reference-found",
+      "sources": [
+        "mgp-126827"
+      ],
+      "relationship": "advisor-as-listed-by-MGP"
+    },
+    {
+      "from": "126827",
+      "to": "126177",
+      "student": "Georg Joachim Rheticus",
+      "mentor": "Nicolaus Copernicus",
+      "status": "reference-found",
+      "sources": [
+        "mgp-126827"
+      ],
+      "relationship": "advisor-as-listed-by-MGP"
+    },
+    {
+      "from": "126887",
+      "to": "127264",
+      "student": "Johannes von Gmunden",
+      "mentor": "Heinrich von Langenstein",
+      "status": "reference-found",
+      "sources": [
+        "mgp-126887"
+      ],
+      "relationship": "advisor-as-listed-by-MGP"
+    },
+    {
+      "from": "127264",
+      "to": "199357",
+      "student": "Heinrich von Langenstein",
+      "mentor": "Nicole Oresme",
+      "status": "reference-found",
+      "sources": [
+        "mgp-127264"
+      ],
+      "relationship": "advisor-as-listed-by-MGP"
+    },
+    {
+      "from": "127424",
+      "to": "127898",
+      "student": "Erasmus Schmidt",
+      "mentor": "Sethus Calvisius",
+      "status": "reference-found",
+      "sources": [
+        "mgp-127424"
+      ],
+      "relationship": "advisor-as-listed-by-MGP"
+    },
+    {
+      "from": "127734",
+      "to": "127424",
+      "student": "Nicolaus Zapf",
+      "mentor": "Erasmus Schmidt",
+      "status": "reference-found",
+      "sources": [
+        "mgp-127734"
+      ],
+      "relationship": "advisor-as-listed-by-MGP"
+    },
+    {
+      "from": "127790",
+      "to": "126827",
+      "student": "Moritz Steinmetz",
+      "mentor": "Georg Joachim Rheticus",
+      "status": "reference-found",
+      "sources": [
+        "mgp-127790"
+      ],
+      "relationship": "advisor-as-listed-by-MGP"
+    },
+    {
+      "from": "127898",
+      "to": "127864",
+      "student": "Sethus Calvisius",
+      "mentor": "Nikolaus Selnecker",
+      "status": "reference-found",
+      "sources": [
+        "mgp-127898"
+      ],
+      "relationship": "advisor-as-listed-by-MGP"
+    },
+    {
+      "from": "127898",
+      "to": "127790",
+      "student": "Sethus Calvisius",
+      "mentor": "Moritz Steinmetz",
+      "status": "reference-found",
+      "sources": [
+        "mgp-127898"
+      ],
+      "relationship": "advisor-as-listed-by-MGP"
+    },
+    {
+      "from": "127962",
+      "to": "127801",
+      "student": "Michael d. J. Walther",
+      "mentor": "Aegidius Strauch II",
+      "status": "reference-found",
+      "sources": [
+        "walther-catalogue",
+        "mgp-127962"
+      ],
+      "relationship": "disputation-praeses",
+      "note": "Legacy UI key 127801 is Strauch II here. MGP says only Aegidius Strauch; bibliography resolves the identity. This is not evidence for the removed Strauch II–Zapf edge."
+    },
+    {
+      "from": "128046",
+      "to": "127962",
+      "student": "Johann Pasch",
+      "mentor": "Michael d. J. Walther",
+      "status": "reference-found",
+      "sources": [
+        "mgp-128046"
+      ],
+      "relationship": "advisor-as-listed-by-MGP"
+    },
+    {
+      "from": "128986",
+      "to": "128046",
+      "student": "Johann Andreas Planer",
+      "mentor": "Johann Pasch",
+      "status": "reference-found",
+      "sources": [
+        "mgp-128986"
+      ],
+      "relationship": "advisor-as-listed-by-MGP"
+    },
+    {
+      "from": "131561",
+      "to": "131575",
+      "student": "Basilios Bessarion",
+      "mentor": "Georgios Plethon Gemistos",
+      "status": "reference-found",
+      "sources": [
+        "mgp-131561"
+      ],
+      "relationship": "advisor-as-listed-by-MGP"
+    },
+    {
+      "from": "131575",
+      "to": "134780",
+      "student": "Georgios Plethon Gemistos",
+      "mentor": "Demetrios Kydones",
+      "status": "reference-found",
+      "sources": [
+        "mgp-131575"
+      ],
+      "relationship": "advisor-as-listed-by-MGP"
+    },
+    {
+      "from": "134780",
+      "to": "146365",
+      "student": "Demetrios Kydones",
+      "mentor": "Nilos Kabasilas",
+      "status": "reference-found",
+      "sources": [
+        "mgp-134780"
+      ],
+      "relationship": "advisor-as-listed-by-MGP"
+    },
+    {
+      "from": "137705",
+      "to": "143630",
+      "student": "Jakob Thomasius",
+      "mentor": "Friedrich Leibniz",
+      "status": "reference-found",
+      "sources": [
+        "mgp-137705"
+      ],
+      "relationship": "advisor-as-listed-by-MGP"
+    },
+    {
+      "from": "146365",
+      "to": "176844",
+      "student": "Nilos Kabasilas",
+      "mentor": "Gregory Palamas",
+      "status": "reference-found",
+      "sources": [
+        "mgp-146365"
+      ],
+      "relationship": "advisor-as-listed-by-MGP"
+    },
+    {
+      "from": "176844",
+      "to": "184631",
+      "student": "Gregory Palamas",
+      "mentor": "Theodore Metochites",
+      "status": "reference-found",
+      "sources": [
+        "mgp-176844"
+      ],
+      "relationship": "advisor-as-listed-by-MGP"
+    },
+    {
+      "from": "184631",
+      "to": "184632",
+      "student": "Theodore Metochites",
+      "mentor": "Manuel Bryennios",
+      "status": "reference-found",
+      "sources": [
+        "mgp-184631"
+      ],
+      "relationship": "advisor-as-listed-by-MGP"
+    },
+    {
+      "from": "184632",
+      "to": "201288",
+      "student": "Manuel Bryennios",
+      "mentor": "Gregory Chioniadis",
+      "status": "reference-found",
+      "sources": [
+        "mgp-184632"
+      ],
+      "relationship": "advisor-as-listed-by-MGP"
+    },
+    {
+      "from": "201288",
+      "to": "204293",
+      "student": "Gregory Chioniadis",
+      "mentor": "Shams al-Dīn al-Bukhārī",
+      "status": "reference-found",
+      "sources": [
+        "mgp-201288"
+      ],
+      "relationship": "advisor-as-listed-by-MGP"
+    },
+    {
+      "from": "204293",
+      "to": "217509",
+      "student": "Shams al-Dīn al-Bukhārī",
+      "mentor": "Nasir al-Dīn al-Ṭūsī",
+      "status": "reference-found",
+      "sources": [
+        "mgp-204293"
+      ],
+      "relationship": "advisor-as-listed-by-MGP"
+    },
+    {
+      "from": "217509",
+      "to": "223724",
+      "student": "Nasir al-Dīn al-Ṭūsī",
+      "mentor": "Kamāl al-Dīn Ibn Yūnus",
+      "status": "reference-found",
+      "sources": [
+        "mgp-217509"
+      ],
+      "relationship": "advisor-as-listed-by-MGP"
+    },
+    {
+      "from": "217509",
+      "to": "287480",
+      "student": "Nasir al-Dīn al-Ṭūsī",
+      "mentor": "Athīr al-Dīn al-Abharī",
+      "status": "reference-found",
+      "sources": [
+        "mgp-217509"
+      ],
+      "relationship": "advisor-as-listed-by-MGP"
+    },
+    {
+      "from": "223724",
+      "to": "230926",
+      "student": "Kamāl al-Dīn Ibn Yūnus",
+      "mentor": "Sharaf al-Dīn al-Ṭūsī",
+      "status": "reference-found",
+      "sources": [
+        "mgp-223724"
+      ],
+      "relationship": "advisor-as-listed-by-MGP"
+    },
+    {
+      "from": "223724",
+      "to": "287466",
+      "student": "Kamāl al-Dīn Ibn Yūnus",
+      "mentor": "Sharaf al-Dīn Muhammad al-Masʿūdī al-Marwazī",
+      "status": "reference-found",
+      "sources": [
+        "mgp-223724"
+      ],
+      "relationship": "advisor-as-listed-by-MGP"
+    },
+    {
+      "from": "287466",
+      "to": "295739",
+      "student": "Sharaf al-Dīn Muhammad al-Masʿūdī al-Marwazī",
+      "mentor": "Omar Khayyam",
+      "status": "reference-found",
+      "sources": [
+        "mgp-287466"
+      ],
+      "relationship": "advisor-as-listed-by-MGP"
+    },
+    {
+      "from": "287468",
+      "to": "298616",
+      "student": "Bahmanyār ibn al-Marzubān",
+      "mentor": "Avicenna",
+      "status": "reference-found",
+      "sources": [
+        "mgp-287468"
+      ],
+      "relationship": "advisor-as-listed-by-MGP"
+    },
+    {
+      "from": "287478",
+      "to": "287466",
+      "student": "Fakhr al-Dīn Muhammad al-Rāzī",
+      "mentor": "Sharaf al-Dīn Muhammad al-Masʿūdī al-Marwazī",
+      "status": "reference-found",
+      "sources": [
+        "mgp-287478"
+      ],
+      "relationship": "advisor-as-listed-by-MGP"
+    },
+    {
+      "from": "287479",
+      "to": "287478",
+      "student": "Qutb al-Dīn Ibrāhīm al-Mīṣrī",
+      "mentor": "Fakhr al-Dīn Muhammad al-Rāzī",
+      "status": "reference-found",
+      "sources": [
+        "mgp-287479"
+      ],
+      "relationship": "advisor-as-listed-by-MGP"
+    },
+    {
+      "from": "287480",
+      "to": "223724",
+      "student": "Athīr al-Dīn al-Abharī",
+      "mentor": "Kamāl al-Dīn Ibn Yūnus",
+      "status": "reference-found",
+      "sources": [
+        "mgp-287480"
+      ],
+      "relationship": "advisor-as-listed-by-MGP"
+    },
+    {
+      "from": "287480",
+      "to": "287479",
+      "student": "Athīr al-Dīn al-Abharī",
+      "mentor": "Qutb al-Dīn Ibrāhīm al-Mīṣrī",
+      "status": "reference-found",
+      "sources": [
+        "mgp-287480"
+      ],
+      "relationship": "advisor-as-listed-by-MGP"
+    },
+    {
+      "from": "295739",
+      "to": "287468",
+      "student": "Omar Khayyam",
+      "mentor": "Bahmanyār ibn al-Marzubān",
+      "status": "reference-found",
+      "sources": [
+        "mgp-295739"
+      ],
+      "relationship": "advisor-as-listed-by-MGP"
+    },
+    {
+      "from": "298616",
+      "to": "316872",
+      "student": "Avicenna",
+      "mentor": "Abu Abdallah al-Natili",
+      "status": "reference-found",
+      "sources": [
+        "mgp-298616"
+      ],
+      "relationship": "advisor-as-listed-by-MGP"
+    },
+    {
+      "from": "298616",
+      "to": "310782",
+      "student": "Avicenna",
+      "mentor": "Abu Sahl al-Masihi",
+      "status": "reference-found",
+      "sources": [
+        "mgp-298616"
+      ],
+      "relationship": "advisor-as-listed-by-MGP"
+    },
+    {
+      "from": "298616",
+      "to": "316873",
+      "student": "Avicenna",
+      "mentor": "Abu Mansur al-Hasan ibn Nuh al-Qumri",
+      "status": "reference-found",
+      "sources": [
+        "mgp-298616"
+      ],
+      "relationship": "advisor-as-listed-by-MGP"
+    },
+    {
+      "from": "sha",
+      "to": "tan",
+      "student": "Sha Mo",
+      "mentor": "Kian-Lee Tan",
+      "status": "reference-found",
+      "sources": [
+        "nus-sha"
+      ],
+      "relationship": "doctoral-advisor"
+    },
+    {
+      "from": "tan",
+      "to": "68683",
+      "student": "Kian-Lee Tan",
+      "mentor": "Hong Jun Lu",
+      "status": "reference-found",
+      "sources": [
+        "nus-tan"
+      ],
+      "relationship": "doctoral-advisor"
+    }
+  ]
+}
