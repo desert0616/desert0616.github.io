@@ -377,8 +377,8 @@
     #focus-card .graduation-year { font-size: 26px; font-weight: 700; color: #ffe0a0; }
     .focus-panel { scroll-behavior: auto; overflow-anchor: none; }
     .focus-panel { padding: 0; }
-    .person-chapter { position: relative; height: var(--chapter-height,100dvh); min-height: 0; overflow-y: auto; overscroll-behavior-y: auto; padding: clamp(36px,6vh,80px) clamp(24px,5vw,80px) 64px; scrollbar-width: thin; }
-    @media(max-width:600px) { .person-chapter { padding: 28px 12px 40px 10px; } }
+    .person-chapter { position: relative; height: var(--chapter-height,100dvh); min-height: 0; overflow-y: auto; overscroll-behavior-y: auto; padding: clamp(36px,6vh,80px) clamp(24px,5vw,80px) 64px clamp(12px,1.75vw,28px); scrollbar-width: thin; }
+    @media(max-width:600px) { .person-chapter { padding: 28px 12px 40px 6px; } }
     .reader .graph-shell, .focus-panel { overflow-y: hidden; scroll-behavior: auto; touch-action: pinch-zoom; }
     .person-chapter { touch-action: pinch-zoom; }
     /* One selection treatment; keyboard focus must not add a second box. */
@@ -466,7 +466,7 @@
       <div id="graph">
         <svg id="edges" aria-hidden="true">
           <defs>
-            <marker id="arrow-main" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#b5c8bc"/></marker>
+            <marker id="arrow-main" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" fill="#b5c8bc"/></marker>
           </defs>
         </svg>
       </div>
@@ -1372,74 +1372,74 @@
     let sceneIndex=0,sceneToken=0,sceneTimer,sceneCommitTimer,sceneFadeUntil=0;
     // Shared desktop/mobile backgrounds, named after each person.
     const sceneFiles={
-      "7451": "william-edward-story.png",
-      "7461": "solomon-lefschetz.png",
-      "7829": "henry-wallman.png",
-      "15635": "carl-gustav-jacob-jacobi.png",
-      "18589": "wilhelm-scheibner.png",
-      "21235": "otto-mencke.png",
-      "31091": "michael-r-stonebraker.png",
-      "32858": "carl-gottfried-neumann.png",
-      "41423": "enno-heeren-dirksen.png",
-      "46967": "ludwig-otto-hesse.png",
-      "57659": "johann-tobias-mayer.png",
-      "57667": "bernhard-friedrich-thibaut.png",
-      "57670": "christian-august-hausen.png",
-      "57706": "friedrich-julius-richelot.png",
-      "63600": "arch-waugh-naylor.png",
-      "65161": "georg-christoph-lichtenberg.png",
-      "66476": "abraham-gotthelf-kastner.png",
-      "68683": "hongjun-lu.png",
-      "72669": "johann-christoph-wichmannshausen.png",
-      "80277": "michael-james-carey.png",
-      "80987": "alan-breck-macnee.png",
-      "126087": "georg-von-peuerbach.png",
-      "126109": "johannes-muller-regiomontanus.png",
-      "126112": "domenico-maria-novara-da-ferrara.png",
-      "126113": "leonhard-von-dobschutz.png",
-      "126177": "nicolaus-copernicus.png",
-      "126724": "bonifazius-erasmi.png",
-      "126730": "johannes-volmar.png",
-      "126827": "georg-joachim-rheticus.png",
-      "126887": "johannes-von-gmunden.png",
-      "126888": "luca-pacioli.png",
-      "127264": "heinrich-von-langenstein.png",
-      "127424": "erasmus-schmidt.png",
-      "127734": "nicolaus-zapf.png",
-      "127790": "moritz-valentin-steinmetz.png",
-      "127801": "aegidius-strauch-i.png",
-      "127864": "nikolaus-selnecker.png",
-      "127898": "sethus-calvisius.png",
-      "127962": "michael-d-j-walther.png",
-      "128046": "johann-pasch.png",
-      "128986": "johann-andreas-planer.png",
-      "131561": "basilios-bessarion.png",
-      "131575": "georgios-plethon-gemistos.png",
-      "134780": "demetrios-kydones.png",
-      "137705": "jakob-thomasius.png",
-      "143630": "friedrich-leibniz.png",
-      "146365": "nilos-kabasilas.png",
-      "176844": "gregory-palamas.png",
-      "184631": "theodore-metochites.png",
-      "184632": "manuel-bryennios.png",
-      "199357": "nicole-oresme.png",
-      "201288": "gregory-chioniadis.png",
-      "204293": "shams-al-din-al-bukhari.png",
-      "217509": "nasir-al-din-al-tusi.png",
-      "223724": "kamal-al-din-ibn-yunus.png",
-      "230926": "sharaf-al-din-al-tusi.png",
-      "287466": "sharaf-al-din-muhammad-al-masudi-al-marwazi.png",
-      "287468": "bahmanyar-ibn-al-marzuban.png",
-      "287478": "fakhr-al-din-muhammad-al-razi.png",
-      "287479": "qutb-al-din-ibrahim-al-misri.png",
-      "287480": "athir-al-din-al-abhari.png",
-      "295739": "omar-khayyam.png",
-      "298616": "avicenna.png",
-      "310782": "abu-sahl-al-masihi.png",
-      "316872": "abu-abdallah-al-natili.png",
-      "316873": "abu-mansur-al-hasan-ibn-nuh-al-qumri.png",
-      "sha": "sha-mo.png",
-      "tan": "kian-lee-tan.png"
+      "7451": "william-edward-story.jpg",
+      "7461": "solomon-lefschetz.jpg",
+      "7829": "henry-wallman.jpg",
+      "15635": "carl-gustav-jacob-jacobi.jpg",
+      "18589": "wilhelm-scheibner.jpg",
+      "21235": "otto-mencke.jpg",
+      "31091": "michael-r-stonebraker.jpg",
+      "32858": "carl-gottfried-neumann.jpg",
+      "41423": "enno-heeren-dirksen.jpg",
+      "46967": "ludwig-otto-hesse.jpg",
+      "57659": "johann-tobias-mayer.jpg",
+      "57667": "bernhard-friedrich-thibaut.jpg",
+      "57670": "christian-august-hausen.jpg",
+      "57706": "friedrich-julius-richelot.jpg",
+      "63600": "arch-waugh-naylor.jpg",
+      "65161": "georg-christoph-lichtenberg.jpg",
+      "66476": "abraham-gotthelf-kastner.jpg",
+      "68683": "hongjun-lu.jpg",
+      "72669": "johann-christoph-wichmannshausen.jpg",
+      "80277": "michael-james-carey.jpg",
+      "80987": "alan-breck-macnee.jpg",
+      "126087": "georg-von-peuerbach.jpg",
+      "126109": "johannes-muller-regiomontanus.jpg",
+      "126112": "domenico-maria-novara-da-ferrara.jpg",
+      "126113": "leonhard-von-dobschutz.jpg",
+      "126177": "nicolaus-copernicus.jpg",
+      "126724": "bonifazius-erasmi.jpg",
+      "126730": "johannes-volmar.jpg",
+      "126827": "georg-joachim-rheticus.jpg",
+      "126887": "johannes-von-gmunden.jpg",
+      "126888": "luca-pacioli.jpg",
+      "127264": "heinrich-von-langenstein.jpg",
+      "127424": "erasmus-schmidt.jpg",
+      "127734": "nicolaus-zapf.jpg",
+      "127790": "moritz-valentin-steinmetz.jpg",
+      "127801": "aegidius-strauch-i.jpg",
+      "127864": "nikolaus-selnecker.jpg",
+      "127898": "sethus-calvisius.jpg",
+      "127962": "michael-d-j-walther.jpg",
+      "128046": "johann-pasch.jpg",
+      "128986": "johann-andreas-planer.jpg",
+      "131561": "basilios-bessarion.jpg",
+      "131575": "georgios-plethon-gemistos.jpg",
+      "134780": "demetrios-kydones.jpg",
+      "137705": "jakob-thomasius.jpg",
+      "143630": "friedrich-leibniz.jpg",
+      "146365": "nilos-kabasilas.jpg",
+      "176844": "gregory-palamas.jpg",
+      "184631": "theodore-metochites.jpg",
+      "184632": "manuel-bryennios.jpg",
+      "199357": "nicole-oresme.jpg",
+      "201288": "gregory-chioniadis.jpg",
+      "204293": "shams-al-din-al-bukhari.jpg",
+      "217509": "nasir-al-din-al-tusi.jpg",
+      "223724": "kamal-al-din-ibn-yunus.jpg",
+      "230926": "sharaf-al-din-al-tusi.jpg",
+      "287466": "sharaf-al-din-muhammad-al-masudi-al-marwazi.jpg",
+      "287468": "bahmanyar-ibn-al-marzuban.jpg",
+      "287478": "fakhr-al-din-muhammad-al-razi.jpg",
+      "287479": "qutb-al-din-ibrahim-al-misri.jpg",
+      "287480": "athir-al-din-al-abhari.jpg",
+      "295739": "omar-khayyam.jpg",
+      "298616": "avicenna.jpg",
+      "310782": "abu-sahl-al-masihi.jpg",
+      "316872": "abu-abdallah-al-natili.jpg",
+      "316873": "abu-mansur-al-hasan-ibn-nuh-al-qumri.jpg",
+      "sha": "sha-mo.jpg",
+      "tan": "kian-lee-tan.jpg"
     };
     // Right-side composition safety bounds; Lu's approved image stays fully visible.
     const sceneSubjectWidths={sha:.46,tan:.44,'68683':1};
@@ -1577,29 +1577,44 @@
     const edgeEls=edges.map(([from,to])=>{
       const path=document.createElementNS('http://www.w3.org/2000/svg','path');
       path.setAttribute('class','edge');path.dataset.from=from;path.dataset.to=to;
-      path.setAttribute('marker-end','url(#arrow-main)');svg.appendChild(path);return path;
+      path.setAttribute('marker-end','url(#arrow-main)');
+      svg.appendChild(path);return path;
     });
-    // Reuse a side lane only after its previous edge has ended.
-    // Adjacency in the list alone never implies a mentoring relationship.
-    const laneEnds=[], laneByEdge=new Map();
-    edgeEls.filter(p=>position.get(p.dataset.to)>position.get(p.dataset.from)+1)
-      .sort((a,b)=>position.get(a.dataset.from)-position.get(b.dataset.from)||position.get(b.dataset.to)-position.get(a.dataset.to))
-      .forEach(path=>{
-        const start=position.get(path.dataset.from),end=position.get(path.dataset.to);
-        let lane=laneEnds.findIndex(last=>last<start);
-        if(lane<0)lane=laneEnds.length;
-        laneEnds[lane]=end;laneByEdge.set(path,lane);
-      });
+    const mentorTrunk=document.createElementNS('http://www.w3.org/2000/svg','path');
+    mentorTrunk.setAttribute('class','edge');
+    mentorTrunk.style.strokeWidth='2.5';mentorTrunk.style.opacity='1';
+    svg.appendChild(mentorTrunk);
+    // A single shared trunk serves all direct mentors of the focused person.
+    // Only the horizontal branches carry arrows, pointing at the mentors.
+    function portraitBounds(id){
+      const portrait=nodeEls.get(id).querySelector('.portrait:not([hidden]), .portrait-fallback:not([hidden])');
+      const rect=portrait?.getBoundingClientRect?.(),origin=graph.getBoundingClientRect?.();
+      if(rect?.width&&origin)return {left:rect.left-origin.left,top:rect.top-origin.top,bottom:rect.bottom-origin.top,x:(rect.left+rect.right)/2-origin.left,y:(rect.top+rect.bottom)/2-origin.top};
+      const mobile=window.innerWidth<=600,scale=id===activeId?1.18:.78;
+      const halfWidth=(mobile?54:68)*scale/2,halfHeight=(mobile?62:76)*scale/2;
+      return {left:centerX-halfWidth,top:centerY(id)-halfHeight,bottom:centerY(id)+halfHeight,x:centerX,y:centerY(id)};
+    }
     function drawEdges(){
+      const branches=edgeEls.filter(path=>path.dataset.from===activeId);
+      const shared=branches.length>1;
+      const port=centerX-nodeWidth/2;
+      const lane=Math.max(4,port-16);
+      const source=portraitBounds(activeId);
+      mentorTrunk.style.display=shared?'':'none';
+      if(shared){
+        const start=source.y,end=Math.max(...branches.map(path=>portraitBounds(path.dataset.to).y));
+        mentorTrunk.setAttribute('d','M '+source.left+' '+start+' L '+lane+' '+start+' L '+lane+' '+end);
+      }
       edgeEls.forEach(path=>{
+        const visible=path.dataset.from===activeId;
+        path.style.display=visible?'':'none';
+        if(!visible)return;
         const from=path.dataset.from,to=path.dataset.to,a=centerY(from),b=centerY(to);
         const adjacent=position.get(to)===position.get(from)+1;
-        const port=centerX-nodeWidth/2;
-        const spacing=Math.max(2,Math.min(14,(port-14)/Math.max(1,laneEnds.length)));
-        const lane=Math.max(4,port-8-(laneByEdge.get(path)||0)*spacing);
-        path.setAttribute('d',adjacent?'M '+centerX+' '+(a+62)+' L '+centerX+' '+(b-62):'M '+port+' '+a+' L '+lane+' '+a+' L '+lane+' '+b+' L '+port+' '+b);
-        path.style.opacity=from===activeId||to===activeId?'1':'.42';
-        path.style.strokeWidth=from===activeId||to===activeId?'2.5':'1.6';
+        const target=portraitBounds(to);
+        path.setAttribute('d',shared?'M '+lane+' '+target.y+' L '+target.left+' '+target.y:adjacent?'M '+source.x+' '+source.bottom+' L '+target.x+' '+target.top:'M '+source.left+' '+source.y+' L '+lane+' '+source.y+' L '+lane+' '+target.y+' L '+target.left+' '+target.y);
+        path.style.opacity='1';
+        path.style.strokeWidth='2.5';
       });
     }
     function chapterHTML(person){
@@ -1638,6 +1653,7 @@
       const top=chapterTop(base)+(index-base)*(chapters[base].offsetHeight||panel.clientHeight);
       panel.scrollTop=Math.min(Math.max(0,top),Math.max(0,panel.scrollHeight-panel.clientHeight));
     }
+    let edgeAnimationToken=0;
     function focusPerson(id){
       activeId=id;const person=byId.get(id);
       panel.setAttribute('data-year',person.year.match(/\d{3,4}/)?.[0]||'');
@@ -1657,6 +1673,14 @@
         chapter.querySelectorAll?.('a,button').forEach(link=>{link.tabIndex=selected?0:-1;});
       });
       drawEdges();
+      // Track the actual portrait boundary throughout its 350 ms scale animation.
+      const token=++edgeAnimationToken,start=Date.now();
+      const trackEdges=()=>{
+        if(token!==edgeAnimationToken)return;
+        drawEdges();
+        if(Date.now()-start<400)requestAnimationFrame(trackEdges);
+      };
+      requestAnimationFrame(trackEdges);
     }
     function jump(id,behavior=reducedMotion.matches?'auto':'smooth'){
       stopAnimation();
