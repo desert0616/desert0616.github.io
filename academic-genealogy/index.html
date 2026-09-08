@@ -390,12 +390,20 @@
     .reader .node:focus:not(:focus-visible) { outline: none; }
     .reader .mini-toggle:focus-visible .mini-name { text-decoration: underline; text-underline-offset: 4px; }
     .reader .mini-toggle .portrait, .reader .mini-toggle .portrait-fallback { border-color: #d6d5be44; box-shadow: none; }
-    .reader .mini-toggle { user-select: none; -webkit-user-select: none; }
+    .reader .mini-toggle { position: relative; user-select: none; -webkit-user-select: none; }
     .reader .mini-toggle img { -webkit-user-drag: none; }
-    .reader .node.mini, .reader .node.mini.is-active { background: transparent; border-color: transparent; box-shadow: none; }
+    .reader .node.mini, .reader .node.mini.is-active { padding: 0; overflow: visible; background: transparent; border-color: transparent; box-shadow: none; }
     .reader .mini-toggle .portrait, .reader .mini-toggle .portrait-fallback { width: 68px; height: 76px; flex-basis: 76px; border-radius: 16px; border: 2px solid #c5d1c533; }
     .reader .node.mini.is-active .portrait, .reader .node.mini.is-active .portrait-fallback { border-color: #efd09a; }
     .reader .mini-toggle:focus-visible .portrait, .reader .mini-toggle:focus-visible .portrait-fallback { border-style: dashed; }
+    @media (min-width: 1200px) {
+      .reader { grid-template-columns: 270px minmax(0,1fr); }
+      .reader .mini-toggle .portrait, .reader .mini-toggle .portrait-fallback { width: 88px; height: 98px; flex-basis: 98px; border-radius: 19px; }
+    }
+    @media (min-width: 1600px) {
+      .reader { grid-template-columns: 320px minmax(0,1fr); }
+      .reader .mini-toggle .portrait, .reader .mini-toggle .portrait-fallback { width: 104px; height: 116px; flex-basis: 116px; border-radius: 22px; }
+    }
     #focus-card .identity { grid-template-columns: minmax(0,1fr); gap: 0; }
     @media(max-width:600px) {
       .reader .mini-toggle .portrait, .reader .mini-toggle .portrait-fallback { width: 54px; height: 62px; flex-basis: 62px; border-radius: 13px; }
@@ -541,7 +549,7 @@
       P("126827","Georg Joachim Rheticus","1535","Magister artium","Martin-Luther-Universität Halle-Wittenberg","萨克森选侯国 · 神圣罗马帝国","","https://en.wikipedia.org/wiki/Rheticus"),
       P("126730","Johannes Volmar","1515","Magister artium","Martin-Luther-Universität Halle-Wittenberg","萨克森选侯国 · 神圣罗马帝国",""),
       P("126177","Nicolaus Copernicus","1499","Juris utriusque Doctor","Bologna / Padua / Ferrara / Jagiellonian University","教宗国／威尼斯共和国／费拉拉公国／波兰王国","","https://en.wikipedia.org/wiki/Nicolaus_Copernicus"),
-      P("126724","Bonifazius Erasmi","1509","Magister artium","Martin-Luther-Universität Halle-Wittenberg","萨克森选侯国 · 神圣罗马帝国",""),
+      P("126724","Bonifazius Erasmi","1509","Magister artium","Martin-Luther-Universität Halle-Wittenberg","萨克森选侯国 · 神圣罗马帝国","","https://de.wikipedia.org/wiki/Bonifacius_Erasmi_de_Rode"),
       P("126113","Leonhard von Dobschütz","1489","Magister artium","Uniwersytet Jagielloński","波兰王国","","https://de.wikipedia.org/wiki/Leonhard_von_Dobsch%C3%BCtz_(Astronom)"),
       P("126112","Domenico Maria Novara da Ferrara","1483","学位类型未记录","Università degli Studi di Firenze","佛罗伦萨共和国","","https://en.wikipedia.org/wiki/Domenico_Maria_Novara_da_Ferrara"),
       P("126109","Johannes Müller Regiomontanus","1457","Magister artium","Universität Leipzig / Universität Wien","奥地利公国 · 神圣罗马帝国","","https://en.wikipedia.org/wiki/Regiomontanus"),
@@ -569,7 +577,7 @@
       P("295739","Omar Khayyam","1068","师承记录","","西喀喇汗国（布哈拉／撒马尔罕）","", "https://en.wikipedia.org/wiki/Omar_Khayyam"),
       P("287468","Bahmanyār ibn al-Marzubān","约 1025","师承记录","","卡库伊王朝（伊斯法罕）","","https://en.wikipedia.org/wiki/Bahmanyar"),
       P("298616","Avicenna","约 995","师承记录","","萨曼王朝（布哈拉）","","https://en.wikipedia.org/wiki/Avicenna", "Abu ʿAli al-Husayn ibn Sina"),
-      P("316872","Abu Abdallah al-Natili","约 990","师承记录","","萨曼王朝（布哈拉）",""),
+      P("316872","Abu Abdallah al-Natili","约 990","师承记录","","萨曼王朝（布哈拉）","","https://en.wikipedia.org/wiki/Al-Natili"),
       P("310782","Abu Sahl al-Masihi","约 1005","师承记录","","花剌子模马蒙王朝（玉龙杰赤）","","https://en.wikipedia.org/wiki/Abu_Sahl_%27Isa_ibn_Yahya_al-Masihi"),
       P("316873","Abu Mansur al-Hasan ibn Nuh al-Qumri","约 975","师承记录","","萨曼王朝（布哈拉）","","https://en.wikipedia.org/wiki/Qumri")
     ];
@@ -816,6 +824,43 @@
       "295739":["assets/portraits/omar-khayyam.jpg","https://en.wikipedia.org/wiki/Omar_Khayyam"],
       "298616":["assets/portraits/avicenna.jpg","https://en.wikipedia.org/wiki/Avicenna"]
     };
+    // Invented appearances, not authenticated likenesses. Prompts and research are retained locally.
+    const imaginedPortraits = {
+      "63600": "assets/portraits/arch-waugh-naylor-imagined.jpg",
+      "80987": "assets/portraits/alan-breck-macnee-imagined.jpg",
+      "126087": "assets/portraits/georg-von-peuerbach-imagined.jpg",
+      "126112": "assets/portraits/domenico-maria-novara-da-ferrara-imagined.jpg",
+      "126113": "assets/portraits/leonhard-von-dobschutz-imagined.jpg",
+      "126730": "assets/portraits/johannes-volmar-imagined.jpg",
+      "126827": "assets/portraits/georg-joachim-rheticus-imagined.jpg",
+      "126887": "assets/portraits/johannes-von-gmunden-imagined.jpg",
+      "127790": "assets/portraits/moritz-valentin-steinmetz-imagined.jpg",
+      "127962": "assets/portraits/michael-walther-the-younger-imagined.jpg",
+      "128046": "assets/portraits/johann-pasch-imagined.jpg",
+      "128986": "assets/portraits/johann-andreas-planer-imagined.jpg",
+      "134780": "assets/portraits/demetrios-kydones-imagined.jpg",
+      "146365": "assets/portraits/nilos-kabasilas-imagined.jpg",
+      "184632": "assets/portraits/manuel-bryennios-imagined.jpg",
+      "201288": "assets/portraits/gregory-chioniades-imagined.jpg",
+      "204293": "assets/portraits/shams-al-din-al-bukhari-imagined.jpg",
+      "223724": "assets/portraits/kamal-al-din-ibn-yunus-imagined.jpg",
+      "230926": "assets/portraits/sharaf-al-din-al-tusi-imagined.jpg",
+      "287466": "assets/portraits/sharaf-al-din-al-masudi-imagined.jpg",
+      "287478": "assets/portraits/fakhr-al-din-al-razi-imagined.jpg",
+      "287479": "assets/portraits/qutb-al-din-ibrahim-al-misri-imagined.jpg",
+      "287480": "assets/portraits/athir-al-din-al-abhari-imagined.jpg",
+      "310782": "assets/portraits/abu-sahl-al-masihi-imagined.jpg",
+      "316872": "assets/portraits/abu-abdallah-al-natili-imagined.jpg",
+      "316873": "assets/portraits/abu-mansur-al-qumri-imagined.jpg"
+};
+    Object.entries(imaginedPortraits).forEach(([id,path]) => {
+      portraits[id]=[path,'research/portrait-link-review.md'];
+      people.find(p=>p.id===id).portraitImagined=true;
+    });
+    portraits['126724']=['assets/portraits/bonifazius-erasmi-relief.jpg','https://disk.mathematik.uni-halle.de/history/erasmi/index.html'];
+    portraits['127264']=['assets/portraits/heinrich-von-langenstein-attributed.jpg','https://geschichte.univie.ac.at/de/personen/heinrich-von-langenstein'];
+    portraits['287468']=['assets/portraits/bahmanyar-bust.jpg','https://commons.wikimedia.org/wiki/File:%C4%B0smailiyye_palace_Bust_of_Bahmanyar_Al-Azerbaijani.JPG'];
+    ['127264','131575'].forEach(id=>people.find(p=>p.id===id).portraitUncertain=true);
     Object.entries(portraits).forEach(([id,v]) => {
       const p=people.find(x=>x.id===id);
       if (p) { p.portrait=v[0]; p.portraitSource=v[1]; }
@@ -1237,7 +1282,7 @@
       sha:['Modern hardware · Secure data processing · Graph algorithms','现代硬件 · 安全数据处理 · 图算法'],
       tan:['Parallel databases · query optimization','并行与分布式数据库 · 查询优化'],
       '68683':['Database systems · query optimization','数据库系统 · 查询优化'],
-      '128046':['Celestial conjunctions (documented thesis topic)','天体合相（据现存论文题目）'],
+      '128046':['Theology · Philology','神学 · 语文学'],
       '287479':['Medicine · medical commentary','医学 · 医学文献注释'],
       '287466':['Philosophy · theoretical astronomy','哲学 · 理论天文学'],
       '143630':['Moral philosophy · law','道德哲学 · 法学']
@@ -1480,7 +1525,7 @@
       tan:['Helping databases divide and conquer','让数据库分工提速','Parallel queries · distributed databases','并行查询优化 · 分布式数据库'],
       '68683':['A pioneer of database technology in China','中国数据库技术的先驱','Query optimization · database performance','查询优化 · 数据库性能研究'],
       '80277':['Building AsterixDB for the big-data age','以 AsterixDB 应对海量数据','OO7 benchmark · semistructured data management','OO7 基准 · 半结构化数据管理'],
-      '31091':['Pioneering databases with INGRES and POSTGRES','INGRES 与 POSTGRES 的开创者','Relational database architecture · 2014 ACM Turing Award','关系数据库架构 · 2014年图灵奖'],
+      '31091':['Shaping how the world stores its data','重塑世界存储数据的方式','Relational database architecture · 2014 ACM Turing Award','关系数据库架构 · 2014年图灵奖'],
       '63600':['Bringing linear operator theory to engineering','把线性算子理论引入工程视野','Control theory · systems engineering','控制理论 · 系统工程'],
       '80987':['Making circuits solve differential equations','让电路替人解微分方程','Electronic analog computing','电子模拟计算'],
       '7829':['Writing a classic on the mathematics of dimension','合著《维数理论》，奠定拓扑经典','Wallman compactification · lattice theory','沃尔曼紧化 · 格论'],
@@ -1500,7 +1545,7 @@
       '72669':['Opening old texts through Eastern languages','用东方语言叩开古籍之门','Hebrew · Syriac · Arabic','希伯来语 · 叙利亚语 · 阿拉伯语'],
       '128986':['A Wittenberg mathematician who became rector','从数学讲席走向维滕贝格校长之位','Higher mathematics chair · rector in 1712','高等数学讲席 · 1712年校长'],
       '21235':['Founding Acta Eruditorum to circulate new knowledge','创办《学艺纪事》，让新知流通','Scholarly publishing · journal founded in 1682','学术出版 · 1682年创刊'],
-      '128046':['Studying the conjunctions of the heavens','研究星体在天空中的相会','Celestial conjunctions','天体合相'],
+      '128046':['Reading across poetry and scripture','在古典诗文与经文之间求索','Selah: a philological study','《细拉》语文学研究'],
       '137705':['Teaching philosophy to a future Leibniz','为年轻的莱布尼茨讲哲学','Logic · rhetoric · history of philosophy','逻辑学 · 修辞学 · 哲学史'],
       '127962':['Moving from mathematics to theology','从数学讲席走向神学讲坛','Higher mathematics · Lutheran theology','高等数学 · 路德宗神学'],
       '143630':['An ethics professor—and Leibniz’s father','教道德哲学，也是莱布尼茨之父','A family library that helped educate Leibniz','藏书影响了少年莱布尼茨'],
@@ -1607,10 +1652,13 @@
       const rect=portrait?.getBoundingClientRect?.(),origin=graph.getBoundingClientRect?.();
       if(rect?.width&&origin)return {left:rect.left-origin.left,top:rect.top-origin.top,bottom:rect.bottom-origin.top,x:(rect.left+rect.right)/2-origin.left,y:(rect.top+rect.bottom)/2-origin.top};
       const mobile=window.innerWidth<=600,scale=id===activeId?1.18:.78;
-      const halfWidth=(mobile?54:68)*scale/2,halfHeight=(mobile?62:76)*scale/2;
+      const wide=window.innerWidth>=1600,desktop=window.innerWidth>=1200;
+      const halfWidth=(mobile?54:wide?104:desktop?88:68)*scale/2,halfHeight=(mobile?62:wide?116:desktop?98:76)*scale/2;
       return {left:centerX-halfWidth,top:centerY(id)-halfHeight,bottom:centerY(id)+halfHeight,x:centerX,y:centerY(id)};
     }
     function drawEdges(){
+      const lineWidth=window.innerWidth>=1600?3.5:window.innerWidth>=1200?3:2.5;
+      mentorTrunk.style.strokeWidth=String(lineWidth);
       const branches=edgeEls.filter(path=>path.dataset.from===activeId);
       const shared=branches.length>1;
       const port=centerX-nodeWidth/2;
@@ -1630,12 +1678,12 @@
         const target=portraitBounds(to);
         path.setAttribute('d',shared?'M '+lane+' '+target.y+' L '+target.left+' '+target.y:adjacent?'M '+source.x+' '+source.bottom+' L '+target.x+' '+target.top:'M '+source.left+' '+source.y+' L '+lane+' '+source.y+' L '+lane+' '+target.y+' L '+target.left+' '+target.y);
         path.style.opacity='1';
-        path.style.strokeWidth='2.5';
+        path.style.strokeWidth=String(lineWidth);
       });
     }
     function chapterHTML(person){
       const id=person.id;
-      if(id==='sha')return '<div class="genealogy-disclaimer"><p class="disclaimer-en" lang="en">Just for fun—an exploration of academic ancestry, not a definitive historical account. Some details remain unverified, and even the underlying sources may be unreliable, especially for the earliest connections.</p><p class="disclaimer-zh" lang="zh-CN">仅为兴趣，循着学术师承探寻来路，并非定论。部分信息尚未经核实，所据文献本身也可能存疑，尤其是年代久远的师承记录。</p></div>'+cardHTML(person);
+      if(id==='sha')return '<div class="genealogy-disclaimer"><p class="disclaimer-en" lang="en">Just for fun — sources may be unreliable, and historical records may be inaccurate.</p><p class="disclaimer-zh" lang="zh-CN">仅供娱乐——来源可能不可靠，文献记载也可能不准确。</p></div>'+cardHTML(person);
       const title=chapterTitles[id]||(id!=='sha'&&person.fieldEn?[person.fieldEn.split(';')[0],person.field.split('；')[0]]:null);
       const chapter=title?'<div class="chapter-intro"><p class="chapter-en" lang="en">'+esc(title[0])+'</p><p class="chapter-zh" lang="zh-CN">'+esc(title[1])+'</p></div>':'';
       return chapter+cardHTML(person);
@@ -1741,7 +1789,7 @@
       reader.style.top=(window.visualViewport?.offsetTop||0)+'px';
       reader.style.setProperty('--chapter-height',visible.height+'px');
       padding=Math.max(24,shell.clientHeight/2-62);
-      nodeWidth=window.innerWidth<=600?76:100;
+      nodeWidth=window.innerWidth<=600?76:window.innerWidth>=1600?156:window.innerWidth>=1200?132:100;
       centerX=Math.min(Math.round(shell.clientWidth*.65),shell.clientWidth-nodeWidth/2-4);
       graph.style.width='100%';graph.style.minHeight=(padding*2+(sequence.length-1)*step+124)+'px';
       sequence.forEach((p,i)=>{

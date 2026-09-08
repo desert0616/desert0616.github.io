@@ -1,0 +1,390 @@
+[
+  {
+    "id": "128986",
+    "slug": "johann-andreas-planer",
+    "prompt": "Use case: illustration-story. Asset type: single square portrait avatar for an academic genealogy website. Primary request: an explicitly imagined comic portrait of Johann Andreas Planer, German mathematician, c.1665–1714, Wittenberg. Scholarly dark coat, white linen neckcloth, natural shoulder-length hair appropriate to a scholar around 1700; snow crystals and a closed mathematics volume as subdued backdrop cues. No verified likeness is available: invent an individual face, not a reconstruction and not another known person's likeness. Style: refined hand-inked editorial comic with matte painterly color, softly modeled face, visible clean outlines, dignified and engaging, clearly illustrated rather than photographic or antique facsimile. Composition: one person only, centered head and shoulders, whole head comfortably inside the square, face large and readable at 54px, eyes around upper third; simple dark teal and warm parchment background, restrained gold light. Period-inspired clothing, no claim of exact historical costume. No text, letters, dates, labels, watermark, frame, logos, halo, collage or extra people. 1024x1024.",
+    "tool": "built-in imagegen",
+    "localPath": "assets/portraits/johann-andreas-planer-imagined.jpg",
+    "basis": {
+      "id": "128986",
+      "name": "Johann Andreas Planer",
+      "wiki": "https://de.wikipedia.org/wiki/Johannes_Andreas_Planer",
+      "field": "数学；形而上学；自然哲学",
+      "country": "萨克森选侯国 · 神圣罗马帝国（现德国）"
+    },
+    "status": "no-usable-verified-portrait-located"
+  },
+  {
+    "id": "128046",
+    "slug": "johann-pasch",
+    "prompt": "Use case: illustration-story. Asset type: single square portrait avatar for an academic genealogy website. Primary request: an explicitly imagined comic portrait of Johann Pasch, Lutheran scholar and philologist, 1661–1709, Ratzeburg, Rostock and Hamburg. Dark late-17th-century scholarly coat and white clerical bands, medium-length brown hair, attentive thoughtful expression, subdued bound books and a quill. No verified likeness is available: invent an individual face, not a reconstruction and not another known person's likeness. Style: refined hand-inked editorial comic with matte painterly color, softly modeled face, visible clean outlines, dignified and engaging, clearly illustrated rather than photographic or antique facsimile. Composition: one person only, centered head and shoulders, whole head comfortably inside the square, face large and readable at 54px, eyes around upper third; simple dark teal and warm parchment background, restrained gold light. Period-inspired clothing, no claim of exact historical costume. No text, letters, dates, labels, watermark, frame, logos, halo, collage or extra people. 1024x1024.",
+    "tool": "built-in imagegen",
+    "localPath": "assets/portraits/johann-pasch-imagined.jpg",
+    "basis": {
+      "id": "128046",
+      "name": "Johann Pasch",
+      "wiki": "",
+      "country": "萨克森选侯国 · 神圣罗马帝国（现德国）"
+    },
+    "status": "no-usable-verified-portrait-located"
+  },
+  {
+    "id": "127790",
+    "slug": "moritz-valentin-steinmetz",
+    "prompt": "Use case: illustration-story. Asset type: single square portrait avatar for an academic genealogy website. Primary request: an explicitly imagined comic portrait of Moritz Steinmetz, 1529–1584, mathematician, astronomer and physician in Leipzig. Mid-16th-century German scholarly black cap and plain dark gown, short graying beard, muted botanical sprig and brass dividers in the background. No verified likeness is available: invent an individual face, not a reconstruction and not another known person's likeness. Style: refined hand-inked editorial comic with matte painterly color, softly modeled face, visible clean outlines, dignified and engaging, clearly illustrated rather than photographic or antique facsimile. Composition: one person only, centered head and shoulders, whole head comfortably inside the square, face large and readable at 54px, eyes around upper third; simple dark teal and warm parchment background, restrained gold light. Period-inspired clothing, no claim of exact historical costume. No text, letters, dates, labels, watermark, frame, logos, halo, collage or extra people. 1024x1024.",
+    "tool": "built-in imagegen",
+    "localPath": "assets/portraits/moritz-valentin-steinmetz-imagined.jpg",
+    "basis": {
+      "id": "127790",
+      "name": "Moritz Valentin Steinmetz",
+      "wiki": "https://de.wikipedia.org/wiki/Moritz_Steinmetz",
+      "field": "数学；天文学；医学；植物学",
+      "country": "萨克森选侯国 · 神圣罗马帝国（现德国）"
+    },
+    "status": "no-usable-verified-portrait-located"
+  },
+  {
+    "id": "126827",
+    "slug": "georg-joachim-rheticus",
+    "prompt": "Use case: illustration-story. Asset type: single square portrait avatar for an academic genealogy website. Primary request: an explicitly imagined comic portrait of Georg Joachim Rheticus, 1514–1574, Austrian-born Renaissance mathematician and astronomer in Wittenberg and Leipzig. Thoughtful adult scholar in a dark Renaissance beret and russet scholarly gown, short chestnut beard, subtle brass armillary ring and bound book in the background. NOT Copernicus's familiar face. No verified likeness is available: invent an individual face, not a reconstruction and not another known person's likeness. Style: refined hand-inked editorial comic with matte painterly color, softly modeled face, visible clean outlines, dignified and engaging, clearly illustrated rather than photographic or antique facsimile. Composition: one person only, centered head and shoulders, whole head comfortably inside the square, face large and readable at 54px, eyes around upper third; simple dark teal and warm parchment background, restrained gold light. Period-inspired clothing, no claim of exact historical costume. No text, letters, dates, labels, watermark, frame, logos, halo, collage or extra people. 1024x1024.",
+    "tool": "built-in imagegen",
+    "localPath": "assets/portraits/georg-joachim-rheticus-imagined.jpg",
+    "basis": {
+      "id": "126827",
+      "name": "Georg Joachim Rheticus",
+      "wiki": "https://en.wikipedia.org/wiki/Rheticus",
+      "field": "天文学；数学；制图与仪器",
+      "country": "萨克森选侯国 · 神圣罗马帝国（现德国）"
+    },
+    "status": "no-usable-verified-portrait-located"
+  },
+  {
+    "id": "126730",
+    "slug": "johannes-volmar",
+    "prompt": "Use case: illustration-story. Asset type: single square portrait avatar for an academic genealogy website. Primary request: an explicitly imagined comic portrait of Johannes Volmar, early-16th-century Wittenberg scholar of mathematics and astronomy (active 1515–1530s). Simple black academic bonnet, dark wool scholar's robe with modest fur collar, mature face with short beard, muted brass astronomical instrument. Not the nineteenth-century Swiss artist Johann Volmar. No verified likeness is available: invent an individual face, not a reconstruction and not another known person's likeness. Style: refined hand-inked editorial comic with matte painterly color, softly modeled face, visible clean outlines, dignified and engaging, clearly illustrated rather than photographic or antique facsimile. Composition: one person only, centered head and shoulders, whole head comfortably inside the square, face large and readable at 54px, eyes around upper third; simple dark teal and warm parchment background, restrained gold light. Period-inspired clothing, no claim of exact historical costume. No text, letters, dates, labels, watermark, frame, logos, halo, collage or extra people. 1024x1024.",
+    "tool": "built-in imagegen",
+    "localPath": "assets/portraits/johannes-volmar-imagined.jpg",
+    "basis": {
+      "id": "126730",
+      "name": "Johannes Volmar",
+      "wiki": "",
+      "field": "数学；天文学；占星术",
+      "country": "萨克森选侯国 · 神圣罗马帝国（现德国）"
+    },
+    "status": "no-usable-verified-portrait-located"
+  },
+  {
+    "id": "127962",
+    "slug": "michael-walther-the-younger",
+    "prompt": "Use case: illustration-story. Asset type: single square portrait avatar for an academic genealogy website. Primary request: an explicitly imagined comic portrait of Michael Walther the Younger, 1638–1692, Wittenberg mathematician and Lutheran theologian, born in Aurich. Late seventeenth-century black scholarly gown, white clerical bands, wavy dark hair, trim mustache, adult thoughtful face, faint brass celestial globe behind. Not his father Michael Walther the Elder. No verified likeness is available: invent an individual face, not a reconstruction and not another known person's likeness. Style: refined hand-inked editorial comic, visible crisp ink outlines and simplified painterly colors, dignified and engaging; clearly a modern illustration, not a photograph or forged antique. Composition: one person, centered head and shoulders, whole head inside the frame with margin, face large and readable at 54px, eyes near upper third; muted dark teal and warm parchment backdrop with restrained gold light, only tiny subdued background cues. Period-inspired clothing, no claim of exact historical costume. No text, letters, labels, watermark, frame, logos, collage or extra people. 1024x1024.",
+    "tool": "built-in imagegen",
+    "localPath": "assets/portraits/michael-walther-the-younger-imagined.jpg",
+    "basis": {
+      "id": "127962",
+      "name": "Michael d. J. Walther",
+      "wiki": "https://de.wikipedia.org/wiki/Michael_Walther_der_J%C3%BCngere",
+      "field": "数学；天文学；路德宗神学",
+      "country": "萨克森选侯国 · 神圣罗马帝国（现德国）"
+    },
+    "status": "no-usable-verified-portrait-located"
+  },
+  {
+    "id": "126113",
+    "slug": "leonhard-von-dobschutz",
+    "prompt": "Use case: illustration-story. Asset type: single square portrait avatar for an academic genealogy website. Primary request: an explicitly imagined comic portrait of Leonhard von Dobschütz / Leonard of Dobczyce, c.1450–1508, Krakow astronomer and astrologer. Mature central-European scholar in late-fifteenth-century plain black academic cap and wool robe, graying short beard, subtle brass astrolabe behind. Not the modern economist of the same name. No verified likeness is available: invent an individual face, not a reconstruction and not another known person's likeness. Style: refined hand-inked editorial comic, visible crisp ink outlines and simplified painterly colors, dignified and engaging; clearly a modern illustration, not a photograph or forged antique. Composition: one person, centered head and shoulders, whole head inside the frame with margin, face large and readable at 54px, eyes near upper third; muted dark teal and warm parchment backdrop with restrained gold light, only tiny subdued background cues. Period-inspired clothing, no claim of exact historical costume. No text, letters, labels, watermark, frame, logos, collage or extra people. 1024x1024.",
+    "tool": "built-in imagegen",
+    "localPath": "assets/portraits/leonhard-von-dobschutz-imagined.jpg",
+    "basis": {
+      "id": "126113",
+      "name": "Leonhard von Dobschütz",
+      "wiki": "https://de.wikipedia.org/wiki/Leonhard_von_Dobsch%C3%BCtz_(Astronom)",
+      "field": "天文学；占星术；数学",
+      "country": "波兰王国（现波兰）"
+    },
+    "status": "no-usable-verified-portrait-located"
+  },
+  {
+    "id": "126112",
+    "slug": "domenico-maria-novara-da-ferrara",
+    "prompt": "Use case: illustration-story. Asset type: single square portrait avatar for an academic genealogy website. Primary request: an explicitly imagined comic portrait of Domenico Maria Novara, 1454–1504, Italian astronomer and teacher at Bologna. Late-fifteenth-century Italian scholar with black soft beret, chestnut hair and a neat short beard, deep reddish-brown academic cloak, faint night sky and quadrant. NOT Copernicus's famous face. No verified likeness is available: invent an individual face, not a reconstruction and not another known person's likeness. Style: refined hand-inked editorial comic, visible crisp ink outlines and simplified painterly colors, dignified and engaging; clearly a modern illustration, not a photograph or forged antique. Composition: one person, centered head and shoulders, whole head inside the frame with margin, face large and readable at 54px, eyes near upper third; muted dark teal and warm parchment backdrop with restrained gold light, only tiny subdued background cues. Period-inspired clothing, no claim of exact historical costume. No text, letters, labels, watermark, frame, logos, collage or extra people. 1024x1024.",
+    "tool": "built-in imagegen",
+    "localPath": "assets/portraits/domenico-maria-novara-da-ferrara-imagined.jpg",
+    "basis": {
+      "id": "126112",
+      "name": "Domenico Maria Novara da Ferrara",
+      "wiki": "https://en.wikipedia.org/wiki/Domenico_Maria_Novara_da_Ferrara",
+      "field": "天文学；占星术",
+      "country": "佛罗伦萨共和国（现意大利）"
+    },
+    "status": "no-usable-verified-portrait-located"
+  },
+  {
+    "id": "126087",
+    "slug": "georg-von-peuerbach",
+    "prompt": "Use case: illustration-story. Asset type: single square portrait avatar for an academic genealogy website. Primary request: an explicitly imagined comic portrait of Georg von Peuerbach, 1423–1461, Austrian astronomer in Vienna. Adult around 35, brown wavy hair, clean-shaven distinctive invented face, fifteenth-century academic cap and plain dark scholar's gown, discreet astronomical brass instrument and moon. Not Emperor Frederick III and not the misidentified portrait. No verified likeness is available: invent an individual face, not a reconstruction and not another known person's likeness. Style: refined hand-inked editorial comic, visible crisp ink outlines and simplified painterly colors, dignified and engaging; clearly a modern illustration, not a photograph or forged antique. Composition: one person, centered head and shoulders, whole head inside the frame with margin, face large and readable at 54px, eyes near upper third; muted dark teal and warm parchment backdrop with restrained gold light, only tiny subdued background cues. Period-inspired clothing, no claim of exact historical costume. No text, letters, labels, watermark, frame, logos, collage or extra people. 1024x1024.",
+    "tool": "built-in imagegen",
+    "localPath": "assets/portraits/georg-von-peuerbach-imagined.jpg",
+    "basis": {
+      "id": "126087",
+      "name": "Georg von Peuerbach",
+      "wiki": "https://en.wikipedia.org/wiki/Georg_von_Peuerbach",
+      "field": "天文学；数学；仪器制造",
+      "country": "奥地利公国 · 神圣罗马帝国（现奥地利）"
+    },
+    "status": "no-usable-verified-portrait-located"
+  },
+  {
+    "id": "126887",
+    "slug": "johannes-von-gmunden",
+    "prompt": "Use case: illustration-story. Asset type: single square portrait avatar for an academic genealogy website. Primary request: an explicitly imagined comic portrait of Johannes von Gmunden, c.1380–1442, astronomer and mathematician at Vienna. Mature scholar in early-fifteenth-century Central European plain black bonnet, dark blue wool gown, silver-streaked short beard; a softly indicated calendar wheel and brass instrument. No verified likeness is available: invent an individual face, not a reconstruction and not another known person's likeness. Style: refined hand-inked editorial comic, visible crisp ink outlines and simplified painterly colors, dignified and engaging; clearly a modern illustration, not a photograph or forged antique. Composition: one person, centered head and shoulders, whole head inside the frame with margin, face large and readable at 54px, eyes near upper third; muted dark teal and warm parchment backdrop with restrained gold light, only tiny subdued background cues. Period-inspired clothing, no claim of exact historical costume. No text, letters, labels, watermark, frame, logos, collage or extra people. 1024x1024.",
+    "tool": "built-in imagegen",
+    "localPath": "assets/portraits/johannes-von-gmunden-imagined.jpg",
+    "basis": {
+      "id": "126887",
+      "name": "Johannes von Gmunden",
+      "wiki": "https://en.wikipedia.org/wiki/Johannes_von_Gmunden",
+      "field": "天文学；数学；历法与科学仪器",
+      "country": "奥地利公国 · 神圣罗马帝国（现奥地利）"
+    },
+    "status": "no-usable-verified-portrait-located"
+  },
+  {
+    "id": "134780",
+    "slug": "demetrios-kydones",
+    "prompt": "Use case: illustration-story. Asset type: single square portrait avatar for an academic genealogy website. Primary request: an explicitly imagined comic portrait of Demetrios Kydones, 1324–1398, Byzantine Greek statesman and translator. Middle-aged late-Byzantine lay scholar with short dark beard and restrained dark-red secular robe; no episcopal mitre, no crown, no halo. Modest folded manuscript and quill behind. No verified likeness is available: invent an individual face, not a reconstruction and not another known person's likeness. Style: refined hand-inked editorial comic, visible crisp ink outlines and simplified painterly colors, dignified and engaging; clearly a modern illustration, not a photograph or forged antique. Composition: one person, centered head and shoulders, whole head inside the frame with margin, face large and readable at 54px, eyes near upper third; muted dark teal and warm parchment backdrop with restrained gold light, only tiny subdued background cues. Period-inspired clothing, no claim of exact historical costume. No text, letters, labels, watermark, frame, logos, collage or extra people. 1024x1024.",
+    "tool": "built-in imagegen",
+    "localPath": "assets/portraits/demetrios-kydones-imagined.jpg",
+    "basis": {
+      "id": "134780",
+      "name": "Demetrios Kydones",
+      "wiki": "https://en.wikipedia.org/wiki/Demetrios_Kydones",
+      "field": "神学；哲学翻译；政治与外交",
+      "country": "拜占庭帝国（现希腊／土耳其）"
+    },
+    "status": "no-usable-verified-portrait-located"
+  },
+  {
+    "id": "146365",
+    "slug": "nilos-kabasilas",
+    "prompt": "Use case: illustration-story. Asset type: single square portrait avatar for an academic genealogy website. Primary request: an explicitly imagined comic portrait of Neilos Kabasilas, c.1290–1363, Byzantine theologian and Metropolitan of Thessalonica. Elderly scholar with long gray beard, plain dark clerical robe and simple period-inspired dark head covering, subtle open codex; not his nephew Nicholas Cabasilas, no halo or modern ornate crown. No verified likeness is available: invent an individual face, not a reconstruction and not another known person's likeness. Style: refined hand-inked editorial comic, visible crisp ink outlines and simplified painterly colors, dignified and engaging; clearly a modern illustration, not a photograph or forged antique. Composition: one person, centered head and shoulders, whole head inside the frame with margin, face large and readable at 54px, eyes near upper third; muted dark teal and warm parchment backdrop with restrained gold light, only tiny subdued background cues. Period-inspired clothing, no claim of exact historical costume. No text, letters, labels, watermark, frame, logos, collage or extra people. 1024x1024.",
+    "tool": "built-in imagegen",
+    "localPath": "assets/portraits/nilos-kabasilas-imagined.jpg",
+    "basis": {
+      "id": "146365",
+      "name": "Nilos Kabasilas",
+      "wiki": "https://en.wikipedia.org/wiki/Nilos_Kabasilas",
+      "field": "东正教神学；反拉丁论战；静修主义",
+      "country": "拜占庭帝国（现希腊）"
+    },
+    "status": "no-usable-verified-portrait-located"
+  },
+  {
+    "id": "184632",
+    "slug": "manuel-bryennios",
+    "prompt": "Use case: illustration-story. Asset type: single square portrait avatar for an academic genealogy website. Primary request: an explicitly imagined comic portrait of Manuel Bryennios, Byzantine scholar active around 1300 in Constantinople, author of Harmonics on mathematical music. Middle-aged Greek lay scholar, wavy hair and neatly shaped dark beard, muted blue Byzantine tunic and mantle; faint monochord strings and parchment in the background. No halo or royal clothing. No verified likeness is available: invent an individual face, not a reconstruction and not another known person's likeness. Style: refined hand-inked editorial comic, visible crisp ink outlines and simplified painterly colors, dignified and engaging; clearly a modern illustration, not a photograph or forged antique. Composition: one person, centered head and shoulders, whole head inside the frame with margin, face large and readable at 54px, eyes near upper third; muted dark teal and warm parchment backdrop with restrained gold light, only tiny subdued background cues. Period-inspired clothing, no claim of exact historical costume. No text, letters, labels, watermark, frame, logos, collage or extra people. 1024x1024.",
+    "tool": "built-in imagegen",
+    "localPath": "assets/portraits/manuel-bryennios-imagined.jpg",
+    "basis": {
+      "id": "184632",
+      "name": "Manuel Bryennios",
+      "wiki": "https://en.wikipedia.org/wiki/Manuel_Bryennios",
+      "field": "音乐理论；数学；天文学",
+      "country": "拜占庭帝国（现土耳其）"
+    },
+    "status": "no-usable-verified-portrait-located"
+  },
+  {
+    "id": "201288",
+    "slug": "gregory-chioniades",
+    "prompt": "Use case: illustration-story. Asset type: single square portrait avatar for an academic genealogy website. Primary request: an explicitly imagined comic portrait of Gregory Chioniades, c.1240–1320, Byzantine astronomer and translator who studied in Tabriz. Mature gray-bearded scholar wearing a simple dark Byzantine scholarly mantle, faint brass astrolabe and two closed manuscript volumes. No halo, no crown, no modern telescope. No verified likeness is available: invent an individual face, not a reconstruction and not another known person's likeness. Style: refined hand-inked editorial comic, visible crisp ink outlines and simplified painterly colors, dignified and engaging; clearly a modern illustration, not a photograph or forged antique. Composition: one person, centered head and shoulders, whole head inside the frame with margin, face large and readable at 54px, eyes near upper third; muted dark teal and warm parchment backdrop with restrained gold light, only tiny subdued background cues. Period-inspired clothing, no claim of exact historical costume. No text, letters, labels, watermark, frame, logos, collage or extra people. 1024x1024.",
+    "tool": "built-in imagegen",
+    "localPath": "assets/portraits/gregory-chioniades-imagined.jpg",
+    "basis": {
+      "id": "201288",
+      "name": "Gregory Chioniadis",
+      "wiki": "https://en.wikipedia.org/wiki/Gregory_Choniades",
+      "field": "天文学；数学；历法",
+      "country": "伊儿汗国（现伊朗）"
+    },
+    "status": "no-usable-verified-portrait-located"
+  },
+  {
+    "id": "204293",
+    "slug": "shams-al-din-al-bukhari",
+    "prompt": "Use case: illustration-story. Asset type: single square portrait avatar for an academic genealogy website. Primary request: an explicitly imagined comic portrait of Shams al-Din al-Bukhari, astronomer active in late-thirteenth-century Maragha and Tabriz. Imagined adult scholar in the Persianate Ilkhanid scholarly milieu, simple cream wrapped headcloth, brown-gray beard and muted teal robe; a small brass astrolabe behind. His detailed origins and likeness are unknown; no stereotyped caricature, no royal costume, not Imam Bukhari of the ninth century. No verified likeness is available: invent an individual face, not a reconstruction and not another known person's likeness. Style: refined hand-inked editorial comic, visible crisp ink outlines and simplified painterly colors, dignified and engaging; clearly a modern illustration, not a photograph or forged antique. Composition: one person, centered head and shoulders, whole head inside the frame with margin, face large and readable at 54px, eyes near upper third; muted dark teal and warm parchment backdrop with restrained gold light, only tiny subdued background cues. Period-inspired clothing, no claim of exact historical costume. No text, letters, labels, watermark, frame, logos, collage or extra people. 1024x1024.",
+    "tool": "built-in imagegen",
+    "localPath": "assets/portraits/shams-al-din-al-bukhari-imagined.jpg",
+    "basis": {
+      "id": "204293",
+      "name": "Shams al-Dīn al-Bukhārī",
+      "wiki": "",
+      "field": "天文学",
+      "country": "伊儿汗国（马拉盖／大不里士；现伊朗）"
+    },
+    "status": "no-usable-verified-portrait-located"
+  },
+  {
+    "id": "287480",
+    "slug": "athir-al-din-al-abhari",
+    "prompt": "Use case: illustration-story. Asset type: single square portrait avatar for an academic genealogy website. Primary request: an explicitly imagined comic portrait of Athir al-Din al-Abhari, thirteenth-century Persian philosopher, logician, astronomer and mathematician, active in Mosul and Erbil. Dignified mature scholar with modest cream headcloth, full dark beard with gray at temples, deep blue layered robe, subtle geometric compass and closed codex. Not other scholars with al-Abhari surname. No verified likeness is available: invent an individual face, not a reconstruction and not another known person's likeness. Style: refined hand-inked editorial comic, visible crisp ink outlines and simplified painterly colors, dignified and engaging; clearly a modern illustration, not a photograph or forged antique. Composition: one person, centered head and shoulders, whole head inside the frame with margin, face large and readable at 54px, eyes near upper third; muted dark teal and warm parchment backdrop with restrained gold light, only tiny subdued background cues. Period-inspired clothing, no claim of exact historical costume. No text, letters, labels, watermark, frame, logos, collage or extra people. 1024x1024.",
+    "tool": "built-in imagegen",
+    "localPath": "assets/portraits/athir-al-din-al-abhari-imagined.jpg",
+    "basis": {
+      "id": "287480",
+      "name": "Athīr al-Dīn al-Abharī",
+      "wiki": "https://en.wikipedia.org/wiki/Athir_al-Din_al-Abhari",
+      "field": "哲学；逻辑学；天文学；数学",
+      "country": "摩苏尔／埃尔比勒地区（现伊拉克）"
+    },
+    "status": "no-usable-verified-portrait-located"
+  },
+  {
+    "id": "223724",
+    "slug": "kamal-al-din-ibn-yunus",
+    "prompt": "Use case: illustration-story. Asset type: single square portrait avatar for an academic genealogy website. Primary request: an explicitly imagined comic portrait of Kamal al-Din ibn Yunus, 1156–1242, polymath and mathematics teacher in Mosul. Older scholar with a broad thoughtful face, gray beard, simple tawny wrapped headcloth and deep olive robe, faint brass dividers and geometry parchment behind. Not the tenth-century Egyptian astronomer Ibn Yunus. No verified likeness is available: invent an individual face, not a reconstruction and not another known person's likeness. Style: refined hand-inked editorial comic, visible crisp ink outlines and simplified painterly colors, dignified and engaging; clearly a modern illustration, not a photograph or forged antique. Composition: one person, centered head and shoulders, whole head inside the frame with margin, face large and readable at 54px, eyes near upper third; muted dark teal and warm parchment backdrop with restrained gold light, only tiny subdued background cues. Period-inspired clothing, no claim of exact historical costume. No text, letters, labels, watermark, frame, logos, collage or extra people. 1024x1024.",
+    "tool": "built-in imagegen",
+    "localPath": "assets/portraits/kamal-al-din-ibn-yunus-imagined.jpg",
+    "basis": {
+      "id": "223724",
+      "name": "Kamāl al-Dīn Ibn Yūnus",
+      "wiki": "https://en.wikipedia.org/wiki/Kamal_al-Din_ibn_Yunus",
+      "field": "数学；天文学；逻辑学；神学",
+      "country": "摩苏尔（现伊拉克）"
+    },
+    "status": "no-usable-verified-portrait-located"
+  },
+  {
+    "id": "287479",
+    "slug": "qutb-al-din-ibrahim-al-misri",
+    "prompt": "Use case: illustration-story. Asset type: single square portrait avatar for an academic genealogy website. Primary request: an explicitly imagined comic portrait of Qutb al-Din Ibrahim al-Misri, physician and philosophical scholar from the Maghreb, active in Egypt and Persia, died at Nishapur around 1221. Mature North African scholarly man, simple off-white headcloth and earth-toned robe inspired by late-twelfth/early-thirteenth-century dress, short dark beard, subtle bound medical manuscript. No modern medical equipment, no claim of exact ethnic appearance. No verified likeness is available: invent an individual face, not a reconstruction and not another known person's likeness. Style: refined hand-inked editorial comic, visible crisp ink outlines and simplified painterly colors, dignified and engaging; clearly a modern illustration, not a photograph or forged antique. Composition: one person, centered head and shoulders, whole head inside the frame with margin, face large and readable at 54px, eyes near upper third; muted dark teal and warm parchment backdrop with restrained gold light, only tiny subdued background cues. Period-inspired clothing, no claim of exact historical costume. No text, letters, labels, watermark, frame, logos, collage or extra people. 1024x1024.",
+    "tool": "built-in imagegen",
+    "localPath": "assets/portraits/qutb-al-din-ibrahim-al-misri-imagined.jpg",
+    "basis": {
+      "id": "287479",
+      "name": "Qutb al-Dīn Ibrāhīm al-Mīṣrī",
+      "wiki": "",
+      "country": "埃及地区（具体地点未详）"
+    },
+    "status": "no-usable-verified-portrait-located"
+  },
+  {
+    "id": "230926",
+    "slug": "sharaf-al-din-al-tusi",
+    "prompt": "Use case: illustration-story. Asset type: single square portrait avatar for an academic genealogy website. Primary request: an explicitly imagined comic portrait of Sharaf al-Din al-Tusi, c.1135–1213, Persian mathematician known for cubic equations. Middle-aged scholar in simple cream headcloth, trim salt-and-pepper beard, plain indigo robe, faint intersecting conic curves on parchment in the background. NOT Nasir al-Din al-Tusi, no modern equations or telescope. No verified likeness is available: invent an individual face, not a reconstruction and not another known person's likeness. Style: refined hand-inked editorial comic, visible crisp ink outlines and simplified painterly colors, dignified and engaging; clearly a modern illustration, not a photograph or forged antique. Composition: one person, centered head and shoulders, whole head inside the frame with margin, face large and readable at 54px, eyes near upper third; muted dark teal and warm parchment backdrop with restrained gold light, only tiny subdued background cues. Period-inspired clothing, no claim of exact historical costume. No text, letters, labels, watermark, frame, logos, collage or extra people. 1024x1024.",
+    "tool": "built-in imagegen",
+    "localPath": "assets/portraits/sharaf-al-din-al-tusi-imagined.jpg",
+    "basis": {
+      "id": "230926",
+      "name": "Sharaf al-Dīn al-Ṭūsī",
+      "wiki": "https://en.wikipedia.org/wiki/Sharaf_al-Din_al-Tusi",
+      "field": "代数学；几何学",
+      "country": "图斯／呼罗珊（现伊朗）"
+    },
+    "status": "no-usable-verified-portrait-located"
+  },
+  {
+    "id": "287466",
+    "slug": "sharaf-al-din-al-masudi",
+    "prompt": "Use case: illustration-story. Asset type: single square portrait avatar for an academic genealogy website. Primary request: an explicitly imagined comic portrait of Sharaf al-Din Muhammad al-Masudi al-Marwazi, twelfth-century philosophical and astronomical scholar of the Merv/Khorasan and Central Asian milieu. Mature thoughtful scholar in modest beige headcloth, reddish-brown robe, neat beard with gray strands, faint bound manuscript and star map. Not the ninth/tenth-century historian al-Masudi and not Sharaf al-Zaman al-Marwazi. No verified likeness is available: invent an individual face, not a reconstruction and not another known person's likeness. Style: refined hand-inked editorial comic, visible crisp ink outlines and simplified painterly colors, dignified and engaging; clearly a modern illustration, not a photograph or forged antique. Composition: one person, centered head and shoulders, whole head inside the frame with margin, face large and readable at 54px, eyes near upper third; muted dark teal and warm parchment backdrop with restrained gold light, only tiny subdued background cues. Period-inspired clothing, no claim of exact historical costume. No text, letters, labels, watermark, frame, logos, collage or extra people. 1024x1024.",
+    "tool": "built-in imagegen",
+    "localPath": "assets/portraits/sharaf-al-din-al-masudi-imagined.jpg",
+    "basis": {
+      "id": "287466",
+      "name": "Sharaf al-Dīn Muhammad al-Masʿūdī al-Marwazī",
+      "wiki": "",
+      "field": "代数学；实用算术；天文学；自然哲学",
+      "country": "梅尔夫／呼罗珊（现土库曼斯坦）"
+    },
+    "status": "no-usable-verified-portrait-located"
+  },
+  {
+    "id": "287478",
+    "slug": "fakhr-al-din-al-razi",
+    "prompt": "Use case: illustration-story. Asset type: single square portrait avatar for an academic genealogy website. Primary request: an explicitly imagined comic portrait of Fakhr al-Din al-Razi, 1149/1150–1209/1210, Persian theologian and philosopher from Rayy active in Herat. Mature dignified scholar with rounded thoughtful face, full gray-black beard, simple white headcloth and dark emerald robe, quiet stacked codices behind. NOT the physician Muhammad ibn Zakariya al-Razi; no modern medicine, no halo. No verified likeness is available: invent an individual face, not a reconstruction and not another known person's likeness. Style: refined hand-inked editorial comic, visible crisp ink outlines and simplified painterly colors, dignified and engaging; clearly a modern illustration, not a photograph or forged antique. Composition: one person, centered head and shoulders, whole head inside the frame with margin, face large and readable at 54px, eyes near upper third; muted dark teal and warm parchment backdrop with restrained gold light, only tiny subdued background cues. Period-inspired clothing, no claim of exact historical costume. No text, letters, labels, watermark, frame, logos, collage or extra people. 1024x1024.",
+    "tool": "built-in imagegen",
+    "localPath": "assets/portraits/fakhr-al-din-al-razi-imagined.jpg",
+    "basis": {
+      "id": "287478",
+      "name": "Fakhr al-Dīn Muhammad al-Rāzī",
+      "wiki": "https://en.wikipedia.org/wiki/Fakhr_al-Din_al-Razi",
+      "field": "伊斯兰神学；哲学；经注；医学",
+      "country": "雷伊—赫拉特（现伊朗／阿富汗）"
+    },
+    "status": "no-usable-verified-portrait-located"
+  },
+  {
+    "id": "316872",
+    "slug": "abu-abdallah-al-natili",
+    "prompt": "Use case: illustration-story. Asset type: single square portrait avatar for an academic genealogy website. Primary request: an explicitly imagined comic portrait of Abu Abdallah al-Natili, tenth-century scholar and teacher of Avicenna, associated with Tabaristan and Bukhara, reviser of Dioscorides. Mature scholar with modest cream headcloth, gray-brown beard and simple earth-red layered robe inspired by the tenth-century Persianate world, discreet leafy medicinal sprig and a closed codex. No verified likeness is available: invent an individual face, not a reconstruction and not another known person's likeness. Style: refined hand-inked editorial comic, visible crisp ink outlines and simplified painterly colors, dignified and engaging; clearly a modern illustration, not a photograph or forged antique. Composition: one person, centered head and shoulders, whole head inside the frame with margin, face large and readable at 54px, eyes near upper third; muted dark teal and warm parchment backdrop with restrained gold light, only tiny subdued background cues. Period-inspired clothing, no claim of exact historical costume. No text, letters, labels, watermark, frame, logos, collage or extra people. 1024x1024.",
+    "tool": "built-in imagegen",
+    "localPath": "assets/portraits/abu-abdallah-al-natili-imagined.jpg",
+    "basis": {
+      "id": "316872",
+      "name": "Abu Abdallah al-Natili",
+      "wiki": "",
+      "field": "逻辑学；哲学；数学；天文学",
+      "country": "萨曼王朝（布哈拉；现乌兹别克斯坦）"
+    },
+    "status": "no-usable-verified-portrait-located"
+  },
+  {
+    "id": "310782",
+    "slug": "abu-sahl-al-masihi",
+    "prompt": "Use case: illustration-story. Asset type: single square portrait avatar for an academic genealogy website. Primary request: an explicitly imagined comic portrait of Abu Sahl al-Masihi, c.960–1010, Persian Christian physician from Gorgan active in Khwarazm. Middle-aged scholar with wavy dark hair, neatly trimmed beard, plain dark blue scholarly robe and modest cloth head covering inspired by the tenth-century Persianate world, faint earthen medicine jar and herb behind. Not a western medieval bishop; no stethoscope, no halo, no oversized religious symbols. No verified likeness is available: invent an individual face, not a reconstruction and not another known person's likeness. Style: refined hand-inked editorial comic, visible crisp ink outlines and simplified painterly colors, dignified and engaging; clearly a modern illustration, not a photograph or forged antique. Composition: one person, centered head and shoulders, whole head inside the frame with margin, face large and readable at 54px, eyes near upper third; muted dark teal and warm parchment backdrop with restrained gold light, only tiny subdued background cues. Period-inspired clothing, no claim of exact historical costume. No text, letters, labels, watermark, frame, logos, collage or extra people. 1024x1024.",
+    "tool": "built-in imagegen",
+    "localPath": "assets/portraits/abu-sahl-al-masihi-imagined.jpg",
+    "basis": {
+      "id": "310782",
+      "name": "Abu Sahl al-Masihi",
+      "wiki": "https://en.wikipedia.org/wiki/Abu_Sahl_%27Isa_ibn_Yahya_al-Masihi",
+      "field": "医学；哲学",
+      "country": "花剌子模马蒙王朝（玉龙杰赤；现土库曼斯坦）"
+    },
+    "status": "no-usable-verified-portrait-located"
+  },
+  {
+    "id": "316873",
+    "slug": "abu-mansur-al-qumri",
+    "prompt": "Use case: illustration-story. Asset type: single square portrait avatar for an academic genealogy website. Primary request: an explicitly imagined comic portrait of Abu Mansur al-Hasan ibn Nuh al-Qumri, tenth-century Persian physician at the Samanid court in Bukhara. Older scholarly man with gray beard, simple cream wrapped headcloth, muted ochre-brown robe, subtle medical codex and ceramic apothecary jar. No modern white coat, no stethoscope, no invented royal regalia. No verified likeness is available: invent an individual face, not a reconstruction and not another known person's likeness. Style: refined hand-inked editorial comic, visible crisp ink outlines and simplified painterly colors, dignified and engaging; clearly a modern illustration, not a photograph or forged antique. Composition: one person, centered head and shoulders, whole head inside the frame with margin, face large and readable at 54px, eyes near upper third; muted dark teal and warm parchment backdrop with restrained gold light, only tiny subdued background cues. Period-inspired clothing, no claim of exact historical costume. No text, letters, labels, watermark, frame, logos, collage or extra people. 1024x1024.",
+    "tool": "built-in imagegen",
+    "localPath": "assets/portraits/abu-mansur-al-qumri-imagined.jpg",
+    "basis": {
+      "id": "316873",
+      "name": "Abu Mansur al-Hasan ibn Nuh al-Qumri",
+      "wiki": "https://en.wikipedia.org/wiki/Qumri",
+      "field": "医学",
+      "country": "萨曼王朝（布哈拉；现乌兹别克斯坦）"
+    },
+    "status": "no-usable-verified-portrait-located"
+  },
+  {
+    "id": "63600",
+    "slug": "arch-waugh-naylor",
+    "prompt": "Use case: illustration-story. A single square head-and-shoulders comic avatar for an academic genealogy website. Explicitly invented appearance, NOT a likeness or photographic reconstruction; a real photo could not be retrieved. Refined editorial hand-inked drawing with clear outlines and matte painterly color, dark teal backdrop, warm parchment light. One centered person, head fully inside frame, face large and legible at 54px. No text, letters, watermark or logos, no extra people. 1024x1024. Subject: an imagined middle-aged American university engineering professor in the 1960s, representing Arch Waugh Naylor's work on control engineering and linear operators at Michigan. Plain tweed jacket and narrow tie, short neatly combed hair, thoughtful friendly expression. Faint laboratory control instrument behind. Do not borrow another public person's face.",
+    "tool": "built-in imagegen",
+    "localPath": "assets/portraits/arch-waugh-naylor-imagined.jpg",
+    "basis": {
+      "id": "63600",
+      "name": "Arch Waugh Naylor",
+      "wiki": "",
+      "field": "控制系统；信息与控制工程；系统工程",
+      "country": "美国"
+    },
+    "status": "real-portrait-source-inaccessible"
+  },
+  {
+    "id": "80987",
+    "slug": "alan-breck-macnee",
+    "prompt": "Use case: illustration-story. A single square head-and-shoulders comic avatar for an academic genealogy website. Explicitly invented appearance, NOT a likeness or photographic reconstruction; a real photo could not be retrieved. Refined editorial hand-inked drawing with clear outlines and matte painterly color, dark teal backdrop, warm parchment light. One centered person, head fully inside frame, face large and legible at 54px. No text, letters, watermark or logos, no extra people. 1024x1024. Subject: an imagined American electronics researcher around 1950, representing Alan Breck Macnee's work on electronic analog computation and differential analyzers. Young adult with short parted hair, clean-shaven, simple dark suit and tie. A softly indicated vacuum-tube instrument and oscilloscope behind. Not actor Patrick Macnee. Do not borrow another public person's face.",
+    "tool": "built-in imagegen",
+    "localPath": "assets/portraits/alan-breck-macnee-imagined.jpg",
+    "basis": {
+      "id": "80987",
+      "name": "Alan Breck Macnee",
+      "wiki": "",
+      "field": "电气工程；电子模拟计算",
+      "country": "美国"
+    },
+    "status": "real-portrait-source-inaccessible"
+  }
+]
