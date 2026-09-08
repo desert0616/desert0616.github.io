@@ -162,7 +162,8 @@
     .mobile-relations { display: flex; flex-wrap: wrap; gap: 7px; padding: 12px 20px 16px; border-top: 1px solid #e9ece3; }
     .relation-label { flex: 0 0 100%; color: #819080; font-size: 10px; }
     .relation-link { padding: 7px 10px; border-radius: 7px; background: #edf2e9; font-size: 12px; text-decoration: none; }
-    .node:focus { outline: 2px solid #658e7d; outline-offset: 4px; }
+    .node:focus { outline: none; }
+    .node:focus-visible { outline: 2px solid #efd09a; outline-offset: 4px; }
     @media (max-width: 600px) {
       .node { border-radius: 14px; }
       .identity, .compact .identity { grid-template-columns: 52px minmax(0, 1fr); gap: 10px; padding: 16px 14px 12px; }
@@ -385,6 +386,8 @@
     .reader .node.mini { box-shadow: none; transition: opacity .2s; }
     .reader .node.mini.is-active { border-color: #dfc48e; background: #263a3a; box-shadow: none; }
     .reader .mini-toggle:focus-visible { outline: none; }
+    .reader .mini-toggle:focus:not(:focus-visible),
+    .reader .node:focus:not(:focus-visible) { outline: none; }
     .reader .mini-toggle:focus-visible .mini-name { text-decoration: underline; text-underline-offset: 4px; }
     .reader .mini-toggle .portrait, .reader .mini-toggle .portrait-fallback { border-color: #d6d5be44; box-shadow: none; }
     .reader .mini-toggle { user-select: none; -webkit-user-select: none; }
@@ -1775,7 +1778,9 @@
         if(event.button!==0||interactiveTarget(event))return;
         stopAnimation();
         drag={id:event.pointerId,x:event.clientX,y:event.clientY,position:scrollPosition,
-          scale:scroller===shell?step:Math.max(1,panel.clientHeight*.8),moved:false};
+          // On phones, a short touch swipe should cross the snap threshold.
+          // Keep desktop dragging and wheel sensitivity unchanged.
+          scale:scroller===shell?step:Math.max(1,event.pointerType==='touch'&&window.innerWidth<=800?Math.min(240,panel.clientHeight*.3):panel.clientHeight*.8),moved:false};
       });
       scroller.addEventListener('dragstart',event=>{event.preventDefault();});
       scroller.addEventListener('pointercancel',()=>{drag=null;settleFocus();});
