@@ -1,0 +1,402 @@
+{
+  "note": "Original source URLs retained for provenance only; page assets are served locally. Download does not imply a new license.",
+  "images": [
+    {
+      "kind": "portraits",
+      "name": "7829.png",
+      "url": "https://static.wixstatic.com/media/b0a4a5_1341724d6f3740d58aa0cf58a616d408~mv2.png",
+      "local": "assets/portraits/henry-wallman.png",
+      "bytes": 231504
+    },
+    {
+      "kind": "portraits",
+      "name": "184631.jpg",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/Theodore_Metochites_in_the_Dedication_Mosaic_at_Chora_Church.jpg/960px-Theodore_Metochites_in_the_Dedication_Mosaic_at_Chora_Church.jpg",
+      "local": "assets/portraits/theodore-metochites.jpg",
+      "bytes": 590099
+    },
+    {
+      "kind": "portraits",
+      "name": "sha.png",
+      "url": "https://desert0616.github.io/profile.png",
+      "local": "assets/portraits/sha-mo.png",
+      "bytes": 275558
+    },
+    {
+      "kind": "portraits",
+      "name": "tan.jpg",
+      "url": "https://www.comp.nus.edu.sg/~sochr/www/stfphotos/tankl.jpg",
+      "local": "assets/portraits/kian-lee-tan.jpg",
+      "bytes": 117813
+    },
+    {
+      "kind": "portraits",
+      "name": "68683.jpg",
+      "url": "https://cse.hkust.edu.hk/luhongjun/luhj.jpg",
+      "local": "assets/portraits/hongjun-lu.jpg",
+      "bytes": 22244
+    },
+    {
+      "kind": "portraits",
+      "name": "80277.jpg",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9d/MichaelJCarey.jpg/500px-MichaelJCarey.jpg",
+      "local": "assets/portraits/michael-james-carey.jpg",
+      "bytes": 62467
+    },
+    {
+      "kind": "portraits",
+      "name": "31091.jpg",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/06/Michael_Stonebraker_P1120062.jpg/500px-Michael_Stonebraker_P1120062.jpg",
+      "local": "assets/portraits/michael-r-stonebraker.jpg",
+      "bytes": 31275
+    },
+    {
+      "kind": "portraits",
+      "name": "7461.jpg",
+      "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/19/LefschetzSolomon_Moscow1935.tif/lossy-page1-250px-LefschetzSolomon_Moscow1935.tif.jpg",
+      "local": "assets/portraits/solomon-lefschetz.jpg",
+      "bytes": 14386
+    },
+    {
+      "kind": "portraits",
+      "name": "7451.png",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/9/96/William_Edward_Story_(1850-1930).png",
+      "local": "assets/portraits/william-edward-story.png",
+      "bytes": 259503
+    },
+    {
+      "kind": "portraits",
+      "name": "32858.png",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Carl_Gottfried_Neumann.png/500px-Carl_Gottfried_Neumann.png",
+      "local": "assets/portraits/carl-gottfried-neumann.png",
+      "bytes": 185740
+    },
+    {
+      "kind": "portraits",
+      "name": "18589.jpg",
+      "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e2/Das_Fotoalbum_f%C3%BCr_Weierstra%C3%9F_030_%28Wilhelm_Scheibner%29.jpg/500px-Das_Fotoalbum_f%C3%BCr_Weierstra%C3%9F_030_%28Wilhelm_Scheibner%29.jpg",
+      "local": "assets/portraits/wilhelm-scheibner.jpg",
+      "bytes": 150542
+    },
+    {
+      "kind": "portraits",
+      "name": "57706.jpg",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/a/ab/Julius-Richelot-Portrait.jpg",
+      "local": "assets/portraits/friedrich-julius-richelot.jpg",
+      "bytes": 24480
+    },
+    {
+      "kind": "portraits",
+      "name": "46967.jpg",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/6/65/Ludwig_Otto_Hesse.jpg",
+      "local": "assets/portraits/ludwig-otto-hesse.jpg",
+      "bytes": 5507
+    },
+    {
+      "kind": "portraits",
+      "name": "15635.jpg",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/Carl_Jacobi.jpg/500px-Carl_Jacobi.jpg",
+      "local": "assets/portraits/carl-gustav-jacob-jacobi.jpg",
+      "bytes": 36885
+    },
+    {
+      "kind": "portraits",
+      "name": "41423.jpg",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/3/3c/Enno_Dirksen.jpg",
+      "local": "assets/portraits/enno-heeren-dirksen.jpg",
+      "bytes": 99233
+    },
+    {
+      "kind": "portraits",
+      "name": "57659.png",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/0/00/Johann_Tobias_Mayer.png",
+      "local": "assets/portraits/johann-tobias-mayer.png",
+      "bytes": 85796
+    },
+    {
+      "kind": "portraits",
+      "name": "57667.jpg",
+      "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/10/BernhardFriedrichThibaut.jpg/500px-BernhardFriedrichThibaut.jpg",
+      "local": "assets/portraits/bernhard-friedrich-thibaut.jpg",
+      "bytes": 110341
+    },
+    {
+      "kind": "portraits",
+      "name": "65161.jpg",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Georg_Christoph_Lichtenberg2.jpg/500px-Georg_Christoph_Lichtenberg2.jpg",
+      "local": "assets/portraits/georg-christoph-lichtenberg.jpg",
+      "bytes": 82114
+    },
+    {
+      "kind": "portraits",
+      "name": "66476.jpg",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/6/64/Abraham_Gotthelf_K%C3%A4stner.jpg",
+      "local": "assets/portraits/abraham-gotthelf-kastner.jpg",
+      "bytes": 253233
+    },
+    {
+      "kind": "portraits",
+      "name": "57670.jpg",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/a/a7/Christian-August-Hausen-d_J.jpg",
+      "local": "assets/portraits/christian-august-hausen.jpg",
+      "bytes": 38969
+    },
+    {
+      "kind": "portraits",
+      "name": "72669.jpg",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/9/9b/Portret_van_Johann_Christoph_Wichmannshausen%2C_RP-P-1914-1881.jpg",
+      "local": "assets/portraits/johann-christoph-wichmannshausen.jpg",
+      "bytes": 716332
+    },
+    {
+      "kind": "portraits",
+      "name": "21235.jpg",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/5/5e/Otto_Mencke.jpg",
+      "local": "assets/portraits/otto-mencke.jpg",
+      "bytes": 11969
+    },
+    {
+      "kind": "portraits",
+      "name": "137705.jpg",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/81/Jacob_Thomasius%3B_Haid_cropped.jpg/500px-Jacob_Thomasius%3B_Haid_cropped.jpg",
+      "local": "assets/portraits/jakob-thomasius.jpg",
+      "bytes": 135125
+    },
+    {
+      "kind": "portraits",
+      "name": "143630.jpg",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/Friedrich_Leibn%C3%BCtz.jpg/500px-Friedrich_Leibn%C3%BCtz.jpg",
+      "local": "assets/portraits/friedrich-leibniz.jpg",
+      "bytes": 134523
+    },
+    {
+      "kind": "portraits",
+      "name": "127801.jpg",
+      "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b2/Aegidius--Strauch-I-01.jpg/500px-Aegidius--Strauch-I-01.jpg",
+      "local": "assets/portraits/aegidius-strauch-i.jpg",
+      "bytes": 201031
+    },
+    {
+      "kind": "portraits",
+      "name": "127734.jpg",
+      "url": "https://image.hab.de/iiif/images/varia/portrait/a-24699/2011_standard_original/a-24699.jp2/full/600,/0/default.jpg",
+      "local": "assets/portraits/nicolaus-zapf.jpg",
+      "bytes": 68542
+    },
+    {
+      "kind": "portraits",
+      "name": "127424.jpg",
+      "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/be/Erasmus_Schmidt.jpg/500px-Erasmus_Schmidt.jpg",
+      "local": "assets/portraits/erasmus-schmidt.jpg",
+      "bytes": 115601
+    },
+    {
+      "kind": "portraits",
+      "name": "127898.jpg",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/SethusCalvisius.jpg/500px-SethusCalvisius.jpg",
+      "local": "assets/portraits/sethus-calvisius.jpg",
+      "bytes": 148421
+    },
+    {
+      "kind": "portraits",
+      "name": "127864.jpg",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7f/Nikolaus-Selnecker.jpg/500px-Nikolaus-Selnecker.jpg",
+      "local": "assets/portraits/nikolaus-selnecker.jpg",
+      "bytes": 161911
+    },
+    {
+      "kind": "portraits",
+      "name": "126177.jpg",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e2/Nikolaus_Kopernikus_MOT.jpg/500px-Nikolaus_Kopernikus_MOT.jpg",
+      "local": "assets/portraits/nicolaus-copernicus.jpg",
+      "bytes": 53119
+    },
+    {
+      "kind": "portraits",
+      "name": "126109.jpg",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/Johannes_Regiomontanus.jpg/500px-Johannes_Regiomontanus.jpg",
+      "local": "assets/portraits/johannes-muller-regiomontanus.jpg",
+      "bytes": 219541
+    },
+    {
+      "kind": "portraits",
+      "name": "126888.jpg",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Pacioli.jpg/500px-Pacioli.jpg",
+      "local": "assets/portraits/luca-pacioli.jpg",
+      "bytes": 68018
+    },
+    {
+      "kind": "portraits",
+      "name": "131561.png",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/1/11/Johannes_Bessarion_aport012.png",
+      "local": "assets/portraits/basilios-bessarion.png",
+      "bytes": 197906
+    },
+    {
+      "kind": "portraits",
+      "name": "131575.jpg",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/a/a7/Benozzo_Gozzoli%2C_Pletone%2C_Cappella_dei_Magi.jpg",
+      "local": "assets/portraits/georgios-plethon-gemistos.jpg",
+      "bytes": 37951
+    },
+    {
+      "kind": "portraits",
+      "name": "199357.jpg",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/35/Oresme.jpg/500px-Oresme.jpg",
+      "local": "assets/portraits/nicole-oresme.jpg",
+      "bytes": 140189
+    },
+    {
+      "kind": "portraits",
+      "name": "176844.jpg",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/%D0%93%D1%80%D0%B8%D0%B3%D0%BE%D1%80%D0%B8%D0%B9_%D0%9F%D0%B0%D0%BB%D0%B0%D0%BC%D0%B0_14%D0%B2.jpg/500px-%D0%93%D1%80%D0%B8%D0%B3%D0%BE%D1%80%D0%B8%D0%B9_%D0%9F%D0%B0%D0%BB%D0%B0%D0%BC%D0%B0_14%D0%B2.jpg",
+      "local": "assets/portraits/gregory-palamas.jpg",
+      "bytes": 178161
+    },
+    {
+      "kind": "portraits",
+      "name": "217509.jpg",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/Nasir_al-Din_Tusi.jpg/500px-Nasir_al-Din_Tusi.jpg",
+      "local": "assets/portraits/nasir-al-din-al-tusi.jpg",
+      "bytes": 129084
+    },
+    {
+      "kind": "portraits",
+      "name": "295739.jpg",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b3/Hakim_Omar_Khayam_-_panoramio.jpg/500px-Hakim_Omar_Khayam_-_panoramio.jpg",
+      "local": "assets/portraits/omar-khayyam.jpg",
+      "bytes": 133782
+    },
+    {
+      "kind": "portraits",
+      "name": "298616.jpg",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Avicenna_Bust%2C_left_profile_%28cropped%29.jpg/500px-Avicenna_Bust%2C_left_profile_%28cropped%29.jpg",
+      "local": "assets/portraits/avicenna.jpg",
+      "bytes": 120270
+    },
+    {
+      "kind": "insignia",
+      "name": "01.svg",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/2/29/Flag_of_the_Papal_States_%28pre_1808%29.svg",
+      "local": "assets/insignia/flag-of-the-papal-states-pre-1808.svg",
+      "bytes": 223
+    },
+    {
+      "kind": "insignia",
+      "name": "02.svg",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/4/48/Flag_of_Singapore.svg",
+      "local": "assets/insignia/flag-of-singapore.svg",
+      "bytes": 591
+    },
+    {
+      "kind": "insignia",
+      "name": "03.svg",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/a/a4/Flag_of_the_United_States.svg",
+      "local": "assets/insignia/flag-of-the-united-states.svg",
+      "bytes": 823
+    },
+    {
+      "kind": "insignia",
+      "name": "04.svg",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/1/1f/Flag_of_Germany_%281867%E2%80%931918%29.svg",
+      "local": "assets/insignia/flag-of-germany-1867-1918.svg",
+      "bytes": 180
+    },
+    {
+      "kind": "insignia",
+      "name": "05.svg",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/c/c1/Flag_of_the_Kingdom_of_Prussia_%281803-1892%29.svg",
+      "local": "assets/insignia/flag-of-the-kingdom-of-prussia-1803-1892.svg",
+      "bytes": 395799
+    },
+    {
+      "kind": "insignia",
+      "name": "06.svg",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/e/e9/Coat_of_Arms_of_the_Kingdom_of_Hanover_%281814-1866%29.svg",
+      "local": "assets/insignia/coat-of-arms-of-the-kingdom-of-hanover-1814-1866.svg",
+      "bytes": 3253852
+    },
+    {
+      "kind": "insignia",
+      "name": "07.svg",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/3/3b/Flag_of_Hanover_%281692%29.svg",
+      "local": "assets/insignia/flag-of-hanover-1692.svg",
+      "bytes": 116064
+    },
+    {
+      "kind": "insignia",
+      "name": "08.svg",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/4/44/Flag_of_Electoral_Saxony.svg",
+      "local": "assets/insignia/flag-of-electoral-saxony.png",
+      "downloadedFrom": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/Flag_of_Electoral_Saxony.svg/500px-Flag_of_Electoral_Saxony.svg.png",
+      "bytes": 23383
+    },
+    {
+      "kind": "insignia",
+      "name": "09.svg",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/0/0c/Blason_Duch%C3%A9_de_Saxe-Weimar.svg",
+      "local": "assets/insignia/blason-duche-de-saxe-weimar.png",
+      "downloadedFrom": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Blason_Duch%C3%A9_de_Saxe-Weimar.svg/500px-Blason_Duch%C3%A9_de_Saxe-Weimar.svg.png",
+      "bytes": 163335
+    },
+    {
+      "kind": "insignia",
+      "name": "10.svg",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/d/dd/Banner_of_the_Holy_Roman_Emperor_with_haloes_%281430-1806%29.svg",
+      "local": "assets/insignia/banner-of-the-holy-roman-emperor-with-haloes-1430-1806.svg",
+      "bytes": 132404
+    },
+    {
+      "kind": "insignia",
+      "name": "11.svg",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/1/12/Flag_of_the_Kingdom_of_Poland.svg",
+      "local": "assets/insignia/flag-of-the-kingdom-of-poland.png",
+      "downloadedFrom": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/Flag_of_the_Kingdom_of_Poland.svg/500px-Flag_of_the_Kingdom_of_Poland.svg.png",
+      "bytes": 49620
+    },
+    {
+      "kind": "insignia",
+      "name": "12.svg",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/a/a4/Flag_of_Florence.svg",
+      "local": "assets/insignia/flag-of-florence.png",
+      "downloadedFrom": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Flag_of_Florence.svg/500px-Flag_of_Florence.svg.png",
+      "bytes": 16996
+    },
+    {
+      "kind": "insignia",
+      "name": "13.svg",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/4/41/Flag_of_Austria.svg",
+      "local": "assets/insignia/flag-of-austria.svg",
+      "bytes": 218
+    },
+    {
+      "kind": "insignia",
+      "name": "14.svg",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/5/58/Byzantine_imperial_flag%2C_14th_century%2C_square.svg",
+      "local": "assets/insignia/byzantine-imperial-flag-14th-century-square.svg",
+      "bytes": 1332
+    },
+    {
+      "kind": "insignia",
+      "name": "15.svg",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/9/9a/Royal_Standard_of_the_King_of_France.svg",
+      "local": "assets/insignia/royal-standard-of-the-king-of-france.svg",
+      "bytes": 1270915
+    },
+    {
+      "kind": "insignia",
+      "name": "16.svg",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/1/10/Flag_of_the_Ilkhanate.svg",
+      "local": "assets/insignia/flag-of-the-ilkhanate.svg",
+      "bytes": 2884
+    },
+    {
+      "kind": "insignia",
+      "name": "17.svg",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/3/39/Double-headed_eagle_of_the_Sultanate_of_Rum.svg",
+      "local": "assets/insignia/double-headed-eagle-of-the-sultanate-of-rum.png",
+      "downloadedFrom": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/39/Double-headed_eagle_of_the_Sultanate_of_Rum.svg/500px-Double-headed_eagle_of_the_Sultanate_of_Rum.svg.png",
+      "bytes": 101239
+    }
+  ]
+}

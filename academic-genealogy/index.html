@@ -215,7 +215,7 @@
     }
     /* Editorial canvas: the genealogy and biography share one paper surface. */
     body { background: #f4f3ed; }
-    .reader { display: grid; grid-template-columns: 300px minmax(0, 1fr); max-width: 1500px; height: 100dvh; margin: 0 auto; padding: 0 48px 0 12px; overflow: hidden; background: radial-gradient(ellipse at 85% 15%,#e8ebdf80,transparent 60%); }
+    .reader { display: grid; grid-template-columns: 220px minmax(0, 1fr); max-width: 1500px; height: 100dvh; margin: 0 auto; padding: 0 48px 0 12px; overflow: hidden; background: radial-gradient(ellipse at 85% 15%,#e8ebdf80,transparent 60%); }
     .focus-panel { grid-column: 2; grid-row: 1; position: relative; isolation: isolate; min-width: 0; overflow-y: auto; overscroll-behavior: contain; padding: clamp(40px,8vh,96px) clamp(24px,5vw,80px) 64px; scrollbar-width: thin; scrollbar-color: #bec7b6 transparent; }
     .focus-panel::before { content: attr(data-year); position: absolute; z-index: -1; top: 10px; right: 0; font-family: Georgia,serif; font-size: clamp(100px,16vw,240px); line-height: 1; letter-spacing: -.075em; color: #61745909; pointer-events: none; }
     #focus-card { border: 0; border-radius: 0; overflow: visible; background: transparent; box-shadow: none; max-width: 830px; }
@@ -250,7 +250,7 @@
     .related-group button { padding: 10px 14px; min-height: 44px; border: 1px solid #d5ddce; border-radius: 12px; background: #fafbf5; color: #38513e; cursor: pointer; font: inherit; font-size: 13px; }
     .canvas-tools, .person-detail, .back-top { display: none; }
     @media(max-width: 800px) {
-      .reader { grid-template-columns: 200px minmax(0,1fr); padding: 0 16px 0 0; }
+      .reader { grid-template-columns: 160px minmax(0,1fr); padding: 0 16px 0 0; }
       .focus-panel { padding: 40px 12px 32px 20px; }
       #focus-card .identity { padding: 0 0 22px; grid-template-columns: 64px minmax(0,1fr); gap: 16px; }
       #focus-card .identity > .portrait, #focus-card .identity > .portrait-fallback { width: 64px; height: 84px; }
@@ -258,7 +258,7 @@
       #focus-card .fact { grid-template-columns: 94px minmax(0,1fr); }
     }
     @media(max-width: 600px) {
-      .reader { grid-template-columns: 122px minmax(0,1fr); grid-template-rows: 100dvh; padding: 0; }
+      .reader { grid-template-columns: 104px minmax(0,1fr); grid-template-rows: 100dvh; padding: 0; }
       .focus-panel { padding: 28px 16px 40px 10px; border: 0; }
       .focus-panel::before { font-size: 100px; top: 16px; }
       #focus-card .identity { grid-template-columns: 1fr; gap: 18px; }
@@ -761,45 +761,45 @@
     });
 
     const portraits = {
-      "7829":["https://static.wixstatic.com/media/b0a4a5_1341724d6f3740d58aa0cf58a616d408~mv2.png","https://www.medicinochteknik.se/henry-wallmans-pris"],
-      "184631":["https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/Theodore_Metochites_in_the_Dedication_Mosaic_at_Chora_Church.jpg/960px-Theodore_Metochites_in_the_Dedication_Mosaic_at_Chora_Church.jpg","https://commons.wikimedia.org/wiki/File:Theodore_Metochites_in_the_Dedication_Mosaic_at_Chora_Church.jpg"],
-      sha:["https://desert0616.github.io/profile.png","https://desert0616.github.io/"],
-      tan:["https://www.comp.nus.edu.sg/~sochr/www/stfphotos/tankl.jpg","https://www.comp.nus.edu.sg/cs/people/tankl/"],
-      "68683":["https://cse.hkust.edu.hk/luhongjun/luhj.jpg","https://cse.hkust.edu.hk/luhongjun/"],
-      "80277":["https://upload.wikimedia.org/wikipedia/commons/thumb/9/9d/MichaelJCarey.jpg/500px-MichaelJCarey.jpg","https://en.wikipedia.org/wiki/Michael_J._Carey_(computer_scientist)"],
-      "31091":["https://upload.wikimedia.org/wikipedia/commons/thumb/0/06/Michael_Stonebraker_P1120062.jpg/500px-Michael_Stonebraker_P1120062.jpg","https://en.wikipedia.org/wiki/Michael_Stonebraker"],
-      "7461":["https://thumb.wikimedia.org/wikipedia/commons/thumb/1/19/LefschetzSolomon_Moscow1935.tif/lossy-page1-250px-LefschetzSolomon_Moscow1935.tif.jpg","https://commons.wikimedia.org/wiki/File:LefschetzSolomon_Moscow1935.tif"],
-      "7451":["https://upload.wikimedia.org/wikipedia/commons/9/96/William_Edward_Story_(1850-1930).png","https://de.wikipedia.org/wiki/William_Edward_Story"],
-      "32858":["https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Carl_Gottfried_Neumann.png/500px-Carl_Gottfried_Neumann.png","https://en.wikipedia.org/wiki/Carl_Gottfried_Neumann"],
-      "18589":["https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e2/Das_Fotoalbum_f%C3%BCr_Weierstra%C3%9F_030_%28Wilhelm_Scheibner%29.jpg/500px-Das_Fotoalbum_f%C3%BCr_Weierstra%C3%9F_030_%28Wilhelm_Scheibner%29.jpg","https://commons.wikimedia.org/wiki/File:Das_Fotoalbum_f%C3%BCr_Weierstra%C3%9F_030_(Wilhelm_Scheibner).jpg"],
-      "57706":["https://upload.wikimedia.org/wikipedia/commons/a/ab/Julius-Richelot-Portrait.jpg","https://en.wikipedia.org/wiki/Friedrich_Julius_Richelot"],
-      "46967":["https://upload.wikimedia.org/wikipedia/commons/6/65/Ludwig_Otto_Hesse.jpg","https://en.wikipedia.org/wiki/Ludwig_Otto_Hesse"],
-      "15635":["https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/Carl_Jacobi.jpg/500px-Carl_Jacobi.jpg","https://en.wikipedia.org/wiki/Carl_Gustav_Jacob_Jacobi"],
-      "41423":["https://upload.wikimedia.org/wikipedia/commons/3/3c/Enno_Dirksen.jpg","https://en.wikipedia.org/wiki/Enno_Dirksen"],
-      "57659":["https://upload.wikimedia.org/wikipedia/commons/0/00/Johann_Tobias_Mayer.png","https://en.wikipedia.org/wiki/Johann_Tobias_Mayer"],
-      "57667":["https://thumb.wikimedia.org/wikipedia/commons/thumb/1/10/BernhardFriedrichThibaut.jpg/500px-BernhardFriedrichThibaut.jpg","https://de.wikipedia.org/wiki/Bernhard_Friedrich_Thibaut"],
-      "65161":["https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Georg_Christoph_Lichtenberg2.jpg/500px-Georg_Christoph_Lichtenberg2.jpg","https://en.wikipedia.org/wiki/Georg_Christoph_Lichtenberg"],
-      "66476":["https://upload.wikimedia.org/wikipedia/commons/6/64/Abraham_Gotthelf_K%C3%A4stner.jpg","https://en.wikipedia.org/wiki/Abraham_Gotthelf_K%C3%A4stner"],
-      "57670":["https://upload.wikimedia.org/wikipedia/commons/a/a7/Christian-August-Hausen-d_J.jpg","https://en.wikipedia.org/wiki/Christian_August_Hausen"],
-      "72669":["https://upload.wikimedia.org/wikipedia/commons/9/9b/Portret_van_Johann_Christoph_Wichmannshausen%2C_RP-P-1914-1881.jpg","https://commons.wikimedia.org/wiki/File:Portret_van_Johann_Christoph_Wichmannshausen,_RP-P-1914-1881.jpg"],
-      "21235":["https://upload.wikimedia.org/wikipedia/commons/5/5e/Otto_Mencke.jpg","https://en.wikipedia.org/wiki/Otto_Mencke"],
-      "137705":["https://upload.wikimedia.org/wikipedia/commons/thumb/8/81/Jacob_Thomasius%3B_Haid_cropped.jpg/500px-Jacob_Thomasius%3B_Haid_cropped.jpg","https://en.wikipedia.org/wiki/Jakob_Thomasius"],
-      "143630":["https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/Friedrich_Leibn%C3%BCtz.jpg/500px-Friedrich_Leibn%C3%BCtz.jpg","https://en.wikipedia.org/wiki/Friedrich_Leibniz"],
-      "127801":["https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b2/Aegidius--Strauch-I-01.jpg/500px-Aegidius--Strauch-I-01.jpg","https://commons.wikimedia.org/wiki/File:Aegidius--Strauch-I-01.jpg"],
-      "127734":["https://image.hab.de/iiif/images/varia/portrait/a-24699/2011_standard_original/a-24699.jp2/full/600,/0/default.jpg","https://portraits.hab.de/person/13813"],
-      "127424":["https://thumb.wikimedia.org/wikipedia/commons/thumb/b/be/Erasmus_Schmidt.jpg/500px-Erasmus_Schmidt.jpg","https://de.wikipedia.org/wiki/Erasmus_Schmidt_(Philologe)"],
-      "127898":["https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/SethusCalvisius.jpg/500px-SethusCalvisius.jpg","https://en.wikipedia.org/wiki/Sethus_Calvisius"],
-      "127864":["https://upload.wikimedia.org/wikipedia/commons/thumb/7/7f/Nikolaus-Selnecker.jpg/500px-Nikolaus-Selnecker.jpg","https://en.wikipedia.org/wiki/Nikolaus_Selnecker"],
-      "126177":["https://upload.wikimedia.org/wikipedia/commons/thumb/e/e2/Nikolaus_Kopernikus_MOT.jpg/500px-Nikolaus_Kopernikus_MOT.jpg","https://en.wikipedia.org/wiki/Nicolaus_Copernicus"],
-      "126109":["https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/Johannes_Regiomontanus.jpg/500px-Johannes_Regiomontanus.jpg","https://en.wikipedia.org/wiki/Regiomontanus"],
-      "126888":["https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Pacioli.jpg/500px-Pacioli.jpg","https://en.wikipedia.org/wiki/Luca_Pacioli"],
-      "131561":["https://upload.wikimedia.org/wikipedia/commons/1/11/Johannes_Bessarion_aport012.png","https://en.wikipedia.org/wiki/Basilios_Bessarion"],
-      "131575":["https://upload.wikimedia.org/wikipedia/commons/a/a7/Benozzo_Gozzoli%2C_Pletone%2C_Cappella_dei_Magi.jpg","https://en.wikipedia.org/wiki/Gemistus_Pletho"],
-      "199357":["https://upload.wikimedia.org/wikipedia/commons/thumb/3/35/Oresme.jpg/500px-Oresme.jpg","https://en.wikipedia.org/wiki/Nicole_Oresme"],
-      "176844":["https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/%D0%93%D1%80%D0%B8%D0%B3%D0%BE%D1%80%D0%B8%D0%B9_%D0%9F%D0%B0%D0%BB%D0%B0%D0%BC%D0%B0_14%D0%B2.jpg/500px-%D0%93%D1%80%D0%B8%D0%B3%D0%BE%D1%80%D0%B8%D0%B9_%D0%9F%D0%B0%D0%BB%D0%B0%D0%BC%D0%B0_14%D0%B2.jpg","https://en.wikipedia.org/wiki/Gregory_Palamas"],
-      "217509":["https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/Nasir_al-Din_Tusi.jpg/500px-Nasir_al-Din_Tusi.jpg","https://en.wikipedia.org/wiki/Nasir_al-Din_al-Tusi"],
-      "295739":["https://upload.wikimedia.org/wikipedia/commons/thumb/b/b3/Hakim_Omar_Khayam_-_panoramio.jpg/500px-Hakim_Omar_Khayam_-_panoramio.jpg","https://en.wikipedia.org/wiki/Omar_Khayyam"],
-      "298616":["https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Avicenna_Bust%2C_left_profile_%28cropped%29.jpg/500px-Avicenna_Bust%2C_left_profile_%28cropped%29.jpg","https://en.wikipedia.org/wiki/Avicenna"]
+      "7829":["assets/portraits/henry-wallman.png","https://www.medicinochteknik.se/henry-wallmans-pris"],
+      "184631":["assets/portraits/theodore-metochites.jpg","https://commons.wikimedia.org/wiki/File:Theodore_Metochites_in_the_Dedication_Mosaic_at_Chora_Church.jpg"],
+      sha:["assets/portraits/sha-mo.png","https://desert0616.github.io/"],
+      tan:["assets/portraits/kian-lee-tan.jpg","https://www.comp.nus.edu.sg/cs/people/tankl/"],
+      "68683":["assets/portraits/hongjun-lu.jpg","https://cse.hkust.edu.hk/luhongjun/"],
+      "80277":["assets/portraits/michael-james-carey.jpg","https://en.wikipedia.org/wiki/Michael_J._Carey_(computer_scientist)"],
+      "31091":["assets/portraits/michael-r-stonebraker.jpg","https://en.wikipedia.org/wiki/Michael_Stonebraker"],
+      "7461":["assets/portraits/solomon-lefschetz.jpg","https://commons.wikimedia.org/wiki/File:LefschetzSolomon_Moscow1935.tif"],
+      "7451":["assets/portraits/william-edward-story.png","https://de.wikipedia.org/wiki/William_Edward_Story"],
+      "32858":["assets/portraits/carl-gottfried-neumann.png","https://en.wikipedia.org/wiki/Carl_Gottfried_Neumann"],
+      "18589":["assets/portraits/wilhelm-scheibner.jpg","https://commons.wikimedia.org/wiki/File:Das_Fotoalbum_f%C3%BCr_Weierstra%C3%9F_030_(Wilhelm_Scheibner).jpg"],
+      "57706":["assets/portraits/friedrich-julius-richelot.jpg","https://en.wikipedia.org/wiki/Friedrich_Julius_Richelot"],
+      "46967":["assets/portraits/ludwig-otto-hesse.jpg","https://en.wikipedia.org/wiki/Ludwig_Otto_Hesse"],
+      "15635":["assets/portraits/carl-gustav-jacob-jacobi.jpg","https://en.wikipedia.org/wiki/Carl_Gustav_Jacob_Jacobi"],
+      "41423":["assets/portraits/enno-heeren-dirksen.jpg","https://en.wikipedia.org/wiki/Enno_Dirksen"],
+      "57659":["assets/portraits/johann-tobias-mayer.png","https://en.wikipedia.org/wiki/Johann_Tobias_Mayer"],
+      "57667":["assets/portraits/bernhard-friedrich-thibaut.jpg","https://de.wikipedia.org/wiki/Bernhard_Friedrich_Thibaut"],
+      "65161":["assets/portraits/georg-christoph-lichtenberg.jpg","https://en.wikipedia.org/wiki/Georg_Christoph_Lichtenberg"],
+      "66476":["assets/portraits/abraham-gotthelf-kastner.jpg","https://en.wikipedia.org/wiki/Abraham_Gotthelf_K%C3%A4stner"],
+      "57670":["assets/portraits/christian-august-hausen.jpg","https://en.wikipedia.org/wiki/Christian_August_Hausen"],
+      "72669":["assets/portraits/johann-christoph-wichmannshausen.jpg","https://commons.wikimedia.org/wiki/File:Portret_van_Johann_Christoph_Wichmannshausen,_RP-P-1914-1881.jpg"],
+      "21235":["assets/portraits/otto-mencke.jpg","https://en.wikipedia.org/wiki/Otto_Mencke"],
+      "137705":["assets/portraits/jakob-thomasius.jpg","https://en.wikipedia.org/wiki/Jakob_Thomasius"],
+      "143630":["assets/portraits/friedrich-leibniz.jpg","https://en.wikipedia.org/wiki/Friedrich_Leibniz"],
+      "127801":["assets/portraits/aegidius-strauch-i.jpg","https://commons.wikimedia.org/wiki/File:Aegidius--Strauch-I-01.jpg"],
+      "127734":["assets/portraits/nicolaus-zapf.jpg","https://portraits.hab.de/person/13813"],
+      "127424":["assets/portraits/erasmus-schmidt.jpg","https://de.wikipedia.org/wiki/Erasmus_Schmidt_(Philologe)"],
+      "127898":["assets/portraits/sethus-calvisius.jpg","https://en.wikipedia.org/wiki/Sethus_Calvisius"],
+      "127864":["assets/portraits/nikolaus-selnecker.jpg","https://en.wikipedia.org/wiki/Nikolaus_Selnecker"],
+      "126177":["assets/portraits/nicolaus-copernicus.jpg","https://en.wikipedia.org/wiki/Nicolaus_Copernicus"],
+      "126109":["assets/portraits/johannes-muller-regiomontanus.jpg","https://en.wikipedia.org/wiki/Regiomontanus"],
+      "126888":["assets/portraits/luca-pacioli.jpg","https://en.wikipedia.org/wiki/Luca_Pacioli"],
+      "131561":["assets/portraits/basilios-bessarion.png","https://en.wikipedia.org/wiki/Basilios_Bessarion"],
+      "131575":["assets/portraits/georgios-plethon-gemistos.jpg","https://en.wikipedia.org/wiki/Gemistus_Pletho"],
+      "199357":["assets/portraits/nicole-oresme.jpg","https://en.wikipedia.org/wiki/Nicole_Oresme"],
+      "176844":["assets/portraits/gregory-palamas.jpg","https://en.wikipedia.org/wiki/Gregory_Palamas"],
+      "217509":["assets/portraits/nasir-al-din-al-tusi.jpg","https://en.wikipedia.org/wiki/Nasir_al-Din_al-Tusi"],
+      "295739":["assets/portraits/omar-khayyam.jpg","https://en.wikipedia.org/wiki/Omar_Khayyam"],
+      "298616":["assets/portraits/avicenna.jpg","https://en.wikipedia.org/wiki/Avicenna"]
     };
     Object.entries(portraits).forEach(([id,v]) => {
       const p=people.find(x=>x.id===id);
@@ -807,23 +807,23 @@
     });
 
     const polityRules = [
-      ["教宗国（现意大利）","https://upload.wikimedia.org/wikipedia/commons/2/29/Flag_of_the_Papal_States_%28pre_1808%29.svg","教宗国传统黄红旗（1808 年以前；非现代梵蒂冈旗）"],
-      ["新加坡","https://upload.wikimedia.org/wikipedia/commons/4/48/Flag_of_Singapore.svg","新加坡国旗"],
-      ["美国","https://upload.wikimedia.org/wikipedia/commons/a/a4/Flag_of_the_United_States.svg","美国国旗"],
-      ["德意志帝国","https://upload.wikimedia.org/wikipedia/commons/1/1f/Flag_of_Germany_%281867%E2%80%931918%29.svg","德意志帝国旗帜（1867–1918）"],
-      ["普鲁士","https://upload.wikimedia.org/wikipedia/commons/c/c1/Flag_of_the_Kingdom_of_Prussia_%281803-1892%29.svg","普鲁士王国旗帜（1803–1892）"],
-      ["汉诺威王国","https://upload.wikimedia.org/wikipedia/commons/e/e9/Coat_of_Arms_of_the_Kingdom_of_Hanover_%281814-1866%29.svg","汉诺威王国纹章（1814–1866）"],
-      ["汉诺威选侯国","https://upload.wikimedia.org/wikipedia/commons/3/3b/Flag_of_Hanover_%281692%29.svg","汉诺威旗帜（1692）"],
-      ["萨克森选侯国","https://upload.wikimedia.org/wikipedia/commons/4/44/Flag_of_Electoral_Saxony.svg","萨克森选侯国旗帜"],
-      ["萨克森-魏玛","https://upload.wikimedia.org/wikipedia/commons/0/0c/Blason_Duch%C3%A9_de_Saxe-Weimar.svg","萨克森-魏玛公国纹章"],
-      ["神圣罗马帝国","https://upload.wikimedia.org/wikipedia/commons/d/dd/Banner_of_the_Holy_Roman_Emperor_with_haloes_%281430-1806%29.svg","神圣罗马皇帝旗帜（1430–1806）"],
-      ["波兰王国","https://upload.wikimedia.org/wikipedia/commons/1/12/Flag_of_the_Kingdom_of_Poland.svg","波兰王国旗帜"],
-      ["佛罗伦萨共和国","https://upload.wikimedia.org/wikipedia/commons/a/a4/Flag_of_Florence.svg","佛罗伦萨共和国旗帜"],
-      ["奥地利公国","https://upload.wikimedia.org/wikipedia/commons/4/41/Flag_of_Austria.svg","奥地利红白红徽帜"],
-      ["拜占庭帝国","https://upload.wikimedia.org/wikipedia/commons/5/58/Byzantine_imperial_flag%2C_14th_century%2C_square.svg","14 世纪拜占庭皇室旗（回溯性标志）"],
-      ["法兰西王国","https://upload.wikimedia.org/wikipedia/commons/9/9a/Royal_Standard_of_the_King_of_France.svg","法国王室旗"],
-      ["伊儿汗国","https://upload.wikimedia.org/wikipedia/commons/1/10/Flag_of_the_Ilkhanate.svg","伊儿汗国标志"],
-      ["塞尔柱帝国","https://upload.wikimedia.org/wikipedia/commons/3/39/Double-headed_eagle_of_the_Sultanate_of_Rum.svg","塞尔柱传统双头鹰徽号"]
+      ["教宗国（现意大利）","assets/insignia/flag-of-the-papal-states-pre-1808.svg","教宗国传统黄红旗（1808 年以前；非现代梵蒂冈旗）"],
+      ["新加坡","assets/insignia/flag-of-singapore.svg","新加坡国旗"],
+      ["美国","assets/insignia/flag-of-the-united-states.svg","美国国旗"],
+      ["德意志帝国","assets/insignia/flag-of-germany-1867-1918.svg","德意志帝国旗帜（1867–1918）"],
+      ["普鲁士","assets/insignia/flag-of-the-kingdom-of-prussia-1803-1892.svg","普鲁士王国旗帜（1803–1892）"],
+      ["汉诺威王国","assets/insignia/coat-of-arms-of-the-kingdom-of-hanover-1814-1866.svg","汉诺威王国纹章（1814–1866）"],
+      ["汉诺威选侯国","assets/insignia/flag-of-hanover-1692.svg","汉诺威旗帜（1692）"],
+      ["萨克森选侯国","assets/insignia/flag-of-electoral-saxony.png","萨克森选侯国旗帜"],
+      ["萨克森-魏玛","assets/insignia/blason-duche-de-saxe-weimar.png","萨克森-魏玛公国纹章"],
+      ["神圣罗马帝国","assets/insignia/banner-of-the-holy-roman-emperor-with-haloes-1430-1806.svg","神圣罗马皇帝旗帜（1430–1806）"],
+      ["波兰王国","assets/insignia/flag-of-the-kingdom-of-poland.png","波兰王国旗帜"],
+      ["佛罗伦萨共和国","assets/insignia/flag-of-florence.png","佛罗伦萨共和国旗帜"],
+      ["奥地利公国","assets/insignia/flag-of-austria.svg","奥地利红白红徽帜"],
+      ["拜占庭帝国","assets/insignia/byzantine-imperial-flag-14th-century-square.svg","14 世纪拜占庭皇室旗（回溯性标志）"],
+      ["法兰西王国","assets/insignia/royal-standard-of-the-king-of-france.svg","法国王室旗"],
+      ["伊儿汗国","assets/insignia/flag-of-the-ilkhanate.svg","伊儿汗国标志"],
+      ["塞尔柱帝国","assets/insignia/double-headed-eagle-of-the-sultanate-of-rum.png","塞尔柱传统双头鹰徽号"]
     ];
     const polityMark = country => polityRules.find(([key])=>country.includes(key));
     // User-approved schematic motifs, NOT facsimiles or authenticated state flags.
@@ -1370,9 +1370,77 @@
     const reader=document.querySelector('.reader');
     const scenes=[document.getElementById('scene-a'),document.getElementById('scene-b')];
     let sceneIndex=0,sceneToken=0,sceneTimer,sceneCommitTimer,sceneFadeUntil=0;
-    // One shared landscape source on desktop and mobile. Keep all older assets.
-    const sceneVersions=Object.fromEntries(people.map(person=>[person.id,person.id==='68683'?'68683-v2':person.id+'-v6']));
-    for(const id of ['126087','126177','137705']) sceneVersions[id]=id+'-v6b';
+    // Shared desktop/mobile backgrounds, named after each person.
+    const sceneFiles={
+      "7451": "william-edward-story.png",
+      "7461": "solomon-lefschetz.png",
+      "7829": "henry-wallman.png",
+      "15635": "carl-gustav-jacob-jacobi.png",
+      "18589": "wilhelm-scheibner.png",
+      "21235": "otto-mencke.png",
+      "31091": "michael-r-stonebraker.png",
+      "32858": "carl-gottfried-neumann.png",
+      "41423": "enno-heeren-dirksen.png",
+      "46967": "ludwig-otto-hesse.png",
+      "57659": "johann-tobias-mayer.png",
+      "57667": "bernhard-friedrich-thibaut.png",
+      "57670": "christian-august-hausen.png",
+      "57706": "friedrich-julius-richelot.png",
+      "63600": "arch-waugh-naylor.png",
+      "65161": "georg-christoph-lichtenberg.png",
+      "66476": "abraham-gotthelf-kastner.png",
+      "68683": "hongjun-lu.png",
+      "72669": "johann-christoph-wichmannshausen.png",
+      "80277": "michael-james-carey.png",
+      "80987": "alan-breck-macnee.png",
+      "126087": "georg-von-peuerbach.png",
+      "126109": "johannes-muller-regiomontanus.png",
+      "126112": "domenico-maria-novara-da-ferrara.png",
+      "126113": "leonhard-von-dobschutz.png",
+      "126177": "nicolaus-copernicus.png",
+      "126724": "bonifazius-erasmi.png",
+      "126730": "johannes-volmar.png",
+      "126827": "georg-joachim-rheticus.png",
+      "126887": "johannes-von-gmunden.png",
+      "126888": "luca-pacioli.png",
+      "127264": "heinrich-von-langenstein.png",
+      "127424": "erasmus-schmidt.png",
+      "127734": "nicolaus-zapf.png",
+      "127790": "moritz-valentin-steinmetz.png",
+      "127801": "aegidius-strauch-i.png",
+      "127864": "nikolaus-selnecker.png",
+      "127898": "sethus-calvisius.png",
+      "127962": "michael-d-j-walther.png",
+      "128046": "johann-pasch.png",
+      "128986": "johann-andreas-planer.png",
+      "131561": "basilios-bessarion.png",
+      "131575": "georgios-plethon-gemistos.png",
+      "134780": "demetrios-kydones.png",
+      "137705": "jakob-thomasius.png",
+      "143630": "friedrich-leibniz.png",
+      "146365": "nilos-kabasilas.png",
+      "176844": "gregory-palamas.png",
+      "184631": "theodore-metochites.png",
+      "184632": "manuel-bryennios.png",
+      "199357": "nicole-oresme.png",
+      "201288": "gregory-chioniadis.png",
+      "204293": "shams-al-din-al-bukhari.png",
+      "217509": "nasir-al-din-al-tusi.png",
+      "223724": "kamal-al-din-ibn-yunus.png",
+      "230926": "sharaf-al-din-al-tusi.png",
+      "287466": "sharaf-al-din-muhammad-al-masudi-al-marwazi.png",
+      "287468": "bahmanyar-ibn-al-marzuban.png",
+      "287478": "fakhr-al-din-muhammad-al-razi.png",
+      "287479": "qutb-al-din-ibrahim-al-misri.png",
+      "287480": "athir-al-din-al-abhari.png",
+      "295739": "omar-khayyam.png",
+      "298616": "avicenna.png",
+      "310782": "abu-sahl-al-masihi.png",
+      "316872": "abu-abdallah-al-natili.png",
+      "316873": "abu-mansur-al-hasan-ibn-nuh-al-qumri.png",
+      "sha": "sha-mo.png",
+      "tan": "kian-lee-tan.png"
+    };
     // Right-side composition safety bounds; Lu's approved image stays fully visible.
     const sceneSubjectWidths={sha:.46,tan:.44,'68683':1};
     function visibleViewport(){
@@ -1495,7 +1563,7 @@
         };
         // Keep the last successful scene if an asset fails to load.
         picture.onerror=()=>{};
-        picture.src='assets/genealogy-scenes/'+(sceneVersions[person.id]||person.id)+'.png';
+        picture.src='assets/genealogy-scenes/'+sceneFiles[person.id];
       },140);
     }
     function updateAtmosphere(){
