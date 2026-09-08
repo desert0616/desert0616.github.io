@@ -457,7 +457,7 @@
       .focus-year { display: none; }
       #focus-card .identity-footer { position: relative; isolation: isolate; flex-wrap: nowrap; }
       #focus-card .profile-links { flex-wrap: nowrap; }
-      #focus-card .mobile-background-year { display: block; position: absolute; right: 0; top: 50%; transform: translateY(-50%); z-index: -1; pointer-events: none; color: #f3e3b750; text-shadow: 0 2px 24px #0008; font: 700 clamp(44px,12vw,68px)/1.15 Georgia,serif; white-space: nowrap; }
+      #focus-card .mobile-background-year { display: block; position: absolute; right: 0; top: calc(50% - 10px); transform: translateY(-50%); z-index: -1; pointer-events: none; color: #f3e3b750; text-shadow: 0 2px 24px #0008; font: 700 clamp(44px,12vw,68px)/1.15 Georgia,serif; white-space: nowrap; }
     }
     @media(max-width:380px) {
       #focus-card .profile-links { gap: 6px; }
@@ -1160,8 +1160,9 @@
     const esc = s => String(s).replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[c]));
     const kind = p => /Ph\.D|Dr\.|Sc\.D/i.test(p.degree) ? "博士学位记录" : /Magister|M\.A\./i.test(p.degree) ? "早期学位记录" : "前现代师承记录";
     // Research areas describe topics; known-for entries name concrete outputs.
-    // Empty entries are deliberate: a post, pupil or broad discipline is not a result.
-    // Evidence: assets/genealogy-significance-review-2026-09-08.md.
+    // Include documented outputs without claiming every author made a famous discovery.
+    // A blank means insufficient verified evidence, never proof of no achievement.
+    // Evidence and attribution limits: research/known-for-review.md.
     const resultCopy = {
       sha:['',''],
       tan:['Pioneering P2P data management · President’s Science Award · IEEE CS Technical Achievement Award','对等数据管理创新 · 新加坡总统科学奖 · IEEE CS 技术成就奖'],
@@ -1174,7 +1175,7 @@
       '7461':['Lefschetz fixed-point and hyperplane theorems','莱夫谢茨不动点定理 · 超平面定理'],
       '7451':['Helped found the American Journal of Mathematics','参与创办《美国数学杂志》'],
       '32858':['Neumann boundary condition · Neumann series','诺伊曼边界条件 · 诺伊曼级数'],
-      '18589':['',''],
+      '18589':["On Infinite Series and Their Convergence (1860)","《无穷级数及其收敛性》（1860）"],
       '57706':['Richelot isogenies · construction of the regular 257-gon','里舍洛同源映射 · 正257边形尺规构造'],
       '46967':['Hessian matrix · Hesse normal form','海塞矩阵 · 海塞标准形'],
       '15635':['Jacobian determinant · Jacobi elliptic functions · Hamilton–Jacobi equation','雅可比行列式 · 雅可比椭圆函数 · 哈密顿—雅可比方程'],
@@ -1184,14 +1185,14 @@
       '65161':['Lichtenberg figures · the Waste Books','利希滕贝格图形 ·《札记》'],
       '66476':['Foundations of Mathematics · History of Mathematics','《数学基础》 ·《数学史》'],
       '57670':['Prime conductor experiments · electrical treatise (1743)','主导体实验 · 1743年电学论著'],
-      '72669':['',''],
-      '128986':['',''],
+      '72669':["Gymnasium Arabicum: Arabic texts with Latin commentary (1724)","《阿拉伯语研习》：阿拉伯文本与拉丁注释（1724）"],
+      '128986':["Presided over De nive, disputations on snow","主持《论雪》系列学术论辩"],
       '21235':['Founded Acta Eruditorum (1682)','创办《学艺纪事》（1682）'],
-      '128046':['',''],
+      '128046':["Selah: a philological study with Franz Stolle","与弗朗茨·施托勒合署《细拉》语文学研究"],
       '137705':['Erotemata logica: an introductory logic manual','《逻辑问答》入门教材'],
-      '127962':['',''],
+      '127962':["Presided over Analecta philosophiae mathematicae (1674)","主持《数学哲学拾遗》学术论辩（1674）"],
       '143630':['',''],
-      '127801':['',''],
+      '127801':["Physica specialis: twelve natural-philosophy disputations (1606)","《自然哲学分论》：十二篇论辩（1606）"],
       '127734':['Compendium of Theology (1644)','《神学纲要》（1644）'],
       '127424':['Latin translation and commentary of Pindar (1616)','品达颂歌的拉丁译注（1616）'],
       '127898':['Opus chronologicum · Melopoeia','《年代学著作》 ·《作曲法》'],
@@ -1200,7 +1201,7 @@
       '126827':['Narratio prima (1540) · trigonometric tables','《初述》（1540） · 三角函数表'],
       '126730':['',''],
       '126177':['De revolutionibus · heliocentric model','《天体运行论》 · 日心说'],
-      '126724':['',''],
+      '126724':["Compiled the planetary calendar illustrated by Cranach (c. 1513)","编制克拉纳赫木刻所绘的行星历图（约1513）"],
       '126113':['',''],
       '126112':['Joint observation of the Aldebaran occultation (1497)','与哥白尼共同观测月掩毕宿五（1497）'],
       '126109':['On Triangles · astronomical ephemerides','《论三角形》 · 天文历表'],
@@ -1217,10 +1218,10 @@
       '184631':['Semeioseis gnomikai · restoration of the Chora church','《杂记》 · 科拉教堂修缮与装饰'],
       '184632':['Harmonics, a treatise on mathematical music theory','《和声论》数理音乐专著'],
       '201288':['Greek translations of Persian astronomical tables','波斯天文表的希腊译本'],
-      '204293':['',''],
+      '204293':["Oral exposition of Persian astronomy used in Chioniades’s Greek translations","波斯天文学口授，成为希奥尼亚迪斯希腊译本的依据"],
       '217509':['Tusi couple · Maragha Observatory','图西偶 · 马拉盖天文台'],
       '287480':['Isaghuji · Hidayat al-hikma','《逻辑入门》 ·《智慧指南》'],
-      '223724':['',''],
+      '223724':["Commentary on Abu al-Wafa’s geometric constructions","阿布·瓦法几何作图著作的评注"],
       '287479':['Commentary on the Canon’s Generalities','《医典》总论注释'],
       '230926':['Positive-root conditions for cubic equations','三次方程正根的存在条件'],
       '287466':['Objections on Avicenna’s Isharat · Jahan-danish','对《指示与提醒》的质疑评注 ·《宇宙知识》'],
@@ -1228,7 +1229,7 @@
       '295739':['Geometric solutions of cubics · Jalali calendar · Rubaiyat','三次方程几何解法 · 贾拉利历 ·《鲁拜集》'],
       '287468':['Al-Tahsil, a compendium of Avicennian philosophy','《求知书》哲学汇编'],
       '298616':['The Canon of Medicine · The Book of Healing','《医典》 ·《治疗论》'],
-      '316872':['',''],
+      '316872':["Revision of the Arabic Dioscorides, De materia medica","修订迪奥斯科里德斯《药物志》阿拉伯译本"],
       '310782':['The Hundred Books on Medicine, a medical encyclopedia','《医学百篇》医学百科'],
       '316873':['Ghina wa Muna · al-Tanwir medical glossary','《充足与愿望》 ·《启明》医学词汇书']
     };
