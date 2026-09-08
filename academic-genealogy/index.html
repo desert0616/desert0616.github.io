@@ -452,6 +452,18 @@
     @media(max-width:380px) {
       #focus-card .profile-links { flex-wrap: wrap; gap: 4px 8px; }
     }
+    .mobile-background-year { display: none; }
+    @media(max-width:600px) {
+      .focus-year { display: none; }
+      #focus-card .identity-footer { position: relative; isolation: isolate; flex-wrap: nowrap; }
+      #focus-card .profile-links { flex-wrap: nowrap; }
+      #focus-card .mobile-background-year { display: block; position: absolute; right: 0; top: 50%; transform: translateY(-50%); z-index: -1; pointer-events: none; color: #f3e3b750; text-shadow: 0 2px 24px #0008; font: 700 clamp(44px,12vw,68px)/1.15 Georgia,serif; white-space: nowrap; }
+    }
+    @media(max-width:380px) {
+      #focus-card .profile-links { gap: 6px; }
+      #focus-card .profile-link { font-size: 10px; gap: 3px; }
+      #focus-card .profile-link svg { width: 13px; height: 13px; }
+    }
     .scene-layer { transition: opacity .85s ease-in-out; }
     @media(prefers-reduced-motion:reduce) {
       .scene-layer, .reader .mini-toggle .portrait, .reader .mini-toggle .portrait-fallback { transition: none; }
@@ -1277,7 +1289,7 @@
         ? '<img class="polity-mark" src="' + esc(mark[1]) + '" alt="" title="' + esc(mark[2]) + '" loading="lazy" referrerpolicy="no-referrer" onerror="this.hidden=true">'
         : '<i class="polity-glyph" title="跨政体、地区性记录或无可核实的统一旗帜">✦</i>';
       const country=recorded(p.country) ? '<div class="fact country">' + labelHTML('country') + '<div class="fact-value country-value"><div>' + bilingual(p.countryEn,p.country) + '</div></div></div>' : "";
-      return '<div class="card-layout"><div class="identity"><div class="identity-main"><h2 class="person" id="name-' + esc(p.id) + '"' + (p.displayName ? ' aria-label="' + esc(p.name) + '" style="white-space:nowrap"' : '') + '>' + esc(p.displayName || p.name) + '</h2>' + (p.alias ? '<div class="alias">' + esc(p.alias) + '</div>' : '') + '<div class="identity-footer"><div class="identity-polity">' + emblem + '</div>' + profileLinks + '</div></div></div><div class="facts">' +
+      return '<div class="card-layout"><div class="identity"><div class="identity-main"><h2 class="person" id="name-' + esc(p.id) + '"' + (p.displayName ? ' aria-label="' + esc(p.name) + '" style="white-space:nowrap"' : '') + '>' + esc(p.displayName || p.name) + '</h2>' + (p.alias ? '<div class="alias">' + esc(p.alias) + '</div>' : '') + '<div class="identity-footer"><div class="identity-polity">' + emblem + '</div><span class="mobile-background-year" aria-hidden="true">' + esc(p.year.match(/\d{3,4}/)?.[0]||'') + '</span>' + profileLinks + '</div></div></div><div class="facts">' +
         institutionRow(p) + country + factRow('thesis',p.thesisBi?.[0],p.thesisBi?.[1],p.thesis) + factRow('field',p.fieldEn,p.field) + factRow('known',p.knownEn,p.known) + '</div></div>';
     }
 
