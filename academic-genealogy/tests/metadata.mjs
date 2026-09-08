@@ -16,6 +16,12 @@ assert.ok(!html.includes('class="date-caption"'),'do not restore removed date ca
 const code = html.slice(html.indexOf('    const P ='), html.indexOf('    const graph ='));
 const { people, edges, resultCopy, polityMark } = vm.runInNewContext(code + ';({people,edges,resultCopy,polityMark})');
 const byId = new Map(people.map(p => [p.id,p]));
+const rendering=html.slice(html.indexOf('    const recorded ='),html.indexOf('    people.forEach(p => {',html.indexOf('    function cardHTML')));
+const cards=vm.runInNewContext(code+rendering+';people.map(p=>({id:p.id,hasMark:!!polityMark(p.country),html:cardHTML(p)}))');
+for(const card of cards){
+  assert.ok(!/polity-glyph|schematic-insignia|✦/.test(card.html),card.id+' no emblem placeholders');
+  assert.equal(card.html.includes('class="identity-polity"'),card.hasMark,card.id+' no empty emblem slot');
+}
 const evidence=JSON.parse(fs.readFileSync(new URL('../research/edge-sources.json',import.meta.url),'utf8'));
 assert.equal(evidence.edges.length,edges.length,'source registry matches current graph');
 const evidenceByEdge=new Map(evidence.edges.map(e=>[e.from+'>'+e.to,e]));

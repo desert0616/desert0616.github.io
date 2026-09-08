@@ -1430,12 +1430,12 @@
       const wiki = p.wiki ? '<a class="profile-link wiki-link" href="' + esc(p.wiki) + '" target="_blank" rel="noopener noreferrer" title="Wikipedia" aria-label="' + esc(p.name) + ' 的 Wikipedia">' + wikiLogo + '<span lang="en">Wikipedia</span></a>' : '';
       const profileLinks = scholar || wiki ? '<div class="profile-links">' + wiki + scholar + '</div>' : '';
       const mark=polityMark(p.country);
-      const schematic=schematicInsignia[p.id];
-      const emblem=schematic ? '<span class="schematic-insignia" aria-label="'+esc(schematic.label)+'"><svg viewBox="0 0 48 32" aria-hidden="true">'+(schematic.type==='yellow'?'<path d="M5 30V2" stroke="#786a4b" stroke-width="2"/><path d="M6 3h36v22H6z" fill="#e9c34a" stroke="#ad8d2e"/>':'<path d="M13 3Q43 16 13 29L13 3M7 16h34m-7-6 7 6-7 6" fill="none" stroke="#8b6a37" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>')+'</svg></span>' : mark
-        ? '<img class="polity-mark" src="' + esc(mark[1]) + '" alt="" title="' + esc(mark[2]) + '" loading="lazy" referrerpolicy="no-referrer" onerror="this.hidden=true">'
-        : '<i class="polity-glyph" title="跨政体、地区性记录或无可核实的统一旗帜">✦</i>';
+      // Missing emblems have no placeholder and reserve no space in the footer.
+      const emblem=mark
+        ? '<div class="identity-polity"><img class="polity-mark" src="' + esc(mark[1]) + '" alt="" title="' + esc(mark[2]) + '" loading="lazy" referrerpolicy="no-referrer" onerror="this.parentElement.remove()"></div>'
+        : '';
       const country=recorded(p.country) ? '<div class="fact country">' + labelHTML('country') + '<div class="fact-value country-value"><div>' + bilingual(p.countryEn,p.country) + '</div></div></div>' : "";
-      return '<div class="card-layout"><div class="identity"><div class="identity-main"><h2 class="person" id="name-' + esc(p.id) + '"' + (p.displayName ? ' aria-label="' + esc(p.name) + '" style="white-space:nowrap"' : '') + '>' + esc(p.displayName || p.name) + '</h2>' + (p.alias ? '<div class="alias">' + esc(p.alias) + '</div>' : '') + '<div class="identity-footer"><div class="identity-polity">' + emblem + '</div><span class="mobile-background-year" aria-label="'+esc(p.year+' '+p.dateLabel)+'">' + dateHTML(p) + '</span>' + profileLinks + '</div></div></div><div class="facts">' +
+      return '<div class="card-layout"><div class="identity"><div class="identity-main"><h2 class="person" id="name-' + esc(p.id) + '"' + (p.displayName ? ' aria-label="' + esc(p.name) + '" style="white-space:nowrap"' : '') + '>' + esc(p.displayName || p.name) + '</h2>' + (p.alias ? '<div class="alias">' + esc(p.alias) + '</div>' : '') + '<div class="identity-footer">' + emblem + '<span class="mobile-background-year" aria-label="'+esc(p.year+' '+p.dateLabel)+'">' + dateHTML(p) + '</span>' + profileLinks + '</div></div></div><div class="facts">' +
         institutionRow(p) + country + thesisRow(p) + factRow('field',p.fieldEn,p.field) + factRow('known',p.knownEn,p.known) + '</div></div>';
     }
 
