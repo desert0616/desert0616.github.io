@@ -11,9 +11,12 @@ ROOT = Path(__file__).resolve().parent
 DATA_PATH = ROOT / "data.json"
 TEMPLATE_PATH = ROOT / "index.template.html"
 OUT_PATH = ROOT / "index.html"
+GENEALOGY_PATH = ROOT / "academic-genealogy" / "index.html"
 TRACKER_JS_PATH = ROOT / "tracker" / "tracker.js"
 TRACKER_SITE_ID = "mosha"
 TRACKER_ENDPOINT = "https://mosha.asia/api/i"
+TRACKER_START = "  <!-- BEGIN INLINE TRACKER -->"
+TRACKER_END = "  <!-- END INLINE TRACKER -->"
 
 APP_BASE = 3
 
@@ -280,6 +283,19 @@ def main() -> None:
     )
     OUT_PATH.write_text(out, encoding="utf-8")
     print(f"Wrote {OUT_PATH}")
+
+    genealogy = GENEALOGY_PATH.read_text(encoding="utf-8")
+    start = genealogy.index(TRACKER_START) + len(TRACKER_START)
+    end = genealogy.index(TRACKER_END, start)
+    genealogy = (
+        genealogy[:start]
+        + "\n"
+        + render_inline_tracker()
+        + "\n"
+        + genealogy[end:]
+    )
+    GENEALOGY_PATH.write_text(genealogy, encoding="utf-8")
+    print(f"Wrote {GENEALOGY_PATH}")
 
 
 if __name__ == "__main__":

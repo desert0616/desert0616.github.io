@@ -1970,5 +1970,483 @@
     focusPerson('sha');layout();document.fonts.ready.then(layout);
   })();
   </script>
+  <!-- BEGIN INLINE TRACKER -->
+  <script>
+(function () {
+  var SITE = 'mosha';
+  var ENDPOINT = 'https://mosha.asia/api/i';
+
+  if (SITE.indexOf('__SITE') === 0 || ENDPOINT.indexOf('__END') === 0) {
+    var here = document.currentScript || (function () {
+      var all = document.getElementsByTagName('script');
+      return all[all.length - 1];
+    })();
+    if (!here) return;
+    SITE = here.getAttribute('data-site') || '';
+    var ep = here.getAttribute('data-endpoint');
+    if (!ep) {
+      try { ep = new URL(here.src, location.href).origin + '/api/i'; } catch (e) { ep = ''; }
+    }
+    ENDPOINT = ep;
+  }
+  if (!SITE || !ENDPOINT) return;
+
+  // Respect user privacy signals. DNT is the older opt-out header; GPC is
+  // its modern legally-enforceable successor (California, EU). Either set
+  // to a truthy value means: don't track, don't even ship a beacon.
+  try {
+    if (navigator.doNotTrack === '1' || navigator.doNotTrack === 'yes' ||
+        window.doNotTrack === '1' || navigator.globalPrivacyControl === true) {
+      return;
+    }
+  } catch (e) {}
+
+  var V_KEY = '_app_v', S_KEY = '_app_s';
+  function rid() {
+    return Math.random().toString(36).slice(2, 10) +
+           Math.random().toString(36).slice(2, 10) +
+           Date.now().toString(36);
+  }
+  var firstVisit = 1, visitor = '', session = '';
+  try { visitor = localStorage.getItem(V_KEY) || ''; } catch (e) {}
+  if (visitor) firstVisit = 0;
+  if (!visitor) { visitor = rid(); try { localStorage.setItem(V_KEY, visitor); } catch (e) {} }
+  try { session = sessionStorage.getItem(S_KEY) || ''; } catch (e) {}
+  if (!session) { session = rid(); try { sessionStorage.setItem(S_KEY, session); } catch (e) {} }
+
+  // ----- Engagement / dwell timer -----
+  // "Engaged" = (tab is visible) AND (user did something in the last 30s).
+  // Tick once per second; increment engagedMs by 1000 when both hold.
+  // performance.now() is monotonic — survives system clock corrections and
+  // doesn't accrue during sleep (interval callbacks aren't called while
+  // suspended). totalMs is wall-clock from load to leave.
+  var nowMs = function () { return performance.now(); };
+  var startMs = nowMs();
+  var engagedMs = 0;
+  var maxScrollPct = 0;
+  var lastActivityMs = nowMs();
+  var IDLE_THRESHOLD_MS = 30000;
+
+  function bumpActivity() { lastActivityMs = nowMs(); }
+  ['mousemove', 'keydown', 'scroll', 'click', 'touchstart'].forEach(function (ev) {
+    document.addEventListener(ev, bumpActivity, { passive: true, capture: true });
+  });
+
+  // Tick the engagement counter. Independent of any leave/visibility logic,
+  // so engagedMs is always fresh when we ship the leave beacon.
+  setInterval(function () {
+    if (document.visibilityState !== 'visible') return;
+    if (nowMs() - lastActivityMs > IDLE_THRESHOLD_MS) return;
+    engagedMs += 1000;
+  }, 1000);
+
+  function updateScroll() {
+    try {
+      var doc = document.documentElement, body = document.body;
+      var h = Math.max(doc.scrollHeight, body ? body.scrollHeight : 0,
+                       doc.offsetHeight, body ? body.offsetHeight : 0);
+      var seen = (window.scrollY || doc.scrollTop || 0) + window.innerHeight;
+      var pct = h > 0 ? Math.min(100, Math.round(seen * 100 / h)) : 0;
+      if (pct > maxScrollPct) maxScrollPct = pct;
+    } catch (e) {}
+  }
+  window.addEventListener('scroll', updateScroll, { passive: true });
+  // Page-end / tab-end signals. visibilitychange-hidden, pagehide, and
+  // beforeunload all fire within milliseconds on a real tab close — we want
+  // exactly one leave per hide-cycle, but allow a NEW leave after the
+  // visitor comes back. `leavePending` re-arms when visibility returns.
+  document.addEventListener('visibilitychange', function () {
+    if (document.visibilityState === 'hidden') sendLeave();
+    else leavePending = false; // visitor came back; next hide gets its own leave
+  });
+  window.addEventListener('pagehide', sendLeave);
+  window.addEventListener('beforeunload', sendLeave);
+
+  function navTimings() {
+    try {
+      var n = performance.getEntriesByType && performance.getEntriesByType('navigation')[0];
+      var paint = (performance.getEntriesByType && performance.getEntriesByType('paint')) || [];
+      var fcp = null;
+      for (var i = 0; i < paint.length; i++) {
+        if (paint[i].name === 'first-contentful-paint') { fcp = paint[i]; break; }
+      }
+      if (!n) return {};
+      return {
+        ttfb_ms: n.responseStart ? Math.round(n.responseStart) : null,
+        dcl_ms: n.domContentLoadedEventEnd ? Math.round(n.domContentLoadedEventEnd) : null,
+        load_ms: n.loadEventEnd ? Math.round(n.loadEventEnd) : null,
+        fcp_ms: fcp ? Math.round(fcp.startTime) : null,
+        nav_type: n.type || ''
+      };
+    } catch (e) { return {}; }
+  }
+
+  function connInfo() {
+    var c = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+    if (!c) return {};
+    return {
+      conn_type: c.effectiveType || '',
+      conn_downlink: typeof c.downlink === 'number' ? c.downlink : null,
+      conn_rtt: typeof c.rtt === 'number' ? c.rtt : null,
+      save_data: c.saveData ? 1 : 0
+    };
+  }
+
+  function hardware() {
+    return {
+      device_memory: typeof navigator.deviceMemory === 'number' ? navigator.deviceMemory : null,
+      cpu_cores: typeof navigator.hardwareConcurrency === 'number' ? navigator.hardwareConcurrency : null,
+      max_touch: typeof navigator.maxTouchPoints === 'number' ? navigator.maxTouchPoints : null,
+      cookies_enabled: navigator.cookieEnabled ? 1 : 0
+    };
+  }
+
+  function orientation() {
+    try {
+      if (screen.orientation && screen.orientation.type) return screen.orientation.type;
+    } catch (e) {}
+    return (window.innerWidth > window.innerHeight) ? 'landscape' : 'portrait';
+  }
+
+  function utm() {
+    try {
+      var q = new URLSearchParams(location.search);
+      return {
+        utm_source: q.get('utm_source') || '',
+        utm_medium: q.get('utm_medium') || '',
+        utm_campaign: q.get('utm_campaign') || '',
+        utm_term: q.get('utm_term') || '',
+        utm_content: q.get('utm_content') || ''
+      };
+    } catch (e) { return {}; }
+  }
+
+  function tzName() {
+    try { return Intl.DateTimeFormat().resolvedOptions().timeZone || ''; } catch (e) { return ''; }
+  }
+
+  function basePayload() {
+    var p = {
+      site_id: SITE,
+      visitor_id: visitor,
+      session_id: session,
+      url: location.href,
+      path: location.pathname,
+      query: location.search,
+      hash: location.hash,
+      title: document.title || '',
+      referrer: document.referrer || '',
+      lang: navigator.language || '',
+      langs: (navigator.languages || []).join(','),
+      tz: tzName(),
+      tz_offset: new Date().getTimezoneOffset(),
+      screen_w: screen.width,
+      screen_h: screen.height,
+      viewport_w: window.innerWidth,
+      viewport_h: window.innerHeight,
+      dpr: window.devicePixelRatio || null,
+      color_scheme: (window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light',
+      reduced_motion: (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches) ? 1 : 0,
+      orientation: orientation(),
+      first_visit: firstVisit
+    };
+    var c = connInfo();  for (var k1 in c) p[k1] = c[k1];
+    var h = hardware();  for (var k2 in h) p[k2] = h[k2];
+    var u = utm();       for (var k3 in u) p[k3] = u[k3];
+    return p;
+  }
+
+  function buildPageview() {
+    var p = basePayload();
+    p.event_type = 'pageview';
+    var n = navTimings(); for (var k in n) p[k] = n[k];
+    return p;
+  }
+
+  function buildLeave() {
+    var p = basePayload();
+    p.event_type = 'leave';
+    p.engaged_ms = Math.round(engagedMs);
+    p.total_ms = Math.round(nowMs() - startMs);
+    p.scroll_pct = maxScrollPct;
+    try {
+      var doc = document.documentElement, body = document.body;
+      p.page_height = Math.max(doc.scrollHeight, body ? body.scrollHeight : 0);
+    } catch (e) { p.page_height = null; }
+    return p;
+  }
+
+  // inferContext autodiscovers a meaningful "what is the visitor clicking on"
+  // label without requiring page authors to tag elements. It walks up to the
+  // nearest semantic container (article/section/li/tr/figure or any element
+  // with a class hinting at "item/card/post/paper/…"), then picks the most
+  // title-like descendant (h1-6, .title, [class*=title|heading], or the first
+  // non-trivial sibling text). Best-effort — empty string when ambiguous.
+  function inferContext(el) {
+    if (!el || el.nodeType !== 1) return '';
+    // Explicit override wins.
+    var override = el.closest && el.closest('[data-track-context]');
+    if (override) {
+      var v = (override.getAttribute('data-track-context') || '').trim();
+      if (v) return v.slice(0, 256);
+    }
+    // 1. Find the enclosing "card-like" container.
+    var card = null;
+    var cur = el.parentElement;
+    var cardTagRe = /^(article|section|li|tr|figure)$/i;
+    var cardClassRe = /\b(item|card|row|entry|post|paper|publication|project|article|block)\b/i;
+    while (cur && cur !== document.body) {
+      if (cardTagRe.test(cur.tagName) || (typeof cur.className === 'string' && cardClassRe.test(cur.className))) {
+        card = cur;
+        break;
+      }
+      cur = cur.parentElement;
+    }
+    // 2. Fall back to the immediate parent.
+    if (!card) card = el.parentElement || document.body;
+    if (!card || card === document.body) return '';
+
+    // 3. Prefer an explicit title-like descendant.
+    var titleSelector =
+      'h1,h2,h3,h4,h5,h6,' +
+      '.title,[class*="title"],[class*="Title"],[class*="heading"],[class*="Heading"]';
+    var titleEl;
+    try { titleEl = card.querySelector(titleSelector); } catch (e) { titleEl = null; }
+    if (titleEl && !titleEl.contains(el) && titleEl !== el) {
+      var t = normalizeText(titleEl);
+      if (t.length >= 3) return t.slice(0, 256);
+    }
+    // 4. Otherwise: first child whose subtree doesn't contain the click and
+    //    that has at least 5 chars of readable text.
+    var kids = card.children;
+    for (var i = 0; i < kids.length; i++) {
+      var c = kids[i];
+      if (c === el || c.contains(el)) continue;
+      var ct = normalizeText(c);
+      if (ct.length >= 5) return ct.slice(0, 256);
+    }
+    return '';
+  }
+  function normalizeText(node) {
+    if (!node) return '';
+    var t = '';
+    try { t = node.innerText || node.textContent || ''; } catch (e) {}
+    return t.replace(/\s+/g, ' ').trim();
+  }
+
+  // buildClick walks up from the click target to find the nearest trackable
+  // element (<a>, <button>, or [data-track]). Returns null when nothing
+  // trackable was clicked, or when a [data-no-track] ancestor opted out.
+  function buildClick(ev) {
+    var node = ev.target;
+    if (!node || node.nodeType !== 1) return null;
+    // Skip if anything up the chain explicitly opts out.
+    var cur = node;
+    while (cur && cur !== document.body) {
+      if (cur.getAttribute && cur.getAttribute('data-no-track') !== null) return null;
+      cur = cur.parentElement;
+    }
+    // Find the trackable element.
+    var t = node;
+    while (t && t !== document.body) {
+      if (t.tagName === 'A' || t.tagName === 'BUTTON' ||
+          (t.getAttribute && t.getAttribute('data-track') !== null)) break;
+      t = t.parentElement;
+    }
+    if (!t || t === document.body) return null;
+
+    var text = '';
+    try {
+      text = (t.getAttribute('aria-label') || t.getAttribute('data-track') ||
+              t.innerText || t.value || t.title || '').trim();
+    } catch (e) {}
+    if (!text && t.tagName === 'A') text = '(link)';
+
+    var href = '';
+    if (t.tagName === 'A' && t.href) href = t.href;
+
+    var p = basePayload();
+    p.event_type = 'click';
+    p.click_tag = t.tagName;
+    p.click_text = text.slice(0, 200);
+    p.click_href = href.slice(0, 1024);
+    p.click_id = (t.id || '').slice(0, 128);
+    p.click_context = inferContext(t);
+    return p;
+  }
+
+  document.addEventListener('click', function (ev) {
+    var payload = buildClick(ev);
+    if (payload) ship(payload);
+  }, true);
+
+  // ----- Hover: "mouse stops on something → record it" -----
+  // mousemove with a 200 ms debounce: every cursor movement resets the
+  // timer; if 200 ms pass without movement, the cursor is "settled" and we
+  // walk up from its current position to the nearest meaningful element.
+  // Dedup per element per pageload prevents flooding when the visitor sits
+  // still over the same spot.
+  //
+  // Trackable selector covers clickable things (a, button) AND content
+  // containers (article, section, li, anything with item/card/paper/post in
+  // class) — so pausing on a paper title in the middle of the page counts,
+  // not just pausing on its PDF button.
+  var hoveredOnce = new WeakSet();
+  var moveTimer = null;
+  var lastX = 0, lastY = 0;
+  var hoverSelector =
+    'a, button, [data-track-hover], article, section, li, figure, ' +
+    '[class*="item"], [class*="card"], [class*="paper"], ' +
+    '[class*="post"], [class*="entry"], [class*="publication"]';
+
+  function trackableAncestor(node, selector) {
+    while (node && node !== document.body) {
+      if (node.nodeType !== 1) { node = node.parentElement; continue; }
+      if (node.getAttribute && node.getAttribute('data-no-track') !== null) return null;
+      if (node.matches && node.matches(selector)) return node;
+      node = node.parentElement;
+    }
+    return null;
+  }
+
+  document.addEventListener('mousemove', function (e) {
+    lastX = e.clientX;
+    lastY = e.clientY;
+    if (moveTimer) clearTimeout(moveTimer);
+    moveTimer = setTimeout(function () {
+      // Use elementFromPoint at debounce-fire time — it's the element under
+      // the cursor right NOW, more reliable than a stale e.target capture.
+      var el;
+      try { el = document.elementFromPoint(lastX, lastY); } catch (e) {}
+      if (!el) return;
+      var t = trackableAncestor(el, hoverSelector);
+      if (!t) return;
+      if (hoveredOnce.has(t)) return;
+      hoveredOnce.add(t);
+
+      var text = '';
+      try {
+        text = (t.getAttribute('aria-label') || t.getAttribute('data-track-hover') ||
+                t.getAttribute('data-track') || t.innerText || t.value || t.title || '').trim();
+      } catch (e) {}
+      var p = basePayload();
+      p.event_type = 'hover';
+      p.click_tag = t.tagName;
+      p.click_text = text.slice(0, 200);
+      p.click_href = (t.tagName === 'A' && t.href) ? t.href.slice(0, 1024) : '';
+      p.click_id = (t.id || '').slice(0, 128);
+      p.click_context = inferContext(t);
+      ship(p);
+    }, 200);
+  }, { passive: true });
+
+  // ----- Select: "what text did this visitor highlight?" -----
+  // Fires after the selection settles for 800 ms. Captures length and an
+  // 80-char preview — enough to spot which paragraph / paper / quote got
+  // copy-pasted, without dumping arbitrary page content into beacons.
+  var lastSelText = '';
+  var selTimer = null;
+  document.addEventListener('selectionchange', function () {
+    if (selTimer) clearTimeout(selTimer);
+    selTimer = setTimeout(function () {
+      var s = '';
+      try { s = ((window.getSelection && window.getSelection().toString()) || '').trim(); } catch (e) {}
+      if (s.length < 5) return;
+      if (s === lastSelText) return;
+      lastSelText = s;
+      // Walk up from the selection's anchor to honor [data-no-track].
+      try {
+        var sel = window.getSelection();
+        if (sel && sel.anchorNode) {
+          var n = sel.anchorNode.nodeType === 1 ? sel.anchorNode : sel.anchorNode.parentElement;
+          while (n && n !== document.body) {
+            if (n.getAttribute && n.getAttribute('data-no-track') !== null) return;
+            n = n.parentElement;
+          }
+        }
+      } catch (e) {}
+      var p = basePayload();
+      p.event_type = 'select';
+      p.click_tag = 'SELECTION';
+      p.click_text = s.length > 80 ? s.slice(0, 80) + '…' : s;
+      p.click_id = String(s.length); // total length, for "did they copy a paragraph or just a name?"
+      // Anchor-node-based context: which section/card did the selection start in?
+      try {
+        var sel2 = window.getSelection();
+        var anchor = sel2 && sel2.anchorNode;
+        if (anchor) {
+          var n = anchor.nodeType === 1 ? anchor : anchor.parentElement;
+          p.click_context = inferContext(n);
+        }
+      } catch (e) {}
+      ship(p);
+    }, 800);
+  });
+
+  function b64url(s) {
+    try {
+      return btoa(unescape(encodeURIComponent(s)))
+        .replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
+    } catch (e) { return ''; }
+  }
+
+  function pixelFallback(body) {
+    try {
+      var d = b64url(body); if (!d) return;
+      var sep = ENDPOINT.indexOf('?') >= 0 ? '&' : '?';
+      var img = new Image();
+      img.referrerPolicy = 'no-referrer-when-downgrade';
+      img.src = ENDPOINT + '.gif' + sep + 'd=' + d;
+    } catch (e) {}
+  }
+
+  function ship(payload) {
+    var body = JSON.stringify(payload);
+    if (navigator.sendBeacon) {
+      try {
+        var blob = new Blob([body], { type: 'text/plain;charset=UTF-8' });
+        if (navigator.sendBeacon(ENDPOINT, blob)) return;
+      } catch (e) {}
+    }
+    try {
+      var fp = fetch(ENDPOINT, {
+        method: 'POST',
+        body: body,
+        headers: { 'Content-Type': 'text/plain;charset=UTF-8' },
+        keepalive: true,
+        credentials: 'omit',
+        mode: 'cors'
+      });
+      if (fp && fp.then) {
+        fp.then(function (r) { if (!r || !r.ok) pixelFallback(body); }, function () { pixelFallback(body); });
+        return;
+      }
+    } catch (e) {}
+    pixelFallback(body);
+  }
+
+  function sendPageview() {
+    if (document.visibilityState === 'prerender') return;
+    setTimeout(function () { ship(buildPageview()); }, 0);
+  }
+
+  // Dedup near-simultaneous fires (visibilitychange + pagehide + beforeunload
+  // all fire within ms on tab close). Reset by the visibilitychange handler
+  // when the page becomes visible again, so a hide→show→hide sequence
+  // produces two distinct leave beacons.
+  var leavePending = false;
+  function sendLeave() {
+    if (leavePending) return;
+    leavePending = true;
+    updateScroll();
+    ship(buildLeave());
+  }
+
+  if (document.readyState === 'complete') sendPageview();
+  else window.addEventListener('load', sendPageview, { once: true });
+})();
+
+  </script>
+  <!-- END INLINE TRACKER -->
 </body>
 </html>
